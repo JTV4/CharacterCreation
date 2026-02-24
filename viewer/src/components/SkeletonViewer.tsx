@@ -4,11 +4,13 @@ import { Line } from "@react-three/drei";
 import * as THREE from "three";
 import type { BoneSpec, RigSpec, BoneCategory } from "../types";
 import { CATEGORY_COLORS } from "../types";
+import type { AnimatedBonePositions } from "../hooks/useAnimationPlayer";
 
 interface SkeletonViewerProps {
   spec: RigSpec;
   selectedBone: string | null;
   onSelectBone: (name: string | null) => void;
+  animatedPositions?: Map<string, AnimatedBonePositions> | null;
 }
 
 const SELECTED_COLOR = "#ffffff";
@@ -51,16 +53,23 @@ function BoneShape({
   bone,
   isSelected,
   onSelect,
+  headOverride,
+  tailOverride,
 }: {
   bone: BoneSpec;
   isSelected: boolean;
   onSelect: () => void;
+  headOverride?: [number, number, number];
+  tailOverride?: [number, number, number];
 }) {
   const meshRef = useRef<THREE.Mesh>(null);
 
+  const headPos = headOverride ?? bone.head;
+  const tailPos = tailOverride ?? bone.tail;
+
   const { geometry, position, quaternion, length } = useMemo(() => {
-    const head = new THREE.Vector3(...bone.head);
-    const tail = new THREE.Vector3(...bone.tail);
+    const head = new THREE.Vector3(...headPos);
+    const tail = new THREE.Vector3(...tailPos);
     const dir = new THREE.Vector3().subVectors(tail, head);
     const len = dir.length();
 
@@ -73,7 +82,7 @@ function BoneShape({
     }
 
     return { geometry: geom, position: head, quaternion: quat, length: len };
-  }, [bone]);
+  }, [headPos, tailPos]);
 
   const color = isSelected
     ? SELECTED_COLOR
@@ -155,6 +164,7 @@ export default function SkeletonViewer({
   spec,
   selectedBone,
   onSelectBone,
+  animatedPositions,
 }: SkeletonViewerProps) {
   const boneMap = useMemo(() => {
     const map = new Map<string, BoneSpec>();
@@ -168,22 +178,38 @@ export default function SkeletonViewer({
         const parent = bone.parent ? boneMap.get(bone.parent) : undefined;
         const isSelected = bone.name === selectedBone;
 
+        const animPos = animatedPositions?.get(bone.name);
+        const headPos = animPos?.head ?? bone.head;
+        const tailPos = animPos?.tail ?? bone.tail;
+
+        const parentAnimPos = parent
+          ? animatedPositions?.get(parent.name)
+          : undefined;
+        const parentTail = parentAnimPos?.tail ?? parent?.tail;
+
         return (
           <group key={bone.name}>
             <BoneShape
               bone={bone}
               isSelected={isSelected}
               onSelect={() => onSelectBone(bone.name)}
+              headOverride={animPos ? headPos : undefined}
+              tailOverride={animPos ? tailPos : undefined}
             />
             <JointSphere
-              position={bone.head}
+              position={headPos}
               color={
                 isSelected
                   ? SELECTED_EMISSIVE
                   : CATEGORY_COLORS[bone.category as BoneCategory] ?? "#94a3b8"
               }
             />
-            {parent && <ParentLine bone={bone} parentBone={parent} />}
+            {parent && parentTail && (
+              <ParentLine
+                bone={{ ...bone, head: headPos }}
+                parentBone={{ ...parent, tail: parentTail }}
+              />
+            )}
           </group>
         );
       })}

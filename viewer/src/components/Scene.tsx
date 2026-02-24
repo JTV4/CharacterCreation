@@ -2,14 +2,23 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Grid } from "@react-three/drei";
 import SkeletonViewer from "./SkeletonViewer";
 import type { RigSpec } from "../types";
+import type { AnimatedBonePositions } from "../hooks/useAnimationPlayer";
 
 interface SceneProps {
   spec: RigSpec;
   selectedBone: string | null;
   onSelectBone: (name: string | null) => void;
+  animatedPositions?: Map<string, AnimatedBonePositions> | null;
+  children?: React.ReactNode;
 }
 
-export default function Scene({ spec, selectedBone, onSelectBone }: SceneProps) {
+export default function Scene({
+  spec,
+  selectedBone,
+  onSelectBone,
+  animatedPositions,
+  children,
+}: SceneProps) {
   return (
     <Canvas
       camera={{ position: [2, 1.5, 2], fov: 45, near: 0.01, far: 100 }}
@@ -39,7 +48,10 @@ export default function Scene({ spec, selectedBone, onSelectBone }: SceneProps) 
         spec={spec}
         selectedBone={selectedBone}
         onSelectBone={onSelectBone}
+        animatedPositions={animatedPositions}
       />
+
+      {children}
 
       <OrbitControls
         target={[0, 0, 0.9]}

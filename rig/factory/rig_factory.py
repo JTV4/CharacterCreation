@@ -105,20 +105,49 @@ def build_armature(spec: dict[str, Any], name: str = "Rig") -> bpy.types.Object:
     return armature_obj
 
 
+CATEGORY_COLORS: dict[str, tuple[float, float, float]] = {
+    "spine":  (0.290, 0.620, 1.000),   # #4a9eff
+    "arm":    (0.290, 0.859, 0.478),   # #4adb7a
+    "leg":    (1.000, 0.420, 0.420),   # #ff6b6b
+    "finger": (1.000, 0.851, 0.239),   # #ffd93d
+    "face":   (0.753, 0.518, 0.988),   # #c084fc
+    "other":  (0.580, 0.639, 0.722),   # #94a3b8
+}
+
+
 def _apply_bone_groups(
     armature_obj: bpy.types.Object, bones: list[dict[str, Any]]
 ) -> None:
-    """Assign custom properties to pose bones for category metadata.
+    """Assign category metadata and per-bone colors (Blender 4.x).
 
-    Blender 4.x removed legacy bone groups; we store category as a custom
-    property on each pose bone instead, which is useful for tools and export.
+    Sets custom color on each bone via the armature data (edit bones persist
+    color even outside pose mode) and stores category/side as custom props.
     """
+    bpy.ops.object.mode_set(mode="EDIT")
+    for bone_data in bones:
+        bone_name = bone_data["name"]
+        eb = armature_obj.data.edit_bones.get(bone_name)
+        if eb:
+            cat = bone_data.get("category", "other")
+            rgb = CATEGORY_COLORS.get(cat, CATEGORY_COLORS["other"])
+            eb.color.palette = "CUSTOM"
+            eb.color.custom.normal = rgb
+            eb.color.custom.select = tuple(min(c + 0.2, 1.0) for c in rgb)
+            eb.color.custom.active = tuple(min(c + 0.35, 1.0) for c in rgb)
+    bpy.ops.object.mode_set(mode="OBJECT")
+
     for bone_data in bones:
         bone_name = bone_data["name"]
         pose_bone = armature_obj.pose.bones.get(bone_name)
         if pose_bone:
             pose_bone["category"] = bone_data["category"]
             pose_bone["side"] = bone_data["side"]
+            cat = bone_data.get("category", "other")
+            rgb = CATEGORY_COLORS.get(cat, CATEGORY_COLORS["other"])
+            pose_bone.color.palette = "CUSTOM"
+            pose_bone.color.custom.normal = rgb
+            pose_bone.color.custom.select = tuple(min(c + 0.2, 1.0) for c in rgb)
+            pose_bone.color.custom.active = tuple(min(c + 0.35, 1.0) for c in rgb)
 
 
 def parse_args() -> argparse.Namespace:
@@ -153,6 +182,11 @@ def parse_args() -> argparse.Namespace:
         help="Optional: also export as FBX to this path",
     )
     parser.add_argument(
+        "--anims",
+        default=None,
+        help="Directory containing .anim.json files to bake into the rig",
+    )
+    parser.add_argument(
         "--name",
         default="Rig",
         help="Name for the armature object (default: 'Rig')",
@@ -176,6 +210,12 @@ def main() -> None:
     validate_rig_spec(spec)
 
     armature_obj = build_armature(spec, name=args.name)
+
+    if args.anims:
+        from anim_baker import bake_all_anims
+
+        actions = bake_all_anims(armature_obj, args.anims)
+        print(f"  Baked {len(actions)} animation(s) into armature.")
 
     from exporter import export_blend, export_glb, export_fbx
 

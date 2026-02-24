@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "name": "AttackWithFist",
+    "id": "attack_with_fist",
+    "duration": 0.8,
+    "fps": 30,
+    "loop": false
+  },
+  "tracks": []
+}

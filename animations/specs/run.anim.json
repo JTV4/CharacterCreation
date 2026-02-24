@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "name": "Run",
+    "id": "run",
+    "duration": 0.7,
+    "fps": 30,
+    "loop": true
+  },
+  "tracks": []
+}

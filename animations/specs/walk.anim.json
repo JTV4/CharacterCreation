@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "name": "Walk",
+    "id": "walk",
+    "duration": 1.0,
+    "fps": 30,
+    "loop": true
+  },
+  "tracks": []
+}

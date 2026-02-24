@@ -1,0 +1,11 @@
+{
+  "animations": [
+    { "id": "idle", "file": "idle.anim.json" },
+    { "id": "idle_combat", "file": "idle_combat.anim.json" },
+    { "id": "idle_ready", "file": "idle_ready.anim.json" },
+    { "id": "walk", "file": "walk.anim.json" },
+    { "id": "run", "file": "run.anim.json" },
+    { "id": "attack_with_fist", "file": "attack_with_fist.anim.json" },
+    { "id": "attack_with_kick", "file": "attack_with_kick.anim.json" }
+  ]
+}

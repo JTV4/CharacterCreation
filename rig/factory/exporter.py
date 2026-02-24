@@ -21,12 +21,13 @@ def export_blend(filepath: str) -> None:
     print(f"  Saved .blend: {abspath}")
 
 
-def export_glb(filepath: str) -> None:
+def export_glb(filepath: str, include_anims: bool = True) -> None:
     """Export the current scene as a GLB (binary glTF) file.
 
     Applies the following settings for game-engine compatibility:
     - Y-up coordinate system (glTF standard)
     - Armatures exported with bone data
+    - All baked actions exported as separate animations
     """
     _ensure_directory(filepath)
     abspath = os.path.abspath(filepath)
@@ -39,8 +40,11 @@ def export_glb(filepath: str) -> None:
         export_skins=True,
         export_all_influences=False,
         export_def_bones=False,
+        export_animations=include_anims,
+        export_nla_strips=False,
+        export_animation_mode="ACTIONS" if include_anims else "NLA_TRACKS",
     )
-    print(f"  Exported GLB: {abspath}")
+    print(f"  Exported GLB: {abspath} (animations={'yes' if include_anims else 'no'})")
 
 
 def export_fbx(filepath: str) -> None:
@@ -52,6 +56,7 @@ def export_fbx(filepath: str) -> None:
     _ensure_directory(filepath)
     abspath = os.path.abspath(filepath)
 
+    has_actions = len(bpy.data.actions) > 0
     bpy.ops.export_scene.fbx(
         filepath=abspath,
         use_selection=False,
@@ -61,6 +66,7 @@ def export_fbx(filepath: str) -> None:
         object_types={"ARMATURE"},
         use_armature_deform_only=False,
         add_leaf_bones=False,
-        bake_anim=False,
+        bake_anim=has_actions,
+        bake_anim_use_all_actions=has_actions,
     )
-    print(f"  Exported FBX: {abspath}")
+    print(f"  Exported FBX: {abspath} (animations={'yes' if has_actions else 'no'})")
