@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import type { RigSpec } from "../types";
+import type { RigSpec, BoneTransformOverride } from "../types";
 import type { AnimSpec } from "../types/animation";
 import {
   useAnimationPlayer,
@@ -11,6 +11,7 @@ interface AnimationBridgeProps {
   animSpec: AnimSpec | null;
   onStateChange: (state: AnimationPlayerState) => void;
   commandRef: React.MutableRefObject<AnimationPlayerState | null>;
+  boneOverrides: Map<string, BoneTransformOverride>;
 }
 
 export default function AnimationBridge({
@@ -18,8 +19,9 @@ export default function AnimationBridge({
   animSpec,
   onStateChange,
   commandRef,
+  boneOverrides,
 }: AnimationBridgeProps) {
-  const player = useAnimationPlayer(rigSpec);
+  const player = useAnimationPlayer(rigSpec, boneOverrides);
   const onStateChangeRef = useRef(onStateChange);
   onStateChangeRef.current = onStateChange;
 

@@ -57,3 +57,9 @@ export const CATEGORY_ORDER: BoneCategory[] = [
   "face",
   "other",
 ];
+
+export interface BoneTransformOverride {
+  position: [number, number, number];
+  rotation: [number, number, number];
+  scale: [number, number, number];
+}

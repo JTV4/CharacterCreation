@@ -1,0 +1,241 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "description": "Equipment slot definitions with bone mappings, spatial boundaries, and visibility rules.",
+    "coordinate_system": { "up": "+Z", "forward": "+Y", "right": "+X", "scale": "meters" }
+  },
+  "slots": [
+    {
+      "id": "head",
+      "name": "Head",
+      "bilateral": false,
+      "color": "#c084fc",
+      "bones": [
+        { "name": "head", "weight": 1.0 },
+        { "name": "neck_01", "weight": 0.25 }
+      ],
+      "bounds": {
+        "z_min": 1.48,
+        "z_max": 1.75,
+        "radius": 0.13,
+        "weight_radius": 0.20
+      },
+      "rules": {},
+      "mesh_type": "dome",
+      "mesh_params": {
+        "segments": 16,
+        "rings": 8,
+        "offset_z": 0.02
+      }
+    },
+    {
+      "id": "amulet",
+      "name": "Amulet",
+      "bilateral": false,
+      "color": "#fbbf24",
+      "bones": [
+        { "name": "spine_03", "weight": 0.7 },
+        { "name": "neck_01", "weight": 1.0 }
+      ],
+      "bounds": {
+        "z_min": 1.30,
+        "z_max": 1.46,
+        "radius": 0.06,
+        "weight_radius": 0.10
+      },
+      "rules": {},
+      "mesh_type": "pendant",
+      "mesh_params": {
+        "neck_radius": 0.065,
+        "chain_radius": 0.003,
+        "chain_z": 1.43,
+        "chain_segments": 32,
+        "chain_tube_segments": 6,
+        "pendant_radius": 0.018,
+        "pendant_thickness": 0.004,
+        "bail_radius": 0.005,
+        "bail_tube_radius": 0.002,
+        "bail_segments": 12,
+        "bail_tube_segments": 6
+      }
+    },
+    {
+      "id": "gloves",
+      "name": "Gloves",
+      "bilateral": true,
+      "color": "#4adb7a",
+      "bones": [
+        { "name": "hand_L", "weight": 1.0 },
+        { "name": "thumb_01_L", "weight": 1.0 },
+        { "name": "thumb_02_L", "weight": 1.0 },
+        { "name": "thumb_03_L", "weight": 1.0 },
+        { "name": "index_01_L", "weight": 1.0 },
+        { "name": "index_02_L", "weight": 1.0 },
+        { "name": "index_03_L", "weight": 1.0 },
+        { "name": "middle_01_L", "weight": 1.0 },
+        { "name": "middle_02_L", "weight": 1.0 },
+        { "name": "middle_03_L", "weight": 1.0 },
+        { "name": "ring_01_L", "weight": 1.0 },
+        { "name": "ring_02_L", "weight": 1.0 },
+        { "name": "ring_03_L", "weight": 1.0 },
+        { "name": "pinky_01_L", "weight": 1.0 },
+        { "name": "pinky_02_L", "weight": 1.0 },
+        { "name": "pinky_03_L", "weight": 1.0 },
+        { "name": "hand_R", "weight": 1.0 },
+        { "name": "thumb_01_R", "weight": 1.0 },
+        { "name": "thumb_02_R", "weight": 1.0 },
+        { "name": "thumb_03_R", "weight": 1.0 },
+        { "name": "index_01_R", "weight": 1.0 },
+        { "name": "index_02_R", "weight": 1.0 },
+        { "name": "index_03_R", "weight": 1.0 },
+        { "name": "middle_01_R", "weight": 1.0 },
+        { "name": "middle_02_R", "weight": 1.0 },
+        { "name": "middle_03_R", "weight": 1.0 },
+        { "name": "ring_01_R", "weight": 1.0 },
+        { "name": "ring_02_R", "weight": 1.0 },
+        { "name": "ring_03_R", "weight": 1.0 },
+        { "name": "pinky_01_R", "weight": 1.0 },
+        { "name": "pinky_02_R", "weight": 1.0 },
+        { "name": "pinky_03_R", "weight": 1.0 }
+      ],
+      "bounds": {
+        "z_min": 1.37,
+        "z_max": 1.42,
+        "radius": 0.20,
+        "weight_radius": 0.05
+      },
+      "rules": {},
+      "mesh_type": "glove",
+      "mesh_params": {
+        "tube_radius": 0.015,
+        "wrist_radius": 0.022,
+        "segments": 8
+      }
+    },
+    {
+      "id": "ring",
+      "name": "Ring",
+      "bilateral": false,
+      "color": "#ffd93d",
+      "bones": [
+        { "name": "middle_01_L", "weight": 1.0 },
+        { "name": "middle_02_L", "weight": 0.4 }
+      ],
+      "bounds": {
+        "z_min": 1.39,
+        "z_max": 1.41,
+        "radius": 0.015,
+        "weight_radius": 0.03
+      },
+      "rules": {
+        "hidden_by": ["gloves"]
+      },
+      "mesh_type": "torus",
+      "mesh_params": {
+        "major_radius": 0.009,
+        "minor_radius": 0.002,
+        "major_segments": 24,
+        "minor_segments": 8,
+        "bone_anchor": "middle_01_L",
+        "position_along_bone": 0.35
+      }
+    },
+    {
+      "id": "upper_body",
+      "name": "Upper Body",
+      "bilateral": false,
+      "color": "#4a9eff",
+      "bones": [
+        { "name": "pelvis", "weight": 0.6 },
+        { "name": "spine_01", "weight": 1.0 },
+        { "name": "spine_02", "weight": 1.0 },
+        { "name": "spine_03", "weight": 1.0 },
+        { "name": "clavicle_L", "weight": 0.8 },
+        { "name": "clavicle_R", "weight": 0.8 },
+        { "name": "upperarm_L", "weight": 1.0 },
+        { "name": "upperarm_R", "weight": 1.0 },
+        { "name": "lowerarm_L", "weight": 1.0 },
+        { "name": "lowerarm_R", "weight": 1.0 },
+        { "name": "hand_L", "weight": 0.1 },
+        { "name": "hand_R", "weight": 0.1 },
+        { "name": "neck_01", "weight": 0.1 }
+      ],
+      "bounds": {
+        "z_min": 0.93,
+        "z_max": 1.42,
+        "radius": 0.75,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "mesh_type": "torso",
+      "mesh_params": {
+        "pelvis_radius": 0.13,
+        "waist_radius": 0.14,
+        "chest_radius": 0.17,
+        "shoulder_radius": 0.20,
+        "sleeve_radius": 0.04,
+        "wrist_radius": 0.025,
+        "segments": 16,
+        "sleeve_segments": 10,
+        "rings": 6
+      }
+    },
+    {
+      "id": "lower_body",
+      "name": "Lower Body",
+      "bilateral": true,
+      "color": "#ff6b6b",
+      "bones": [
+        { "name": "pelvis", "weight": 1.0 },
+        { "name": "thigh_L", "weight": 1.0 },
+        { "name": "thigh_R", "weight": 1.0 },
+        { "name": "shin_L", "weight": 0.8 },
+        { "name": "shin_R", "weight": 0.8 }
+      ],
+      "bounds": {
+        "z_min": 0.27,
+        "z_max": 1.00,
+        "radius": 0.18,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "mesh_type": "pants",
+      "mesh_params": {
+        "hip_radius": 0.15,
+        "thigh_radius": 0.08,
+        "knee_radius": 0.06,
+        "calf_radius": 0.055,
+        "segments": 12,
+        "rings": 5
+      }
+    },
+    {
+      "id": "boots",
+      "name": "Boots",
+      "bilateral": true,
+      "color": "#f97316",
+      "bones": [
+        { "name": "shin_L", "weight": 0.6 },
+        { "name": "shin_R", "weight": 0.6 },
+        { "name": "foot_L", "weight": 1.0 },
+        { "name": "foot_R", "weight": 1.0 },
+        { "name": "toe_L", "weight": 1.0 },
+        { "name": "toe_R", "weight": 1.0 }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.48,
+        "radius": 0.12,
+        "weight_radius": 0.12
+      },
+      "rules": {},
+      "mesh_type": "boot",
+      "mesh_params": {
+        "calf_radius": 0.055,
+        "ankle_radius": 0.04,
+        "sole_thickness": 0.015,
+        "segments": 14
+      }
+    }
+  ]
+}

@@ -1,10 +1,19 @@
-import type { BoneNode, BoneCategory, RigSpec } from "../types";
+import { useCallback } from "react";
+import type { BoneNode, BoneCategory, RigSpec, BoneTransformOverride } from "../types";
 import { CATEGORY_COLORS } from "../types";
 
 interface BoneInfoPanelProps {
   bone: BoneNode | null;
   spec: RigSpec;
+  boneOverrides: Map<string, BoneTransformOverride>;
+  onSetBoneOverride: (boneName: string, override: BoneTransformOverride | null) => void;
 }
+
+const DEFAULT_OVERRIDE: BoneTransformOverride = {
+  position: [0, 0, 0],
+  rotation: [0, 0, 0],
+  scale: [1, 1, 1],
+};
 
 function formatVec(v: [number, number, number]): string {
   return `[${v.map((n) => n.toFixed(3)).join(", ")}]`;
@@ -22,7 +31,65 @@ function boneLength(head: [number, number, number], tail: [number, number, numbe
   return Math.sqrt(dx * dx + dy * dy + dz * dz).toFixed(4);
 }
 
-export default function BoneInfoPanel({ bone, spec }: BoneInfoPanelProps) {
+function Vec3Input({
+  label,
+  value,
+  step,
+  onChange,
+}: {
+  label: string;
+  value: [number, number, number];
+  step: number;
+  onChange: (v: [number, number, number]) => void;
+}) {
+  const labels = ["X", "Y", "Z"];
+  return (
+    <div className="override-field">
+      <span className="override-field-label">{label}</span>
+      <div className="override-inputs">
+        {labels.map((axis, i) => (
+          <label key={axis} className="override-input-wrap">
+            <span className="override-axis">{axis}</span>
+            <input
+              type="number"
+              className="override-input"
+              step={step}
+              value={value[i]}
+              onChange={(e) => {
+                const next: [number, number, number] = [...value];
+                next[i] = parseFloat(e.target.value) || 0;
+                onChange(next);
+              }}
+            />
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function BoneInfoPanel({
+  bone,
+  spec,
+  boneOverrides,
+  onSetBoneOverride,
+}: BoneInfoPanelProps) {
+  const override = bone ? boneOverrides.get(bone.name) ?? DEFAULT_OVERRIDE : DEFAULT_OVERRIDE;
+
+  const updateField = useCallback(
+    (field: keyof BoneTransformOverride, value: [number, number, number]) => {
+      if (!bone) return;
+      const current = boneOverrides.get(bone.name) ?? { ...DEFAULT_OVERRIDE };
+      onSetBoneOverride(bone.name, { ...current, [field]: value });
+    },
+    [bone, boneOverrides, onSetBoneOverride],
+  );
+
+  const handleReset = useCallback(() => {
+    if (!bone) return;
+    onSetBoneOverride(bone.name, null);
+  }, [bone, onSetBoneOverride]);
+
   if (!bone) {
     return (
       <div className="info-panel">
@@ -33,6 +100,7 @@ export default function BoneInfoPanel({ bone, spec }: BoneInfoPanelProps) {
   }
 
   const catColor = CATEGORY_COLORS[bone.category as BoneCategory] ?? "#94a3b8";
+  const hasOverride = boneOverrides.has(bone.name);
 
   return (
     <div className="info-panel">
@@ -95,6 +163,35 @@ export default function BoneInfoPanel({ bone, spec }: BoneInfoPanelProps) {
             <span className="info-value">{bone.mirrorOf}</span>
           </div>
         )}
+      </div>
+
+      <div className="info-section">
+        <div className="info-section-title" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <span>Transform Overrides</span>
+          {hasOverride && (
+            <button className="override-reset-btn" onClick={handleReset}>
+              Reset
+            </button>
+          )}
+        </div>
+        <Vec3Input
+          label="Position"
+          value={override.position}
+          step={0.01}
+          onChange={(v) => updateField("position", v)}
+        />
+        <Vec3Input
+          label="Rotation"
+          value={override.rotation}
+          step={1}
+          onChange={(v) => updateField("rotation", v)}
+        />
+        <Vec3Input
+          label="Scale"
+          value={override.scale}
+          step={0.01}
+          onChange={(v) => updateField("scale", v)}
+        />
       </div>
 
       {bone.parent && (

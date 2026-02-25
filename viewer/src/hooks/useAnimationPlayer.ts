@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import type { RigSpec, BoneSpec } from "../types";
+import type { RigSpec, BoneSpec, BoneTransformOverride } from "../types";
 import type { AnimSpec } from "../types/animation";
 
 export interface AnimatedBonePositions {
@@ -9,8 +9,16 @@ export interface AnimatedBonePositions {
   tail: [number, number, number];
 }
 
+export interface BoneRestTransform {
+  position: THREE.Vector3;
+  quaternion: THREE.Quaternion;
+}
+
 export interface AnimationPlayerState {
   animatedPositions: Map<string, AnimatedBonePositions> | null;
+  boneObjMap: Map<string, THREE.Bone>;
+  boneRestPose: Map<string, BoneRestTransform>;
+  boneRestWorldInverses: Map<string, THREE.Matrix4>;
   currentTime: number;
   isPlaying: boolean;
   duration: number;
@@ -83,11 +91,11 @@ function computeRestTransforms(
 function buildBoneHierarchy(
   rigSpec: RigSpec,
   restTransforms: Map<string, BoneRest>,
-): { rootObj: THREE.Object3D; objMap: Map<string, THREE.Object3D> } {
+): { rootObj: THREE.Object3D; objMap: Map<string, THREE.Bone> } {
   const rootObj = new THREE.Object3D();
   rootObj.name = "__anim_root__";
 
-  const objMap = new Map<string, THREE.Object3D>();
+  const objMap = new Map<string, THREE.Bone>();
   const boneMap = new Map<string, BoneSpec>();
   for (const b of rigSpec.bones) boneMap.set(b.name, b);
 
@@ -95,7 +103,7 @@ function buildBoneHierarchy(
 
   for (const bone of sorted) {
     const rest = restTransforms.get(bone.name)!;
-    const obj = new THREE.Object3D();
+    const obj = new THREE.Bone();
     obj.name = bone.name;
     obj.position.copy(rest.localPos);
     obj.quaternion.copy(rest.localQuat);
@@ -216,7 +224,14 @@ function extractWorldPositions(
   return result;
 }
 
-export function useAnimationPlayer(rigSpec: RigSpec): AnimationPlayerState {
+const _overrideQuat = new THREE.Quaternion();
+const _overrideEuler = new THREE.Euler();
+const DEG2RAD = Math.PI / 180;
+
+export function useAnimationPlayer(
+  rigSpec: RigSpec,
+  boneOverrides?: Map<string, BoneTransformOverride>,
+): AnimationPlayerState {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [speed, setSpeedState] = useState(1);
@@ -235,6 +250,26 @@ export function useAnimationPlayer(rigSpec: RigSpec): AnimationPlayerState {
     () => buildBoneHierarchy(rigSpec, restTransforms),
     [rigSpec, restTransforms],
   );
+
+  const boneRestPose = useMemo(() => {
+    const map = new Map<string, BoneRestTransform>();
+    for (const [name, rest] of restTransforms) {
+      map.set(name, {
+        position: rest.localPos.clone(),
+        quaternion: rest.localQuat.clone(),
+      });
+    }
+    return map;
+  }, [restTransforms]);
+
+  const boneRestWorldInverses = useMemo(() => {
+    rootObj.updateMatrixWorld(true);
+    const map = new Map<string, THREE.Matrix4>();
+    for (const [name, bone] of objMap) {
+      map.set(name, bone.matrixWorld.clone().invert());
+    }
+    return map;
+  }, [rootObj, objMap]);
 
   const durationRef = useRef(0);
 
@@ -372,13 +407,41 @@ export function useAnimationPlayer(rigSpec: RigSpec): AnimationPlayerState {
   );
 
   useFrame((_, delta) => {
-    if (!mixerRef.current || !isPlaying) return;
+    const playing = !!(mixerRef.current && isPlaying);
+    const hasOverrides = !!(boneOverrides && boneOverrides.size > 0);
 
-    mixerRef.current.update(delta);
+    if (!playing && !hasOverrides) return;
+
+    if (playing) {
+      mixerRef.current!.update(delta);
+    }
+
+    if (hasOverrides) {
+      for (const [name, override] of boneOverrides!) {
+        const obj = objMap.get(name);
+        if (!obj) continue;
+        obj.position.x += override.position[0];
+        obj.position.y += override.position[1];
+        obj.position.z += override.position[2];
+        _overrideEuler.set(
+          override.rotation[0] * DEG2RAD,
+          override.rotation[1] * DEG2RAD,
+          override.rotation[2] * DEG2RAD,
+        );
+        _overrideQuat.setFromEuler(_overrideEuler);
+        obj.quaternion.premultiply(_overrideQuat);
+        obj.scale.x *= override.scale[0];
+        obj.scale.y *= override.scale[1];
+        obj.scale.z *= override.scale[2];
+      }
+    }
+
     rootObj.updateMatrixWorld(true);
 
-    const time = actionRef.current?.time ?? 0;
-    setCurrentTime(time);
+    if (playing) {
+      const time = actionRef.current?.time ?? 0;
+      setCurrentTime(time);
+    }
     setAnimatedPositions(
       extractWorldPositions(rigSpec, objMap, restTransforms),
     );
@@ -395,6 +458,9 @@ export function useAnimationPlayer(rigSpec: RigSpec): AnimationPlayerState {
 
   return {
     animatedPositions,
+    boneObjMap: objMap,
+    boneRestPose,
+    boneRestWorldInverses,
     currentTime,
     isPlaying,
     duration: durationRef.current,

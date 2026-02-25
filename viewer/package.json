@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "copy-spec": "cp ../rig/spec/rig_spec.json public/rig_spec.json && mkdir -p public/animations && cp ../animations/specs/*.anim.json public/animations/ && cp ../rig/output/rig.glb public/rig.glb 2>/dev/null || true"
+    "copy-spec": "cp ../rig/spec/rig_spec.json public/rig_spec.json && mkdir -p public/animations && cp ../animations/specs/*.anim.json public/animations/ && cp ../rig/output/rig.glb public/rig.glb 2>/dev/null || true && mkdir -p public/equipment && cp ../equipment/output/*.glb public/equipment/ 2>/dev/null || true && cp ../equipment/spec/equipment_spec.json public/equipment/equipment_spec.json 2>/dev/null || true"
   },
   "dependencies": {
     "@react-three/drei": "^9.117.0",

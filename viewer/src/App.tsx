@@ -1,12 +1,17 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSkeletonData } from "./hooks/useSkeletonData";
+import { useTransformShortcuts } from "./hooks/useTransformShortcuts";
 import type { AnimSpec, AnimManifest } from "./types/animation";
 import type { AnimationPlayerState, AnimatedBonePositions } from "./hooks/useAnimationPlayer";
+import type { EquipmentSpec, EquipmentState } from "./types/equipment";
+import type { BoneTransformOverride } from "./types";
 import Scene from "./components/Scene";
 import BoneSidebar from "./components/BoneSidebar";
 import BoneInfoPanel from "./components/BoneInfoPanel";
 import AnimationControls from "./components/AnimationControls";
 import AnimationBridge from "./components/AnimationBridge";
+import EquipmentPanel from "./components/EquipmentPanel";
+import EquipmentMeshRenderer from "./components/EquipmentMeshRenderer";
 
 export default function App() {
   const { data, error, loading } = useSkeletonData();
@@ -33,6 +38,67 @@ export default function App() {
   });
 
   const playerRef = useRef<AnimationPlayerState | null>(null);
+
+  const [boneOverrides, setBoneOverrides] = useState<Map<string, BoneTransformOverride>>(new Map());
+
+  const handleSetBoneOverride = useCallback(
+    (boneName: string, override: BoneTransformOverride | null) => {
+      setBoneOverrides((prev) => {
+        const next = new Map(prev);
+        if (override) {
+          next.set(boneName, override);
+        } else {
+          next.delete(boneName);
+        }
+        return next;
+      });
+    },
+    [],
+  );
+
+  const { transformMode } = useTransformShortcuts({
+    selectedBone,
+    boneOverrides,
+    onSetBoneOverride: handleSetBoneOverride,
+  });
+
+  const [equipSpec, setEquipSpec] = useState<EquipmentSpec | null>(null);
+  const [equipState, setEquipState] = useState<EquipmentState>({});
+
+  useEffect(() => {
+    fetch("/equipment/equipment_spec.json")
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json() as Promise<EquipmentSpec>;
+      })
+      .then((spec) => {
+        setEquipSpec(spec);
+        const initial: EquipmentState = {};
+        for (const slot of spec.slots) {
+          initial[slot.id] = false;
+        }
+        setEquipState(initial);
+      })
+      .catch(() => setEquipSpec(null));
+  }, []);
+
+  const handleToggleSlot = useCallback((slotId: string, enabled: boolean) => {
+    setEquipState((prev) => ({ ...prev, [slotId]: enabled }));
+  }, []);
+
+  const effectiveEquipState = useMemo(() => {
+    if (!equipSpec) return equipState;
+    const effective = { ...equipState };
+    for (const slot of equipSpec.slots) {
+      const hiddenBy = slot.rules?.hidden_by ?? [];
+      for (const blockerId of hiddenBy) {
+        if (effective[blockerId]) {
+          effective[slot.id] = false;
+        }
+      }
+    }
+    return effective;
+  }, [equipSpec, equipState]);
 
   useEffect(() => {
     fetch("/animations/manifest.json")
@@ -119,14 +185,39 @@ export default function App() {
             selectedBone={selectedBone}
             onSelectBone={setSelectedBone}
             animatedPositions={animState.animatedPositions}
+            transformMode={transformMode}
           >
             <AnimationBridge
               rigSpec={data.spec}
               animSpec={animSpec}
               onStateChange={handlePlayerState}
               commandRef={playerRef}
+              boneOverrides={boneOverrides}
             />
+            {equipSpec && (
+              <EquipmentMeshRenderer
+                slotIds={equipSpec.slots.map((s) => s.id)}
+                equipState={equipState}
+                effectiveState={effectiveEquipState}
+                playerRef={playerRef}
+              />
+            )}
           </Scene>
+          {transformMode && (
+            <div className="transform-mode-indicator">
+              <div className="transform-mode-label">
+                {transformMode === "scale"
+                  ? "Scale (S)"
+                  : transformMode === "rotate"
+                    ? "Rotate (R)"
+                    : "Move (P)"}
+              </div>
+              <div className="transform-mode-hint">
+                Move mouse to adjust &middot; Click to confirm &middot; Esc to
+                cancel
+              </div>
+            </div>
+          )}
         </div>
         <AnimationControls
           animations={manifest}
@@ -146,7 +237,21 @@ export default function App() {
           onSetLoop={(l) => playerRef.current?.setLoop(l)}
         />
       </div>
-      <BoneInfoPanel bone={selected} spec={data.spec} />
+      <div className="right-panel">
+        <BoneInfoPanel
+          bone={selected}
+          spec={data.spec}
+          boneOverrides={boneOverrides}
+          onSetBoneOverride={handleSetBoneOverride}
+        />
+        {equipSpec && (
+          <EquipmentPanel
+            slots={equipSpec.slots}
+            equipState={equipState}
+            onToggleSlot={handleToggleSlot}
+          />
+        )}
+      </div>
     </div>
   );
 }
