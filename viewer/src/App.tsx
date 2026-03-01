@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import * as THREE from "three";
 import { useSkeletonData } from "./hooks/useSkeletonData";
 import { useTransformShortcuts } from "./hooks/useTransformShortcuts";
 import type { AnimSpec, AnimManifest } from "./types/animation";
@@ -12,6 +13,160 @@ import AnimationControls from "./components/AnimationControls";
 import AnimationBridge from "./components/AnimationBridge";
 import EquipmentPanel from "./components/EquipmentPanel";
 import EquipmentMeshRenderer from "./components/EquipmentMeshRenderer";
+import ToolPanel from "./components/ToolPanel";
+import ToolAttachment from "./components/ToolAttachment";
+import PoseEditor from "./components/PoseEditor";
+import type { PoseKeyframe, PoseAnimationConfig } from "./components/PoseEditor";
+import { TOOLS, DEFAULT_TOOL_TRANSFORM } from "./types/tools";
+import type { ToolTransform, GizmoMode } from "./types/tools";
+
+const STUB_ANIMS = new Set(["idle_combat", "idle_ready"]);
+const RAD2DEG = 180 / Math.PI;
+
+function computeBasePoseFromSpec(spec: AnimSpec): Map<string, BoneTransformOverride> {
+  const pose = new Map<string, BoneTransformOverride>();
+  for (const track of spec.tracks) {
+    const kf0 = track.keyframes[0];
+    if (!kf0) continue;
+    const existing = pose.get(track.bone) ?? {
+      position: [0, 0, 0] as [number, number, number],
+      rotation: [0, 0, 0] as [number, number, number],
+      scale: [1, 1, 1] as [number, number, number],
+    };
+    if (track.property === "rotation") {
+      const q = new THREE.Quaternion(kf0.value[0], kf0.value[1], kf0.value[2], kf0.value[3]);
+      const e = new THREE.Euler().setFromQuaternion(q, "XYZ");
+      existing.rotation = [
+        parseFloat((e.x * RAD2DEG).toFixed(3)),
+        parseFloat((e.y * RAD2DEG).toFixed(3)),
+        parseFloat((e.z * RAD2DEG).toFixed(3)),
+      ];
+    } else if (track.property === "position") {
+      existing.position = [kf0.value[0], kf0.value[1], kf0.value[2]];
+    }
+    pose.set(track.bone, existing);
+  }
+  return pose;
+}
+
+function animDisplayName(id: string): string {
+  return id.split("_").map((w) => w[0].toUpperCase() + w.slice(1)).join("");
+}
+
+function triggerDownload(href: string, filename: string) {
+  const a = document.createElement("a");
+  a.href = href;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+function ExportPanel({ animations }: { animations: AnimManifest["animations"] }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const available = useMemo(
+    () => animations.filter((a) => !STUB_ANIMS.has(a.id)),
+    [animations],
+  );
+  const [checked, setChecked] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    if (!open) return;
+    const close = (e: globalThis.MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", close);
+    return () => document.removeEventListener("mousedown", close);
+  }, [open]);
+
+  const allChecked = available.length > 0 && checked.size === available.length;
+  const someChecked = checked.size > 0 && !allChecked;
+
+  const toggleAll = () => {
+    if (allChecked) {
+      setChecked(new Set());
+    } else {
+      setChecked(new Set(available.map((a) => a.id)));
+    }
+  };
+
+  const toggle = (id: string) => {
+    setChecked((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const handleExport = () => {
+    if (checked.size === 0) return;
+
+    if (allChecked) {
+      triggerDownload("/rig.glb", "rig.glb");
+    } else {
+      for (const id of checked) {
+        const name = animDisplayName(id);
+        triggerDownload(`/animations/${name}.glb`, `${name}.glb`);
+      }
+    }
+    setOpen(false);
+  };
+
+  return (
+    <div className="export-dropdown" ref={ref}>
+      <button className="export-btn" onClick={() => setOpen((o) => !o)}>
+        Export GLB
+      </button>
+      {open && (
+        <div className="export-panel">
+          <div className="export-panel-header">Export Animations</div>
+          <label className="export-panel-row export-panel-all">
+            <input
+              type="checkbox"
+              checked={allChecked}
+              ref={(el) => { if (el) el.indeterminate = someChecked; }}
+              onChange={toggleAll}
+            />
+            <span className="export-panel-label">All Animations</span>
+            <span className="export-panel-hint">rig.glb</span>
+          </label>
+          <div className="export-panel-divider" />
+          <div className="export-panel-list">
+            {available.map((anim) => {
+              const name = animDisplayName(anim.id);
+              return (
+                <label key={anim.id} className="export-panel-row">
+                  <input
+                    type="checkbox"
+                    checked={checked.has(anim.id)}
+                    onChange={() => toggle(anim.id)}
+                  />
+                  <span className="export-panel-label">{name}</span>
+                  <span className="export-panel-hint">{name}.glb</span>
+                </label>
+              );
+            })}
+          </div>
+          <div className="export-panel-divider" />
+          <div className="export-panel-footer">
+            <span className="export-panel-count">
+              {checked.size} of {available.length} selected
+            </span>
+            <button
+              className="export-panel-go"
+              disabled={checked.size === 0}
+              onClick={handleExport}
+            >
+              Export{checked.size > 0 ? ` (${checked.size})` : ""}
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function App() {
   const { data, error, loading } = useSkeletonData();
@@ -60,6 +215,7 @@ export default function App() {
     selectedBone,
     boneOverrides,
     onSetBoneOverride: handleSetBoneOverride,
+    playerRef,
   });
 
   const [equipSpec, setEquipSpec] = useState<EquipmentSpec | null>(null);
@@ -86,6 +242,64 @@ export default function App() {
     setEquipState((prev) => ({ ...prev, [slotId]: enabled }));
   }, []);
 
+  const [selectedToolId, setSelectedToolId] = useState<string | null>(null);
+  const selectedTool = useMemo(
+    () => TOOLS.find((t) => t.id === selectedToolId) ?? null,
+    [selectedToolId],
+  );
+  const [toolTransforms, setToolTransforms] = useState<Record<string, ToolTransform>>({});
+  const [toolGizmoMode, setToolGizmoMode] = useState<GizmoMode>("translate");
+
+  const selectedToolTransform = useMemo(
+    () =>
+      selectedToolId
+        ? toolTransforms[selectedToolId] ?? DEFAULT_TOOL_TRANSFORM
+        : DEFAULT_TOOL_TRANSFORM,
+    [selectedToolId, toolTransforms],
+  );
+
+  const handleToolTransformChange = useCallback(
+    (t: ToolTransform) => {
+      if (!selectedToolId) return;
+      setToolTransforms((prev) => ({ ...prev, [selectedToolId]: t }));
+    },
+    [selectedToolId],
+  );
+
+  const handleResetToolTransform = useCallback(() => {
+    if (!selectedToolId) return;
+    setToolTransforms((prev) => ({
+      ...prev,
+      [selectedToolId]: { ...DEFAULT_TOOL_TRANSFORM },
+    }));
+  }, [selectedToolId]);
+
+  const [poseMode, setPoseMode] = useState(false);
+  const [poseConfig, setPoseConfig] = useState<PoseAnimationConfig>({
+    name: "NewAnimation",
+    id: "new_animation",
+    duration: 3.0,
+    fps: 30,
+    loop: true,
+  });
+  const [poseKeyframes, setPoseKeyframes] = useState<PoseKeyframe[]>([]);
+  const [poseCurrentTime, setPoseCurrentTime] = useState(0);
+
+  const handleTogglePoseMode = useCallback(() => {
+    setPoseMode((prev) => !prev);
+  }, []);
+
+  const handleLoadOverrides = useCallback(
+    (overrides: Map<string, BoneTransformOverride>) => {
+      setBoneOverrides(overrides);
+    },
+    [],
+  );
+
+  const handleClearOverrides = useCallback(() => {
+    setBoneOverrides(new Map());
+  }, []);
+
   const effectiveEquipState = useMemo(() => {
     if (!equipSpec) return equipState;
     const effective = { ...equipState };
@@ -100,6 +314,9 @@ export default function App() {
     return effective;
   }, [equipSpec, equipState]);
 
+  const [basePose, setBasePose] = useState<Map<string, BoneTransformOverride>>(new Map());
+  const initialAnimLoaded = useRef(false);
+
   useEffect(() => {
     fetch("/animations/manifest.json")
       .then((res) => {
@@ -109,6 +326,23 @@ export default function App() {
       .then((m) => setManifest(m.animations))
       .catch(() => setManifest([]));
   }, []);
+
+  useEffect(() => {
+    if (initialAnimLoaded.current || manifest.length === 0) return;
+    const idle = manifest.find((a) => a.id === "idle");
+    if (!idle) return;
+    initialAnimLoaded.current = true;
+    fetch(`/animations/${idle.file}`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json() as Promise<AnimSpec>;
+      })
+      .then((spec) => {
+        setBasePose(computeBasePoseFromSpec(spec));
+        setAnimSpec(spec);
+      })
+      .catch((err) => console.error("Failed to auto-load idle:", err));
+  }, [manifest]);
 
   const handleSelectAnimation = useCallback(
     (id: string) => {
@@ -173,13 +407,7 @@ export default function App() {
               </>
             )}
           </div>
-          <a
-            className="export-btn"
-            href="/rig.glb"
-            download="rig.glb"
-          >
-            Export GLB
-          </a>
+          <ExportPanel animations={manifest} />
           <Scene
             spec={data.spec}
             selectedBone={selectedBone}
@@ -193,6 +421,7 @@ export default function App() {
               onStateChange={handlePlayerState}
               commandRef={playerRef}
               boneOverrides={boneOverrides}
+              basePose={basePose}
             />
             {equipSpec && (
               <EquipmentMeshRenderer
@@ -200,6 +429,17 @@ export default function App() {
                 equipState={equipState}
                 effectiveState={effectiveEquipState}
                 playerRef={playerRef}
+              />
+            )}
+            {selectedTool && (
+              <ToolAttachment
+                key={selectedTool.id}
+                tool={selectedTool}
+                boneName="hand_R"
+                playerRef={playerRef}
+                transform={selectedToolTransform}
+                gizmoMode={toolGizmoMode}
+                onTransformChange={handleToolTransformChange}
               />
             )}
           </Scene>
@@ -243,12 +483,38 @@ export default function App() {
           spec={data.spec}
           boneOverrides={boneOverrides}
           onSetBoneOverride={handleSetBoneOverride}
+          playerRef={playerRef}
         />
-        {equipSpec && (
+        <PoseEditor
+          enabled={poseMode}
+          onToggle={handleTogglePoseMode}
+          config={poseConfig}
+          onConfigChange={setPoseConfig}
+          keyframes={poseKeyframes}
+          onKeyframesChange={setPoseKeyframes}
+          currentTime={poseCurrentTime}
+          onCurrentTimeChange={setPoseCurrentTime}
+          boneOverrides={boneOverrides}
+          onLoadOverrides={handleLoadOverrides}
+          onClearOverrides={handleClearOverrides}
+        />
+        {!poseMode && equipSpec && (
           <EquipmentPanel
             slots={equipSpec.slots}
             equipState={equipState}
             onToggleSlot={handleToggleSlot}
+          />
+        )}
+        {!poseMode && (
+          <ToolPanel
+            tools={TOOLS}
+            selectedToolId={selectedToolId}
+            onSelectTool={setSelectedToolId}
+            transform={selectedToolTransform}
+            gizmoMode={toolGizmoMode}
+            onGizmoModeChange={setToolGizmoMode}
+            onTransformChange={handleToolTransformChange}
+            onResetTransform={handleResetToolTransform}
           />
         )}
       </div>

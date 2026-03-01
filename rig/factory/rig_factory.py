@@ -217,11 +217,17 @@ def main() -> None:
         actions = bake_all_anims(armature_obj, args.anims)
         print(f"  Baked {len(actions)} animation(s) into armature.")
 
-    from exporter import export_blend, export_glb, export_fbx
+    from exporter import export_blend, export_glb, export_fbx, export_glb_per_animation
 
     export_blend(args.out)
 
     if args.export_glb:
+        if args.anims:
+            glb_dir = os.path.dirname(os.path.abspath(args.export_glb))
+            anim_glb_dir = os.path.join(glb_dir, "animations")
+            print(f"  Exporting per-animation GLBs to: {anim_glb_dir}")
+            export_glb_per_animation(armature_obj, anim_glb_dir)
+
         export_glb(args.export_glb)
 
     if args.export_fbx:

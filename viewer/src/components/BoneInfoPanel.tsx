@@ -1,12 +1,17 @@
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import * as THREE from "three";
 import type { BoneNode, BoneCategory, RigSpec, BoneTransformOverride } from "../types";
 import { CATEGORY_COLORS } from "../types";
+import type { AnimationPlayerState } from "../hooks/useAnimationPlayer";
+
+const RAD2DEG = 180 / Math.PI;
 
 interface BoneInfoPanelProps {
   bone: BoneNode | null;
   spec: RigSpec;
   boneOverrides: Map<string, BoneTransformOverride>;
   onSetBoneOverride: (boneName: string, override: BoneTransformOverride | null) => void;
+  playerRef: React.MutableRefObject<AnimationPlayerState | null>;
 }
 
 const DEFAULT_OVERRIDE: BoneTransformOverride = {
@@ -31,6 +36,152 @@ function boneLength(head: [number, number, number], tail: [number, number, numbe
   return Math.sqrt(dx * dx + dy * dy + dz * dz).toFixed(4);
 }
 
+const DRAG_THRESHOLD = 3;
+
+function DraggableInput({
+  axis,
+  value,
+  step,
+  onChange,
+}: {
+  axis: string;
+  value: number;
+  step: number;
+  onChange: (v: number) => void;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [localText, setLocalText] = useState(String(value));
+  const focused = useRef(false);
+
+  useEffect(() => {
+    if (!focused.current) {
+      setLocalText(String(value));
+    }
+  }, [value]);
+
+  const dragState = useRef<{
+    startX: number;
+    startValue: number;
+    dragging: boolean;
+    totalDx: number;
+  } | null>(null);
+
+  const sensitivity = step * 0.5;
+
+  const handlePointerDown = useCallback(
+    (e: React.PointerEvent) => {
+      if (document.activeElement === inputRef.current) return;
+
+      e.preventDefault();
+      dragState.current = {
+        startX: e.clientX,
+        startValue: value,
+        dragging: false,
+        totalDx: 0,
+      };
+
+      const cleanup = () => {
+        dragState.current = null;
+        document.body.style.cursor = "";
+        document.body.style.userSelect = "";
+        window.removeEventListener("pointermove", handleMove);
+        window.removeEventListener("pointerup", handleUp);
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+
+      const handleMove = (ev: PointerEvent) => {
+        const state = dragState.current;
+        if (!state) return;
+
+        if (!state.dragging) {
+          if (Math.abs(ev.clientX - state.startX) > DRAG_THRESHOLD) {
+            state.dragging = true;
+            state.totalDx = ev.clientX - state.startX;
+            document.body.style.cursor = "ew-resize";
+            document.body.style.userSelect = "none";
+          }
+          return;
+        }
+
+        state.totalDx = ev.clientX - state.startX;
+        const rawNext = state.startValue + state.totalDx * sensitivity;
+        const rounded = Math.round(rawNext / step) * step;
+        onChange(parseFloat(rounded.toFixed(6)));
+      };
+
+      const handleKeyDown = (ev: KeyboardEvent) => {
+        if (ev.key === "Escape") {
+          ev.preventDefault();
+          const state = dragState.current;
+          if (state?.dragging) {
+            onChange(state.startValue);
+          }
+          cleanup();
+        }
+      };
+
+      const handleUp = () => {
+        const state = dragState.current;
+        const wasDragging = state?.dragging ?? false;
+        cleanup();
+
+        if (!wasDragging && inputRef.current) {
+          inputRef.current.focus();
+          inputRef.current.select();
+        }
+      };
+
+      window.addEventListener("pointermove", handleMove);
+      window.addEventListener("pointerup", handleUp);
+      window.addEventListener("keydown", handleKeyDown);
+    },
+    [value, step, sensitivity, onChange],
+  );
+
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const text = e.target.value;
+      setLocalText(text);
+      const num = parseFloat(text);
+      if (!isNaN(num)) {
+        onChange(num);
+      }
+    },
+    [onChange],
+  );
+
+  const handleFocus = useCallback(() => {
+    focused.current = true;
+  }, []);
+
+  const handleBlur = useCallback(() => {
+    focused.current = false;
+    const num = parseFloat(localText);
+    if (isNaN(num) || localText.trim() === "") {
+      setLocalText(String(value));
+    } else {
+      setLocalText(String(num));
+    }
+  }, [localText, value]);
+
+  return (
+    <label className="override-input-wrap draggable-input-wrap">
+      <span className="override-axis">{axis}</span>
+      <input
+        ref={inputRef}
+        type="number"
+        className="override-input"
+        step={step}
+        value={localText}
+        onChange={handleInputChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onPointerDown={handlePointerDown}
+      />
+    </label>
+  );
+}
+
 function Vec3Input({
   label,
   value,
@@ -48,24 +199,55 @@ function Vec3Input({
       <span className="override-field-label">{label}</span>
       <div className="override-inputs">
         {labels.map((axis, i) => (
-          <label key={axis} className="override-input-wrap">
-            <span className="override-axis">{axis}</span>
-            <input
-              type="number"
-              className="override-input"
-              step={step}
-              value={value[i]}
-              onChange={(e) => {
-                const next: [number, number, number] = [...value];
-                next[i] = parseFloat(e.target.value) || 0;
-                onChange(next);
-              }}
-            />
-          </label>
+          <DraggableInput
+            key={axis}
+            axis={axis}
+            value={value[i]}
+            step={step}
+            onChange={(v) => {
+              const next: [number, number, number] = [...value];
+              next[i] = v;
+              onChange(next);
+            }}
+          />
         ))}
       </div>
     </div>
   );
+}
+
+function computeBoneDeltaFromRest(
+  boneName: string,
+  playerRef: React.MutableRefObject<AnimationPlayerState | null>,
+): BoneTransformOverride | null {
+  const player = playerRef.current;
+  if (!player) return null;
+  const obj = player.boneObjMap.get(boneName);
+  const rest = player.boneRestPose.get(boneName);
+  if (!obj || !rest) return null;
+
+  const deltaPos: [number, number, number] = [
+    obj.position.x - rest.position.x,
+    obj.position.y - rest.position.y,
+    obj.position.z - rest.position.z,
+  ];
+
+  const invRest = rest.quaternion.clone().invert();
+  const deltaQuat = invRest.multiply(obj.quaternion.clone());
+  const euler = new THREE.Euler().setFromQuaternion(deltaQuat, "XYZ");
+  const deltaRot: [number, number, number] = [
+    parseFloat((euler.x * RAD2DEG).toFixed(3)),
+    parseFloat((euler.y * RAD2DEG).toFixed(3)),
+    parseFloat((euler.z * RAD2DEG).toFixed(3)),
+  ];
+
+  const deltaScale: [number, number, number] = [
+    parseFloat(obj.scale.x.toFixed(3)),
+    parseFloat(obj.scale.y.toFixed(3)),
+    parseFloat(obj.scale.z.toFixed(3)),
+  ];
+
+  return { position: deltaPos, rotation: deltaRot, scale: deltaScale };
 }
 
 export default function BoneInfoPanel({
@@ -73,22 +255,55 @@ export default function BoneInfoPanel({
   spec,
   boneOverrides,
   onSetBoneOverride,
+  playerRef,
 }: BoneInfoPanelProps) {
-  const override = bone ? boneOverrides.get(bone.name) ?? DEFAULT_OVERRIDE : DEFAULT_OVERRIDE;
+  const [livePose, setLivePose] = useState<BoneTransformOverride>(DEFAULT_OVERRIDE);
+
+  useEffect(() => {
+    if (!bone) return;
+    const poll = () => {
+      const delta = computeBoneDeltaFromRest(bone.name, playerRef);
+      if (delta) setLivePose(delta);
+    };
+    poll();
+    const id = setInterval(poll, 66);
+    return () => clearInterval(id);
+  }, [bone, playerRef]);
+
+  const hasOverride = bone ? boneOverrides.has(bone.name) : false;
+  const displayValues = bone && hasOverride
+    ? boneOverrides.get(bone.name)!
+    : livePose;
 
   const updateField = useCallback(
     (field: keyof BoneTransformOverride, value: [number, number, number]) => {
       if (!bone) return;
-      const current = boneOverrides.get(bone.name) ?? { ...DEFAULT_OVERRIDE };
+      let current = boneOverrides.get(bone.name);
+      if (!current) {
+        const delta = computeBoneDeltaFromRest(bone.name, playerRef);
+        current = delta ?? { ...DEFAULT_OVERRIDE };
+      }
       onSetBoneOverride(bone.name, { ...current, [field]: value });
     },
-    [bone, boneOverrides, onSetBoneOverride],
+    [bone, boneOverrides, onSetBoneOverride, playerRef],
   );
 
   const handleReset = useCallback(() => {
     if (!bone) return;
     onSetBoneOverride(bone.name, null);
   }, [bone, onSetBoneOverride]);
+
+  const handleCopyTransform = useCallback(() => {
+    if (!bone) return;
+    const fmt = (v: [number, number, number]) => `[${v.map((n) => n.toFixed(3)).join(", ")}]`;
+    const text = [
+      `Bone: ${bone.name}`,
+      `Position: ${fmt(displayValues.position)}`,
+      `Rotation: ${fmt(displayValues.rotation)}`,
+      `Scale: ${fmt(displayValues.scale)}`,
+    ].join("\n");
+    navigator.clipboard.writeText(text);
+  }, [bone, displayValues]);
 
   if (!bone) {
     return (
@@ -100,7 +315,6 @@ export default function BoneInfoPanel({
   }
 
   const catColor = CATEGORY_COLORS[bone.category as BoneCategory] ?? "#94a3b8";
-  const hasOverride = boneOverrides.has(bone.name);
 
   return (
     <div className="info-panel">
@@ -168,27 +382,32 @@ export default function BoneInfoPanel({
       <div className="info-section">
         <div className="info-section-title" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span>Transform Overrides</span>
-          {hasOverride && (
-            <button className="override-reset-btn" onClick={handleReset}>
-              Reset
+          <div style={{ display: "flex", gap: 6 }}>
+            <button className="override-copy-btn" onClick={handleCopyTransform} title="Copy bone transform to clipboard">
+              Copy
             </button>
-          )}
+            {hasOverride && (
+              <button className="override-reset-btn" onClick={handleReset}>
+                Reset
+              </button>
+            )}
+          </div>
         </div>
         <Vec3Input
           label="Position"
-          value={override.position}
+          value={displayValues.position}
           step={0.01}
           onChange={(v) => updateField("position", v)}
         />
         <Vec3Input
           label="Rotation"
-          value={override.rotation}
+          value={displayValues.rotation}
           step={1}
           onChange={(v) => updateField("rotation", v)}
         />
         <Vec3Input
           label="Scale"
-          value={override.scale}
+          value={displayValues.scale}
           step={0.01}
           onChange={(v) => updateField("scale", v)}
         />

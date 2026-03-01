@@ -47,6 +47,53 @@ def export_glb(filepath: str, include_anims: bool = True) -> None:
     print(f"  Exported GLB: {abspath} (animations={'yes' if include_anims else 'no'})")
 
 
+def export_glb_per_animation(
+    armature_obj: bpy.types.Object,
+    output_dir: str,
+) -> list[str]:
+    """Export one GLB per animation action, each named [ActionName].glb.
+
+    Each GLB contains the full rig skeleton plus a single animation.
+    Returns a list of exported file paths.
+    """
+    _ensure_directory(os.path.join(output_dir, "_placeholder"))
+
+    if not armature_obj.animation_data:
+        print("  No animation data on armature, skipping per-animation export.")
+        return []
+
+    all_actions = [a for a in bpy.data.actions if a.users > 0 or a.use_fake_user]
+    if not all_actions:
+        print("  No actions found, skipping per-animation export.")
+        return []
+
+    original_action = armature_obj.animation_data.action
+    exported: list[str] = []
+
+    for action in all_actions:
+        armature_obj.animation_data.action = action
+        filename = f"{action.name}.glb"
+        filepath = os.path.join(os.path.abspath(output_dir), filename)
+
+        bpy.ops.export_scene.gltf(
+            filepath=filepath,
+            export_format="GLB",
+            export_apply=False,
+            export_yup=True,
+            export_skins=True,
+            export_all_influences=False,
+            export_def_bones=False,
+            export_animations=True,
+            export_nla_strips=False,
+            export_animation_mode="ACTIVE_ACTIONS",
+        )
+        exported.append(filepath)
+        print(f"    Exported: {filename}")
+
+    armature_obj.animation_data.action = original_action
+    return exported
+
+
 def export_fbx(filepath: str) -> None:
     """Export the current scene as an FBX file.
 

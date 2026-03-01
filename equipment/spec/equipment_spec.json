@@ -164,7 +164,7 @@
         "z_min": 0.93,
         "z_max": 1.42,
         "radius": 0.75,
-        "weight_radius": 0.15
+        "weight_radius": 0.30
       },
       "rules": {},
       "mesh_type": "torso",

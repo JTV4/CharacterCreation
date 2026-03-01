@@ -228,9 +228,11 @@ const _overrideQuat = new THREE.Quaternion();
 const _overrideEuler = new THREE.Euler();
 const DEG2RAD = Math.PI / 180;
 
+
 export function useAnimationPlayer(
   rigSpec: RigSpec,
   boneOverrides?: Map<string, BoneTransformOverride>,
+  basePose?: Map<string, BoneTransformOverride>,
 ): AnimationPlayerState {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -273,6 +275,59 @@ export function useAnimationPlayer(
 
   const durationRef = useRef(0);
 
+  const frozenPose = useRef(new Map<string, { pos: THREE.Vector3; quat: THREE.Quaternion; scl: THREE.Vector3 }>());
+
+  useEffect(() => {
+    for (const [name, rest] of restTransforms) {
+      frozenPose.current.set(name, {
+        pos: rest.localPos.clone(),
+        quat: rest.localQuat.clone(),
+        scl: new THREE.Vector3(1, 1, 1),
+      });
+    }
+  }, [restTransforms]);
+
+  const captureFrozenPose = useCallback(() => {
+    for (const [name, obj] of objMap) {
+      let entry = frozenPose.current.get(name);
+      if (!entry) {
+        entry = { pos: new THREE.Vector3(), quat: new THREE.Quaternion(), scl: new THREE.Vector3(1, 1, 1) };
+        frozenPose.current.set(name, entry);
+      }
+      entry.pos.copy(obj.position);
+      entry.quat.copy(obj.quaternion);
+      entry.scl.copy(obj.scale);
+    }
+  }, [objMap]);
+
+  const basePoseRef = useRef(basePose);
+  basePoseRef.current = basePose;
+
+  const applyBasePose = useCallback(() => {
+    const bp = basePoseRef.current;
+    if (!bp || bp.size === 0) return;
+    const euler = new THREE.Euler();
+    const quat = new THREE.Quaternion();
+    for (const [name, base] of bp) {
+      const obj = objMap.get(name);
+      const rest = restTransforms.get(name);
+      if (!obj || !rest) continue;
+      obj.position.set(
+        rest.localPos.x + base.position[0],
+        rest.localPos.y + base.position[1],
+        rest.localPos.z + base.position[2],
+      );
+      euler.set(
+        base.rotation[0] * DEG2RAD,
+        base.rotation[1] * DEG2RAD,
+        base.rotation[2] * DEG2RAD,
+      );
+      quat.setFromEuler(euler);
+      obj.quaternion.copy(rest.localQuat).multiply(quat);
+      obj.scale.set(base.scale[0], base.scale[1], base.scale[2]);
+    }
+  }, [objMap, restTransforms]);
+
   const setAnimation = useCallback(
     (spec: AnimSpec | null) => {
       if (actionRef.current) {
@@ -292,6 +347,8 @@ export function useAnimationPlayer(
           obj.quaternion.copy(rest.localQuat);
         }
       }
+      applyBasePose();
+      captureFrozenPose();
 
       animSpecRef.current = spec;
 
@@ -326,12 +383,23 @@ export function useAnimationPlayer(
       mixerRef.current = mixer;
       actionRef.current = action;
       durationRef.current = spec.meta.duration;
+
+      action.reset();
+      action.play();
+      action.paused = true;
+      mixer.setTime(0);
+      rootObj.updateMatrixWorld(true);
+      captureFrozenPose();
+
       setActiveAnimId(spec.meta.id);
       setLoopState(spec.meta.loop);
       setCurrentTime(0);
       setIsPlaying(false);
+      setAnimatedPositions(
+        extractWorldPositions(rigSpec, objMap, restTransforms),
+      );
     },
-    [rootObj, objMap, restTransforms],
+    [rigSpec, rootObj, objMap, restTransforms, captureFrozenPose, applyBasePose],
   );
 
   const play = useCallback(() => {
@@ -355,11 +423,13 @@ export function useAnimationPlayer(
     setIsPlaying(false);
     setCurrentTime(0);
 
+    applyBasePose();
     rootObj.updateMatrixWorld(true);
+    captureFrozenPose();
     setAnimatedPositions(
       extractWorldPositions(rigSpec, objMap, restTransforms),
     );
-  }, [rigSpec, rootObj, objMap, restTransforms]);
+  }, [rigSpec, rootObj, objMap, restTransforms, captureFrozenPose, applyBasePose]);
 
   const seek = useCallback(
     (time: number) => {
@@ -372,6 +442,7 @@ export function useAnimationPlayer(
       mixerRef.current.setTime(time);
 
       rootObj.updateMatrixWorld(true);
+      captureFrozenPose();
       setCurrentTime(time);
       setAnimatedPositions(
         extractWorldPositions(rigSpec, objMap, restTransforms),
@@ -382,7 +453,7 @@ export function useAnimationPlayer(
         setIsPlaying(true);
       }
     },
-    [rigSpec, rootObj, objMap, restTransforms],
+    [rigSpec, rootObj, objMap, restTransforms, captureFrozenPose],
   );
 
   const setSpeed = useCallback((s: number) => {
@@ -406,33 +477,47 @@ export function useAnimationPlayer(
     [],
   );
 
+  const prevOverridesRef = useRef(boneOverrides);
+  const overridesDirtyRef = useRef(false);
+  if (boneOverrides !== prevOverridesRef.current) {
+    prevOverridesRef.current = boneOverrides;
+    overridesDirtyRef.current = true;
+  }
+
   useFrame((_, delta) => {
     const playing = !!(mixerRef.current && isPlaying);
     const hasOverrides = !!(boneOverrides && boneOverrides.size > 0);
+    const dirty = overridesDirtyRef.current;
 
     if (!playing && !hasOverrides) return;
+    if (!playing && !dirty) return;
+    overridesDirtyRef.current = false;
 
     if (playing) {
       mixerRef.current!.update(delta);
+      captureFrozenPose();
     }
 
     if (hasOverrides) {
       for (const [name, override] of boneOverrides!) {
         const obj = objMap.get(name);
         if (!obj) continue;
-        obj.position.x += override.position[0];
-        obj.position.y += override.position[1];
-        obj.position.z += override.position[2];
+        const rest = restTransforms.get(name);
+        if (!rest) continue;
+
+        obj.position.set(
+          rest.localPos.x + override.position[0],
+          rest.localPos.y + override.position[1],
+          rest.localPos.z + override.position[2],
+        );
         _overrideEuler.set(
           override.rotation[0] * DEG2RAD,
           override.rotation[1] * DEG2RAD,
           override.rotation[2] * DEG2RAD,
         );
         _overrideQuat.setFromEuler(_overrideEuler);
-        obj.quaternion.premultiply(_overrideQuat);
-        obj.scale.x *= override.scale[0];
-        obj.scale.y *= override.scale[1];
-        obj.scale.z *= override.scale[2];
+        obj.quaternion.copy(rest.localQuat).multiply(_overrideQuat);
+        obj.scale.set(override.scale[0], override.scale[1], override.scale[2]);
       }
     }
 
@@ -446,6 +531,14 @@ export function useAnimationPlayer(
       extractWorldPositions(rigSpec, objMap, restTransforms),
     );
   });
+
+  useEffect(() => {
+    if (!basePose || basePose.size === 0) return;
+    if (isPlaying) return;
+    applyBasePose();
+    rootObj.updateMatrixWorld(true);
+    captureFrozenPose();
+  }, [basePose]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     return () => {

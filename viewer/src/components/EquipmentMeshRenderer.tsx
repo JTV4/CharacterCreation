@@ -32,6 +32,64 @@ function findSkinnedMeshes(root: THREE.Object3D): THREE.SkinnedMesh[] {
   return result;
 }
 
+/**
+ * Scan a SkinnedMesh for vertices with zero total weight and assign them
+ * to the nearest bone so they don't stay frozen in bind pose.
+ */
+function fixZeroWeightVertices(sm: THREE.SkinnedMesh): void {
+  const geo = sm.geometry;
+  const skinWeight = geo.getAttribute("skinWeight") as THREE.BufferAttribute;
+  const skinIndex = geo.getAttribute("skinIndex") as THREE.BufferAttribute;
+  const position = geo.getAttribute("position") as THREE.BufferAttribute;
+
+  if (!skinWeight || !skinIndex || !position) return;
+
+  const skeleton = sm.skeleton;
+  const boneCount = skeleton.boneInverses.length;
+  if (boneCount === 0) return;
+
+  const bonePositions: THREE.Vector3[] = [];
+  const tmpMatrix = new THREE.Matrix4();
+  for (let i = 0; i < boneCount; i++) {
+    tmpMatrix.copy(skeleton.boneInverses[i]).invert();
+    bonePositions.push(new THREE.Vector3().setFromMatrixPosition(tmpMatrix));
+  }
+
+  let fixed = 0;
+  const vtx = new THREE.Vector3();
+
+  for (let i = 0; i < position.count; i++) {
+    const totalW =
+      skinWeight.getX(i) +
+      skinWeight.getY(i) +
+      skinWeight.getZ(i) +
+      skinWeight.getW(i);
+
+    if (totalW > 0.001) continue;
+
+    vtx.fromBufferAttribute(position, i);
+    let minDist = Infinity;
+    let nearestIdx = 0;
+
+    for (let b = 0; b < boneCount; b++) {
+      const d = vtx.distanceToSquared(bonePositions[b]);
+      if (d < minDist) {
+        minDist = d;
+        nearestIdx = b;
+      }
+    }
+
+    skinIndex.setXYZW(i, nearestIdx, 0, 0, 0);
+    skinWeight.setXYZW(i, 1, 0, 0, 0);
+    fixed++;
+  }
+
+  if (fixed > 0) {
+    skinWeight.needsUpdate = true;
+    skinIndex.needsUpdate = true;
+  }
+}
+
 export default function EquipmentMeshRenderer({
   slotIds,
   equipState,
@@ -69,13 +127,15 @@ export default function EquipmentMeshRenderer({
           const color = SLOT_COLORS[slotId] ?? "#94a3b8";
           scene.traverse((child) => {
             if ((child as THREE.Mesh).isMesh) {
-              (child as THREE.Mesh).material = new THREE.MeshStandardMaterial({
+              const mesh = child as THREE.Mesh;
+              mesh.material = new THREE.MeshStandardMaterial({
                 color,
                 transparent: true,
                 opacity: 0.35,
                 side: THREE.DoubleSide,
                 depthWrite: false,
               });
+              mesh.frustumCulled = false;
             }
           });
 
@@ -108,14 +168,14 @@ export default function EquipmentMeshRenderer({
     if (!animBones || animBones.size === 0) return;
     if (!restInverses || restInverses.size === 0) return;
 
+    let anyPending = false;
+
     for (const [slotId, slot] of slotCache) {
       if (!effectiveState[slotId]) continue;
       if (initializedRef.current.has(slotId)) continue;
 
-      // One-time: rebind every skinned mesh to the animation player's bones.
-      // This makes the GLTF mesh share the exact same skeleton as the
-      // animation player, so Three.js's built-in skeleton.update() produces
-      // correct bone matrices automatically every frame.
+      anyPending = true;
+
       for (const sm of slot.skinnedMeshes) {
         const oldSk = sm.skeleton;
         if (!oldSk) continue;
@@ -139,10 +199,14 @@ export default function EquipmentMeshRenderer({
 
         const newSkeleton = new THREE.Skeleton(newBones, newInverses);
         sm.bind(newSkeleton, _identityMatrix);
+
+        fixZeroWeightVertices(sm);
       }
 
       initializedRef.current.add(slotId);
     }
+
+    if (!anyPending) return;
   });
 
   return (

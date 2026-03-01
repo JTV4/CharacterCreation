@@ -3,8 +3,8 @@
 Deterministic humanoid skeleton generator for an MMORPG pipeline. Produces a
 canonical 56-bone rig (including full hands and face bones) from a single JSON
 specification, builds it in Blender, visualizes it in a browser-based React
-Three Fiber viewer, and supports a JSON-driven animation system with playback
-and export.
+Three Fiber viewer, and supports JSON-driven animation, equipment, tool
+attachment, and pose editing systems.
 
 ## Folder Structure
 
@@ -17,6 +17,7 @@ CharacterCreation/
       rig_factory.py             # CLI entry — loads spec, validates, builds armature
       validation.py              # validate_rig_spec() checks
       exporter.py                # GLB / FBX / .blend export helpers
+      anim_baker.py              # Animation baking utilities
       __init__.py
     output/                      # Generated files (.blend, .glb, .fbx)
   animations/
@@ -27,32 +28,57 @@ CharacterCreation/
       walk.anim.json
       run.anim.json
       attack_with_fist.anim.json
+      attack_uppercut.anim.json
       attack_with_kick.anim.json
+      attack_with_kick_left.anim.json
+      chop_tree.anim.json
+      fishing.anim.json
     factory/
       anim_factory.py            # Imports anim JSON into Blender Actions
       anim_validation.py         # Validates anim specs against rig
       __init__.py
+  equipment/
+    spec/
+      equipment_spec.json        # Slot definitions, bone mappings, mesh params
+    factory/
+      mesh_factory.py            # Generates weighted placeholder meshes per slot
+      validation.py              # Equipment spec validation
+    output/                      # Generated per-slot GLB files
   viewer/                        # React Three Fiber web viewer
     src/
       components/
         Scene.tsx                # R3F Canvas + lighting + controls
         SkeletonViewer.tsx       # Renders bones as octahedral shapes
         BoneSidebar.tsx          # Scrollable bone list grouped by category
-        BoneInfoPanel.tsx        # Selected bone metadata display
+        BoneInfoPanel.tsx        # Selected bone metadata and transforms
         AnimationControls.tsx    # Transport bar: selector, play/pause, scrubber
         AnimationBridge.tsx      # Bridges animation player to React state
+        EquipmentPanel.tsx       # Equipment slot toggles
+        EquipmentMeshRenderer.tsx# Renders equipment meshes on the rig
+        ToolPanel.tsx            # Tool selection and transform controls
+        ToolAttachment.tsx       # Attaches tool GLB models to bones
+        PoseEditor.tsx           # Keyframe authoring and animation export
       hooks/
         useSkeletonData.ts       # Loads rig_spec.json, builds bone tree
         useAnimationPlayer.ts    # Three.js AnimationMixer playback engine
+        useTransformShortcuts.ts # Keyboard shortcuts for gizmo modes
       types/
         index.ts                 # Rig TypeScript types
         animation.ts             # Animation TypeScript types
+        equipment.ts             # Equipment slot and spec types
+        tools.ts                 # Tool definitions and transforms
       styles/
         index.css                # Global styles
     public/
       rig_spec.json              # Copied from rig/spec/ for serving
+      rig.glb                    # Exported rig model
       animations/                # Copied from animations/specs/ for serving
         manifest.json            # Lists available animations for the viewer
+        *.anim.json              # Animation spec files
+        *.glb                    # Exported animation GLB files
+      equipment/                 # Copied from equipment/output/ for serving
+        equipment_spec.json      # Slot definitions
+        *.glb                    # Per-slot placeholder meshes
   README.md
 ```
 
@@ -86,7 +112,20 @@ blender --background --python rig/factory/rig_factory.py -- \
   --export-fbx rig/output/rig.fbx
 ```
 
-### 2. Run inside Blender GUI
+### 2. Generate equipment meshes (headless)
+
+```bash
+blender --background --python equipment/factory/mesh_factory.py -- \
+  --rig-spec rig/spec/rig_spec.json \
+  --equip-spec equipment/spec/equipment_spec.json \
+  --rig-blend rig/output/rig.blend \
+  --out equipment/output/
+```
+
+This reads the rig and equipment specs, generates weighted placeholder meshes
+for each slot, and exports individual GLB files into `equipment/output/`.
+
+### 3. Run inside Blender GUI
 
 1. Open Blender
 2. Go to the **Scripting** workspace
@@ -106,18 +145,19 @@ validate_rig_spec(spec)
 build_armature(spec)
 ```
 
-### 3. Launch the web viewer
+### 4. Launch the web viewer
 
 ```bash
 cd viewer
 npm install
-npm run copy-spec   # copies rig_spec.json + animation specs into public/
+npm run copy-spec   # copies rig, animations, and equipment into public/
 npm run dev          # opens http://localhost:5173
 ```
 
-The viewer renders the skeleton directly from `rig_spec.json` and loads
-animation specs from `public/animations/`. No Blender export is required
-for visualization or animation preview.
+The viewer renders the skeleton directly from `rig_spec.json`, loads animation
+specs from `public/animations/`, displays equipment meshes from
+`public/equipment/`, and supports tool attachment and pose editing. No Blender
+export is required for visualization or animation preview.
 
 ---
 
@@ -133,18 +173,19 @@ export.
 
 ### Available animations
 
-| ID                 | Name            | Duration | Loop  |
-|--------------------|-----------------|----------|-------|
-| `idle`             | Idle            | 3.0s     | yes   |
-| `idle_combat`      | IdleCombat      | 2.0s     | yes   |
-| `idle_ready`       | IdleReady       | 2.0s     | yes   |
-| `walk`             | Walk            | 1.0s     | yes   |
-| `run`              | Run             | 0.7s     | yes   |
-| `attack_with_fist` | AttackWithFist  | 0.8s     | no    |
-| `attack_with_kick` | AttackWithKick  | 1.0s     | no    |
-
-All animations currently contain metadata only (empty `tracks` array). Keyframe
-data is added on request by prompting the AI to author a specific animation.
+| ID                      | Name               | Duration | Loop  |
+|-------------------------|--------------------|----------|-------|
+| `idle`                  | Idle               | 3.0s     | yes   |
+| `idle_combat`           | IdleCombat         | 2.0s     | yes   |
+| `idle_ready`            | IdleReady          | 2.0s     | yes   |
+| `walk`                  | Walk               | 1.0s     | yes   |
+| `run`                   | Run                | 0.7s     | yes   |
+| `attack_with_fist`      | AttackWithFist     | 0.8s     | no    |
+| `attack_uppercut`       | AttackUppercut     | 0.8s     | no    |
+| `attack_with_kick`      | AttackWithKick     | 1.0s     | no    |
+| `attack_with_kick_left` | AttackWithKickLeft | 1.0s     | no    |
+| `chop_tree`             | ChopTree           | 1.2s     | yes   |
+| `fishing`               | Fishing            | 10.0s    | yes   |
 
 ### Animation JSON format
 
@@ -250,6 +291,185 @@ disable the play button.
 
 ---
 
+## Equipment System
+
+### Overview
+
+The equipment system defines body slots (head, amulet, gloves, ring, upper
+body, lower body, boots) with bone mappings, spatial boundaries, visibility
+rules, and mesh generation parameters. Placeholder meshes are generated in
+Blender and displayed in the viewer, toggled per-slot.
+
+### Available slots
+
+| Slot ID      | Name       | Bilateral | Mesh Type  | Bones                                 |
+|--------------|------------|-----------|------------|---------------------------------------|
+| `head`       | Head       | no        | `dome`     | head, neck_01                         |
+| `amulet`     | Amulet     | no        | `pendant`  | spine_03, neck_01                     |
+| `gloves`     | Gloves     | yes       | `glove`    | hand + all finger bones (L & R)       |
+| `ring`       | Ring       | no        | `torus`    | middle_01_L, middle_02_L              |
+| `upper_body` | Upper Body | no        | `torso`    | spine chain, clavicles, arms, hands   |
+| `lower_body` | Lower Body | yes       | `pants`    | pelvis, thighs, shins                 |
+| `boots`      | Boots      | yes       | `boot`     | shins, feet, toes                     |
+
+**Bilateral** slots define bones for the left side; the factory mirrors them
+for the right side automatically.
+
+### Visibility rules
+
+Slots can declare `hidden_by` rules. For example, the `ring` slot specifies
+`"hidden_by": ["gloves"]`, meaning a ring is hidden when gloves are equipped.
+
+### Equipment spec format
+
+```json
+{
+  "meta": {
+    "version": "1.0.0",
+    "description": "Equipment slot definitions...",
+    "coordinate_system": { "up": "+Z", "forward": "+Y", "right": "+X", "scale": "meters" }
+  },
+  "slots": [
+    {
+      "id": "head",
+      "name": "Head",
+      "bilateral": false,
+      "color": "#c084fc",
+      "bones": [
+        { "name": "head", "weight": 1.0 },
+        { "name": "neck_01", "weight": 0.25 }
+      ],
+      "bounds": {
+        "z_min": 1.48,
+        "z_max": 1.75,
+        "radius": 0.13,
+        "weight_radius": 0.20
+      },
+      "rules": {},
+      "mesh_type": "dome",
+      "mesh_params": { "segments": 16, "rings": 8, "offset_z": 0.02 }
+    }
+  ]
+}
+```
+
+**Slot fields:**
+
+| Field           | Description                                                    |
+|-----------------|----------------------------------------------------------------|
+| `id`            | Unique slot identifier                                         |
+| `name`          | Human-readable display name                                    |
+| `bilateral`     | If true, bones are defined for L side and mirrored for R       |
+| `color`         | Display color in the viewer                                    |
+| `bones[]`       | Array of `{ name, weight }` pairs for vertex weighting         |
+| `bounds`        | Spatial boundaries (`z_min`, `z_max`, `radius`, `weight_radius`) |
+| `rules`         | Visibility rules (e.g. `hidden_by`)                            |
+| `mesh_type`     | Generator to use (`dome`, `pendant`, `glove`, `torus`, `torso`, `pants`, `boot`) |
+| `mesh_params`   | Type-specific parameters passed to the mesh generator          |
+
+### Generate equipment meshes
+
+```bash
+blender --background --python equipment/factory/mesh_factory.py -- \
+  --rig-spec rig/spec/rig_spec.json \
+  --equip-spec equipment/spec/equipment_spec.json \
+  --rig-blend rig/output/rig.blend \
+  --out equipment/output/
+```
+
+| Flag            | Required | Description                                  |
+|-----------------|----------|----------------------------------------------|
+| `--rig-spec`    | yes      | Path to `rig_spec.json`                      |
+| `--equip-spec`  | yes      | Path to `equipment_spec.json`                |
+| `--rig-blend`   | yes      | Path to the rig `.blend` file                |
+| `--out`         | yes      | Output directory for per-slot GLB files      |
+
+### Adding a new equipment slot
+
+1. Add the slot definition to `equipment/spec/equipment_spec.json`
+2. Implement a mesh generator function in `equipment/factory/mesh_factory.py`
+   if the slot uses a new `mesh_type`
+3. Re-run the mesh factory to generate the new GLB
+4. Run `npm run copy-spec` from `viewer/` to sync to the viewer
+
+---
+
+## Tool Attachment System
+
+### Overview
+
+The viewer supports attaching 3D tool models (loaded from remote GLB URLs) to
+the character's hand bone. Tools can be positioned, rotated, and scaled using
+on-screen gizmo controls or numeric inputs.
+
+### Available tools
+
+| ID            | Name        |
+|---------------|-------------|
+| `fishing_rod` | Fishing Rod |
+| `hammer`      | Hammer      |
+| `hatchet`     | Hatchet     |
+| `pickaxe`     | Pickaxe     |
+
+Tools are defined in `viewer/src/types/tools.ts`. Each tool has an `id`,
+display `name`, remote `url` (GLB), and a display `color`.
+
+### Tool controls
+
+When a tool is equipped the Tool Panel exposes:
+
+- **Gizmo mode** buttons: Translate (T), Rotate (R), Scale (S)
+- **Position** XYZ numeric inputs (step 0.01)
+- **Rotation** XYZ numeric inputs in degrees (step 1)
+- **Scale** uniform numeric input (step 0.01)
+- **Reset** button to restore default transform
+
+Keyboard shortcuts for gizmo modes work when the viewport is focused:
+`T` for translate, `R` for rotate, `S` for scale.
+
+### Adding a new tool
+
+1. Add a new entry to the `TOOLS` array in `viewer/src/types/tools.ts`:
+   ```json
+   { "id": "sword", "name": "Sword", "url": "https://...", "color": "#f472b6" }
+   ```
+2. The tool will appear in the Tool Panel automatically
+
+---
+
+## Pose Editor
+
+### Overview
+
+The Pose Editor allows authoring animation keyframes directly in the viewer
+by manipulating bone rotations and capturing them at specific times. Finished
+poses can be exported as `.anim.json` files compatible with the animation
+system.
+
+### Workflow
+
+1. **Enable** the Pose Editor from the viewer UI
+2. **Configure** the animation: name, ID, duration, FPS, and loop setting
+3. **Set the current time** on the timeline
+4. **Rotate bones** using the bone transform controls
+5. **Capture keyframe** — saves all current bone overrides at the current time
+6. Repeat steps 3–5 for additional keyframes
+7. **Export** — generates a `.anim.json` file ready to drop into
+   `animations/specs/`
+
+### Keyframe data
+
+Each keyframe stores Euler angles (degrees) per bone. On export, the Pose
+Editor converts these to unit quaternions in the standard `[x, y, z, w]`
+format used by the animation system.
+
+### Export format
+
+The exported JSON matches the animation spec format exactly, so the file can
+be placed directly into `animations/specs/` and added to the manifest.
+
+---
+
 ## Axis Conventions
 
 | Property         | Value                         |
@@ -338,7 +558,7 @@ coordinate negated. The full list is in `rig_spec.json` under `mirror_pairs`.
 
 ## Rig Validation
 
-`rig/factory/validation.py` -- `validate_rig_spec()` checks:
+`rig/factory/validation.py` — `validate_rig_spec()` checks:
 
 - All bone names are unique
 - All parent references resolve to existing bones
@@ -370,9 +590,8 @@ To add a new animation clip:
 2. Add an entry to `viewer/public/animations/manifest.json`:
    `{ "id": "<id>", "file": "<id>.anim.json" }`
 3. Run `npm run copy-spec` from `viewer/` to sync files
-4. Optionally add it to `REQUIRED_BONES` or similar if you want validation
-   to enforce its presence
+4. Optionally import into Blender with `anim_factory.py` for GLB/FBX export
 
-To author keyframes for an existing stub, populate the `tracks` array
-with bone rotation/position keyframes. The viewer will play them back
-immediately after a page refresh.
+To author keyframes for an existing stub, either:
+- Populate the `tracks` array manually in the `.anim.json` file
+- Use the **Pose Editor** in the viewer to author keyframes visually and export

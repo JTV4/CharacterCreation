@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import * as THREE from "three";
 import type { BoneTransformOverride } from "../types";
+import type { AnimationPlayerState } from "./useAnimationPlayer";
 
 export type TransformMode = "position" | "rotate" | "scale" | null;
+
+const RAD2DEG = 180 / Math.PI;
 
 const DEFAULT_OVERRIDE: BoneTransformOverride = {
   position: [0, 0, 0],
@@ -9,24 +13,47 @@ const DEFAULT_OVERRIDE: BoneTransformOverride = {
   scale: [1, 1, 1],
 };
 
-function isDefaultOverride(o: BoneTransformOverride): boolean {
-  return (
-    o.position[0] === 0 && o.position[1] === 0 && o.position[2] === 0 &&
-    o.rotation[0] === 0 && o.rotation[1] === 0 && o.rotation[2] === 0 &&
-    o.scale[0] === 1 && o.scale[1] === 1 && o.scale[2] === 1
-  );
+function computeBoneDelta(
+  boneName: string,
+  playerRef: React.MutableRefObject<AnimationPlayerState | null>,
+): BoneTransformOverride {
+  const player = playerRef.current;
+  if (!player) return { ...DEFAULT_OVERRIDE };
+  const obj = player.boneObjMap.get(boneName);
+  const rest = player.boneRestPose.get(boneName);
+  if (!obj || !rest) return { ...DEFAULT_OVERRIDE };
+
+  const invRest = rest.quaternion.clone().invert();
+  const deltaQuat = invRest.multiply(obj.quaternion.clone());
+  const euler = new THREE.Euler().setFromQuaternion(deltaQuat, "XYZ");
+
+  return {
+    position: [
+      obj.position.x - rest.position.x,
+      obj.position.y - rest.position.y,
+      obj.position.z - rest.position.z,
+    ],
+    rotation: [
+      parseFloat((euler.x * RAD2DEG).toFixed(3)),
+      parseFloat((euler.y * RAD2DEG).toFixed(3)),
+      parseFloat((euler.z * RAD2DEG).toFixed(3)),
+    ],
+    scale: [obj.scale.x, obj.scale.y, obj.scale.z],
+  };
 }
 
 interface Params {
   selectedBone: string | null;
   boneOverrides: Map<string, BoneTransformOverride>;
   onSetBoneOverride: (boneName: string, override: BoneTransformOverride | null) => void;
+  playerRef: React.MutableRefObject<AnimationPlayerState | null>;
 }
 
 export function useTransformShortcuts({
   selectedBone,
   boneOverrides,
   onSetBoneOverride,
+  playerRef,
 }: Params): { transformMode: TransformMode } {
   const [mode, setMode] = useState<TransformMode>(null);
 
@@ -35,16 +62,16 @@ export function useTransformShortcuts({
     mouseY: number;
     override: BoneTransformOverride;
     boneName: string;
+    hadOverride: boolean;
   } | null>(null);
 
   const mousePosRef = useRef({ x: 0, y: 0 });
 
-  // Cancel if bone gets deselected while in a mode
   useEffect(() => {
     if (!selectedBone && mode) {
       if (startRef.current) {
-        const { boneName, override } = startRef.current;
-        onSetBoneOverride(boneName, isDefaultOverride(override) ? null : override);
+        const { boneName, override, hadOverride } = startRef.current;
+        onSetBoneOverride(boneName, hadOverride ? override : null);
       }
       startRef.current = null;
       setMode(null);
@@ -114,8 +141,8 @@ export function useTransformShortcuts({
 
       if (mode && key === "escape") {
         if (startRef.current) {
-          const { boneName, override } = startRef.current;
-          onSetBoneOverride(boneName, isDefaultOverride(override) ? null : override);
+          const { boneName, override, hadOverride } = startRef.current;
+          onSetBoneOverride(boneName, hadOverride ? override : null);
         }
         startRef.current = null;
         setMode(null);
@@ -133,7 +160,13 @@ export function useTransformShortcuts({
 
       if (next) {
         e.preventDefault();
-        const cur = boneOverrides.get(selectedBone) ?? { ...DEFAULT_OVERRIDE };
+        const had = boneOverrides.has(selectedBone);
+        const cur = had
+          ? boneOverrides.get(selectedBone)!
+          : computeBoneDelta(selectedBone, playerRef);
+        if (!had) {
+          onSetBoneOverride(selectedBone, { ...cur });
+        }
         startRef.current = {
           mouseX: mousePosRef.current.x,
           mouseY: mousePosRef.current.y,
@@ -143,6 +176,7 @@ export function useTransformShortcuts({
             scale: [...cur.scale],
           },
           boneName: selectedBone,
+          hadOverride: had,
         };
         setMode(next);
       }
@@ -150,7 +184,7 @@ export function useTransformShortcuts({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [mode, selectedBone, boneOverrides, onSetBoneOverride]);
+  }, [mode, selectedBone, boneOverrides, onSetBoneOverride, playerRef]);
 
   // Confirm on pointer down (left click), cancel on right click
   useEffect(() => {
@@ -158,8 +192,8 @@ export function useTransformShortcuts({
 
     const handlePointerDown = (e: PointerEvent) => {
       if (e.button === 2 && startRef.current) {
-        const { boneName, override } = startRef.current;
-        onSetBoneOverride(boneName, isDefaultOverride(override) ? null : override);
+        const { boneName, override, hadOverride } = startRef.current;
+        onSetBoneOverride(boneName, hadOverride ? override : null);
       }
       e.stopPropagation();
       e.preventDefault();
