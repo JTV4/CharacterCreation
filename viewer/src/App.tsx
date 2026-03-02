@@ -65,11 +65,23 @@ function triggerDownload(href: string, filename: string) {
 function ExportPanel({ animations }: { animations: AnimManifest["animations"] }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const available = useMemo(
-    () => animations.filter((a) => !STUB_ANIMS.has(a.id)),
-    [animations],
-  );
+  const [available, setAvailable] = useState<AnimManifest["animations"]>([]);
   const [checked, setChecked] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    const candidates = animations.filter((a) => !STUB_ANIMS.has(a.id));
+    Promise.all(
+      candidates.map((a) =>
+        fetch(`/animations/${a.file}`)
+          .then((r) => (r.ok ? (r.json() as Promise<AnimSpec>) : null))
+          .then((spec) => (spec && spec.tracks?.length > 0 ? a : null))
+          .catch(() => null),
+      ),
+    ).then((results) => {
+      const real = results.filter((r): r is AnimManifest["animations"][number] => r !== null);
+      setAvailable(real);
+    });
+  }, [animations]);
 
   useEffect(() => {
     if (!open) return;
@@ -103,13 +115,12 @@ function ExportPanel({ animations }: { animations: AnimManifest["animations"] })
   const handleExport = () => {
     if (checked.size === 0) return;
 
-    if (allChecked) {
-      triggerDownload("/rig.glb", "rig.glb");
+    if (checked.size === 1) {
+      const id = [...checked][0];
+      const name = animDisplayName(id);
+      triggerDownload(`/animations/${name}.glb`, `${name}.glb`);
     } else {
-      for (const id of checked) {
-        const name = animDisplayName(id);
-        triggerDownload(`/animations/${name}.glb`, `${name}.glb`);
-      }
+      triggerDownload("/rig.glb", "rig.glb");
     }
     setOpen(false);
   };
@@ -220,6 +231,10 @@ export default function App() {
 
   const [equipSpec, setEquipSpec] = useState<EquipmentSpec | null>(null);
   const [equipState, setEquipState] = useState<EquipmentState>({});
+  const equipSlotIds = useMemo(
+    () => equipSpec?.slots.map((s) => s.id) ?? [],
+    [equipSpec],
+  );
 
   useEffect(() => {
     fetch("/equipment/equipment_spec.json")
@@ -425,7 +440,7 @@ export default function App() {
             />
             {equipSpec && (
               <EquipmentMeshRenderer
-                slotIds={equipSpec.slots.map((s) => s.id)}
+                slotIds={equipSlotIds}
                 equipState={equipState}
                 effectiveState={effectiveEquipState}
                 playerRef={playerRef}

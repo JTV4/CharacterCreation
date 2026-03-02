@@ -222,13 +222,13 @@ def main() -> None:
     export_blend(args.out)
 
     if args.export_glb:
+        export_glb(args.export_glb)
+
         if args.anims:
             glb_dir = os.path.dirname(os.path.abspath(args.export_glb))
             anim_glb_dir = os.path.join(glb_dir, "animations")
             print(f"  Exporting per-animation GLBs to: {anim_glb_dir}")
-            export_glb_per_animation(armature_obj, anim_glb_dir)
-
-        export_glb(args.export_glb)
+            export_glb_per_animation(armature_obj, anim_glb_dir, args.anims)
 
     if args.export_fbx:
         export_fbx(args.export_fbx)

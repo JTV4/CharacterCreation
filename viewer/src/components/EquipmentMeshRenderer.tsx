@@ -90,6 +90,39 @@ function fixZeroWeightVertices(sm: THREE.SkinnedMesh): void {
   }
 }
 
+function bindSlotSkeleton(
+  slot: LoadedSlot,
+  animBones: Map<string, THREE.Bone>,
+  restInverses: Map<string, THREE.Matrix4>,
+): void {
+  for (const sm of slot.skinnedMeshes) {
+    const oldSk = sm.skeleton;
+    if (!oldSk) continue;
+
+    const newBones: THREE.Bone[] = [];
+    const newInverses: THREE.Matrix4[] = [];
+
+    for (let i = 0; i < oldSk.bones.length; i++) {
+      const boneName = oldSk.bones[i].name;
+      const animBone = animBones.get(boneName);
+      const restInv = restInverses.get(boneName);
+
+      if (animBone && restInv) {
+        newBones.push(animBone);
+        newInverses.push(restInv.clone());
+      } else {
+        newBones.push(oldSk.bones[i] as THREE.Bone);
+        newInverses.push(oldSk.boneInverses[i].clone());
+      }
+    }
+
+    const newSkeleton = new THREE.Skeleton(newBones, newInverses);
+    sm.bind(newSkeleton, _identityMatrix);
+
+    fixZeroWeightVertices(sm);
+  }
+}
+
 export default function EquipmentMeshRenderer({
   slotIds,
   equipState,
@@ -101,7 +134,15 @@ export default function EquipmentMeshRenderer({
     new Map(),
   );
   const loadingRef = useRef<Set<string>>(new Set());
-  const initializedRef = useRef<Set<string>>(new Set());
+  const boundRef = useRef<Set<string>>(new Set());
+
+  useEffect(() => {
+    for (const id of slotIds) {
+      if (!effectiveState[id]) {
+        boundRef.current.delete(id);
+      }
+    }
+  }, [slotIds, effectiveState]);
 
   useEffect(() => {
     const enabledSlots = slotIds.filter((id) => equipState[id]);
@@ -122,6 +163,7 @@ export default function EquipmentMeshRenderer({
           if (cancelled) return;
 
           const scene = gltf.scene;
+          scene.visible = false;
           const skinnedMeshes = findSkinnedMeshes(scene);
 
           const color = SLOT_COLORS[slotId] ?? "#94a3b8";
@@ -168,45 +210,14 @@ export default function EquipmentMeshRenderer({
     if (!animBones || animBones.size === 0) return;
     if (!restInverses || restInverses.size === 0) return;
 
-    let anyPending = false;
-
     for (const [slotId, slot] of slotCache) {
       if (!effectiveState[slotId]) continue;
-      if (initializedRef.current.has(slotId)) continue;
+      if (boundRef.current.has(slotId)) continue;
 
-      anyPending = true;
-
-      for (const sm of slot.skinnedMeshes) {
-        const oldSk = sm.skeleton;
-        if (!oldSk) continue;
-
-        const newBones: THREE.Bone[] = [];
-        const newInverses: THREE.Matrix4[] = [];
-
-        for (let i = 0; i < oldSk.bones.length; i++) {
-          const boneName = oldSk.bones[i].name;
-          const animBone = animBones.get(boneName);
-          const restInv = restInverses.get(boneName);
-
-          if (animBone && restInv) {
-            newBones.push(animBone);
-            newInverses.push(restInv.clone());
-          } else {
-            newBones.push(oldSk.bones[i] as THREE.Bone);
-            newInverses.push(oldSk.boneInverses[i].clone());
-          }
-        }
-
-        const newSkeleton = new THREE.Skeleton(newBones, newInverses);
-        sm.bind(newSkeleton, _identityMatrix);
-
-        fixZeroWeightVertices(sm);
-      }
-
-      initializedRef.current.add(slotId);
+      bindSlotSkeleton(slot, animBones, restInverses);
+      slot.scene.visible = true;
+      boundRef.current.add(slotId);
     }
-
-    if (!anyPending) return;
   });
 
   return (

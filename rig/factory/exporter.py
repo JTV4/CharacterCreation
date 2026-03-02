@@ -50,27 +50,37 @@ def export_glb(filepath: str, include_anims: bool = True) -> None:
 def export_glb_per_animation(
     armature_obj: bpy.types.Object,
     output_dir: str,
+    anim_dir: str,
 ) -> list[str]:
     """Export one GLB per animation action, each named [ActionName].glb.
 
-    Each GLB contains the full rig skeleton plus a single animation.
+    Re-bakes each animation individually so the glTF exporter only sees a
+    single action per export (Blender's ACTIVE_ACTIONS mode is unreliable).
     Returns a list of exported file paths.
     """
+    from anim_baker import discover_anims, load_anim_spec, bake_action
+
     _ensure_directory(os.path.join(output_dir, "_placeholder"))
 
     if not armature_obj.animation_data:
-        print("  No animation data on armature, skipping per-animation export.")
+        armature_obj.animation_data_create()
+
+    paths = discover_anims(anim_dir)
+    if not paths:
+        print("  No .anim.json files found, skipping per-animation export.")
         return []
 
-    all_actions = [a for a in bpy.data.actions if a.users > 0 or a.use_fake_user]
-    if not all_actions:
-        print("  No actions found, skipping per-animation export.")
-        return []
-
-    original_action = armature_obj.animation_data.action
     exported: list[str] = []
 
-    for action in all_actions:
+    for path in paths:
+        for a in list(bpy.data.actions):
+            bpy.data.actions.remove(a)
+
+        spec = load_anim_spec(path)
+        action = bake_action(armature_obj, spec)
+        if not action:
+            continue
+
         armature_obj.animation_data.action = action
         filename = f"{action.name}.glb"
         filepath = os.path.join(os.path.abspath(output_dir), filename)
@@ -85,12 +95,11 @@ def export_glb_per_animation(
             export_def_bones=False,
             export_animations=True,
             export_nla_strips=False,
-            export_animation_mode="ACTIVE_ACTIONS",
+            export_animation_mode="ACTIONS",
         )
         exported.append(filepath)
         print(f"    Exported: {filename}")
 
-    armature_obj.animation_data.action = original_action
     return exported
 
 
