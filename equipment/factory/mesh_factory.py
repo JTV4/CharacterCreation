@@ -644,7 +644,280 @@ def _create_boot(slot: dict, bone_map: dict) -> bpy.types.Object:
     return obj
 
 
+def _create_base_body(slot: dict, bone_map: dict) -> list[bpy.types.Object]:
+    """Low-poly base character body (OSRS-style, ≤5k triangles).
+
+    Builds head, neck, torso, arms, hands, legs, and feet from procedural
+    tubes and spheres, skinned to the rig. Returns separate mesh objects per
+    body region so equipment can hide regions when equipped.
+    """
+    params = slot["mesh_params"]
+    max_tris = params.get("max_triangles", 5000)
+
+    head_segs = params.get("head_segments", 20)
+    head_rings = params.get("head_rings", 10)
+    neck_segs = params.get("neck_segments", 12)
+    torso_segs = params.get("torso_segments", 20)
+    torso_rings = params.get("torso_rings", 10)
+    arm_segs = params.get("arm_segments", 12)
+    arm_joint_inset = params.get("arm_joint_inset", 0.06)
+    leg_segs = params.get("leg_segments", 16)
+    hand_segs = params.get("hand_segments", 10)
+    finger_segs = params.get("finger_segments", 8)
+    finger_r = params.get("finger_radius", 0.009)
+    joint_inset = params.get("finger_joint_inset", 0.08)
+    foot_segs = params.get("foot_segments", 12)
+
+    region_objs: list[bpy.types.Object] = []
+
+    def add_tube_rings(bm_inner: bmesh.types.BMesh, points: list, radii: list,
+                       segs: int, axis: str = "Z") -> None:
+        """Add tube geometry along a path. Cross-section perpendicular to axis.
+        axis: 'Z' for vertical bones (neck, torso), 'path' for path-aligned (arms, legs, fingers).
+        """
+        if len(points) < 2 or len(radii) != len(points):
+            return
+        pts = [Vector(p) for p in points]
+        verts_by_ring = []
+        for i, (pos, r) in enumerate(zip(pts, radii)):
+            center = pos
+            if axis == "path":
+                if i == 0:
+                    direction = (pts[1] - pts[0]).normalized()
+                elif i == len(pts) - 1:
+                    direction = (pts[-1] - pts[-2]).normalized()
+                else:
+                    direction = (pts[i + 1] - pts[i - 1]).normalized()
+                up_ref = Vector((0, 0, 1))
+                if abs(direction.dot(up_ref)) > 0.99:
+                    up_ref = Vector((1, 0, 0))
+                side = direction.cross(up_ref).normalized()
+                up = side.cross(direction).normalized()
+            row = []
+            for si in range(segs):
+                angle = 2 * math.pi * si / segs
+                if axis == "Z":
+                    x = center.x + math.cos(angle) * r
+                    y = center.y + math.sin(angle) * r
+                    z = center.z
+                    row.append(bm_inner.verts.new((x, y, z)))
+                else:
+                    offset = side * math.cos(angle) * r + up * math.sin(angle) * r
+                    row.append(bm_inner.verts.new(center + offset))
+            verts_by_ring.append(row)
+
+        for ri in range(len(verts_by_ring) - 1):
+            for si in range(segs):
+                si_next = (si + 1) % segs
+                try:
+                    bm_inner.faces.new([
+                        verts_by_ring[ri][si], verts_by_ring[ri][si_next],
+                        verts_by_ring[ri + 1][si_next], verts_by_ring[ri + 1][si],
+                    ])
+                except ValueError:
+                    pass
+
+    def make_region_mesh(region_name: str, bm_src: bmesh.types.BMesh) -> bpy.types.Object:
+        """Create a mesh object from a bmesh and add to scene."""
+        mesh = bpy.data.meshes.new(f"equip_base_body_{region_name}")
+        obj = bpy.data.objects.new(f"equip_base_body_{region_name}", mesh)
+        bpy.context.scene.collection.objects.link(obj)
+        bm_src.to_mesh(mesh)
+        bm_src.free()
+        mesh.update()
+        return obj
+
+    # --- Head (full sphere ellipsoid) ---
+    head_bone = bone_map["head"]
+    head_center_z = (head_bone["head"][2] + head_bone["tail"][2]) / 2.0
+    head_r = 0.12
+    scale_x = 1.1
+    scale_y = 1.05
+    scale_z = 1.1
+
+    bpy.ops.mesh.primitive_uv_sphere_add(
+        segments=head_segs,
+        ring_count=head_rings,
+        radius=head_r,
+        location=(0, 0, head_center_z),
+    )
+    head_obj = bpy.context.active_object
+    head_obj.scale = (scale_x, scale_y, scale_z)
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    bm_head = bmesh.new()
+    bm_head.from_mesh(head_obj.data)
+    region_objs.append(make_region_mesh("head", bm_head))
+    bpy.data.objects.remove(head_obj, do_unlink=True)
+
+    # --- Neck ---
+    bm_neck = bmesh.new()
+    neck_bone = bone_map["neck_01"]
+    head = Vector(neck_bone["head"])
+    tail = Vector(neck_bone["tail"])
+    neck_r = 0.055
+    pts = [head, tail]
+    rads = [neck_r * 1.1, neck_r]
+    add_tube_rings(bm_neck, pts, rads, neck_segs)
+    region_objs.append(make_region_mesh("neck", bm_neck))
+
+    # --- Torso (pelvis to shoulders) ---
+    bm_torso = bmesh.new()
+    pelvis = bone_map["pelvis"]
+    spine_bones = ["spine_01", "spine_02", "spine_03"]
+    z_vals = [pelvis["head"][2]]
+    for sname in spine_bones:
+        z_vals.append(bone_map[sname]["head"][2])
+    z_vals.append(bone_map["spine_03"]["tail"][2])
+    z_min, z_max = min(z_vals), max(z_vals)
+    z_range = z_max - z_min
+
+    pelvis_r, waist_r, chest_r, shoulder_r = 0.12, 0.13, 0.15, 0.16
+    torso_ring_verts = []
+    for ri in range(torso_rings + 1):
+        t = ri / torso_rings
+        z = z_min + t * z_range
+        if t < 0.2:
+            r = pelvis_r + (waist_r - pelvis_r) * (t / 0.2)
+        elif t < 0.5:
+            r = waist_r + (chest_r - waist_r) * ((t - 0.2) / 0.3)
+        else:
+            r = chest_r + (shoulder_r - chest_r) * ((t - 0.5) / 0.5)
+        row = []
+        for si in range(torso_segs):
+            angle = 2 * math.pi * si / torso_segs
+            row.append(bm_torso.verts.new((math.cos(angle) * r, math.sin(angle) * r, z)))
+        torso_ring_verts.append(row)
+
+    for ri in range(torso_rings):
+        for si in range(torso_segs):
+            si_next = (si + 1) % torso_segs
+            try:
+                bm_torso.faces.new([
+                    torso_ring_verts[ri][si], torso_ring_verts[ri][si_next],
+                    torso_ring_verts[ri + 1][si_next], torso_ring_verts[ri + 1][si],
+                ])
+            except ValueError:
+                pass
+    region_objs.append(make_region_mesh("torso", bm_torso))
+
+    # --- Arms (muscular, individual cylinders per bone with joint gaps) ---
+    bm_arms = bmesh.new()
+    arm_bone_names = ["clavicle", "upperarm", "lowerarm", "hand"]
+    for side_name in ["L", "R"]:
+        for i, bname_base in enumerate(arm_bone_names):
+            bname = f"{bname_base}_{side_name}"
+            if bname not in bone_map:
+                continue
+            bd = bone_map[bname]
+            head = Vector(bd["head"])
+            tail = Vector(bd["tail"])
+            direction = tail - head
+            length = direction.length
+            if length < 0.001:
+                continue
+            direction.normalize()
+            inset_dist = min(length * arm_joint_inset, 0.012)
+            start_pt = head + direction * inset_dist
+            end_pt = tail - direction * inset_dist
+            effective_len = (end_pt - start_pt).length
+
+            # Muscular radius profiles: thicker in middle (bicep/forearm bulge)
+            if bname_base == "clavicle":
+                t_vals = [0.0, 0.5, 1.0]
+                r_vals = [0.042, 0.048, 0.044]
+            elif bname_base == "upperarm":
+                t_vals = [0.0, 0.25, 0.5, 0.75, 1.0]
+                r_vals = [0.042, 0.048, 0.055, 0.050, 0.044]
+            elif bname_base == "lowerarm":
+                t_vals = [0.0, 0.25, 0.5, 0.75, 1.0]
+                r_vals = [0.042, 0.048, 0.052, 0.048, 0.038]
+            else:
+                t_vals = [0.0, 0.5, 1.0]
+                r_vals = [0.032, 0.030, 0.028]
+
+            pts = []
+            rads = []
+            for t, r in zip(t_vals, r_vals):
+                pts.append(start_pt + direction * (effective_len * t))
+                rads.append(r)
+            add_tube_rings(bm_arms, pts, rads, arm_segs, axis="path")
+    region_objs.append(make_region_mesh("arms", bm_arms))
+
+    # --- Legs (thigh -> shin) ---
+    bm_legs = bmesh.new()
+    for side_name in ["L", "R"]:
+        thigh = bone_map[f"thigh_{side_name}"]
+        shin = bone_map[f"shin_{side_name}"]
+        foot = bone_map[f"foot_{side_name}"]
+        pts = [
+            Vector(thigh["head"]),
+            Vector(thigh["tail"]),
+            Vector(shin["head"]),
+            Vector(shin["tail"]),
+            Vector(foot["tail"]),
+        ]
+        rads = [0.075, 0.07, 0.06, 0.05, 0.04]
+        add_tube_rings(bm_legs, pts, rads, leg_segs, axis="path")
+    region_objs.append(make_region_mesh("legs", bm_legs))
+
+    # --- Feet ---
+    bm_feet = bmesh.new()
+    for side_name in ["L", "R"]:
+        foot = bone_map[f"foot_{side_name}"]
+        toe = bone_map[f"toe_{side_name}"]
+        foot_head = Vector(foot["head"])
+        foot_tail = Vector(foot["tail"])
+        toe_tail = Vector(toe["tail"])
+        foot_pts = [foot_head, foot_tail, toe_tail]
+        foot_rads = [0.04, 0.035, 0.02]
+        add_tube_rings(bm_feet, foot_pts, foot_rads, foot_segs, axis="path")
+    region_objs.append(make_region_mesh("feet", bm_feet))
+
+    # --- Hands (individual fingers) ---
+    bm_hands = bmesh.new()
+    finger_bones = [
+        "thumb_01", "thumb_02", "thumb_03",
+        "index_01", "index_02", "index_03",
+        "middle_01", "middle_02", "middle_03",
+        "ring_01", "ring_02", "ring_03",
+        "pinky_01", "pinky_02", "pinky_03",
+    ]
+    for side_name in ["L", "R"]:
+        for fname in finger_bones:
+            bname = f"{fname}_{side_name}"
+            if bname not in bone_map:
+                continue
+            bd = bone_map[bname]
+            head = Vector(bd["head"])
+            tail = Vector(bd["tail"])
+            direction = tail - head
+            length = direction.length
+            if length < 0.001:
+                continue
+            direction.normalize()
+            inset_dist = min(length * joint_inset, 0.008)
+            start_pt = head + direction * inset_dist
+            end_pt = tail - direction * inset_dist
+            pts = [start_pt, end_pt]
+            if "thumb" in fname or "pinky" in fname:
+                r = finger_r * 0.65
+            else:
+                r = finger_r * 0.85
+            rads = [r, r]
+            add_tube_rings(bm_hands, pts, rads, finger_segs, axis="path")
+    region_objs.append(make_region_mesh("hands", bm_hands))
+
+    tri_count = sum(len(o.data.polygons) for o in region_objs)
+    if tri_count > max_tris:
+        print(f"  Warning: base_body has {tri_count} tris (max {max_tris})")
+    else:
+        print(f"  base_body: {tri_count} triangles ({len(region_objs)} regions)")
+
+    return region_objs
+
+
 GENERATORS = {
+    "base_body": _create_base_body,
     "dome": _create_dome,
     "pendant": _create_pendant,
     "glove": _create_gloves,
@@ -761,20 +1034,25 @@ def parent_to_armature(mesh_obj: bpy.types.Object, armature_obj: bpy.types.Objec
 # Export
 # ---------------------------------------------------------------------------
 
-def export_slot_glb(mesh_obj: bpy.types.Object, armature_obj: bpy.types.Object,
+def export_slot_glb(mesh_obj: bpy.types.Object | list[bpy.types.Object],
+                    armature_obj: bpy.types.Object,
                     slot_id: str, output_dir: str, yup: bool = False) -> str:
-    """Export a single slot mesh + armature as GLB.
+    """Export a single slot mesh (or multiple meshes) + armature as GLB.
 
     Args:
+        mesh_obj: Single mesh object or list of mesh objects (e.g. base_body regions).
         yup: When True, convert to Y-up (glTF standard) for game engine import.
              When False, keep Blender's Z-up (used by the viewer).
     """
     filepath = os.path.join(output_dir, f"{slot_id}.glb")
     os.makedirs(output_dir, exist_ok=True)
 
+    mesh_objs = mesh_obj if isinstance(mesh_obj, list) else [mesh_obj]
+
     bpy.ops.object.select_all(action="DESELECT")
     armature_obj.select_set(True)
-    mesh_obj.select_set(True)
+    for m in mesh_objs:
+        m.select_set(True)
     bpy.context.view_layer.objects.active = armature_obj
 
     bpy.ops.export_scene.gltf(
@@ -814,6 +1092,10 @@ def build_all_equipment(
     slot_objs: list[bpy.types.Object] = []
 
     for slot in equip_spec["slots"]:
+        if slot.get("url"):
+            print(f"  Skipping slot: {slot['id']} (loads from URL)")
+            continue
+
         mesh_type = slot["mesh_type"]
         gen = GENERATORS.get(mesh_type)
         if not gen:
@@ -821,17 +1103,21 @@ def build_all_equipment(
             continue
 
         print(f"  Generating slot: {slot['id']} (type={mesh_type})")
-        mesh_obj = gen(slot, bone_map)
+        gen_result = gen(slot, bone_map)
 
-        assign_material(mesh_obj, slot)
-        assign_weights(mesh_obj, slot, bone_map)
-        parent_to_armature(mesh_obj, armature_obj)
-        export_slot_glb(mesh_obj, armature_obj, slot["id"], output_dir, yup=False)
+        mesh_objs = gen_result if isinstance(gen_result, list) else [gen_result]
+        for m in mesh_objs:
+            assign_material(m, slot)
+            assign_weights(m, slot, bone_map)
+            parent_to_armature(m, armature_obj)
+
+        export_meshes = mesh_objs[0] if len(mesh_objs) == 1 else mesh_objs
+        export_slot_glb(export_meshes, armature_obj, slot["id"], output_dir, yup=False)
 
         if game_dir:
-            export_slot_glb(mesh_obj, armature_obj, slot["id"], game_dir, yup=True)
+            export_slot_glb(export_meshes, armature_obj, slot["id"], game_dir, yup=True)
 
-        slot_objs.append(mesh_obj)
+        slot_objs.extend(mesh_objs)
 
     return slot_objs
 

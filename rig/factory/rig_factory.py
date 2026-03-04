@@ -224,6 +224,11 @@ def main() -> None:
     if args.export_glb:
         export_glb(args.export_glb)
 
+        # Always export rig-only T-pose (no animations) alongside main rig
+        glb_dir = os.path.dirname(os.path.abspath(args.export_glb))
+        tpose_path = os.path.join(glb_dir, "rig_tpose.glb")
+        export_glb(tpose_path, include_anims=False)
+
         if args.anims:
             glb_dir = os.path.dirname(os.path.abspath(args.export_glb))
             anim_glb_dir = os.path.join(glb_dir, "animations")

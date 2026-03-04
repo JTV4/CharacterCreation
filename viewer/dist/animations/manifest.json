@@ -1,0 +1,15 @@
+{
+  "animations": [
+    { "id": "idle", "file": "idle.anim.json" },
+    { "id": "idle_combat", "file": "idle_combat.anim.json" },
+    { "id": "idle_ready", "file": "idle_ready.anim.json" },
+    { "id": "walk", "file": "walk.anim.json" },
+    { "id": "run", "file": "run.anim.json" },
+    { "id": "attack_with_fist", "file": "attack_with_fist.anim.json" },
+    { "id": "attack_uppercut", "file": "attack_uppercut.anim.json" },
+    { "id": "attack_with_kick", "file": "attack_with_kick.anim.json" },
+    { "id": "attack_with_kick_left", "file": "attack_with_kick_left.anim.json" },
+    { "id": "chop_tree", "file": "chop_tree.anim.json" },
+    { "id": "fishing", "file": "fishing.anim.json" }
+  ]
+}

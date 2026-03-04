@@ -19,6 +19,8 @@ export interface AnimationPlayerState {
   boneObjMap: Map<string, THREE.Bone>;
   boneRestPose: Map<string, BoneRestTransform>;
   boneRestWorldInverses: Map<string, THREE.Matrix4>;
+  /** Skeleton root containing anim bones; must be in scene for equipment skinning. */
+  skeletonRoot: THREE.Object3D;
   currentTime: number;
   isPlaying: boolean;
   duration: number;
@@ -554,6 +556,7 @@ export function useAnimationPlayer(
     boneObjMap: objMap,
     boneRestPose,
     boneRestWorldInverses,
+    skeletonRoot: rootObj,
     currentTime,
     isPlaying,
     duration: durationRef.current,

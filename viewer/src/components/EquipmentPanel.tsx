@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import type { EquipmentSlot, EquipmentState } from "../types/equipment";
 import { SLOT_COLORS } from "../types/equipment";
 
@@ -55,6 +55,19 @@ export default function EquipmentPanel({
 
   const anyEnabled = slots.some((s) => equipState[s.id]);
 
+  const slotsByCategory = useMemo(() => {
+    const meshes: EquipmentSlot[] = [];
+    const equipment: EquipmentSlot[] = [];
+    for (const slot of slots) {
+      if (slot.category === "meshes") {
+        meshes.push(slot);
+      } else {
+        equipment.push(slot);
+      }
+    }
+    return { meshes, equipment };
+  }, [slots]);
+
   return (
     <div className="info-panel equip-panel">
       <div className="equip-header">
@@ -89,51 +102,106 @@ export default function EquipmentPanel({
       </div>
 
       <div className="equip-slots">
-        {slots.map((slot) => {
-          const enabled = equipState[slot.id] ?? false;
-          const blocker = isHiddenByRule(slot);
-          const blocked = blocker !== null;
-          const color = slot.color ?? SLOT_COLORS[slot.id] ?? DEFAULT_COLOR;
+        {slotsByCategory.meshes.length > 0 && (
+          <>
+            <div className="equip-category-label">Meshes</div>
+            {slotsByCategory.meshes.map((slot) => {
+              const enabled = equipState[slot.id] ?? false;
+              const blocker = isHiddenByRule(slot);
+              const blocked = blocker !== null;
+              const color = slot.color ?? SLOT_COLORS[slot.id] ?? DEFAULT_COLOR;
 
-          return (
-            <div
-              key={slot.id}
-              className={`equip-slot ${enabled && !blocked ? "active" : ""} ${blocked ? "blocked" : ""}`}
-            >
-              <label className="equip-toggle">
-                <input
-                  type="checkbox"
-                  checked={enabled && !blocked}
-                  disabled={blocked}
-                  onChange={(e) => onToggleSlot(slot.id, e.target.checked)}
-                />
-                <span
-                  className="equip-dot"
-                  style={{ background: enabled && !blocked ? color : "var(--bg-tertiary)" }}
-                />
-                <span className="equip-name">{slot.name}</span>
-              </label>
-              {slot.bilateral && (
-                <span className="equip-badge bilateral">L+R</span>
-              )}
-              {blocked && (
-                <span className="equip-badge hidden-badge">
-                  hidden by {blocker}
-                </span>
-              )}
-              <button
-                className="equip-export-btn"
-                onClick={() => downloadSlot(slot.id, exportFormat)}
-                title={`Export ${slot.name} GLB (${exportFormat === "game" ? "Y-up" : "Z-up"})`}
-              >
-                GLB
-              </button>
-              <span className="equip-bone-count">
-                {slot.bones.length} bones
-              </span>
-            </div>
-          );
-        })}
+              return (
+                <div
+                  key={slot.id}
+                  className={`equip-slot ${enabled && !blocked ? "active" : ""} ${blocked ? "blocked" : ""}`}
+                >
+                  <label className="equip-toggle">
+                    <input
+                      type="checkbox"
+                      checked={enabled && !blocked}
+                      disabled={blocked}
+                      onChange={(e) => onToggleSlot(slot.id, e.target.checked)}
+                    />
+                    <span
+                      className="equip-dot"
+                      style={{ background: enabled && !blocked ? color : "var(--bg-tertiary)" }}
+                    />
+                    <span className="equip-name">{slot.name}</span>
+                  </label>
+                  {slot.bilateral && (
+                    <span className="equip-badge bilateral">L+R</span>
+                  )}
+                  {blocked && (
+                    <span className="equip-badge hidden-badge">
+                      hidden by {blocker}
+                    </span>
+                  )}
+                  <button
+                    className="equip-export-btn"
+                    onClick={() => downloadSlot(slot.id, exportFormat)}
+                    title={`Export ${slot.name} GLB (${exportFormat === "game" ? "Y-up" : "Z-up"})`}
+                  >
+                    GLB
+                  </button>
+                  <span className="equip-bone-count">
+                    {slot.bones.length} bones
+                  </span>
+                </div>
+              );
+            })}
+          </>
+        )}
+        {slotsByCategory.equipment.length > 0 && (
+          <>
+            <div className="equip-category-label">Equipment</div>
+            {slotsByCategory.equipment.map((slot) => {
+              const enabled = equipState[slot.id] ?? false;
+              const blocker = isHiddenByRule(slot);
+              const blocked = blocker !== null;
+              const color = slot.color ?? SLOT_COLORS[slot.id] ?? DEFAULT_COLOR;
+
+              return (
+                <div
+                  key={slot.id}
+                  className={`equip-slot ${enabled && !blocked ? "active" : ""} ${blocked ? "blocked" : ""}`}
+                >
+                  <label className="equip-toggle">
+                    <input
+                      type="checkbox"
+                      checked={enabled && !blocked}
+                      disabled={blocked}
+                      onChange={(e) => onToggleSlot(slot.id, e.target.checked)}
+                    />
+                    <span
+                      className="equip-dot"
+                      style={{ background: enabled && !blocked ? color : "var(--bg-tertiary)" }}
+                    />
+                    <span className="equip-name">{slot.name}</span>
+                  </label>
+                  {slot.bilateral && (
+                    <span className="equip-badge bilateral">L+R</span>
+                  )}
+                  {blocked && (
+                    <span className="equip-badge hidden-badge">
+                      hidden by {blocker}
+                    </span>
+                  )}
+                  <button
+                    className="equip-export-btn"
+                    onClick={() => downloadSlot(slot.id, exportFormat)}
+                    title={`Export ${slot.name} GLB (${exportFormat === "game" ? "Y-up" : "Z-up"})`}
+                  >
+                    GLB
+                  </button>
+                  <span className="equip-bone-count">
+                    {slot.bones.length} bones
+                  </span>
+                </div>
+              );
+            })}
+          </>
+        )}
       </div>
     </div>
   );

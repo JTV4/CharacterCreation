@@ -7,6 +7,7 @@ import type { AnimationPlayerState, AnimatedBonePositions } from "./hooks/useAni
 import type { EquipmentSpec, EquipmentState } from "./types/equipment";
 import type { BoneTransformOverride } from "./types";
 import Scene from "./components/Scene";
+import ViewportErrorBoundary from "./components/ViewportErrorBoundary";
 import BoneSidebar from "./components/BoneSidebar";
 import BoneInfoPanel from "./components/BoneInfoPanel";
 import AnimationControls from "./components/AnimationControls";
@@ -133,6 +134,19 @@ function ExportPanel({ animations }: { animations: AnimManifest["animations"] })
       {open && (
         <div className="export-panel">
           <div className="export-panel-header">Export Animations</div>
+          <button
+            type="button"
+            className="export-panel-row export-panel-standalone"
+            onClick={() => {
+              triggerDownload("/rig_tpose.glb", "rig_tpose.glb");
+            }}
+            title="Rig only, no animations"
+          >
+            <span style={{ width: 22, flexShrink: 0 }} aria-hidden />
+            <span className="export-panel-label">Rig (T-pose)</span>
+            <span className="export-panel-hint">rig_tpose.glb</span>
+          </button>
+          <div className="export-panel-divider" />
           <label className="export-panel-row export-panel-all">
             <input
               type="checkbox"
@@ -237,7 +251,9 @@ export default function App() {
   );
 
   useEffect(() => {
-    fetch("/equipment/equipment_spec.json")
+    fetch("/equipment/equipment_spec.json?t=" + Date.now(), {
+      cache: "no-store",
+    })
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json() as Promise<EquipmentSpec>;
@@ -246,15 +262,34 @@ export default function App() {
         setEquipSpec(spec);
         const initial: EquipmentState = {};
         for (const slot of spec.slots) {
-          initial[slot.id] = false;
+          initial[slot.id] = slot.id === "base_body";
         }
         setEquipState(initial);
       })
-      .catch(() => setEquipSpec(null));
+      .catch((err) => {
+        console.error("Failed to load equipment spec:", err);
+        setEquipSpec(null);
+      });
   }, []);
 
+  const BODY_SLOT_IDS = [
+    "base_body",
+    "base_male",
+    "base_female",
+    "base_male_with_skin_texture",
+    "base_female_with_skin_texture",
+  ];
+
   const handleToggleSlot = useCallback((slotId: string, enabled: boolean) => {
-    setEquipState((prev) => ({ ...prev, [slotId]: enabled }));
+    setEquipState((prev) => {
+      const next = { ...prev, [slotId]: enabled };
+      if (enabled && BODY_SLOT_IDS.includes(slotId)) {
+        for (const other of BODY_SLOT_IDS) {
+          if (other !== slotId) next[other] = false;
+        }
+      }
+      return next;
+    });
   }, []);
 
   const [selectedToolId, setSelectedToolId] = useState<string | null>(null);
@@ -361,6 +396,14 @@ export default function App() {
 
   const handleSelectAnimation = useCallback(
     (id: string) => {
+      if (id === "tpose") {
+        setAnimSpec(null);
+        setBasePose(new Map());
+        setBoneOverrides(new Map());
+        playerRef.current?.setAnimation(null);
+        playerRef.current?.stop();
+        return;
+      }
       const entry = manifest.find((a) => a.id === id);
       if (!entry) return;
       fetch(`/animations/${entry.file}`)
@@ -414,22 +457,23 @@ export default function App() {
             {data.spec.bones.length} bones &middot;{" "}
             {data.spec.meta.rest_pose.toUpperCase()} &middot;{" "}
             {data.spec.meta.scale}
-            {animState.activeAnimId && (
+            {(animSpec === null ? "T-pose" : animState.activeAnimId) && (
               <>
                 {" "}
-                &middot; {animState.activeAnimId}
+                &middot; {animSpec === null ? "T-pose" : animState.activeAnimId}
                 {animState.isPlaying ? " (playing)" : ""}
               </>
             )}
           </div>
           <ExportPanel animations={manifest} />
-          <Scene
-            spec={data.spec}
-            selectedBone={selectedBone}
-            onSelectBone={setSelectedBone}
-            animatedPositions={animState.animatedPositions}
-            transformMode={transformMode}
-          >
+          <ViewportErrorBoundary>
+            <Scene
+              spec={data.spec}
+              selectedBone={selectedBone}
+              onSelectBone={setSelectedBone}
+              animatedPositions={animState.animatedPositions}
+              transformMode={transformMode}
+            >
             <AnimationBridge
               rigSpec={data.spec}
               animSpec={animSpec}
@@ -441,6 +485,7 @@ export default function App() {
             {equipSpec && (
               <EquipmentMeshRenderer
                 slotIds={equipSlotIds}
+                slots={equipSpec.slots}
                 equipState={equipState}
                 effectiveState={effectiveEquipState}
                 playerRef={playerRef}
@@ -457,7 +502,8 @@ export default function App() {
                 onTransformChange={handleToolTransformChange}
               />
             )}
-          </Scene>
+            </Scene>
+          </ViewportErrorBoundary>
           {transformMode && (
             <div className="transform-mode-indicator">
               <div className="transform-mode-label">
@@ -476,7 +522,7 @@ export default function App() {
         </div>
         <AnimationControls
           animations={manifest}
-          activeAnimId={animState.activeAnimId}
+          activeAnimId={animSpec === null ? "tpose" : animState.activeAnimId}
           isPlaying={animState.isPlaying}
           currentTime={animState.currentTime}
           duration={animState.duration}

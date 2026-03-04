@@ -302,9 +302,12 @@ Blender and displayed in the viewer, toggled per-slot.
 
 ### Available slots
 
-| Slot ID      | Name       | Bilateral | Mesh Type  | Bones                                 |
-|--------------|------------|-----------|------------|---------------------------------------|
-| `head`       | Head       | no        | `dome`     | head, neck_01                         |
+| Slot ID      | Name        | Bilateral | Mesh Type   | Bones                                 |
+|--------------|-------------|-----------|-------------|---------------------------------------|
+| `base_body`  | Base Body   | no        | `base_body` | pelvis, spine, neck, head, arms, legs |
+| `base_male`  | Base Male   | no        | `external`  | pelvis, spine, neck, head, arms, legs |
+| `base_female`| Base Female | no        | `external`  | pelvis, spine, neck, head, arms, legs |
+| `head`       | Head       | no        | `dome`      | head, neck_01                         |
 | `amulet`     | Amulet     | no        | `pendant`  | spine_03, neck_01                     |
 | `gloves`     | Gloves     | yes       | `glove`    | hand + all finger bones (L & R)       |
 | `ring`       | Ring       | no        | `torus`    | middle_01_L, middle_02_L              |
@@ -383,6 +386,44 @@ blender --background --python equipment/factory/mesh_factory.py -- \
 | `--equip-spec`  | yes      | Path to `equipment_spec.json`                |
 | `--rig-blend`   | yes      | Path to the rig `.blend` file                |
 | `--out`         | yes      | Output directory for per-slot GLB files      |
+
+### Skin external base body meshes
+
+To weight external meshes (e.g. Base Male, Base Female) to the canonical rig and
+export skinned GLBs with the rig included:
+
+```bash
+blender --background --python equipment/factory/skin_base_meshes.py -- \
+  --rig-blend rig/output/rig.blend \
+  --out equipment/output/ \
+  --base-male-path rig/CharacterMesh/BaseMale.glb \
+  --base-female-path rig/CharacterMesh/BaseFemale.glb
+```
+
+This imports your meshes, strips any existing armature, applies Blender's
+automatic weights to our rig, and exports skinned GLBs (mesh + rig) to
+`equipment/output/`. The output files work in the viewer and can be exported
+from the Equipment Panel.
+
+**Optional:** Add `--game-out equipment/output/game` to also export Y-up GLBs
+for game engines. Then run `npm run copy-spec` to sync the game folder.
+
+| Flag               | Required | Description                                  |
+|---------------------|----------|----------------------------------------------|
+| `--rig-blend`       | yes      | Path to the rig `.blend` file                |
+| `--out`             | yes      | Output directory for skinned GLB files       |
+| `--base-male-path`  | no       | Local path to Base Male GLB                   |
+| `--base-female-path`| no       | Local path to Base Female GLB                |
+| `--base-male-url`   | no       | URL for Base Male (used if path not set)     |
+| `--base-female-url` | no       | URL for Base Female (used if path not set)   |
+| `--game-out`        | no       | Also export Y-up GLBs here for game engines  |
+| `--scale`           | no       | Scale factor for imported meshes (default 1.0) |
+| `--male-only`       | no       | Only process Base Male                       |
+| `--female-only`     | no       | Only process Base Female                     |
+
+After skinning, run `npm run copy-spec` from `viewer/` to sync the GLB files.
+The viewer Equipment Panel lets you toggle between Base Body (procedural),
+Base Male, and Base Female — only one body variant is shown at a time.
 
 ### Adding a new equipment slot
 

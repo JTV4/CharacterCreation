@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "name": "IdleCombat",
+    "id": "idle_combat",
+    "duration": 2.0,
+    "fps": 30,
+    "loop": true
+  },
+  "tracks": []
+}

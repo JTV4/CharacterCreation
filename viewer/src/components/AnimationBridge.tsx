@@ -76,5 +76,5 @@ export default function AnimationBridge({
     }
   }, [currentTime, animatedPositions, isPlaying, boneOverrides]);
 
-  return null;
+  return <primitive object={player.skeletonRoot} />;
 }

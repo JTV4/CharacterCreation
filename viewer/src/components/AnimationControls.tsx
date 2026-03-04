@@ -68,8 +68,8 @@ export default function AnimationControls({
           value={activeAnimId ?? ""}
           onChange={(e) => onSelectAnimation(e.target.value)}
         >
-          <option value="" disabled>
-            Select animation...
+          <option value="tpose">
+            T-pose
           </option>
           {animations.map((a) => (
             <option key={a.id} value={a.id}>

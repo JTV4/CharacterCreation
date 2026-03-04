@@ -8,12 +8,7 @@
       "cwd": "${workspaceFolder}/viewer",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
-      "console": "integratedTerminal",
-      "serverReadyAction": {
-        "pattern": "Local:\\s+(https?://\\S+)",
-        "uriFormat": "%s",
-        "action": "openExternally"
-      }
+      "console": "integratedTerminal"
     },
     {
       "name": "Launch Viewer (Chrome)",
