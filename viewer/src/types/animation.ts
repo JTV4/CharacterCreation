@@ -25,13 +25,19 @@ export interface AnimSpec {
   tracks: AnimTrack[];
 }
 
+export interface CharacterManifestEntry {
+  id: string;
+  model: string;
+  defaultAnimation: string;
+}
+
 export interface AnimManifestEntry {
   id: string;
   file: string;
-  glb?: string;
   loop?: boolean;
 }
 
 export interface AnimManifest {
+  characters: CharacterManifestEntry[];
   animations: AnimManifestEntry[];
 }

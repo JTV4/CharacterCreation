@@ -7,7 +7,7 @@
     "dev": "npm run copy-spec && vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "copy-spec": "mkdir -p public/models public/animations public/equipment public/equipment/game && cp ../rig/CharacterMesh/BaseFemale.glb public/models/BaseFemale.glb 2>/dev/null || true && cp ../rig/CharacterMesh/BaseMale.glb public/models/BaseMale.glb 2>/dev/null || true && cp ../animations/specs/*.anim.json public/animations/ 2>/dev/null || true && cp ../rig/output/rig.glb public/rig.glb 2>/dev/null || true && cp ../rig/output/rig_tpose.glb public/rig_tpose.glb 2>/dev/null || true && cp ../rig/output/animations/*.glb public/animations/ 2>/dev/null || true && cp ../equipment/output/*.glb public/equipment/ 2>/dev/null || true && cp ../equipment/output/game/*.glb public/equipment/game/ 2>/dev/null || true && cp ../equipment/spec/equipment_spec.json public/equipment/equipment_spec.json 2>/dev/null || true"
+    "copy-spec": "mkdir -p public/models public/animations public/equipment public/equipment/game && cp ../rig/CharacterMesh/BaseFemale.glb public/models/BaseFemale.glb 2>/dev/null || true && cp ../rig/CharacterMesh/BaseMale.glb public/models/BaseMale.glb 2>/dev/null || true && cp ../equipment/output/*.glb public/equipment/ 2>/dev/null || true && cp ../equipment/output/game/*.glb public/equipment/game/ 2>/dev/null || true && cp ../equipment/spec/equipment_spec.json public/equipment/equipment_spec.json 2>/dev/null || true"
   },
   "dependencies": {
     "@react-three/drei": "^9.117.0",

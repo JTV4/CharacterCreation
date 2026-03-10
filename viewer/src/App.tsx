@@ -21,12 +21,6 @@ import type { PoseKeyframe, PoseAnimationConfig } from "./components/PoseEditor"
 import { TOOLS, DEFAULT_TOOL_TRANSFORM } from "./types/tools";
 import type { ToolTransform, GizmoMode } from "./types/tools";
 
-const STUB_ANIMS = new Set<string>();
-
-function animDisplayName(id: string): string {
-  return id.split("_").map((w) => w[0].toUpperCase() + w.slice(1)).join("");
-}
-
 function triggerDownload(href: string, filename: string) {
   const a = document.createElement("a");
   a.href = href;
@@ -36,26 +30,15 @@ function triggerDownload(href: string, filename: string) {
   document.body.removeChild(a);
 }
 
-function ExportPanel({ animations }: { animations: AnimManifest["animations"] }) {
+function ExportPanel({
+  characters,
+  animations,
+}: {
+  characters: AnimManifest["characters"];
+  animations: AnimManifest["animations"];
+}) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const [available, setAvailable] = useState<AnimManifest["animations"]>([]);
-  const [checked, setChecked] = useState<Set<string>>(new Set());
-
-  useEffect(() => {
-    const candidates = animations.filter((a) => !STUB_ANIMS.has(a.id));
-    Promise.all(
-      candidates.map((a) =>
-        fetch(`/animations/${a.file}`)
-          .then((r) => (r.ok ? (r.json() as Promise<AnimSpec>) : null))
-          .then((spec) => (spec && spec.tracks?.length > 0 ? a : null))
-          .catch(() => null),
-      ),
-    ).then((results) => {
-      const real = results.filter((r): r is AnimManifest["animations"][number] => r !== null);
-      setAvailable(real);
-    });
-  }, [animations]);
 
   useEffect(() => {
     if (!open) return;
@@ -66,87 +49,53 @@ function ExportPanel({ animations }: { animations: AnimManifest["animations"] })
     return () => document.removeEventListener("mousedown", close);
   }, [open]);
 
-  const allChecked = available.length > 0 && checked.size === available.length;
-  const someChecked = checked.size > 0 && !allChecked;
-
-  const toggleAll = () => {
-    if (allChecked) {
-      setChecked(new Set());
-    } else {
-      setChecked(new Set(available.map((a) => a.id)));
-    }
+  const handleExportModel = (model: string) => {
+    triggerDownload(`/models/${model}`, model);
   };
 
-  const toggle = (id: string) => {
-    setChecked((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  };
-
-  const handleExport = () => {
-    if (checked.size === 0) return;
-
-    if (checked.size === 1) {
-      const id = [...checked][0];
-      const name = animDisplayName(id);
-      triggerDownload(`/animations/${name}.glb`, `${name}.glb`);
-    } else {
-      triggerDownload("/rig.glb", "rig.glb");
-    }
-    setOpen(false);
+  const handleExportAnim = (file: string) => {
+    triggerDownload(`/animations/${file}`, file);
   };
 
   return (
     <div className="export-dropdown" ref={ref}>
       <button className="export-btn" onClick={() => setOpen((o) => !o)}>
-        Export GLB
+        Export
       </button>
       {open && (
         <div className="export-panel">
-          <div className="export-panel-header">Export Animations</div>
-          <div className="export-panel-divider" />
-          <label className="export-panel-row export-panel-all">
-            <input
-              type="checkbox"
-              checked={allChecked}
-              ref={(el) => { if (el) el.indeterminate = someChecked; }}
-              onChange={toggleAll}
-            />
-            <span className="export-panel-label">All Animations</span>
-            <span className="export-panel-hint">rig.glb</span>
-          </label>
+          <div className="export-panel-header">Character Models</div>
+          <div className="export-panel-subhint">Mesh + Skeleton (pair with default idle animation)</div>
           <div className="export-panel-divider" />
           <div className="export-panel-list">
-            {available.map((anim) => {
-              const name = animDisplayName(anim.id);
-              return (
-                <label key={anim.id} className="export-panel-row">
-                  <input
-                    type="checkbox"
-                    checked={checked.has(anim.id)}
-                    onChange={() => toggle(anim.id)}
-                  />
-                  <span className="export-panel-label">{name}</span>
-                  <span className="export-panel-hint">{name}.glb</span>
-                </label>
-              );
-            })}
+            {characters.map((char) => (
+              <div key={char.id} className="export-panel-row export-panel-export-row">
+                <span className="export-panel-label">{char.id}</span>
+                <button
+                  className="export-panel-dl"
+                  onClick={() => handleExportModel(char.model)}
+                >
+                  {char.model}
+                </button>
+              </div>
+            ))}
           </div>
           <div className="export-panel-divider" />
-          <div className="export-panel-footer">
-            <span className="export-panel-count">
-              {checked.size} of {available.length} selected
-            </span>
-            <button
-              className="export-panel-go"
-              disabled={checked.size === 0}
-              onClick={handleExport}
-            >
-              Export{checked.size > 0 ? ` (${checked.size})` : ""}
-            </button>
+          <div className="export-panel-header">Animations</div>
+          <div className="export-panel-subhint">Animation data only (no mesh)</div>
+          <div className="export-panel-divider" />
+          <div className="export-panel-list">
+            {animations.map((anim) => (
+              <div key={anim.id} className="export-panel-row export-panel-export-row">
+                <span className="export-panel-label">{anim.id}</span>
+                <button
+                  className="export-panel-dl"
+                  onClick={() => handleExportAnim(anim.file)}
+                >
+                  {anim.file}
+                </button>
+              </div>
+            ))}
           </div>
         </div>
       )}
@@ -169,6 +118,7 @@ export default function App() {
   const [selectedBone, setSelectedBone] = useState<string | null>(null);
   const [showMesh, setShowMesh] = useState(true);
 
+  const [characters, setCharacters] = useState<AnimManifest["characters"]>([]);
   const [manifest, setManifest] = useState<AnimManifest["animations"]>([]);
   const [animSpec, setAnimSpec] = useState<AnimSpec | null>(null);
   const [animState, setAnimState] = useState<{
@@ -329,7 +279,10 @@ export default function App() {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json() as Promise<AnimManifest>;
       })
-      .then((m) => setManifest(m.animations))
+      .then((m) => {
+        setCharacters(m.characters ?? []);
+        setManifest(m.animations);
+      })
       .catch(() => setManifest([]));
   }, []);
 
@@ -344,15 +297,6 @@ export default function App() {
       }
       const entry = manifest.find((a) => a.id === id);
       if (!entry) return;
-
-      if (entry.glb) {
-        playerRef.current?.setAnimationFromGlb(
-          `/animations/${entry.glb}`,
-          entry.id,
-          entry.loop ?? true,
-        );
-        return;
-      }
 
       fetch(`/animations/${entry.file}`)
         .then((res) => {
@@ -443,7 +387,7 @@ export default function App() {
               )}
             </span>
           </div>
-          <ExportPanel animations={manifest} />
+          <ExportPanel characters={characters} animations={manifest} />
           <ViewportErrorBoundary>
             <Scene
               characterModel={characterModel}

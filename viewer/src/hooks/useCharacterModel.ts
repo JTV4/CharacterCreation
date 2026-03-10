@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import {
-  BONE_ALIAS_MAP,
   type ModelGender,
   type CharacterModel,
   type GlbBoneInfo,
@@ -122,21 +121,6 @@ function extractCharacterModel(gltf: { scene: THREE.Group }): CharacterModel {
   const boneRestWorldInverses = new Map<string, THREE.Matrix4>();
   for (const bone of bones) {
     boneRestWorldInverses.set(bone.name, bone.matrixWorld.clone().invert());
-  }
-
-  for (const [alias, canonical] of Object.entries(BONE_ALIAS_MAP)) {
-    const bone = boneObjMap.get(canonical);
-    if (bone && !boneObjMap.has(alias)) {
-      boneObjMap.set(alias, bone);
-    }
-    const rest = boneRestPose.get(canonical);
-    if (rest && !boneRestPose.has(alias)) {
-      boneRestPose.set(alias, rest);
-    }
-    const inv = boneRestWorldInverses.get(canonical);
-    if (inv && !boneRestWorldInverses.has(alias)) {
-      boneRestWorldInverses.set(alias, inv);
-    }
   }
 
   let skeletonRoot: THREE.Object3D = scene;

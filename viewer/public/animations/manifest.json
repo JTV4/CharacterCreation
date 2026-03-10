@@ -1,4 +1,8 @@
 {
+  "characters": [
+    { "id": "BaseFemale", "model": "BaseFemale.glb", "defaultAnimation": "FemaleIdle" },
+    { "id": "BaseMale", "model": "BaseMale.glb", "defaultAnimation": "MaleIdle" }
+  ],
   "animations": [
     { "id": "FemaleIdle", "file": "FemaleIdle.anim.json", "loop": true },
     { "id": "FemaleWalk", "file": "FemaleWalk.anim.json", "loop": true },

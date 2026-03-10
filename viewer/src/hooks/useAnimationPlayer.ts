@@ -1,11 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import type { CharacterModel, BoneTransformOverride, BoneRestTransform } from "../types";
 import type { AnimSpec } from "../types/animation";
-
-const _glbLoader = new GLTFLoader();
 
 export interface AnimationPlayerState {
   boneObjMap: Map<string, THREE.Bone>;
@@ -25,7 +22,6 @@ export interface AnimationPlayerState {
   setSpeed: (speed: number) => void;
   setLoop: (loop: boolean) => void;
   setAnimation: (spec: AnimSpec | null) => void;
-  setAnimationFromGlb: (url: string, id: string, loop: boolean) => void;
 }
 
 const DEG2RAD = Math.PI / 180;
@@ -95,90 +91,6 @@ function animSpecToClip(
     animSpec.meta.duration,
     tracks,
   );
-}
-
-function retargetClip(
-  sourceClip: THREE.AnimationClip,
-  sourceScene: THREE.Group,
-  targetBoneObjMap: Map<string, THREE.Bone>,
-  targetBoneRestPose: Map<string, BoneRestTransform>,
-): THREE.AnimationClip {
-  sourceScene.updateMatrixWorld(true);
-  const srcLocalRest = new Map<string, THREE.Quaternion>();
-  sourceScene.traverse((obj) => {
-    if (obj.name && obj.quaternion) {
-      srcLocalRest.set(obj.name, obj.quaternion.clone());
-    }
-  });
-
-  const newTracks: THREE.KeyframeTrack[] = [];
-  const tmpQ = new THREE.Quaternion();
-  const correction = new THREE.Quaternion();
-  const srcRestInv = new THREE.Quaternion();
-
-  for (const track of sourceClip.tracks) {
-    const dotIdx = track.name.indexOf(".");
-    const srcBoneName = track.name.substring(0, dotIdx);
-    const propName = track.name.substring(dotIdx + 1);
-
-    const targetBone = targetBoneObjMap.get(srcBoneName);
-    if (!targetBone) {
-      continue;
-    }
-
-    const targetName = targetBone.uuid;
-
-    if (propName === "quaternion" && track instanceof THREE.QuaternionKeyframeTrack) {
-      const srcRest = srcLocalRest.get(srcBoneName) ?? new THREE.Quaternion();
-      const tgtRest = targetBoneRestPose.get(srcBoneName)?.quaternion ?? new THREE.Quaternion();
-
-      srcRestInv.copy(srcRest).invert();
-      correction.copy(tgtRest).multiply(srcRestInv);
-
-      const values = new Float32Array(track.values.length);
-      for (let i = 0; i < track.values.length; i += 4) {
-        tmpQ.set(track.values[i], track.values[i + 1], track.values[i + 2], track.values[i + 3]);
-        tmpQ.premultiply(correction);
-        values[i] = tmpQ.x;
-        values[i + 1] = tmpQ.y;
-        values[i + 2] = tmpQ.z;
-        values[i + 3] = tmpQ.w;
-      }
-      newTracks.push(new THREE.QuaternionKeyframeTrack(
-        `${targetName}.${propName}`,
-        Array.from(track.times),
-        Array.from(values),
-      ));
-    } else if (propName === "position" && track instanceof THREE.VectorKeyframeTrack) {
-      const tgtRest = targetBoneRestPose.get(srcBoneName);
-
-      if (tgtRest) {
-        const srcBone = sourceScene.getObjectByName(srcBoneName);
-        const srcRestP = srcBone ? srcBone.position : new THREE.Vector3();
-        const tgtRestP = tgtRest.position;
-        const scaleRatio = tgtRestP.length() > 0.001 && srcRestP.length() > 0.001
-          ? tgtRestP.length() / srcRestP.length()
-          : 1;
-
-        const values = new Float32Array(track.values.length);
-        for (let i = 0; i < track.values.length; i += 3) {
-          const dx = track.values[i] - srcRestP.x;
-          const dy = track.values[i + 1] - srcRestP.y;
-          const dz = track.values[i + 2] - srcRestP.z;
-          values[i] = tgtRestP.x + dx * scaleRatio;
-          values[i + 1] = tgtRestP.y + dy * scaleRatio;
-          values[i + 2] = tgtRestP.z + dz * scaleRatio;
-        }
-        newTracks.push(new THREE.VectorKeyframeTrack(
-          `${targetName}.${propName}`,
-          Array.from(track.times),
-          Array.from(values),
-        ));
-      }
-    }
-  }
-
-  return new THREE.AnimationClip(sourceClip.name, sourceClip.duration, newTracks);
 }
 
 export function useAnimationPlayer(
@@ -459,78 +371,6 @@ export function useAnimationPlayer(
     captureFrozenPose();
   }, [basePose]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const setAnimationFromGlb = useCallback(
-    (url: string, id: string, loopAnim: boolean) => {
-      if (!characterModel) return;
-
-      if (actionRef.current) {
-        actionRef.current.stop();
-        actionRef.current = null;
-      }
-      if (mixerRef.current) {
-        mixerRef.current.stopAllAction();
-        mixerRef.current.uncacheRoot(skeletonRoot);
-        mixerRef.current = null;
-      }
-
-      for (const [name, obj] of boneObjMap) {
-        const rest = boneRestPose.get(name);
-        if (rest) {
-          obj.position.copy(rest.position);
-          obj.quaternion.copy(rest.quaternion);
-        }
-      }
-      applyBasePose();
-      captureFrozenPose();
-
-      _glbLoader.load(
-        url,
-        (gltf) => {
-        if (!gltf.animations || gltf.animations.length === 0) {
-          console.warn("GLB has no animations:", url);
-          return;
-        }
-
-        const sourceClip = gltf.animations[0];
-        const sourceScene = gltf.scene;
-        sourceScene.updateMatrixWorld(true);
-
-        const clip = retargetClip(sourceClip, sourceScene, boneObjMap, boneRestPose);
-
-        const mixer = new THREE.AnimationMixer(skeletonRoot);
-        const action = mixer.clipAction(clip);
-        action.setLoop(
-          loopAnim ? THREE.LoopRepeat : THREE.LoopOnce,
-          loopAnim ? Infinity : 1,
-        );
-        action.clampWhenFinished = !loopAnim;
-
-        mixerRef.current = mixer;
-        actionRef.current = action;
-        durationRef.current = clip.duration;
-        animSpecRef.current = null;
-
-        action.reset();
-        action.play();
-        action.paused = true;
-        mixer.setTime(0);
-        skeletonRoot.updateMatrixWorld(true);
-        captureFrozenPose();
-
-        setActiveAnimId(id);
-        setLoopState(loopAnim);
-        setCurrentTime(0);
-        setIsPlaying(false);
-      },
-      undefined,
-      (err) => {
-        console.error("Failed to load animation GLB:", url, err);
-      },
-      );
-    },
-    [characterModel, skeletonRoot, boneObjMap, boneRestPose, captureFrozenPose, applyBasePose],
-  );
-
   useEffect(() => {
     return () => {
       if (mixerRef.current) {
@@ -558,6 +398,5 @@ export function useAnimationPlayer(
     setSpeed,
     setLoop,
     setAnimation,
-    setAnimationFromGlb,
   };
 }

@@ -349,6 +349,33 @@ body,
   flex-shrink: 0;
 }
 
+.export-panel-subhint {
+  padding: 2px 14px 4px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.export-panel-export-row {
+  justify-content: space-between;
+}
+
+.export-panel-dl {
+  padding: 2px 10px;
+  background: var(--bg-tertiary);
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 10px;
+  font-family: monospace;
+  cursor: pointer;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.export-panel-dl:hover {
+  background: var(--accent-dim);
+}
+
 .export-panel-divider {
   height: 1px;
   background: var(--border);

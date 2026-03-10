@@ -1,9 +1,13 @@
 # MMORPG Character Creation
 
-Character creation pipeline for an MMORPG. Uses Mixamo-rigged GLB character
+Character creation pipeline for an MMORPG. Uses **Mixamo-rigged** GLB character
 models loaded directly in a browser-based React Three Fiber viewer with
 JSON-driven animation, Blender-style bone visualization, interactive bone
 manipulation, equipment, tool attachment, and pose editing systems.
+
+> **Rig**: All bones use Mixamo naming (e.g. `mixamorigHips`, `mixamorigLeftArm`).
+> There is no legacy/generic bone system — everything references Mixamo names
+> directly.
 
 ## Folder Structure
 
@@ -14,28 +18,11 @@ CharacterCreation/
       BaseFemale.glb               # Mixamo-rigged female character model
       BaseFemale.fbx               # FBX source
       Textures/                    # Character textures
-    spec/
-      rig_spec.json                # Legacy skeleton definition
-    factory/
-      rig_factory.py               # CLI entry — loads spec, validates, builds armature
-      extract_anim_node.mjs        # Node.js animation extraction utility
-      validation.py                # validate_rig_spec() checks
-      exporter.py                  # GLB / FBX / .blend export helpers
-      anim_baker.py                # Animation baking utilities
-      __init__.py
-    output/                        # Generated files (.blend, .glb, .fbx)
-  animations/
-    specs/                         # Source animation JSON files
-    factory/
-      anim_factory.py              # Imports anim JSON into Blender Actions
-      anim_validation.py           # Validates anim specs against rig
-      __init__.py
   equipment/
     spec/
       equipment_spec.json          # Slot definitions, bone mappings, mesh params
     factory/
       mesh_factory.py              # Generates weighted placeholder meshes per slot
-      validation.py                # Equipment spec validation
     output/                        # Generated per-slot GLB files
   viewer/                          # React Three Fiber web viewer
     src/
@@ -57,8 +44,8 @@ CharacterCreation/
         useAnimationPlayer.ts      # Three.js AnimationMixer playback engine
         useTransformShortcuts.ts   # P/R/S keyboard shortcuts + gizmo modes
       types/
-        index.ts                   # Rig types, CharacterModel, BONE_ALIAS_MAP
-        animation.ts               # Animation TypeScript types
+        index.ts                   # Rig types, CharacterModel, ModelGender
+        animation.ts               # Animation & manifest TypeScript types
         equipment.ts               # Equipment slot and spec types
         tools.ts                   # Tool definitions and transforms
       styles/
@@ -67,8 +54,10 @@ CharacterCreation/
       models/
         BaseFemale.glb             # Character model served to viewer
       animations/
-        manifest.json              # Lists available animations for the viewer
-        idle.anim.json             # Idle animation spec
+        manifest.json              # Characters + animation registry
+        FemaleIdle.anim.json       # Female idle animation
+        FemaleWalk.anim.json       # Female walk cycle
+        FemaleRun.anim.json        # Female run cycle
       equipment/                   # Copied from equipment/output/ for serving
         equipment_spec.json        # Slot definitions
         *.glb                      # Per-slot placeholder meshes
@@ -77,11 +66,10 @@ CharacterCreation/
 
 ## Prerequisites
 
-| Tool    | Version     | Purpose                                  |
-|---------|-------------|------------------------------------------|
-| Node.js | 18+         | Viewer dev server                        |
-| npm     | 9+          | Package management                       |
-| Blender | 3.6+ / 4.x | Armature generation & animation export (optional) |
+| Tool    | Version     | Purpose                    |
+|---------|-------------|----------------------------|
+| Node.js | 18+         | Viewer dev server          |
+| npm     | 9+          | Package management         |
 
 ---
 
@@ -107,8 +95,7 @@ selection, mesh/bone view toggling, and transform manipulation.
 
 The character uses a **Mixamo auto-rigged** skeleton embedded in a GLB file.
 The viewer loads the GLB directly via Three.js `GLTFLoader` and extracts the
-bone hierarchy, rest poses, and skinned meshes at runtime -- no separate rig
-spec file is needed for the viewer.
+bone hierarchy, rest poses, and skinned meshes at runtime.
 
 The `useCharacterModel` hook handles loading:
 
@@ -128,12 +115,63 @@ Model URLs are configured in `useCharacterModel.ts`:
 | `female` | `/models/BaseFemale.glb`   |
 | `male`   | `/models/BaseMale.glb`     |
 
-### Bone alias map
+---
 
-A `BONE_ALIAS_MAP` in `viewer/src/types/index.ts` maps legacy generic bone
-names (e.g. `spine_01`, `hand_L`) to Mixamo names (e.g. `mixamorigSpine`,
-`mixamorigLeftHand`). This allows equipment and legacy systems to reference
-bones by either naming convention.
+## Export System
+
+The viewer includes an **Export** panel for downloading character assets.
+Exports are split into two categories:
+
+### Character Models (mesh + skeleton)
+
+These GLB files contain the character mesh and skeleton. They are the
+"base" files a game loads once at startup. Pair each with its default idle
+animation.
+
+| Character   | File             | Default Animation |
+|-------------|------------------|-------------------|
+| BaseFemale  | `BaseFemale.glb` | `FemaleIdle`      |
+| BaseMale    | `BaseMale.glb`   | `MaleIdle`        |
+
+### Animations (data only, no mesh)
+
+Animation files are lightweight `.anim.json` specs containing only keyframe
+data — no mesh or skeleton geometry. A game loads these on demand and applies
+them to the already-loaded character skeleton.
+
+| ID           | File                    | Duration | Loop |
+|--------------|-------------------------|----------|------|
+| `FemaleIdle` | `FemaleIdle.anim.json`  | 6.0s     | yes  |
+| `FemaleWalk` | `FemaleWalk.anim.json`  | 1.0s     | yes  |
+| `FemaleRun`  | `FemaleRun.anim.json`   | 0.65s    | yes  |
+
+### Manifest format
+
+The manifest at `viewer/public/animations/manifest.json` registers both
+character models and animations:
+
+```json
+{
+  "characters": [
+    { "id": "BaseFemale", "model": "BaseFemale.glb", "defaultAnimation": "FemaleIdle" },
+    { "id": "BaseMale", "model": "BaseMale.glb", "defaultAnimation": "MaleIdle" }
+  ],
+  "animations": [
+    { "id": "FemaleIdle", "file": "FemaleIdle.anim.json", "loop": true },
+    { "id": "FemaleWalk", "file": "FemaleWalk.anim.json", "loop": true },
+    { "id": "FemaleRun", "file": "FemaleRun.anim.json", "loop": true }
+  ]
+}
+```
+
+### Game integration pattern
+
+```
+1. Load BaseFemale.glb  →  mesh + skeleton (one-time)
+2. Load FemaleIdle.anim.json  →  apply as default animation
+3. On walk:  load FemaleWalk.anim.json  →  swap animation (no mesh reload)
+4. On run:   load FemaleRun.anim.json   →  swap animation (no mesh reload)
+```
 
 ---
 
@@ -195,19 +233,22 @@ metadata and an array of keyframe tracks targeting specific bones by their
 **Mixamo names**. The viewer plays them in real-time using Three.js
 `AnimationMixer`.
 
-### Available animations
+### Naming convention
 
-| ID     | Name | Duration | Loop |
-|--------|------|----------|------|
-| `idle` | Idle | 6.0s     | yes  |
+Animation files follow the pattern `<Gender><Action>.anim.json`:
+
+- `FemaleIdle`, `FemaleWalk`, `FemaleRun`
+- `MaleIdle`, `MaleWalk`, `MaleRun`
+
+The `id` and `name` in the meta block match the filename (without `.anim.json`).
 
 ### Animation JSON format
 
 ```json
 {
   "meta": {
-    "name": "Idle",
-    "id": "idle",
+    "name": "FemaleIdle",
+    "id": "FemaleIdle",
     "duration": 6.0,
     "fps": 30,
     "loop": true
@@ -248,12 +289,12 @@ metadata and an array of keyframe tracks targeting specific bones by their
 
 ### Adding a new animation
 
-1. Create `viewer/public/animations/<id>.anim.json` with `meta` and `tracks`
-2. Add an entry to `viewer/public/animations/manifest.json`:
+1. Create `viewer/public/animations/<Gender><Action>.anim.json` with `meta` and `tracks`
+2. Add an entry to `viewer/public/animations/manifest.json` under `"animations"`:
    ```json
-   { "id": "<id>", "file": "<id>.anim.json", "loop": true }
+   { "id": "FemaleRun", "file": "FemaleRun.anim.json", "loop": true }
    ```
-3. The viewer will list it in the animation dropdown
+3. The viewer will list it in the animation dropdown and the Export panel
 
 ### Viewer animation controls
 
@@ -277,44 +318,18 @@ body, lower body, boots) with bone mappings, spatial boundaries, visibility
 rules, and mesh generation parameters. Placeholder meshes are generated in
 Blender and displayed in the viewer, toggled per-slot.
 
-### Available slots
-
-| Slot ID      | Name        | Bilateral | Mesh Type   |
-|--------------|-------------|-----------|-------------|
-| `base_body`  | Base Body   | no        | `base_body` |
-| `base_male`  | Base Male   | no        | `external`  |
-| `base_female`| Base Female | no        | `external`  |
-| `head`       | Head        | no        | `dome`      |
-| `amulet`     | Amulet      | no        | `pendant`   |
-| `gloves`     | Gloves      | yes       | `glove`     |
-| `ring`       | Ring        | no        | `torus`     |
-| `upper_body` | Upper Body  | no        | `torso`     |
-| `lower_body` | Lower Body  | yes       | `pants`     |
-| `boots`      | Boots       | yes       | `boot`      |
-
 ### Visibility rules
 
 Slots can declare `hidden_by` rules. For example, the `ring` slot specifies
 `"hidden_by": ["gloves"]`, meaning a ring is hidden when gloves are equipped.
 
-### Adding a new equipment slot
-
-1. Add the slot definition to `equipment/spec/equipment_spec.json`
-2. Implement a mesh generator function in `equipment/factory/mesh_factory.py`
-   if the slot uses a new `mesh_type`
-3. Re-run the mesh factory to generate the new GLB
-
 ---
 
 ## Tool Attachment System
 
-### Overview
-
 The viewer supports attaching 3D tool models (loaded from remote GLB URLs) to
 the character's hand bone. Tools can be positioned, rotated, and scaled using
 on-screen gizmo controls or numeric inputs.
-
-### Available tools
 
 | ID            | Name        |
 |---------------|-------------|
@@ -323,22 +338,11 @@ on-screen gizmo controls or numeric inputs.
 | `hatchet`     | Hatchet     |
 | `pickaxe`     | Pickaxe     |
 
-Tools are defined in `viewer/src/types/tools.ts`. Each tool has an `id`,
-display `name`, remote `url` (GLB), and a display `color`.
-
-### Adding a new tool
-
-1. Add a new entry to the `TOOLS` array in `viewer/src/types/tools.ts`:
-   ```json
-   { "id": "sword", "name": "Sword", "url": "https://...", "color": "#f472b6" }
-   ```
-2. The tool will appear in the Tool Panel automatically
+Tools are defined in `viewer/src/types/tools.ts`.
 
 ---
 
 ## Pose Editor
-
-### Overview
 
 The Pose Editor allows authoring animation keyframes directly in the viewer
 by manipulating bone transforms and capturing them at specific times. Finished
@@ -347,38 +351,21 @@ system.
 
 ### Workflow
 
-1. **Enable** the Pose Editor from the viewer UI
-2. **Configure** the animation: name, ID, duration, FPS, and loop setting
-3. **Set the current time** on the timeline
-4. **Manipulate bones** using P/R/S shortcuts or the BoneInfoPanel numeric inputs
-5. **Capture keyframe** -- saves all current bone overrides at the current time
+1. Enable the Pose Editor from the viewer UI
+2. Configure the animation: name, ID, duration, FPS, and loop setting
+3. Set the current time on the timeline
+4. Manipulate bones using P/R/S shortcuts or the BoneInfoPanel numeric inputs
+5. Capture keyframe — saves all current bone overrides at the current time
 6. Repeat steps 3-5 for additional keyframes
-7. **Export** -- generates a `.anim.json` file ready to drop into
+7. Export — generates a `.anim.json` file ready to drop into
    `viewer/public/animations/`
-
-### Export format
-
-The exported JSON matches the animation spec format exactly. Euler angles are
-converted to delta quaternions in `[x, y, z, w]` format relative to the
-bone's rest pose.
 
 ---
 
 ## Mixamo Bone Naming Reference
 
-### Categories and counts
-
-| Category | Count | Bones                                                                 |
-|----------|-------|-----------------------------------------------------------------------|
-| spine    | 6     | Hips, Spine, Spine1, Spine2, Neck, Head                              |
-| arm      | 8     | LeftShoulder/RightShoulder, LeftArm/RightArm, LeftForeArm/RightForeArm, LeftHand/RightHand |
-| finger   | 30    | Thumb/Index/Middle/Ring/Pinky 1/2/3 x Left/Right                     |
-| leg      | 8     | LeftUpLeg/RightUpLeg, LeftLeg/RightLeg, LeftFoot/RightFoot, LeftToeBase/RightToeBase |
-| **Total**| **52+**|                                                                      |
-
-All bone names are prefixed with `mixamorig` (e.g. `mixamorigHips`,
-`mixamorigLeftArm`). Three.js `GLTFLoader` strips the colon from
-`mixamorig:Hips` to produce `mixamorigHips`.
+All bone names use the `mixamorig` prefix. Three.js `GLTFLoader` strips the
+colon from `mixamorig:Hips` to produce `mixamorigHips`.
 
 ### Hierarchy
 
@@ -417,63 +404,26 @@ mixamorigHips (C)
         mixamorigRightToeBase (R)
 ```
 
-### Legacy bone alias map
+### Categories
 
-The `BONE_ALIAS_MAP` in `viewer/src/types/index.ts` maps generic names used
-by the legacy rig spec and equipment system to their Mixamo equivalents:
-
-| Legacy Name     | Mixamo Name               |
-|-----------------|---------------------------|
-| `root` / `pelvis` | `mixamorigHips`        |
-| `spine_01`      | `mixamorigSpine`          |
-| `spine_02`      | `mixamorigSpine1`         |
-| `spine_03`      | `mixamorigSpine2`         |
-| `neck_01`       | `mixamorigNeck`           |
-| `head`          | `mixamorigHead`           |
-| `clavicle_L/R`  | `mixamorigLeftShoulder` / `mixamorigRightShoulder` |
-| `upperarm_L/R`  | `mixamorigLeftArm` / `mixamorigRightArm`           |
-| `lowerarm_L/R`  | `mixamorigLeftForeArm` / `mixamorigRightForeArm`   |
-| `hand_L/R`      | `mixamorigLeftHand` / `mixamorigRightHand`          |
-| `thigh_L/R`     | `mixamorigLeftUpLeg` / `mixamorigRightUpLeg`        |
-| `shin_L/R`      | `mixamorigLeftLeg` / `mixamorigRightLeg`            |
-| `foot_L/R`      | `mixamorigLeftFoot` / `mixamorigRightFoot`          |
-| `toe_L/R`       | `mixamorigLeftToeBase` / `mixamorigRightToeBase`    |
-| `thumb_01_L`..  | `mixamorigLeftHandThumb1`.. (all 30 finger bones)   |
-
----
-
-## Blender Integration (Optional)
-
-### Generate equipment meshes
-
-```bash
-blender --background --python equipment/factory/mesh_factory.py -- \
-  --rig-spec rig/spec/rig_spec.json \
-  --equip-spec equipment/spec/equipment_spec.json \
-  --rig-blend rig/output/rig.blend \
-  --out equipment/output/
-```
-
-### Import animations into Blender
-
-```bash
-blender --background --python animations/factory/anim_factory.py -- \
-  --rig rig/output/rig.blend \
-  --anims animations/specs/ \
-  --out rig/output/rig_animated.blend \
-  --export-glb rig/output/rig_animated.glb
-```
+| Category | Count | Bones                                                                 |
+|----------|-------|-----------------------------------------------------------------------|
+| spine    | 6     | Hips, Spine, Spine1, Spine2, Neck, Head                              |
+| arm      | 8     | LeftShoulder/RightShoulder, LeftArm/RightArm, LeftForeArm/RightForeArm, LeftHand/RightHand |
+| finger   | 30    | Thumb/Index/Middle/Ring/Pinky 1/2/3 x Left/Right                     |
+| leg      | 8     | LeftUpLeg/RightUpLeg, LeftLeg/RightLeg, LeftFoot/RightFoot, LeftToeBase/RightToeBase |
+| **Total**| **52+**|                                                                      |
 
 ---
 
 ## Axis Conventions
 
-| Property         | Value                         |
-|------------------|-------------------------------|
-| Scale            | 1 unit = 1 meter              |
-| Up axis (viewer) | +Y (Three.js / glTF)         |
-| Up axis (Blender)| +Z                            |
-| Rest pose        | T-pose                        |
+| Property         | Value                   |
+|------------------|-------------------------|
+| Scale            | 1 unit = 1 meter        |
+| Up axis (viewer) | +Z (Blender-like)       |
+| Up axis (glTF)   | +Y                      |
+| Rest pose        | T-pose                  |
 
 The `useCharacterModel` hook applies a 90-degree X rotation to convert from
-glTF's coordinate system to the viewer's expected orientation.
+glTF's Y-up coordinate system to the viewer's Z-up orientation.
