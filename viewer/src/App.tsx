@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-import { useSkeletonData } from "./hooks/useSkeletonData";
+import { useCharacterModel } from "./hooks/useCharacterModel";
 import { useTransformShortcuts } from "./hooks/useTransformShortcuts";
 import type { AnimSpec, AnimManifest } from "./types/animation";
-import type { AnimationPlayerState, AnimatedBonePositions } from "./hooks/useAnimationPlayer";
+import type { AnimationPlayerState } from "./hooks/useAnimationPlayer";
 import type { EquipmentSpec, EquipmentState } from "./types/equipment";
-import type { BoneTransformOverride } from "./types";
+import type { BoneTransformOverride, ModelGender, GlbBoneInfo } from "./types";
 import Scene from "./components/Scene";
 import ViewportErrorBoundary from "./components/ViewportErrorBoundary";
 import BoneSidebar from "./components/BoneSidebar";
@@ -21,34 +21,7 @@ import type { PoseKeyframe, PoseAnimationConfig } from "./components/PoseEditor"
 import { TOOLS, DEFAULT_TOOL_TRANSFORM } from "./types/tools";
 import type { ToolTransform, GizmoMode } from "./types/tools";
 
-const STUB_ANIMS = new Set(["idle_combat", "idle_ready"]);
-const RAD2DEG = 180 / Math.PI;
-
-function computeBasePoseFromSpec(spec: AnimSpec): Map<string, BoneTransformOverride> {
-  const pose = new Map<string, BoneTransformOverride>();
-  for (const track of spec.tracks) {
-    const kf0 = track.keyframes[0];
-    if (!kf0) continue;
-    const existing = pose.get(track.bone) ?? {
-      position: [0, 0, 0] as [number, number, number],
-      rotation: [0, 0, 0] as [number, number, number],
-      scale: [1, 1, 1] as [number, number, number],
-    };
-    if (track.property === "rotation") {
-      const q = new THREE.Quaternion(kf0.value[0], kf0.value[1], kf0.value[2], kf0.value[3]);
-      const e = new THREE.Euler().setFromQuaternion(q, "XYZ");
-      existing.rotation = [
-        parseFloat((e.x * RAD2DEG).toFixed(3)),
-        parseFloat((e.y * RAD2DEG).toFixed(3)),
-        parseFloat((e.z * RAD2DEG).toFixed(3)),
-      ];
-    } else if (track.property === "position") {
-      existing.position = [kf0.value[0], kf0.value[1], kf0.value[2]];
-    }
-    pose.set(track.bone, existing);
-  }
-  return pose;
-}
+const STUB_ANIMS = new Set<string>();
 
 function animDisplayName(id: string): string {
   return id.split("_").map((w) => w[0].toUpperCase() + w.slice(1)).join("");
@@ -134,18 +107,6 @@ function ExportPanel({ animations }: { animations: AnimManifest["animations"] })
       {open && (
         <div className="export-panel">
           <div className="export-panel-header">Export Animations</div>
-          <button
-            type="button"
-            className="export-panel-row export-panel-standalone"
-            onClick={() => {
-              triggerDownload("/rig_tpose.glb", "rig_tpose.glb");
-            }}
-            title="Rig only, no animations"
-          >
-            <span style={{ width: 22, flexShrink: 0 }} aria-hidden />
-            <span className="export-panel-label">Rig (T-pose)</span>
-            <span className="export-panel-hint">rig_tpose.glb</span>
-          </button>
           <div className="export-panel-divider" />
           <label className="export-panel-row export-panel-all">
             <input
@@ -193,14 +154,24 @@ function ExportPanel({ animations }: { animations: AnimManifest["animations"] })
   );
 }
 
+const BODY_SLOT_IDS = new Set([
+  "base_body",
+  "base_male",
+  "base_female",
+  "base_male_with_skin_texture",
+  "base_female_with_skin_texture",
+]);
+
 export default function App() {
-  const { data, error, loading } = useSkeletonData();
+  const [activeGender, setActiveGender] = useState<ModelGender>("female");
+  const { model: characterModel, loading, error } = useCharacterModel(activeGender);
+
   const [selectedBone, setSelectedBone] = useState<string | null>(null);
+  const [showMesh, setShowMesh] = useState(true);
 
   const [manifest, setManifest] = useState<AnimManifest["animations"]>([]);
   const [animSpec, setAnimSpec] = useState<AnimSpec | null>(null);
   const [animState, setAnimState] = useState<{
-    animatedPositions: Map<string, AnimatedBonePositions> | null;
     currentTime: number;
     isPlaying: boolean;
     duration: number;
@@ -208,7 +179,6 @@ export default function App() {
     loop: boolean;
     activeAnimId: string | null;
   }>({
-    animatedPositions: null,
     currentTime: 0,
     isPlaying: false,
     duration: 0,
@@ -236,7 +206,7 @@ export default function App() {
     [],
   );
 
-  const { transformMode } = useTransformShortcuts({
+  const { transformMode, enterMode } = useTransformShortcuts({
     selectedBone,
     boneOverrides,
     onSetBoneOverride: handleSetBoneOverride,
@@ -246,7 +216,7 @@ export default function App() {
   const [equipSpec, setEquipSpec] = useState<EquipmentSpec | null>(null);
   const [equipState, setEquipState] = useState<EquipmentState>({});
   const equipSlotIds = useMemo(
-    () => equipSpec?.slots.map((s) => s.id) ?? [],
+    () => equipSpec?.slots.filter((s) => !BODY_SLOT_IDS.has(s.id)).map((s) => s.id) ?? [],
     [equipSpec],
   );
 
@@ -262,7 +232,8 @@ export default function App() {
         setEquipSpec(spec);
         const initial: EquipmentState = {};
         for (const slot of spec.slots) {
-          initial[slot.id] = slot.id === "base_body";
+          if (BODY_SLOT_IDS.has(slot.id)) continue;
+          initial[slot.id] = false;
         }
         setEquipState(initial);
       })
@@ -272,24 +243,9 @@ export default function App() {
       });
   }, []);
 
-  const BODY_SLOT_IDS = [
-    "base_body",
-    "base_male",
-    "base_female",
-    "base_male_with_skin_texture",
-    "base_female_with_skin_texture",
-  ];
-
   const handleToggleSlot = useCallback((slotId: string, enabled: boolean) => {
-    setEquipState((prev) => {
-      const next = { ...prev, [slotId]: enabled };
-      if (enabled && BODY_SLOT_IDS.includes(slotId)) {
-        for (const other of BODY_SLOT_IDS) {
-          if (other !== slotId) next[other] = false;
-        }
-      }
-      return next;
-    });
+    if (BODY_SLOT_IDS.has(slotId)) return;
+    setEquipState((prev) => ({ ...prev, [slotId]: enabled }));
   }, []);
 
   const [selectedToolId, setSelectedToolId] = useState<string | null>(null);
@@ -354,6 +310,7 @@ export default function App() {
     if (!equipSpec) return equipState;
     const effective = { ...equipState };
     for (const slot of equipSpec.slots) {
+      if (BODY_SLOT_IDS.has(slot.id)) continue;
       const hiddenBy = slot.rules?.hidden_by ?? [];
       for (const blockerId of hiddenBy) {
         if (effective[blockerId]) {
@@ -364,8 +321,7 @@ export default function App() {
     return effective;
   }, [equipSpec, equipState]);
 
-  const [basePose, setBasePose] = useState<Map<string, BoneTransformOverride>>(new Map());
-  const initialAnimLoaded = useRef(false);
+  const [basePose] = useState<Map<string, BoneTransformOverride>>(new Map());
 
   useEffect(() => {
     fetch("/animations/manifest.json")
@@ -377,28 +333,10 @@ export default function App() {
       .catch(() => setManifest([]));
   }, []);
 
-  useEffect(() => {
-    if (initialAnimLoaded.current || manifest.length === 0) return;
-    const idle = manifest.find((a) => a.id === "idle");
-    if (!idle) return;
-    initialAnimLoaded.current = true;
-    fetch(`/animations/${idle.file}`)
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json() as Promise<AnimSpec>;
-      })
-      .then((spec) => {
-        setBasePose(computeBasePoseFromSpec(spec));
-        setAnimSpec(spec);
-      })
-      .catch((err) => console.error("Failed to auto-load idle:", err));
-  }, [manifest]);
-
   const handleSelectAnimation = useCallback(
     (id: string) => {
       if (id === "tpose") {
         setAnimSpec(null);
-        setBasePose(new Map());
         setBoneOverrides(new Map());
         playerRef.current?.setAnimation(null);
         playerRef.current?.stop();
@@ -406,6 +344,16 @@ export default function App() {
       }
       const entry = manifest.find((a) => a.id === id);
       if (!entry) return;
+
+      if (entry.glb) {
+        playerRef.current?.setAnimationFromGlb(
+          `/animations/${entry.glb}`,
+          entry.id,
+          entry.loop ?? true,
+        );
+        return;
+      }
+
       fetch(`/animations/${entry.file}`)
         .then((res) => {
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -419,7 +367,6 @@ export default function App() {
 
   const handlePlayerState = useCallback((state: AnimationPlayerState) => {
     setAnimState({
-      animatedPositions: state.animatedPositions,
       currentTime: state.currentTime,
       isPlaying: state.isPlaying,
       duration: state.duration,
@@ -429,58 +376,90 @@ export default function App() {
     });
   }, []);
 
+  const boneList = characterModel?.boneList ?? [];
+  const selectedBoneInfo = useMemo(() => {
+    if (!selectedBone || !characterModel) return null;
+    return characterModel.boneList.find((b) => b.name === selectedBone) ?? null;
+  }, [selectedBone, characterModel]);
+
   if (loading) {
-    return <div className="loading-screen">Loading rig spec...</div>;
+    return <div className="loading-screen">Loading character model...</div>;
   }
 
-  if (error || !data) {
+  if (error || !characterModel) {
     return (
       <div className="error-screen">
-        Failed to load rig spec: {error ?? "Unknown error"}
+        Failed to load character model: {error ?? "Unknown error"}
       </div>
     );
   }
 
-  const selected = selectedBone ? data.boneMap.get(selectedBone) ?? null : null;
-
   return (
     <div className="app-layout">
       <BoneSidebar
-        spec={data.spec}
-        tree={data.tree}
+        boneList={boneList}
         selectedBone={selectedBone}
         onSelectBone={setSelectedBone}
       />
       <div className="viewport-column">
         <div className="viewport">
           <div className="viewport-overlay">
-            {data.spec.bones.length} bones &middot;{" "}
-            {data.spec.meta.rest_pose.toUpperCase()} &middot;{" "}
-            {data.spec.meta.scale}
-            {(animSpec === null ? "T-pose" : animState.activeAnimId) && (
-              <>
-                {" "}
-                &middot; {animSpec === null ? "T-pose" : animState.activeAnimId}
-                {animState.isPlaying ? " (playing)" : ""}
-              </>
-            )}
+            <div className="model-selector">
+              <button
+                className={`model-toggle-btn ${activeGender === "female" ? "active" : ""}`}
+                onClick={() => setActiveGender("female")}
+              >
+                Female
+              </button>
+              <button
+                className={`model-toggle-btn ${activeGender === "male" ? "active" : ""}`}
+                onClick={() => setActiveGender("male")}
+              >
+                Male
+              </button>
+            </div>
+            <div className="model-selector">
+              <button
+                className={`model-toggle-btn ${showMesh ? "active" : ""}`}
+                onClick={() => setShowMesh(true)}
+              >
+                Mesh
+              </button>
+              <button
+                className={`model-toggle-btn ${!showMesh ? "active" : ""}`}
+                onClick={() => setShowMesh(false)}
+              >
+                Bones
+              </button>
+            </div>
+            <span>
+              {boneList.length} bones
+              {(animState.activeAnimId ?? "T-pose") && (
+                <>
+                  {" "}
+                  &middot; {animState.activeAnimId ?? "T-pose"}
+                  {animState.isPlaying ? " (playing)" : ""}
+                </>
+              )}
+            </span>
           </div>
           <ExportPanel animations={manifest} />
           <ViewportErrorBoundary>
             <Scene
-              spec={data.spec}
+              characterModel={characterModel}
               selectedBone={selectedBone}
               onSelectBone={setSelectedBone}
-              animatedPositions={animState.animatedPositions}
               transformMode={transformMode}
+              showMesh={showMesh}
             >
             <AnimationBridge
-              rigSpec={data.spec}
+              characterModel={characterModel}
               animSpec={animSpec}
               onStateChange={handlePlayerState}
               commandRef={playerRef}
               boneOverrides={boneOverrides}
               basePose={basePose}
+              showMesh={showMesh}
             />
             {equipSpec && (
               <EquipmentMeshRenderer
@@ -495,7 +474,7 @@ export default function App() {
               <ToolAttachment
                 key={selectedTool.id}
                 tool={selectedTool}
-                boneName="hand_R"
+                boneName="mixamorigRightHand"
                 playerRef={playerRef}
                 transform={selectedToolTransform}
                 gizmoMode={toolGizmoMode}
@@ -522,13 +501,13 @@ export default function App() {
         </div>
         <AnimationControls
           animations={manifest}
-          activeAnimId={animSpec === null ? "tpose" : animState.activeAnimId}
+          activeAnimId={animState.activeAnimId ?? "tpose"}
           isPlaying={animState.isPlaying}
           currentTime={animState.currentTime}
           duration={animState.duration}
           speed={animState.speed}
           loop={animState.loop}
-          hasTracks={(animSpec?.tracks.length ?? 0) > 0}
+          hasTracks={(animSpec?.tracks.length ?? 0) > 0 || animState.duration > 0}
           onSelectAnimation={handleSelectAnimation}
           onPlay={() => playerRef.current?.play()}
           onPause={() => playerRef.current?.pause()}
@@ -540,11 +519,13 @@ export default function App() {
       </div>
       <div className="right-panel">
         <BoneInfoPanel
-          bone={selected}
-          spec={data.spec}
+          bone={selectedBoneInfo}
+          boneList={boneList}
           boneOverrides={boneOverrides}
           onSetBoneOverride={handleSetBoneOverride}
           playerRef={playerRef}
+          transformMode={transformMode}
+          onEnterMode={enterMode}
         />
         <PoseEditor
           enabled={poseMode}
@@ -561,7 +542,7 @@ export default function App() {
         />
         {!poseMode && equipSpec && (
           <EquipmentPanel
-            slots={equipSpec.slots}
+            slots={equipSpec.slots.filter((s) => !BODY_SLOT_IDS.has(s.id))}
             equipState={equipState}
             onToggleSlot={handleToggleSlot}
           />

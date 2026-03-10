@@ -1,25 +1,16 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import type { RigSpec, BoneSpec, BoneTransformOverride } from "../types";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import type { CharacterModel, BoneTransformOverride, BoneRestTransform } from "../types";
 import type { AnimSpec } from "../types/animation";
 
-export interface AnimatedBonePositions {
-  head: [number, number, number];
-  tail: [number, number, number];
-}
-
-export interface BoneRestTransform {
-  position: THREE.Vector3;
-  quaternion: THREE.Quaternion;
-}
+const _glbLoader = new GLTFLoader();
 
 export interface AnimationPlayerState {
-  animatedPositions: Map<string, AnimatedBonePositions> | null;
   boneObjMap: Map<string, THREE.Bone>;
   boneRestPose: Map<string, BoneRestTransform>;
   boneRestWorldInverses: Map<string, THREE.Matrix4>;
-  /** Skeleton root containing anim bones; must be in scene for equipment skinning. */
   skeletonRoot: THREE.Object3D;
   currentTime: number;
   isPlaying: boolean;
@@ -34,138 +25,39 @@ export interface AnimationPlayerState {
   setSpeed: (speed: number) => void;
   setLoop: (loop: boolean) => void;
   setAnimation: (spec: AnimSpec | null) => void;
+  setAnimationFromGlb: (url: string, id: string, loop: boolean) => void;
 }
 
-interface BoneRest {
-  bone: BoneSpec;
-  localPos: THREE.Vector3;
-  localQuat: THREE.Quaternion;
-  tailOffset: THREE.Vector3;
-}
-
-function computeRestTransforms(
-  rigSpec: RigSpec,
-): Map<string, BoneRest> {
-  const boneMap = new Map<string, BoneSpec>();
-  for (const b of rigSpec.bones) boneMap.set(b.name, b);
-
-  const restMap = new Map<string, BoneRest>();
-  const worldQuats = new Map<string, THREE.Quaternion>();
-  const sorted = topoSort(rigSpec.bones);
-
-  for (const bone of sorted) {
-    const head = new THREE.Vector3(...bone.head);
-    const tail = new THREE.Vector3(...bone.tail);
-
-    const dir = new THREE.Vector3().subVectors(tail, head);
-    const len = dir.length();
-    const absoluteQuat = new THREE.Quaternion();
-    if (len > 0.0001) {
-      absoluteQuat.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.normalize());
-    }
-
-    const tailOffset = new THREE.Vector3(0, len, 0);
-
-    let localPos: THREE.Vector3;
-    let localQuat: THREE.Quaternion;
-
-    if (bone.parent) {
-      const parentBone = boneMap.get(bone.parent)!;
-      const parentHead = new THREE.Vector3(...parentBone.head);
-      const parentWorldQuat = worldQuats.get(bone.parent)!;
-      const invParentWorldQuat = parentWorldQuat.clone().invert();
-
-      const worldOffset = head.clone().sub(parentHead);
-      localPos = worldOffset.clone().applyQuaternion(invParentWorldQuat);
-      localQuat = invParentWorldQuat.clone().multiply(absoluteQuat);
-    } else {
-      localPos = head.clone();
-      localQuat = absoluteQuat.clone();
-    }
-
-    worldQuats.set(bone.name, absoluteQuat);
-    restMap.set(bone.name, { bone, localPos, localQuat, tailOffset });
-  }
-
-  return restMap;
-}
-
-function buildBoneHierarchy(
-  rigSpec: RigSpec,
-  restTransforms: Map<string, BoneRest>,
-): { rootObj: THREE.Object3D; objMap: Map<string, THREE.Bone> } {
-  const rootObj = new THREE.Object3D();
-  rootObj.name = "__anim_root__";
-
-  const objMap = new Map<string, THREE.Bone>();
-  const boneMap = new Map<string, BoneSpec>();
-  for (const b of rigSpec.bones) boneMap.set(b.name, b);
-
-  const sorted = topoSort(rigSpec.bones);
-
-  for (const bone of sorted) {
-    const rest = restTransforms.get(bone.name)!;
-    const obj = new THREE.Bone();
-    obj.name = bone.name;
-    obj.position.copy(rest.localPos);
-    obj.quaternion.copy(rest.localQuat);
-
-    if (bone.parent) {
-      const parentObj = objMap.get(bone.parent);
-      if (parentObj) {
-        parentObj.add(obj);
-      } else {
-        rootObj.add(obj);
-      }
-    } else {
-      rootObj.add(obj);
-    }
-
-    objMap.set(bone.name, obj);
-  }
-
-  rootObj.updateMatrixWorld(true);
-  return { rootObj, objMap };
-}
-
-function topoSort(bones: BoneSpec[]): BoneSpec[] {
-  const map = new Map<string, BoneSpec>();
-  for (const b of bones) map.set(b.name, b);
-  const sorted: BoneSpec[] = [];
-  const visited = new Set<string>();
-
-  function visit(name: string) {
-    if (visited.has(name)) return;
-    const bone = map.get(name);
-    if (!bone) return;
-    if (bone.parent) visit(bone.parent);
-    visited.add(name);
-    sorted.push(bone);
-  }
-
-  for (const b of bones) visit(b.name);
-  return sorted;
-}
+const DEG2RAD = Math.PI / 180;
+const _overrideQuat = new THREE.Quaternion();
+const _overrideEuler = new THREE.Euler();
 
 function animSpecToClip(
   animSpec: AnimSpec,
-  restTransforms: Map<string, BoneRest>,
+  boneRestPose: Map<string, BoneRestTransform>,
 ): THREE.AnimationClip {
   const tracks: THREE.KeyframeTrack[] = [];
+  const absolute = animSpec.meta.absolute === true;
 
   for (const track of animSpec.tracks) {
     const times = track.keyframes.map((kf) => kf.time);
-    const rest = restTransforms.get(track.bone);
+    const rest = boneRestPose.get(track.bone);
 
     if (track.property === "rotation") {
-      const restQuat = rest?.localQuat ?? new THREE.Quaternion();
       const values: number[] = [];
-      for (const kf of track.keyframes) {
-        const delta = new THREE.Quaternion(
-          kf.value[0], kf.value[1], kf.value[2], kf.value[3],
-        );
-        const composed = restQuat.clone().multiply(delta);
-        values.push(composed.x, composed.y, composed.z, composed.w);
+      if (absolute) {
+        for (const kf of track.keyframes) {
+          values.push(kf.value[0], kf.value[1], kf.value[2], kf.value[3]);
+        }
+      } else {
+        const restQuat = rest?.quaternion ?? new THREE.Quaternion();
+        for (const kf of track.keyframes) {
+          const delta = new THREE.Quaternion(
+            kf.value[0], kf.value[1], kf.value[2], kf.value[3],
+          );
+          const composed = restQuat.clone().multiply(delta);
+          values.push(composed.x, composed.y, composed.z, composed.w);
+        }
       }
       const trackName = `${track.bone}.quaternion`;
       const kfTrack = new THREE.QuaternionKeyframeTrack(trackName, times, values);
@@ -174,14 +66,20 @@ function animSpecToClip(
       }
       tracks.push(kfTrack);
     } else if (track.property === "position") {
-      const restPos = rest?.localPos ?? new THREE.Vector3();
       const values: number[] = [];
-      for (const kf of track.keyframes) {
-        values.push(
-          restPos.x + kf.value[0],
-          restPos.y + kf.value[1],
-          restPos.z + kf.value[2],
-        );
+      if (absolute) {
+        for (const kf of track.keyframes) {
+          values.push(kf.value[0], kf.value[1], kf.value[2]);
+        }
+      } else {
+        const restPos = rest?.position ?? new THREE.Vector3();
+        for (const kf of track.keyframes) {
+          values.push(
+            restPos.x + kf.value[0],
+            restPos.y + kf.value[1],
+            restPos.z + kf.value[2],
+          );
+        }
       }
       const trackName = `${track.bone}.position`;
       const kfTrack = new THREE.VectorKeyframeTrack(trackName, times, values);
@@ -199,40 +97,92 @@ function animSpecToClip(
   );
 }
 
-function extractWorldPositions(
-  rigSpec: RigSpec,
-  objMap: Map<string, THREE.Object3D>,
-  restTransforms: Map<string, BoneRest>,
-): Map<string, AnimatedBonePositions> {
-  const result = new Map<string, AnimatedBonePositions>();
+function retargetClip(
+  sourceClip: THREE.AnimationClip,
+  sourceScene: THREE.Group,
+  targetBoneObjMap: Map<string, THREE.Bone>,
+  targetBoneRestPose: Map<string, BoneRestTransform>,
+): THREE.AnimationClip {
+  sourceScene.updateMatrixWorld(true);
+  const srcLocalRest = new Map<string, THREE.Quaternion>();
+  sourceScene.traverse((obj) => {
+    if (obj.name && obj.quaternion) {
+      srcLocalRest.set(obj.name, obj.quaternion.clone());
+    }
+  });
 
-  for (const bone of rigSpec.bones) {
-    const obj = objMap.get(bone.name);
-    if (!obj) continue;
+  const newTracks: THREE.KeyframeTrack[] = [];
+  const tmpQ = new THREE.Quaternion();
+  const correction = new THREE.Quaternion();
+  const srcRestInv = new THREE.Quaternion();
 
-    const worldPos = new THREE.Vector3();
-    obj.getWorldPosition(worldPos);
+  for (const track of sourceClip.tracks) {
+    const dotIdx = track.name.indexOf(".");
+    const srcBoneName = track.name.substring(0, dotIdx);
+    const propName = track.name.substring(dotIdx + 1);
 
-    const rest = restTransforms.get(bone.name)!;
-    const worldTail = rest.tailOffset.clone();
-    obj.localToWorld(worldTail);
+    const targetBone = targetBoneObjMap.get(srcBoneName);
+    if (!targetBone) {
+      continue;
+    }
 
-    result.set(bone.name, {
-      head: [worldPos.x, worldPos.y, worldPos.z],
-      tail: [worldTail.x, worldTail.y, worldTail.z],
-    });
+    const targetName = targetBone.uuid;
+
+    if (propName === "quaternion" && track instanceof THREE.QuaternionKeyframeTrack) {
+      const srcRest = srcLocalRest.get(srcBoneName) ?? new THREE.Quaternion();
+      const tgtRest = targetBoneRestPose.get(srcBoneName)?.quaternion ?? new THREE.Quaternion();
+
+      srcRestInv.copy(srcRest).invert();
+      correction.copy(tgtRest).multiply(srcRestInv);
+
+      const values = new Float32Array(track.values.length);
+      for (let i = 0; i < track.values.length; i += 4) {
+        tmpQ.set(track.values[i], track.values[i + 1], track.values[i + 2], track.values[i + 3]);
+        tmpQ.premultiply(correction);
+        values[i] = tmpQ.x;
+        values[i + 1] = tmpQ.y;
+        values[i + 2] = tmpQ.z;
+        values[i + 3] = tmpQ.w;
+      }
+      newTracks.push(new THREE.QuaternionKeyframeTrack(
+        `${targetName}.${propName}`,
+        Array.from(track.times),
+        Array.from(values),
+      ));
+    } else if (propName === "position" && track instanceof THREE.VectorKeyframeTrack) {
+      const tgtRest = targetBoneRestPose.get(srcBoneName);
+
+      if (tgtRest) {
+        const srcBone = sourceScene.getObjectByName(srcBoneName);
+        const srcRestP = srcBone ? srcBone.position : new THREE.Vector3();
+        const tgtRestP = tgtRest.position;
+        const scaleRatio = tgtRestP.length() > 0.001 && srcRestP.length() > 0.001
+          ? tgtRestP.length() / srcRestP.length()
+          : 1;
+
+        const values = new Float32Array(track.values.length);
+        for (let i = 0; i < track.values.length; i += 3) {
+          const dx = track.values[i] - srcRestP.x;
+          const dy = track.values[i + 1] - srcRestP.y;
+          const dz = track.values[i + 2] - srcRestP.z;
+          values[i] = tgtRestP.x + dx * scaleRatio;
+          values[i + 1] = tgtRestP.y + dy * scaleRatio;
+          values[i + 2] = tgtRestP.z + dz * scaleRatio;
+        }
+        newTracks.push(new THREE.VectorKeyframeTrack(
+          `${targetName}.${propName}`,
+          Array.from(track.times),
+          Array.from(values),
+        ));
+      }
+    }
   }
 
-  return result;
+  return new THREE.AnimationClip(sourceClip.name, sourceClip.duration, newTracks);
 }
 
-const _overrideQuat = new THREE.Quaternion();
-const _overrideEuler = new THREE.Euler();
-const DEG2RAD = Math.PI / 180;
-
-
 export function useAnimationPlayer(
-  rigSpec: RigSpec,
+  characterModel: CharacterModel | null,
   boneOverrides?: Map<string, BoneTransformOverride>,
   basePose?: Map<string, BoneTransformOverride>,
 ): AnimationPlayerState {
@@ -241,56 +191,32 @@ export function useAnimationPlayer(
   const [speed, setSpeedState] = useState(1);
   const [loop, setLoopState] = useState(true);
   const [activeAnimId, setActiveAnimId] = useState<string | null>(null);
-  const [animatedPositions, setAnimatedPositions] =
-    useState<Map<string, AnimatedBonePositions> | null>(null);
 
   const animSpecRef = useRef<AnimSpec | null>(null);
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
   const actionRef = useRef<THREE.AnimationAction | null>(null);
-
-  const restTransforms = useMemo(() => computeRestTransforms(rigSpec), [rigSpec]);
-
-  const { rootObj, objMap } = useMemo(
-    () => buildBoneHierarchy(rigSpec, restTransforms),
-    [rigSpec, restTransforms],
-  );
-
-  const boneRestPose = useMemo(() => {
-    const map = new Map<string, BoneRestTransform>();
-    for (const [name, rest] of restTransforms) {
-      map.set(name, {
-        position: rest.localPos.clone(),
-        quaternion: rest.localQuat.clone(),
-      });
-    }
-    return map;
-  }, [restTransforms]);
-
-  const boneRestWorldInverses = useMemo(() => {
-    rootObj.updateMatrixWorld(true);
-    const map = new Map<string, THREE.Matrix4>();
-    for (const [name, bone] of objMap) {
-      map.set(name, bone.matrixWorld.clone().invert());
-    }
-    return map;
-  }, [rootObj, objMap]);
-
   const durationRef = useRef(0);
+
+  const boneObjMap = characterModel?.boneObjMap ?? new Map<string, THREE.Bone>();
+  const boneRestPose = characterModel?.boneRestPose ?? new Map<string, BoneRestTransform>();
+  const boneRestWorldInverses = characterModel?.boneRestWorldInverses ?? new Map<string, THREE.Matrix4>();
+  const skeletonRoot = characterModel?.skeletonRoot ?? new THREE.Object3D();
 
   const frozenPose = useRef(new Map<string, { pos: THREE.Vector3; quat: THREE.Quaternion; scl: THREE.Vector3 }>());
 
   useEffect(() => {
-    for (const [name, rest] of restTransforms) {
+    if (!characterModel) return;
+    for (const [name, rest] of characterModel.boneRestPose) {
       frozenPose.current.set(name, {
-        pos: rest.localPos.clone(),
-        quat: rest.localQuat.clone(),
+        pos: rest.position.clone(),
+        quat: rest.quaternion.clone(),
         scl: new THREE.Vector3(1, 1, 1),
       });
     }
-  }, [restTransforms]);
+  }, [characterModel]);
 
   const captureFrozenPose = useCallback(() => {
-    for (const [name, obj] of objMap) {
+    for (const [name, obj] of boneObjMap) {
       let entry = frozenPose.current.get(name);
       if (!entry) {
         entry = { pos: new THREE.Vector3(), quat: new THREE.Quaternion(), scl: new THREE.Vector3(1, 1, 1) };
@@ -300,7 +226,7 @@ export function useAnimationPlayer(
       entry.quat.copy(obj.quaternion);
       entry.scl.copy(obj.scale);
     }
-  }, [objMap]);
+  }, [boneObjMap]);
 
   const basePoseRef = useRef(basePose);
   basePoseRef.current = basePose;
@@ -311,13 +237,13 @@ export function useAnimationPlayer(
     const euler = new THREE.Euler();
     const quat = new THREE.Quaternion();
     for (const [name, base] of bp) {
-      const obj = objMap.get(name);
-      const rest = restTransforms.get(name);
+      const obj = boneObjMap.get(name);
+      const rest = boneRestPose.get(name);
       if (!obj || !rest) continue;
       obj.position.set(
-        rest.localPos.x + base.position[0],
-        rest.localPos.y + base.position[1],
-        rest.localPos.z + base.position[2],
+        rest.position.x + base.position[0],
+        rest.position.y + base.position[1],
+        rest.position.z + base.position[2],
       );
       euler.set(
         base.rotation[0] * DEG2RAD,
@@ -325,28 +251,30 @@ export function useAnimationPlayer(
         base.rotation[2] * DEG2RAD,
       );
       quat.setFromEuler(euler);
-      obj.quaternion.copy(rest.localQuat).multiply(quat);
+      obj.quaternion.copy(rest.quaternion).multiply(quat);
       obj.scale.set(base.scale[0], base.scale[1], base.scale[2]);
     }
-  }, [objMap, restTransforms]);
+  }, [boneObjMap, boneRestPose]);
 
   const setAnimation = useCallback(
     (spec: AnimSpec | null) => {
+      if (!characterModel) return;
+
       if (actionRef.current) {
         actionRef.current.stop();
         actionRef.current = null;
       }
       if (mixerRef.current) {
         mixerRef.current.stopAllAction();
-        mixerRef.current.uncacheRoot(rootObj);
+        mixerRef.current.uncacheRoot(skeletonRoot);
         mixerRef.current = null;
       }
 
-      for (const [name, obj] of objMap) {
-        const rest = restTransforms.get(name);
+      for (const [name, obj] of boneObjMap) {
+        const rest = boneRestPose.get(name);
         if (rest) {
-          obj.position.copy(rest.localPos);
-          obj.quaternion.copy(rest.localQuat);
+          obj.position.copy(rest.position);
+          obj.quaternion.copy(rest.quaternion);
         }
       }
       applyBasePose();
@@ -359,19 +287,18 @@ export function useAnimationPlayer(
         setIsPlaying(false);
         setCurrentTime(0);
         durationRef.current = spec?.meta.duration ?? 0;
-        setAnimatedPositions(null);
         return;
       }
 
-      const mixer = new THREE.AnimationMixer(rootObj);
-      const clip = animSpecToClip(spec, restTransforms);
+      const mixer = new THREE.AnimationMixer(skeletonRoot);
+      const clip = animSpecToClip(spec, boneRestPose);
 
       clip.tracks.forEach((track) => {
         const dotIdx = track.name.indexOf(".");
         const boneName = track.name.substring(0, dotIdx);
         const propName = track.name.substring(dotIdx + 1);
-        track.name = objMap.has(boneName)
-          ? `${objMap.get(boneName)!.uuid}.${propName}`
+        track.name = boneObjMap.has(boneName)
+          ? `${boneObjMap.get(boneName)!.uuid}.${propName}`
           : track.name;
       });
 
@@ -390,18 +317,15 @@ export function useAnimationPlayer(
       action.play();
       action.paused = true;
       mixer.setTime(0);
-      rootObj.updateMatrixWorld(true);
+      skeletonRoot.updateMatrixWorld(true);
       captureFrozenPose();
 
       setActiveAnimId(spec.meta.id);
       setLoopState(spec.meta.loop);
       setCurrentTime(0);
       setIsPlaying(false);
-      setAnimatedPositions(
-        extractWorldPositions(rigSpec, objMap, restTransforms),
-      );
     },
-    [rigSpec, rootObj, objMap, restTransforms, captureFrozenPose, applyBasePose],
+    [characterModel, skeletonRoot, boneObjMap, boneRestPose, captureFrozenPose, applyBasePose],
   );
 
   const play = useCallback(() => {
@@ -426,12 +350,9 @@ export function useAnimationPlayer(
     setCurrentTime(0);
 
     applyBasePose();
-    rootObj.updateMatrixWorld(true);
+    skeletonRoot.updateMatrixWorld(true);
     captureFrozenPose();
-    setAnimatedPositions(
-      extractWorldPositions(rigSpec, objMap, restTransforms),
-    );
-  }, [rigSpec, rootObj, objMap, restTransforms, captureFrozenPose, applyBasePose]);
+  }, [skeletonRoot, captureFrozenPose, applyBasePose]);
 
   const seek = useCallback(
     (time: number) => {
@@ -443,19 +364,16 @@ export function useAnimationPlayer(
       actionRef.current.paused = true;
       mixerRef.current.setTime(time);
 
-      rootObj.updateMatrixWorld(true);
+      skeletonRoot.updateMatrixWorld(true);
       captureFrozenPose();
       setCurrentTime(time);
-      setAnimatedPositions(
-        extractWorldPositions(rigSpec, objMap, restTransforms),
-      );
 
       if (wasPlaying) {
         actionRef.current.paused = false;
         setIsPlaying(true);
       }
     },
-    [rigSpec, rootObj, objMap, restTransforms, captureFrozenPose],
+    [skeletonRoot, captureFrozenPose],
   );
 
   const setSpeed = useCallback((s: number) => {
@@ -487,6 +405,8 @@ export function useAnimationPlayer(
   }
 
   useFrame((_, delta) => {
+    if (!characterModel) return;
+
     const playing = !!(mixerRef.current && isPlaying);
     const hasOverrides = !!(boneOverrides && boneOverrides.size > 0);
     const dirty = overridesDirtyRef.current;
@@ -502,15 +422,15 @@ export function useAnimationPlayer(
 
     if (hasOverrides) {
       for (const [name, override] of boneOverrides!) {
-        const obj = objMap.get(name);
+        const obj = boneObjMap.get(name);
         if (!obj) continue;
-        const rest = restTransforms.get(name);
+        const rest = boneRestPose.get(name);
         if (!rest) continue;
 
         obj.position.set(
-          rest.localPos.x + override.position[0],
-          rest.localPos.y + override.position[1],
-          rest.localPos.z + override.position[2],
+          rest.position.x + override.position[0],
+          rest.position.y + override.position[1],
+          rest.position.z + override.position[2],
         );
         _overrideEuler.set(
           override.rotation[0] * DEG2RAD,
@@ -518,45 +438,113 @@ export function useAnimationPlayer(
           override.rotation[2] * DEG2RAD,
         );
         _overrideQuat.setFromEuler(_overrideEuler);
-        obj.quaternion.copy(rest.localQuat).multiply(_overrideQuat);
+        obj.quaternion.copy(rest.quaternion).multiply(_overrideQuat);
         obj.scale.set(override.scale[0], override.scale[1], override.scale[2]);
       }
     }
 
-    rootObj.updateMatrixWorld(true);
+    skeletonRoot.updateMatrixWorld(true);
 
     if (playing) {
       const time = actionRef.current?.time ?? 0;
       setCurrentTime(time);
     }
-    setAnimatedPositions(
-      extractWorldPositions(rigSpec, objMap, restTransforms),
-    );
   });
 
   useEffect(() => {
     if (!basePose || basePose.size === 0) return;
     if (isPlaying) return;
     applyBasePose();
-    rootObj.updateMatrixWorld(true);
+    skeletonRoot.updateMatrixWorld(true);
     captureFrozenPose();
   }, [basePose]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const setAnimationFromGlb = useCallback(
+    (url: string, id: string, loopAnim: boolean) => {
+      if (!characterModel) return;
+
+      if (actionRef.current) {
+        actionRef.current.stop();
+        actionRef.current = null;
+      }
+      if (mixerRef.current) {
+        mixerRef.current.stopAllAction();
+        mixerRef.current.uncacheRoot(skeletonRoot);
+        mixerRef.current = null;
+      }
+
+      for (const [name, obj] of boneObjMap) {
+        const rest = boneRestPose.get(name);
+        if (rest) {
+          obj.position.copy(rest.position);
+          obj.quaternion.copy(rest.quaternion);
+        }
+      }
+      applyBasePose();
+      captureFrozenPose();
+
+      _glbLoader.load(
+        url,
+        (gltf) => {
+        if (!gltf.animations || gltf.animations.length === 0) {
+          console.warn("GLB has no animations:", url);
+          return;
+        }
+
+        const sourceClip = gltf.animations[0];
+        const sourceScene = gltf.scene;
+        sourceScene.updateMatrixWorld(true);
+
+        const clip = retargetClip(sourceClip, sourceScene, boneObjMap, boneRestPose);
+
+        const mixer = new THREE.AnimationMixer(skeletonRoot);
+        const action = mixer.clipAction(clip);
+        action.setLoop(
+          loopAnim ? THREE.LoopRepeat : THREE.LoopOnce,
+          loopAnim ? Infinity : 1,
+        );
+        action.clampWhenFinished = !loopAnim;
+
+        mixerRef.current = mixer;
+        actionRef.current = action;
+        durationRef.current = clip.duration;
+        animSpecRef.current = null;
+
+        action.reset();
+        action.play();
+        action.paused = true;
+        mixer.setTime(0);
+        skeletonRoot.updateMatrixWorld(true);
+        captureFrozenPose();
+
+        setActiveAnimId(id);
+        setLoopState(loopAnim);
+        setCurrentTime(0);
+        setIsPlaying(false);
+      },
+      undefined,
+      (err) => {
+        console.error("Failed to load animation GLB:", url, err);
+      },
+      );
+    },
+    [characterModel, skeletonRoot, boneObjMap, boneRestPose, captureFrozenPose, applyBasePose],
+  );
 
   useEffect(() => {
     return () => {
       if (mixerRef.current) {
         mixerRef.current.stopAllAction();
-        mixerRef.current.uncacheRoot(rootObj);
+        mixerRef.current.uncacheRoot(skeletonRoot);
       }
     };
-  }, [rootObj]);
+  }, [skeletonRoot]);
 
   return {
-    animatedPositions,
-    boneObjMap: objMap,
+    boneObjMap,
     boneRestPose,
     boneRestWorldInverses,
-    skeletonRoot: rootObj,
+    skeletonRoot,
     currentTime,
     isPlaying,
     duration: durationRef.current,
@@ -570,5 +558,6 @@ export function useAnimationPlayer(
     setSpeed,
     setLoop,
     setAnimation,
+    setAnimationFromGlb,
   };
 }

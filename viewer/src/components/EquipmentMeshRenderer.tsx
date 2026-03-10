@@ -18,58 +18,13 @@ interface EquipmentMeshRendererProps {
   playerRef: React.MutableRefObject<AnimationPlayerState | null>;
 }
 
-const BODY_SLOT_PREFIXES = [
-  "equip_base_body_",
-  "equip_base_male_",
-  "equip_base_female_",
-  "equip_base_male_with_skin_texture_",
-  "equip_base_female_with_skin_texture_",
-];
-
-/** Parse body region from mesh name like "equip_base_body_head" or "equip_base_male_head" -> "head" */
-function getBodyRegionFromMeshName(name: string): BodyRegion | null {
-  let region: string | null = null;
-  for (const prefix of BODY_SLOT_PREFIXES) {
-    if (name.startsWith(prefix)) {
-      region = name.slice(prefix.length);
-      break;
-    }
-  }
-  if (!region) return null;
-  const valid: readonly string[] = [
-    "head",
-    "neck",
-    "torso",
-    "arms",
-    "legs",
-    "feet",
-    "hands",
-  ];
-  return valid.includes(region) ? (region as BodyRegion) : null;
-}
-
-function computeHiddenBodyRegions(
-  slots: EquipmentSlot[],
-  effectiveState: EquipmentState,
-): Set<BodyRegion> {
-  const hidden = new Set<BodyRegion>();
-  const bodySlotIds = new Set([
-    "base_body",
-    "base_male",
-    "base_female",
-    "base_male_with_skin_texture",
-    "base_female_with_skin_texture",
-  ]);
-  for (const slot of slots) {
-    if (bodySlotIds.has(slot.id)) continue;
-    if (!effectiveState[slot.id]) continue;
-    const regions = slot.hides_body_regions ?? [];
-    for (const r of regions) {
-      hidden.add(r);
-    }
-  }
-  return hidden;
-}
+const BODY_SLOT_IDS = new Set([
+  "base_body",
+  "base_male",
+  "base_female",
+  "base_male_with_skin_texture",
+  "base_female_with_skin_texture",
+]);
 
 interface LoadedSlot {
   scene: THREE.Group;
@@ -79,6 +34,7 @@ interface LoadedSlot {
 const loader = new GLTFLoader();
 const slotCache = new Map<string, LoadedSlot>();
 const _identityMatrix = new THREE.Matrix4();
+const _flipY = new THREE.Matrix4().makeRotationY(Math.PI);
 
 function findSkinnedMeshes(root: THREE.Object3D): THREE.SkinnedMesh[] {
   const result: THREE.SkinnedMesh[] = [];
@@ -90,10 +46,6 @@ function findSkinnedMeshes(root: THREE.Object3D): THREE.SkinnedMesh[] {
   return result;
 }
 
-/**
- * Scan a SkinnedMesh for vertices with zero total weight and assign them
- * to the nearest bone so they don't stay frozen in bind pose.
- */
 function fixZeroWeightVertices(sm: THREE.SkinnedMesh): void {
   const geo = sm.geometry;
   const skinWeight = geo.getAttribute("skinWeight") as THREE.BufferAttribute;
@@ -151,7 +103,6 @@ function fixZeroWeightVertices(sm: THREE.SkinnedMesh): void {
 function bindSlotSkeleton(
   slot: LoadedSlot,
   animBones: Map<string, THREE.Bone>,
-  restInverses: Map<string, THREE.Matrix4>,
 ): void {
   for (const sm of slot.skinnedMeshes) {
     const oldSk = sm.skeleton;
@@ -163,14 +114,14 @@ function bindSlotSkeleton(
     for (let i = 0; i < oldSk.bones.length; i++) {
       const boneName = oldSk.bones[i].name;
       const animBone = animBones.get(boneName);
-      const restInv = restInverses.get(boneName);
 
-      if (animBone && restInv) {
+      const correctedInverse = oldSk.boneInverses[i].clone().multiply(_flipY);
+      if (animBone) {
         newBones.push(animBone);
-        newInverses.push(restInv.clone());
+        newInverses.push(correctedInverse);
       } else {
         newBones.push(oldSk.bones[i] as THREE.Bone);
-        newInverses.push(oldSk.boneInverses[i].clone());
+        newInverses.push(correctedInverse);
       }
     }
 
@@ -195,13 +146,18 @@ export default function EquipmentMeshRenderer({
   const loadingRef = useRef<Set<string>>(new Set());
   const boundRef = useRef<Set<string>>(new Set());
 
+  const equipmentSlotIds = useMemo(
+    () => slotIds.filter((id) => !BODY_SLOT_IDS.has(id)),
+    [slotIds],
+  );
+
   useEffect(() => {
-    for (const id of slotIds) {
+    for (const id of equipmentSlotIds) {
       if (!effectiveState[id]) {
         boundRef.current.delete(id);
       }
     }
-  }, [slotIds, effectiveState]);
+  }, [equipmentSlotIds, effectiveState]);
 
   const slotMap = useMemo(
     () => new Map(slots.map((s) => [s.id, s])),
@@ -209,7 +165,7 @@ export default function EquipmentMeshRenderer({
   );
 
   useEffect(() => {
-    const enabledSlots = slotIds.filter((id) => equipState[id]);
+    const enabledSlots = equipmentSlotIds.filter((id) => equipState[id]);
     const toLoad = enabledSlots.filter(
       (id) => !slotCache.has(id) && !loadingRef.current.has(id),
     );
@@ -230,55 +186,28 @@ export default function EquipmentMeshRenderer({
           const scene = gltf.scene;
           scene.visible = true;
 
-          // External base body meshes may be Y-up (glTF) or Z-up (from skin_base_meshes).
-          // Apply Y-up→Z-up fix only when mesh height is along Y (unskinned CharacterMesh).
-          const isExternalBaseMesh =
-            slotId === "base_male" ||
-            slotId === "base_female" ||
-            slotId === "base_male_with_skin_texture" ||
-            slotId === "base_female_with_skin_texture";
-          if (isExternalBaseMesh) {
-            const box = new THREE.Box3().setFromObject(scene);
-            const size = new THREE.Vector3();
-            box.getSize(size);
-            const heightAlongY = size.y;
-            const heightAlongZ = size.z;
-            if (heightAlongY > heightAlongZ) {
-              scene.rotation.set(-Math.PI / 2, 0, Math.PI);
-            }
-          }
-
           const skinnedMeshes = findSkinnedMeshes(scene);
 
           const color = SLOT_COLORS[slotId] ?? "#94a3b8";
-          const isBaseBody =
-            slotId === "base_body" ||
-            slotId === "base_male" ||
-            slotId === "base_female";
-          const preserveMaterials =
-            slotId === "base_male_with_skin_texture" ||
-            slotId === "base_female_with_skin_texture";
           scene.traverse((child) => {
             if ((child as THREE.Mesh).isMesh) {
               const mesh = child as THREE.Mesh;
-              if (!preserveMaterials) {
-                mesh.material = new THREE.MeshStandardMaterial({
-                  color,
-                  transparent: !isBaseBody,
-                  opacity: isBaseBody ? 1 : 0.35,
-                  side: THREE.DoubleSide,
-                  depthWrite: isBaseBody,
-                });
-              }
+              mesh.material = new THREE.MeshStandardMaterial({
+                color,
+                transparent: true,
+                opacity: 0.35,
+                side: THREE.DoubleSide,
+                depthWrite: false,
+              });
               mesh.frustumCulled = false;
             }
           });
 
-          const slot: LoadedSlot = { scene, skinnedMeshes };
-          slotCache.set(slotId, slot);
+          const loaded: LoadedSlot = { scene, skinnedMeshes };
+          slotCache.set(slotId, loaded);
           setLoadedSlots((prev) => {
             const next = new Map(prev);
-            next.set(slotId, slot);
+            next.set(slotId, loaded);
             return next;
           });
         },
@@ -293,49 +222,29 @@ export default function EquipmentMeshRenderer({
     return () => {
       cancelled = true;
     };
-  }, [slotIds, equipState, slotMap]);
-
-  const hiddenBodyRegions = useMemo(
-    () => computeHiddenBodyRegions(slots, effectiveState),
-    [slots, effectiveState],
-  );
+  }, [equipmentSlotIds, equipState, slotMap]);
 
   useFrame(() => {
     const player = playerRef.current;
     if (!player) return;
     const animBones = player.boneObjMap;
-    const restInverses = player.boneRestWorldInverses;
     if (!animBones || animBones.size === 0) return;
-    if (!restInverses || restInverses.size === 0) return;
 
     for (const [slotId, slot] of slotCache) {
+      if (BODY_SLOT_IDS.has(slotId)) continue;
       if (!effectiveState[slotId]) continue;
 
       if (!boundRef.current.has(slotId)) {
-        bindSlotSkeleton(slot, animBones, restInverses);
+        bindSlotSkeleton(slot, animBones);
         slot.scene.visible = true;
         boundRef.current.add(slotId);
-      }
-
-      // Base body variants: hide regions covered by equipped slots (runs every frame for reactivity)
-      const isBaseBodySlot =
-        slotId === "base_body" ||
-        slotId === "base_male" ||
-        slotId === "base_female" ||
-        slotId === "base_male_with_skin_texture" ||
-        slotId === "base_female_with_skin_texture";
-      if (isBaseBodySlot) {
-        for (const sm of slot.skinnedMeshes) {
-          const region = getBodyRegionFromMeshName(sm.name);
-          sm.visible = region === null || !hiddenBodyRegions.has(region);
-        }
       }
     }
   });
 
   return (
     <group ref={groupRef} name="equipment-meshes">
-      {slotIds.map((id) => {
+      {equipmentSlotIds.map((id) => {
         if (!effectiveState[id]) return null;
         const slot = slotCache.get(id) ?? loadedSlots.get(id);
         if (!slot) return null;

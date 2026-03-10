@@ -3,16 +3,15 @@ import { OrbitControls, Grid, Text } from "@react-three/drei";
 import { useRef, useCallback } from "react";
 import * as THREE from "three";
 import SkeletonViewer from "./SkeletonViewer";
-import type { RigSpec } from "../types";
-import type { AnimatedBonePositions } from "../hooks/useAnimationPlayer";
+import type { CharacterModel } from "../types";
 import type { TransformMode } from "../hooks/useTransformShortcuts";
 
 interface SceneProps {
-  spec: RigSpec;
+  characterModel: CharacterModel | null;
   selectedBone: string | null;
   onSelectBone: (name: string | null) => void;
-  animatedPositions?: Map<string, AnimatedBonePositions> | null;
   transformMode?: TransformMode;
+  showMesh: boolean;
   children?: React.ReactNode;
 }
 
@@ -70,11 +69,11 @@ function CameraAnimator({
 }
 
 export default function Scene({
-  spec,
+  characterModel,
   selectedBone,
   onSelectBone,
-  animatedPositions,
   transformMode,
+  showMesh,
   children,
 }: SceneProps) {
   const controlsRef = useRef<any>(null);
@@ -109,7 +108,7 @@ export default function Scene({
   return (
     <div style={{ width: "100%", height: "100%", position: "relative" }}>
       <Canvas
-        camera={{ position: [2, 1.5, 2], fov: 45, near: 0.01, far: 100 }}
+        camera={{ position: [0, 3, 0.9], fov: 45, near: 0.01, far: 100 }}
         style={{ width: "100%", height: "100%", cursor: cursorStyle }}
         onPointerMissed={() => {
           if (!transformMode) onSelectBone(null);
@@ -148,10 +147,10 @@ export default function Scene({
         </Text>
 
         <SkeletonViewer
-          spec={spec}
+          characterModel={characterModel}
           selectedBone={selectedBone}
           onSelectBone={onSelectBone}
-          animatedPositions={animatedPositions}
+          meshVisible={showMesh}
         />
 
         {children}

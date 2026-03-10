@@ -16,6 +16,8 @@ export interface AnimMeta {
   duration: number;
   fps: number;
   loop: boolean;
+  /** When true, keyframe values are absolute (not deltas from rest pose). */
+  absolute?: boolean;
 }
 
 export interface AnimSpec {
@@ -23,6 +25,13 @@ export interface AnimSpec {
   tracks: AnimTrack[];
 }
 
+export interface AnimManifestEntry {
+  id: string;
+  file: string;
+  glb?: string;
+  loop?: boolean;
+}
+
 export interface AnimManifest {
-  animations: { id: string; file: string }[];
+  animations: AnimManifestEntry[];
 }

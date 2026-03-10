@@ -1,21 +1,20 @@
 import { useState, useMemo } from "react";
-import type { BoneNode, BoneSpec, BoneCategory, RigSpec } from "../types";
+import type { GlbBoneInfo, BoneCategory } from "../types";
 import { CATEGORY_COLORS, CATEGORY_ORDER } from "../types";
 
 interface BoneSidebarProps {
-  spec: RigSpec;
-  tree: BoneNode[];
+  boneList: GlbBoneInfo[];
   selectedBone: string | null;
   onSelectBone: (name: string | null) => void;
 }
 
 interface CategoryGroup {
   category: BoneCategory;
-  bones: BoneSpec[];
+  bones: GlbBoneInfo[];
 }
 
 export default function BoneSidebar({
-  spec,
+  boneList,
   selectedBone,
   onSelectBone,
 }: BoneSidebarProps) {
@@ -23,8 +22,8 @@ export default function BoneSidebar({
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
 
   const groups: CategoryGroup[] = useMemo(() => {
-    const map = new Map<BoneCategory, BoneSpec[]>();
-    for (const bone of spec.bones) {
+    const map = new Map<BoneCategory, GlbBoneInfo[]>();
+    for (const bone of boneList) {
       const list = map.get(bone.category) ?? [];
       list.push(bone);
       map.set(bone.category, list);
@@ -33,7 +32,7 @@ export default function BoneSidebar({
       category: c,
       bones: map.get(c)!,
     }));
-  }, [spec]);
+  }, [boneList]);
 
   const filteredGroups = useMemo(() => {
     if (!search.trim()) return groups;

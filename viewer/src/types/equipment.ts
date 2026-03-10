@@ -69,11 +69,9 @@ export const SLOT_COLORS: Record<string, string> = {
   base_male_with_skin_texture: "#e8b4a0",
   base_female_with_skin_texture: "#e8b4a0",
   head: "#c084fc",
-  amulet: "#fbbf24",
+  upper_body: "#4a9eff",
+  lower_body: "#ff6b6b",
   gloves: "#4adb7a",
   ring: "#ffd93d",
-  upper_body: "#4a9eff",
-  crimson_wizard_robe: "#7f1d1d",
-  lower_body: "#ff6b6b",
   boots: "#f97316",
 };

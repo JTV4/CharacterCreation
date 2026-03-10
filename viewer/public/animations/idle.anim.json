@@ -2,257 +2,313 @@
   "meta": {
     "name": "Idle",
     "id": "idle",
-    "duration": 3.0,
+    "duration": 6.0,
     "fps": 30,
     "loop": true
   },
   "tracks": [
     {
-      "bone": "root",
+      "bone": "mixamorigHips",
       "property": "position",
       "interpolation": "linear",
       "keyframes": [
         { "time": 0.0,  "value": [0, 0, 0] },
-        { "time": 1.5,  "value": [0, 0.002, 0] },
-        { "time": 3.0,  "value": [0, 0, 0] }
+        { "time": 1.5,  "value": [0.001, 0.002, 0] },
+        { "time": 3.0,  "value": [0, 0.004, 0] },
+        { "time": 4.5,  "value": [-0.001, 0.002, 0] },
+        { "time": 6.0,  "value": [0, 0, 0] }
       ]
     },
     {
-      "bone": "spine_01",
+      "bone": "mixamorigHips",
       "property": "rotation",
       "interpolation": "linear",
       "keyframes": [
         { "time": 0.0,  "value": [0, 0, 0, 1] },
-        { "time": 1.5,  "value": [-0.01309, 0, 0, 0.99991] },
-        { "time": 3.0,  "value": [0, 0, 0, 1] }
+        { "time": 2.0,  "value": [0, 0.00218, 0.00087, 0.99999] },
+        { "time": 4.0,  "value": [0, -0.00175, -0.00087, 0.99999] },
+        { "time": 6.0,  "value": [0, 0, 0, 1] }
       ]
     },
+
     {
-      "bone": "spine_02",
+      "bone": "mixamorigSpine",
       "property": "rotation",
       "interpolation": "linear",
       "keyframes": [
         { "time": 0.0,  "value": [0, 0, 0, 1] },
-        { "time": 1.5,  "value": [-0.00873, 0, 0, 0.99996] },
-        { "time": 3.0,  "value": [0, 0, 0, 1] }
+        { "time": 1.8,  "value": [-0.00873, 0, 0.00087, 0.99996] },
+        { "time": 3.0,  "value": [-0.01309, 0, 0, 0.99991] },
+        { "time": 4.5,  "value": [-0.00698, 0, -0.00087, 0.99998] },
+        { "time": 6.0,  "value": [0, 0, 0, 1] }
+      ]
+    },
+
+    {
+      "bone": "mixamorigSpine1",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        { "time": 0.0,  "value": [0, 0, 0, 1] },
+        { "time": 1.5,  "value": [-0.00436, 0, 0, 0.99999] },
+        { "time": 3.0,  "value": [-0.01047, 0, 0, 0.99995] },
+        { "time": 4.5,  "value": [-0.00524, 0, 0, 0.99999] },
+        { "time": 6.0,  "value": [0, 0, 0, 1] }
       ]
     },
     {
-      "bone": "spine_02",
+      "bone": "mixamorigSpine1",
       "property": "position",
       "interpolation": "linear",
       "keyframes": [
         { "time": 0.0,  "value": [0, 0, 0] },
-        { "time": 1.5,  "value": [0, 0.003, 0.001] },
-        { "time": 3.0,  "value": [0, 0, 0] }
+        { "time": 1.5,  "value": [0, 0.001, 0.0005] },
+        { "time": 3.0,  "value": [0, 0.003, 0.001] },
+        { "time": 4.5,  "value": [0, 0.001, 0.0005] },
+        { "time": 6.0,  "value": [0, 0, 0] }
       ]
     },
+
     {
-      "bone": "spine_03",
+      "bone": "mixamorigSpine2",
       "property": "rotation",
       "interpolation": "linear",
       "keyframes": [
         { "time": 0.0,  "value": [0, 0, 0, 1] },
-        { "time": 1.5,  "value": [-0.00611, 0, 0, 0.99998] },
-        { "time": 3.0,  "value": [0, 0, 0, 1] }
+        { "time": 1.5,  "value": [-0.00349, 0, 0, 0.99999] },
+        { "time": 3.0,  "value": [-0.00785, 0, 0, 0.99997] },
+        { "time": 4.5,  "value": [-0.00349, 0, 0, 0.99999] },
+        { "time": 6.0,  "value": [0, 0, 0, 1] }
       ]
     },
     {
-      "bone": "spine_03",
+      "bone": "mixamorigSpine2",
       "property": "position",
       "interpolation": "linear",
       "keyframes": [
         { "time": 0.0,  "value": [0, 0, 0] },
-        { "time": 1.5,  "value": [0, 0.004, 0.002] },
-        { "time": 3.0,  "value": [0, 0, 0] }
+        { "time": 1.5,  "value": [0, 0.002, 0.001] },
+        { "time": 3.0,  "value": [0, 0.004, 0.002] },
+        { "time": 4.5,  "value": [0, 0.002, 0.001] },
+        { "time": 6.0,  "value": [0, 0, 0] }
       ]
     },
+
     {
-      "bone": "neck_01",
+      "bone": "mixamorigNeck",
       "property": "rotation",
       "interpolation": "linear",
       "keyframes": [
         { "time": 0.0,  "value": [0, 0, 0, 1] },
-        { "time": 1.5,  "value": [0.00873, 0, 0, 0.99996] },
-        { "time": 3.0,  "value": [0, 0, 0, 1] }
+        { "time": 1.5,  "value": [0.00524, 0, 0.00175, 0.99998] },
+        { "time": 3.0,  "value": [0.00873, 0, 0, 0.99996] },
+        { "time": 4.5,  "value": [0.00524, 0, -0.00175, 0.99998] },
+        { "time": 6.0,  "value": [0, 0, 0, 1] }
       ]
     },
+
     {
-      "bone": "head",
+      "bone": "mixamorigHead",
       "property": "rotation",
       "interpolation": "linear",
       "keyframes": [
         { "time": 0.0,  "value": [0, 0, 0, 1] },
-        { "time": 1.0,  "value": [0.00436, 0, 0.00218, 0.99999] },
-        { "time": 2.0,  "value": [-0.00218, 0, -0.00436, 0.99999] },
-        { "time": 3.0,  "value": [0, 0, 0, 1] }
+        { "time": 1.2,  "value": [0.00349, 0.00262, 0.00175, 0.99999] },
+        { "time": 2.5,  "value": [0.00175, -0.00175, -0.00087, 0.99999] },
+        { "time": 3.8,  "value": [-0.00175, 0.00087, -0.00262, 0.99999] },
+        { "time": 5.0,  "value": [0.00087, -0.00175, 0.00087, 0.99999] },
+        { "time": 6.0,  "value": [0, 0, 0, 1] }
       ]
     },
+
     {
-      "bone": "clavicle_L",
+      "bone": "mixamorigLeftShoulder",
       "property": "rotation",
       "interpolation": "linear",
       "keyframes": [
-        { "time": 0.0,  "value": [0, 0, 0, 1] },
-        { "time": 1.5,  "value": [0, 0, -0.00436, 0.99999] },
-        { "time": 3.0,  "value": [0, 0, 0, 1] }
+        { "time": 0.0,  "value": [-0.04362, 0, 0, 0.99905] },
+        { "time": 3.0,  "value": [-0.04275, 0, -0.00175, 0.99905] },
+        { "time": 6.0,  "value": [-0.04362, 0, 0, 0.99905] }
       ]
     },
     {
-      "bone": "clavicle_L",
+      "bone": "mixamorigLeftShoulder",
       "property": "position",
       "interpolation": "linear",
       "keyframes": [
-        { "time": 0.0,  "value": [0, 0, 0] },
-        { "time": 1.5,  "value": [0, 0.002, 0] },
-        { "time": 3.0,  "value": [0, 0, 0] }
+        { "time": 0.0,  "value": [0, -0.002, 0] },
+        { "time": 3.0,  "value": [0, -0.001, 0] },
+        { "time": 6.0,  "value": [0, -0.002, 0] }
       ]
     },
     {
-      "bone": "clavicle_R",
+      "bone": "mixamorigRightShoulder",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        { "time": 0.0,  "value": [-0.04362, 0, 0, 0.99905] },
+        { "time": 3.0,  "value": [-0.04275, 0, 0.00175, 0.99905] },
+        { "time": 6.0,  "value": [-0.04362, 0, 0, 0.99905] }
+      ]
+    },
+    {
+      "bone": "mixamorigRightShoulder",
+      "property": "position",
+      "interpolation": "linear",
+      "keyframes": [
+        { "time": 0.0,  "value": [0, -0.002, 0] },
+        { "time": 3.0,  "value": [0, -0.001, 0] },
+        { "time": 6.0,  "value": [0, -0.002, 0] }
+      ]
+    },
+
+    {
+      "bone": "mixamorigRightArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        { "time": 0.0,  "value": [0.59482, 0, 0, 0.80386] },
+        { "time": 1.0,  "value": [0.59647, 0.00421, 0.00347, 0.80243] },
+        { "time": 2.2,  "value": [0.59812, 0.00842, 0.00694, 0.80101] },
+        { "time": 3.5,  "value": [0.59647, 0.00421, 0.00347, 0.80243] },
+        { "time": 5.0,  "value": [0.59474, -0.00848, -0.00687, 0.80376] },
+        { "time": 6.0,  "value": [0.59482, 0, 0, 0.80386] }
+      ]
+    },
+
+    {
+      "bone": "mixamorigLeftArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        { "time": 0.0,  "value": [0.59482, 0, 0, 0.80386] },
+        { "time": 0.8,  "value": [0.59647, 0.00421, 0.00347, 0.80243] },
+        { "time": 2.0,  "value": [0.59474, 0.00848, 0.00687, 0.80376] },
+        { "time": 3.3,  "value": [0.59647, -0.00421, -0.00347, 0.80243] },
+        { "time": 4.8,  "value": [0.59812, -0.00842, -0.00694, 0.80101] },
+        { "time": 6.0,  "value": [0.59482, 0, 0, 0.80386] }
+      ]
+    },
+
+    {
+      "bone": "mixamorigRightForeArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        { "time": 0.0,  "value": [0, 0, 0.13053, 0.99144] },
+        { "time": 1.4,  "value": [0.00651, 0.00069, 0.13052, 0.99139] },
+        { "time": 2.6,  "value": [0.01302, 0.00137, 0.13051, 0.99133] },
+        { "time": 3.9,  "value": [0.00651, 0.00069, 0.13052, 0.99139] },
+        { "time": 5.4,  "value": [-0.01302, -0.00137, 0.13051, 0.99133] },
+        { "time": 6.0,  "value": [0, 0, 0.13053, 0.99144] }
+      ]
+    },
+
+    {
+      "bone": "mixamorigLeftForeArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        { "time": 0.0,  "value": [0, 0, -0.13053, 0.99144] },
+        { "time": 1.2,  "value": [-0.00651, 0.00069, -0.13052, 0.99139] },
+        { "time": 2.4,  "value": [-0.01302, 0.00137, -0.13051, 0.99133] },
+        { "time": 3.7,  "value": [-0.00651, 0.00069, -0.13052, 0.99139] },
+        { "time": 5.2,  "value": [0.01302, -0.00137, -0.13051, 0.99133] },
+        { "time": 6.0,  "value": [0, 0, -0.13053, 0.99144] }
+      ]
+    },
+
+    {
+      "bone": "mixamorigRightHand",
       "property": "rotation",
       "interpolation": "linear",
       "keyframes": [
         { "time": 0.0,  "value": [0, 0, 0, 1] },
-        { "time": 1.5,  "value": [0, 0, 0.00436, 0.99999] },
-        { "time": 3.0,  "value": [0, 0, 0, 1] }
+        { "time": 2.0,  "value": [0.00436, 0.00218, 0.00218, 0.99999] },
+        { "time": 4.0,  "value": [-0.00436, -0.00218, -0.00218, 0.99999] },
+        { "time": 6.0,  "value": [0, 0, 0, 1] }
       ]
     },
     {
-      "bone": "clavicle_R",
-      "property": "position",
-      "interpolation": "linear",
-      "keyframes": [
-        { "time": 0.0,  "value": [0, 0, 0] },
-        { "time": 1.5,  "value": [0, 0.002, 0] },
-        { "time": 3.0,  "value": [0, 0, 0] }
-      ]
-    },
-    {
-      "bone": "upperarm_L",
+      "bone": "mixamorigLeftHand",
       "property": "rotation",
       "interpolation": "linear",
       "keyframes": [
-        { "time": 0.0,  "value": [-0.6373, -0.0839, 0.0999, 0.7594] },
-        { "time": 1.5,  "value": [-0.6390, -0.0839, 0.0999, 0.7579] },
-        { "time": 3.0,  "value": [-0.6373, -0.0839, 0.0999, 0.7594] }
-      ]
-    },
-    {
-      "bone": "upperarm_R",
-      "property": "rotation",
-      "interpolation": "linear",
-      "keyframes": [
-        { "time": 0.0,  "value": [-0.6373, 0.0839, -0.0999, 0.7594] },
-        { "time": 1.5,  "value": [-0.6390, 0.0839, -0.0999, 0.7579] },
-        { "time": 3.0,  "value": [-0.6373, 0.0839, -0.0999, 0.7594] }
-      ]
-    },
-    {
-      "bone": "lowerarm_L",
-      "property": "rotation",
-      "interpolation": "linear",
-      "keyframes": [
-        { "time": 0.0,  "value": [0, 0, -0.0959, 0.9954] },
-        { "time": 3.0,  "value": [0, 0, -0.0959, 0.9954] }
-      ]
-    },
-    {
-      "bone": "lowerarm_R",
-      "property": "rotation",
-      "interpolation": "linear",
-      "keyframes": [
-        { "time": 0.0,  "value": [0, 0, 0.0959, 0.9954] },
-        { "time": 3.0,  "value": [0, 0, 0.0959, 0.9954] }
-      ]
-    },
-    {
-      "bone": "hand_L",
-      "property": "rotation",
-      "interpolation": "linear",
-      "keyframes": [
-        { "time": 0.0,  "value": [0, 0, 0.0349, 0.9994] },
-        { "time": 3.0,  "value": [0, 0, 0.0349, 0.9994] }
-      ]
-    },
-    {
-      "bone": "hand_R",
-      "property": "rotation",
-      "interpolation": "linear",
-      "keyframes": [
-        { "time": 0.0,  "value": [0, 0, -0.0349, 0.9994] },
-        { "time": 3.0,  "value": [0, 0, -0.0349, 0.9994] }
+        { "time": 0.0,  "value": [0, 0, 0, 1] },
+        { "time": 2.0,  "value": [-0.00436, -0.00218, 0.00218, 0.99999] },
+        { "time": 4.0,  "value": [0.00436, 0.00218, -0.00218, 0.99999] },
+        { "time": 6.0,  "value": [0, 0, 0, 1] }
       ]
     },
 
-    { "bone": "thumb_01_L", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.1305, 0, 0, 0.9914] }, { "time": 3.0, "value": [-0.1305, 0, 0, 0.9914] }] },
-    { "bone": "thumb_02_L", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.2164, 0, 0, 0.9763] }, { "time": 3.0, "value": [-0.2164, 0, 0, 0.9763] }] },
-    { "bone": "thumb_03_L", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.1736, 0, 0, 0.9848] }, { "time": 3.0, "value": [-0.1736, 0, 0, 0.9848] }] },
+    { "bone": "mixamorigLeftHandThumb1", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.08716, 0, 0, 0.99619] }, { "time": 6.0, "value": [0.08716, 0, 0, 0.99619] }] },
+    { "bone": "mixamorigLeftHandThumb2", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.13053, 0, 0, 0.99144] }, { "time": 6.0, "value": [0.13053, 0, 0, 0.99144] }] },
+    { "bone": "mixamorigLeftHandThumb3", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.08716, 0, 0, 0.99619] }, { "time": 6.0, "value": [0.08716, 0, 0, 0.99619] }] },
 
-    { "bone": "index_01_L", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3007, 0, 0, 0.9537] }, { "time": 3.0, "value": [-0.3007, 0, 0, 0.9537] }] },
-    { "bone": "index_02_L", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.4226, 0, 0, 0.9063] }, { "time": 3.0, "value": [-0.4226, 0, 0, 0.9063] }] },
-    { "bone": "index_03_L", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3420, 0, 0, 0.9397] }, { "time": 3.0, "value": [-0.3420, 0, 0, 0.9397] }] },
+    { "bone": "mixamorigLeftHandIndex1", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.15643, 0, 0, 0.98769] }, { "time": 6.0, "value": [0.15643, 0, 0, 0.98769] }] },
+    { "bone": "mixamorigLeftHandIndex2", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.24192, 0, 0, 0.97030] }, { "time": 6.0, "value": [0.24192, 0, 0, 0.97030] }] },
+    { "bone": "mixamorigLeftHandIndex3", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.15643, 0, 0, 0.98769] }, { "time": 6.0, "value": [0.15643, 0, 0, 0.98769] }] },
 
-    { "bone": "middle_01_L", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3007, 0, 0, 0.9537] }, { "time": 3.0, "value": [-0.3007, 0, 0, 0.9537] }] },
-    { "bone": "middle_02_L", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.4226, 0, 0, 0.9063] }, { "time": 3.0, "value": [-0.4226, 0, 0, 0.9063] }] },
-    { "bone": "middle_03_L", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3420, 0, 0, 0.9397] }, { "time": 3.0, "value": [-0.3420, 0, 0, 0.9397] }] },
+    { "bone": "mixamorigLeftHandMiddle1", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.17365, 0, 0, 0.98481] }, { "time": 6.0, "value": [0.17365, 0, 0, 0.98481] }] },
+    { "bone": "mixamorigLeftHandMiddle2", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.25882, 0, 0, 0.96593] }, { "time": 6.0, "value": [0.25882, 0, 0, 0.96593] }] },
+    { "bone": "mixamorigLeftHandMiddle3", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.17365, 0, 0, 0.98481] }, { "time": 6.0, "value": [0.17365, 0, 0, 0.98481] }] },
 
-    { "bone": "ring_01_L", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3007, 0, 0, 0.9537] }, { "time": 3.0, "value": [-0.3007, 0, 0, 0.9537] }] },
-    { "bone": "ring_02_L", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.4226, 0, 0, 0.9063] }, { "time": 3.0, "value": [-0.4226, 0, 0, 0.9063] }] },
-    { "bone": "ring_03_L", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3420, 0, 0, 0.9397] }, { "time": 3.0, "value": [-0.3420, 0, 0, 0.9397] }] },
+    { "bone": "mixamorigLeftHandRing1", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.19081, 0, 0, 0.98163] }, { "time": 6.0, "value": [0.19081, 0, 0, 0.98163] }] },
+    { "bone": "mixamorigLeftHandRing2", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.28402, 0, 0, 0.95882] }, { "time": 6.0, "value": [0.28402, 0, 0, 0.95882] }] },
+    { "bone": "mixamorigLeftHandRing3", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.19081, 0, 0, 0.98163] }, { "time": 6.0, "value": [0.19081, 0, 0, 0.98163] }] },
 
-    { "bone": "pinky_01_L", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3007, 0, 0, 0.9537] }, { "time": 3.0, "value": [-0.3007, 0, 0, 0.9537] }] },
-    { "bone": "pinky_02_L", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.4226, 0, 0, 0.9063] }, { "time": 3.0, "value": [-0.4226, 0, 0, 0.9063] }] },
-    { "bone": "pinky_03_L", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3420, 0, 0, 0.9397] }, { "time": 3.0, "value": [-0.3420, 0, 0, 0.9397] }] },
+    { "bone": "mixamorigLeftHandPinky1", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.21644, 0, 0, 0.97630] }, { "time": 6.0, "value": [0.21644, 0, 0, 0.97630] }] },
+    { "bone": "mixamorigLeftHandPinky2", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.30071, 0, 0, 0.95372] }, { "time": 6.0, "value": [0.30071, 0, 0, 0.95372] }] },
+    { "bone": "mixamorigLeftHandPinky3", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.21644, 0, 0, 0.97630] }, { "time": 6.0, "value": [0.21644, 0, 0, 0.97630] }] },
 
-    { "bone": "thumb_01_R", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.1305, 0, 0, 0.9914] }, { "time": 3.0, "value": [-0.1305, 0, 0, 0.9914] }] },
-    { "bone": "thumb_02_R", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.2164, 0, 0, 0.9763] }, { "time": 3.0, "value": [-0.2164, 0, 0, 0.9763] }] },
-    { "bone": "thumb_03_R", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.1736, 0, 0, 0.9848] }, { "time": 3.0, "value": [-0.1736, 0, 0, 0.9848] }] },
+    { "bone": "mixamorigRightHandThumb1", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.08716, 0, 0, 0.99619] }, { "time": 6.0, "value": [0.08716, 0, 0, 0.99619] }] },
+    { "bone": "mixamorigRightHandThumb2", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.13053, 0, 0, 0.99144] }, { "time": 6.0, "value": [0.13053, 0, 0, 0.99144] }] },
+    { "bone": "mixamorigRightHandThumb3", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.08716, 0, 0, 0.99619] }, { "time": 6.0, "value": [0.08716, 0, 0, 0.99619] }] },
 
-    { "bone": "index_01_R", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3007, 0, 0, 0.9537] }, { "time": 3.0, "value": [-0.3007, 0, 0, 0.9537] }] },
-    { "bone": "index_02_R", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.4226, 0, 0, 0.9063] }, { "time": 3.0, "value": [-0.4226, 0, 0, 0.9063] }] },
-    { "bone": "index_03_R", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3420, 0, 0, 0.9397] }, { "time": 3.0, "value": [-0.3420, 0, 0, 0.9397] }] },
+    { "bone": "mixamorigRightHandIndex1", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.15643, 0, 0, 0.98769] }, { "time": 6.0, "value": [0.15643, 0, 0, 0.98769] }] },
+    { "bone": "mixamorigRightHandIndex2", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.24192, 0, 0, 0.97030] }, { "time": 6.0, "value": [0.24192, 0, 0, 0.97030] }] },
+    { "bone": "mixamorigRightHandIndex3", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.15643, 0, 0, 0.98769] }, { "time": 6.0, "value": [0.15643, 0, 0, 0.98769] }] },
 
-    { "bone": "middle_01_R", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3007, 0, 0, 0.9537] }, { "time": 3.0, "value": [-0.3007, 0, 0, 0.9537] }] },
-    { "bone": "middle_02_R", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.4226, 0, 0, 0.9063] }, { "time": 3.0, "value": [-0.4226, 0, 0, 0.9063] }] },
-    { "bone": "middle_03_R", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3420, 0, 0, 0.9397] }, { "time": 3.0, "value": [-0.3420, 0, 0, 0.9397] }] },
+    { "bone": "mixamorigRightHandMiddle1", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.17365, 0, 0, 0.98481] }, { "time": 6.0, "value": [0.17365, 0, 0, 0.98481] }] },
+    { "bone": "mixamorigRightHandMiddle2", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.25882, 0, 0, 0.96593] }, { "time": 6.0, "value": [0.25882, 0, 0, 0.96593] }] },
+    { "bone": "mixamorigRightHandMiddle3", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.17365, 0, 0, 0.98481] }, { "time": 6.0, "value": [0.17365, 0, 0, 0.98481] }] },
 
-    { "bone": "ring_01_R", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3007, 0, 0, 0.9537] }, { "time": 3.0, "value": [-0.3007, 0, 0, 0.9537] }] },
-    { "bone": "ring_02_R", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.4226, 0, 0, 0.9063] }, { "time": 3.0, "value": [-0.4226, 0, 0, 0.9063] }] },
-    { "bone": "ring_03_R", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3420, 0, 0, 0.9397] }, { "time": 3.0, "value": [-0.3420, 0, 0, 0.9397] }] },
+    { "bone": "mixamorigRightHandRing1", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.19081, 0, 0, 0.98163] }, { "time": 6.0, "value": [0.19081, 0, 0, 0.98163] }] },
+    { "bone": "mixamorigRightHandRing2", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.28402, 0, 0, 0.95882] }, { "time": 6.0, "value": [0.28402, 0, 0, 0.95882] }] },
+    { "bone": "mixamorigRightHandRing3", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.19081, 0, 0, 0.98163] }, { "time": 6.0, "value": [0.19081, 0, 0, 0.98163] }] },
 
-    { "bone": "pinky_01_R", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3007, 0, 0, 0.9537] }, { "time": 3.0, "value": [-0.3007, 0, 0, 0.9537] }] },
-    { "bone": "pinky_02_R", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.4226, 0, 0, 0.9063] }, { "time": 3.0, "value": [-0.4226, 0, 0, 0.9063] }] },
-    { "bone": "pinky_03_R", "property": "rotation", "interpolation": "linear",
-      "keyframes": [{ "time": 0.0, "value": [-0.3420, 0, 0, 0.9397] }, { "time": 3.0, "value": [-0.3420, 0, 0, 0.9397] }] }
+    { "bone": "mixamorigRightHandPinky1", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.21644, 0, 0, 0.97630] }, { "time": 6.0, "value": [0.21644, 0, 0, 0.97630] }] },
+    { "bone": "mixamorigRightHandPinky2", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.30071, 0, 0, 0.95372] }, { "time": 6.0, "value": [0.30071, 0, 0, 0.95372] }] },
+    { "bone": "mixamorigRightHandPinky3", "property": "rotation", "interpolation": "linear",
+      "keyframes": [{ "time": 0.0, "value": [0.21644, 0, 0, 0.97630] }, { "time": 6.0, "value": [0.21644, 0, 0, 0.97630] }] }
   ]
 }

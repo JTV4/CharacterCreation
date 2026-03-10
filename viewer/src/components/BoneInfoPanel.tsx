@@ -1,17 +1,21 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import type { BoneNode, BoneCategory, RigSpec, BoneTransformOverride } from "../types";
+import type { GlbBoneInfo, BoneCategory, BoneTransformOverride } from "../types";
 import { CATEGORY_COLORS } from "../types";
 import type { AnimationPlayerState } from "../hooks/useAnimationPlayer";
 
 const RAD2DEG = 180 / Math.PI;
 
+type TransformMode = "position" | "rotate" | "scale" | null;
+
 interface BoneInfoPanelProps {
-  bone: BoneNode | null;
-  spec: RigSpec;
+  bone: GlbBoneInfo | null;
+  boneList: GlbBoneInfo[];
   boneOverrides: Map<string, BoneTransformOverride>;
   onSetBoneOverride: (boneName: string, override: BoneTransformOverride | null) => void;
   playerRef: React.MutableRefObject<AnimationPlayerState | null>;
+  transformMode: TransformMode;
+  onEnterMode: (mode: "position" | "rotate" | "scale") => void;
 }
 
 const DEFAULT_OVERRIDE: BoneTransformOverride = {
@@ -19,22 +23,6 @@ const DEFAULT_OVERRIDE: BoneTransformOverride = {
   rotation: [0, 0, 0],
   scale: [1, 1, 1],
 };
-
-function formatVec(v: [number, number, number]): string {
-  return `[${v.map((n) => n.toFixed(3)).join(", ")}]`;
-}
-
-function formatRoll(r: number): string {
-  const deg = (r * 180) / Math.PI;
-  return `${r.toFixed(4)} rad (${deg.toFixed(1)}\u00B0)`;
-}
-
-function boneLength(head: [number, number, number], tail: [number, number, number]): string {
-  const dx = tail[0] - head[0];
-  const dy = tail[1] - head[1];
-  const dz = tail[2] - head[2];
-  return Math.sqrt(dx * dx + dy * dy + dz * dz).toFixed(4);
-}
 
 const DRAG_THRESHOLD = 3;
 
@@ -250,12 +238,26 @@ function computeBoneDeltaFromRest(
   return { position: deltaPos, rotation: deltaRot, scale: deltaScale };
 }
 
+function getAncestorChain(boneName: string, boneList: GlbBoneInfo[]): string[] {
+  const boneMap = new Map(boneList.map((b) => [b.name, b]));
+  const chain: string[] = [];
+  let current: string | null = boneName;
+  while (current) {
+    chain.unshift(current);
+    const b = boneMap.get(current);
+    current = b?.parent ?? null;
+  }
+  return chain;
+}
+
 export default function BoneInfoPanel({
   bone,
-  spec,
+  boneList,
   boneOverrides,
   onSetBoneOverride,
   playerRef,
+  transformMode,
+  onEnterMode,
 }: BoneInfoPanelProps) {
   const [livePose, setLivePose] = useState<BoneTransformOverride>(DEFAULT_OVERRIDE);
 
@@ -346,40 +348,6 @@ export default function BoneInfoPanel({
       </div>
 
       <div className="info-section">
-        <div className="info-section-title">Transform</div>
-        <div className="info-row">
-          <span className="info-label">Head</span>
-        </div>
-        <div className="info-vector">{formatVec(bone.head)}</div>
-        <div className="info-row" style={{ marginTop: 6 }}>
-          <span className="info-label">Tail</span>
-        </div>
-        <div className="info-vector">{formatVec(bone.tail)}</div>
-        <div className="info-row" style={{ marginTop: 6 }}>
-          <span className="info-label">Roll</span>
-          <span className="info-value">{formatRoll(bone.roll)}</span>
-        </div>
-        <div className="info-row">
-          <span className="info-label">Length</span>
-          <span className="info-value">{boneLength(bone.head, bone.tail)} m</span>
-        </div>
-      </div>
-
-      <div className="info-section">
-        <div className="info-section-title">Properties</div>
-        <div className="info-row">
-          <span className="info-label">Deform</span>
-          <span className="info-value">{bone.deform ? "Yes" : "No"}</span>
-        </div>
-        {bone.mirrorOf && (
-          <div className="info-row">
-            <span className="info-label">Mirror</span>
-            <span className="info-value">{bone.mirrorOf}</span>
-          </div>
-        )}
-      </div>
-
-      <div className="info-section">
         <div className="info-section-title" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span>Transform Overrides</span>
           <div style={{ display: "flex", gap: 6 }}>
@@ -392,6 +360,31 @@ export default function BoneInfoPanel({
               </button>
             )}
           </div>
+        </div>
+        <div className="transform-toolbar">
+          {(["position", "rotate", "scale"] as const).map((m) => {
+            const label = m === "position" ? "P" : m === "rotate" ? "R" : "S";
+            const title = m === "position"
+              ? "Position (P) — drag mouse to move"
+              : m === "rotate"
+                ? "Rotate (R) — drag mouse to rotate"
+                : "Scale (S) — drag mouse to scale";
+            const isActive = transformMode === m;
+            return (
+              <button
+                key={m}
+                className={`transform-toolbar-btn${isActive ? " active" : ""}`}
+                title={title}
+                onClick={() => onEnterMode(m)}
+                disabled={isActive}
+              >
+                {label}
+                <span className="transform-toolbar-label">
+                  {m === "position" ? "Position" : m === "rotate" ? "Rotate" : "Scale"}
+                </span>
+              </button>
+            );
+          })}
         </div>
         <Vec3Input
           label="Position"
@@ -417,7 +410,7 @@ export default function BoneInfoPanel({
         <div className="info-section">
           <div className="info-section-title">Hierarchy</div>
           <div style={{ fontSize: 11, color: "var(--text-secondary)", lineHeight: 1.8 }}>
-            {getAncestorChain(bone.name, spec).map((name, i, arr) => (
+            {getAncestorChain(bone.name, boneList).map((name, i, arr) => (
               <span key={name}>
                 <span style={{ color: name === bone.name ? "var(--accent)" : undefined }}>
                   {name}
@@ -434,16 +427,4 @@ export default function BoneInfoPanel({
       )}
     </div>
   );
-}
-
-function getAncestorChain(boneName: string, spec: RigSpec): string[] {
-  const boneMap = new Map(spec.bones.map((b) => [b.name, b]));
-  const chain: string[] = [];
-  let current: string | null = boneName;
-  while (current) {
-    chain.unshift(current);
-    const b = boneMap.get(current);
-    current = b?.parent ?? null;
-  }
-  return chain;
 }

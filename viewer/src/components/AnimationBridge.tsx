@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import type { RigSpec, BoneTransformOverride } from "../types";
+import * as THREE from "three";
+import type { CharacterModel, BoneTransformOverride } from "../types";
 import type { AnimSpec } from "../types/animation";
 import {
   useAnimationPlayer,
@@ -7,23 +8,34 @@ import {
 } from "../hooks/useAnimationPlayer";
 
 interface AnimationBridgeProps {
-  rigSpec: RigSpec;
+  characterModel: CharacterModel | null;
   animSpec: AnimSpec | null;
   onStateChange: (state: AnimationPlayerState) => void;
   commandRef: React.MutableRefObject<AnimationPlayerState | null>;
   boneOverrides: Map<string, BoneTransformOverride>;
   basePose?: Map<string, BoneTransformOverride>;
+  showMesh: boolean;
 }
 
 export default function AnimationBridge({
-  rigSpec,
+  characterModel,
   animSpec,
   onStateChange,
   commandRef,
   boneOverrides,
   basePose,
+  showMesh,
 }: AnimationBridgeProps) {
-  const player = useAnimationPlayer(rigSpec, boneOverrides, basePose);
+  const player = useAnimationPlayer(characterModel, boneOverrides, basePose);
+
+  useEffect(() => {
+    if (!characterModel) return;
+    characterModel.scene.traverse((child) => {
+      if ((child as THREE.SkinnedMesh).isSkinnedMesh) {
+        child.visible = showMesh;
+      }
+    });
+  }, [characterModel, showMesh]);
   const onStateChangeRef = useRef(onStateChange);
   onStateChangeRef.current = onStateChange;
 
@@ -42,7 +54,6 @@ export default function AnimationBridge({
     duration,
     speed,
     loop,
-    animatedPositions,
   } = player;
 
   useEffect(() => {
@@ -74,7 +85,9 @@ export default function AnimationBridge({
         }, 32);
       }
     }
-  }, [currentTime, animatedPositions, isPlaying, boneOverrides]);
+  }, [currentTime, isPlaying, boneOverrides]);
 
-  return <primitive object={player.skeletonRoot} />;
+  if (!characterModel) return null;
+
+  return <primitive object={characterModel.scene} />;
 }

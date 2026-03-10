@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import type { BoneTransformOverride } from "../types";
 import type { AnimationPlayerState } from "./useAnimationPlayer";
@@ -54,7 +54,10 @@ export function useTransformShortcuts({
   boneOverrides,
   onSetBoneOverride,
   playerRef,
-}: Params): { transformMode: TransformMode } {
+}: Params): {
+  transformMode: TransformMode;
+  enterMode: (requestedMode: "position" | "rotate" | "scale") => void;
+} {
   const [mode, setMode] = useState<TransformMode>(null);
 
   const startRef = useRef<{
@@ -153,38 +156,48 @@ export function useTransformShortcuts({
       if (mode) return;
       if (!selectedBone) return;
 
-      let next: TransformMode = null;
+      let next: "position" | "rotate" | "scale" | null = null;
       if (key === "s") next = "scale";
       else if (key === "r") next = "rotate";
       else if (key === "p") next = "position";
 
       if (next) {
         e.preventDefault();
-        const had = boneOverrides.has(selectedBone);
-        const cur = had
-          ? boneOverrides.get(selectedBone)!
-          : computeBoneDelta(selectedBone, playerRef);
-        if (!had) {
-          onSetBoneOverride(selectedBone, { ...cur });
-        }
-        startRef.current = {
-          mouseX: mousePosRef.current.x,
-          mouseY: mousePosRef.current.y,
-          override: {
-            position: [...cur.position],
-            rotation: [...cur.rotation],
-            scale: [...cur.scale],
-          },
-          boneName: selectedBone,
-          hadOverride: had,
-        };
-        setMode(next);
+        enterMode.current(next);
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [mode, selectedBone, boneOverrides, onSetBoneOverride, playerRef]);
+
+  const enterMode = useRef((requestedMode: "position" | "rotate" | "scale") => {
+    /* replaced below */
+  });
+
+  enterMode.current = (requestedMode: "position" | "rotate" | "scale") => {
+    if (mode) return;
+    if (!selectedBone) return;
+    const had = boneOverrides.has(selectedBone);
+    const cur = had
+      ? boneOverrides.get(selectedBone)!
+      : computeBoneDelta(selectedBone, playerRef);
+    if (!had) {
+      onSetBoneOverride(selectedBone, { ...cur });
+    }
+    startRef.current = {
+      mouseX: mousePosRef.current.x,
+      mouseY: mousePosRef.current.y,
+      override: {
+        position: [...cur.position],
+        rotation: [...cur.rotation],
+        scale: [...cur.scale],
+      },
+      boneName: selectedBone,
+      hadOverride: had,
+    };
+    setMode(requestedMode);
+  };
 
   // Confirm on pointer down (left click), cancel on right click
   useEffect(() => {
@@ -205,5 +218,10 @@ export function useTransformShortcuts({
     return () => window.removeEventListener("pointerdown", handlePointerDown, true);
   }, [mode, onSetBoneOverride]);
 
-  return { transformMode: mode };
+  const stableEnterMode = useCallback(
+    (requestedMode: "position" | "rotate" | "scale") => enterMode.current(requestedMode),
+    [],
+  );
+
+  return { transformMode: mode, enterMode: stableEnterMode };
 }
