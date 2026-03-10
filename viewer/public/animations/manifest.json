@@ -1,5 +1,7 @@
 {
   "animations": [
-    { "id": "idle", "file": "idle.anim.json", "loop": true }
+    { "id": "FemaleIdle", "file": "FemaleIdle.anim.json", "loop": true },
+    { "id": "FemaleWalk", "file": "FemaleWalk.anim.json", "loop": true },
+    { "id": "FemaleRun", "file": "FemaleRun.anim.json", "loop": true }
   ]
 }
