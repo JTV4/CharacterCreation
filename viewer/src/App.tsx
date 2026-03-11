@@ -4,7 +4,7 @@ import { useCharacterModel } from "./hooks/useCharacterModel";
 import { useTransformShortcuts } from "./hooks/useTransformShortcuts";
 import type { AnimSpec, AnimManifest } from "./types/animation";
 import type { AnimationPlayerState } from "./hooks/useAnimationPlayer";
-import type { EquipmentSpec, EquipmentState } from "./types/equipment";
+import type { EquipmentSpec, EquipmentState, EquipTransform } from "./types/equipment";
 import type { BoneTransformOverride, ModelGender, GlbBoneInfo } from "./types";
 import Scene from "./components/Scene";
 import ViewportErrorBoundary from "./components/ViewportErrorBoundary";
@@ -14,6 +14,7 @@ import AnimationControls from "./components/AnimationControls";
 import AnimationBridge from "./components/AnimationBridge";
 import EquipmentPanel from "./components/EquipmentPanel";
 import EquipmentMeshRenderer from "./components/EquipmentMeshRenderer";
+import MeshInfoPanel from "./components/MeshInfoPanel";
 import ToolPanel from "./components/ToolPanel";
 import ToolAttachment from "./components/ToolAttachment";
 import PoseEditor from "./components/PoseEditor";
@@ -198,6 +199,25 @@ export default function App() {
     setEquipState((prev) => ({ ...prev, [slotId]: enabled }));
   }, []);
 
+  const [selectedEquipSlot, setSelectedEquipSlot] = useState<string | null>(null);
+  const [equipTransforms, setEquipTransforms] = useState<Record<string, EquipTransform>>({});
+  const [equipGizmoMode, setEquipGizmoMode] = useState<GizmoMode>("translate");
+
+  const handleEquipTransformChange = useCallback(
+    (id: string, t: EquipTransform) => {
+      setEquipTransforms((prev) => ({ ...prev, [id]: t }));
+    },
+    [],
+  );
+
+  const handleResetEquipTransform = useCallback((id: string) => {
+    setEquipTransforms((prev) => {
+      const next = { ...prev };
+      delete next[id];
+      return next;
+    });
+  }, []);
+
   const [selectedToolId, setSelectedToolId] = useState<string | null>(null);
   const selectedTool = useMemo(
     () => TOOLS.find((t) => t.id === selectedToolId) ?? null,
@@ -326,6 +346,18 @@ export default function App() {
     return characterModel.boneList.find((b) => b.name === selectedBone) ?? null;
   }, [selectedBone, characterModel]);
 
+  const selectedEquipSlotInfo = useMemo(() => {
+    if (!selectedEquipSlot || !equipSpec) return null;
+    return equipSpec.slots.find((s) => s.id === selectedEquipSlot) ?? null;
+  }, [selectedEquipSlot, equipSpec]);
+
+  const selectedEquipTransform = useMemo(
+    () => selectedEquipSlot
+      ? equipTransforms[selectedEquipSlot] ?? { position: [0, 0, 0] as [number, number, number], rotation: [0, 0, 0] as [number, number, number], scale: 1 }
+      : { position: [0, 0, 0] as [number, number, number], rotation: [0, 0, 0] as [number, number, number], scale: 1 },
+    [selectedEquipSlot, equipTransforms],
+  );
+
   if (loading) {
     return <div className="loading-screen">Loading character model...</div>;
   }
@@ -412,6 +444,12 @@ export default function App() {
                 equipState={equipState}
                 effectiveState={effectiveEquipState}
                 playerRef={playerRef}
+                characterModel={characterModel}
+                selectedSlot={selectedEquipSlot}
+                onSelectSlot={setSelectedEquipSlot}
+                equipTransforms={equipTransforms}
+                equipGizmoMode={equipGizmoMode}
+                onEquipTransformChange={handleEquipTransformChange}
               />
             )}
             {selectedTool && (
@@ -471,6 +509,18 @@ export default function App() {
           transformMode={transformMode}
           onEnterMode={enterMode}
         />
+        <MeshInfoPanel
+          slot={selectedEquipSlotInfo}
+          transform={selectedEquipTransform}
+          gizmoMode={equipGizmoMode}
+          onGizmoModeChange={setEquipGizmoMode}
+          onTransformChange={(t) => {
+            if (selectedEquipSlot) handleEquipTransformChange(selectedEquipSlot, t);
+          }}
+          onReset={() => {
+            if (selectedEquipSlot) handleResetEquipTransform(selectedEquipSlot);
+          }}
+        />
         <PoseEditor
           enabled={poseMode}
           onToggle={handleTogglePoseMode}
@@ -486,9 +536,13 @@ export default function App() {
         />
         {!poseMode && equipSpec && (
           <EquipmentPanel
-            slots={equipSpec.slots.filter((s) => !BODY_SLOT_IDS.has(s.id))}
+            slots={equipSpec.slots.filter(
+              (s) => !BODY_SLOT_IDS.has(s.id) && (!s.gender || s.gender === activeGender),
+            )}
             equipState={equipState}
             onToggleSlot={handleToggleSlot}
+            selectedSlot={selectedEquipSlot}
+            onSelectSlot={setSelectedEquipSlot}
           />
         )}
         {!poseMode && (

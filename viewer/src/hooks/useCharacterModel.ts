@@ -99,6 +99,8 @@ function extractCharacterModel(gltf: { scene: THREE.Group }): CharacterModel {
   const scene = gltf.scene;
 
   scene.rotation.x = Math.PI / 2;
+  const heightScale = 1.9 / 1.75;
+  scene.scale.setScalar(heightScale);
 
   const bones = findAllBones(scene);
   const skinnedMeshes = findSkinnedMeshes(scene);

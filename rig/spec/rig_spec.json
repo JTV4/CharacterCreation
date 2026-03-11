@@ -7,7 +7,7 @@
     "up_axis": "+Z",
     "right_axis": "+X",
     "mirror_convention": "left_is_negative_x",
-    "character_height": 1.75
+    "character_height": 1.90
   },
   "bones": [
     {

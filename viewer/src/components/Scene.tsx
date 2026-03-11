@@ -15,7 +15,7 @@ interface SceneProps {
   children?: React.ReactNode;
 }
 
-const ORBIT_TARGET: [number, number, number] = [0, 0, 0.9];
+const ORBIT_TARGET: [number, number, number] = [0, 0, 0.95];
 
 const AXIS_VIEWS = [
   { key: "+X", label: "Right", colorClass: "axis-x" },
@@ -108,7 +108,7 @@ export default function Scene({
   return (
     <div style={{ width: "100%", height: "100%", position: "relative" }}>
       <Canvas
-        camera={{ position: [0, 3, 0.9], fov: 45, near: 0.01, far: 100 }}
+        camera={{ position: [0, 3, 0.95], fov: 45, near: 0.01, far: 100 }}
         style={{ width: "100%", height: "100%", cursor: cursorStyle }}
         onPointerMissed={() => {
           if (!transformMode) onSelectBone(null);
@@ -117,9 +117,11 @@ export default function Scene({
           camera.up.set(0, 0, 1);
         }}
       >
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 8, 5]} intensity={1} />
-        <directionalLight position={[-3, 4, -2]} intensity={0.3} />
+        <ambientLight intensity={0.7} />
+        <hemisphereLight args={["#b1c4e0", "#3a3028", 0.6]} />
+        <directionalLight position={[5, 8, 5]} intensity={1.5} />
+        <directionalLight position={[-3, 4, -2]} intensity={0.6} />
+        <directionalLight position={[0, -5, 3]} intensity={0.4} />
 
         <Grid
           args={[10, 10]}

@@ -944,6 +944,20 @@ body,
   background: var(--bg-hover);
 }
 
+.equip-slot.equip-selected {
+  background: rgba(74, 158, 255, 0.18);
+  outline: 1px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.equip-transform-section {
+  padding: 10px 14px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 /* ---- Transform Toolbar ---- */
 
 .transform-toolbar {

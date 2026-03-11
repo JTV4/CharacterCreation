@@ -8,6 +8,8 @@ interface EquipmentPanelProps {
   slots: EquipmentSlot[];
   equipState: EquipmentState;
   onToggleSlot: (slotId: string, enabled: boolean) => void;
+  selectedSlot: string | null;
+  onSelectSlot: (id: string | null) => void;
 }
 
 type ExportFormat = "viewer" | "game";
@@ -39,6 +41,8 @@ export default function EquipmentPanel({
   slots,
   equipState,
   onToggleSlot,
+  selectedSlot,
+  onSelectSlot,
 }: EquipmentPanelProps) {
   const [exportFormat, setExportFormat] = useState<ExportFormat>("game");
 
@@ -110,13 +114,20 @@ export default function EquipmentPanel({
               const blocker = isHiddenByRule(slot);
               const blocked = blocker !== null;
               const color = slot.color ?? SLOT_COLORS[slot.id] ?? DEFAULT_COLOR;
+              const isSelected = selectedSlot === slot.id;
 
               return (
                 <div
                   key={slot.id}
-                  className={`equip-slot ${enabled && !blocked ? "active" : ""} ${blocked ? "blocked" : ""}`}
+                  className={`equip-slot ${enabled && !blocked ? "active" : ""} ${blocked ? "blocked" : ""} ${isSelected ? "equip-selected" : ""}`}
+                  onClick={() => {
+                    if (enabled && !blocked) {
+                      onSelectSlot(isSelected ? null : slot.id);
+                    }
+                  }}
+                  style={{ cursor: enabled && !blocked ? "pointer" : undefined }}
                 >
-                  <label className="equip-toggle">
+                  <label className="equip-toggle" onClick={(e) => e.stopPropagation()}>
                     <input
                       type="checkbox"
                       checked={enabled && !blocked}
@@ -139,7 +150,10 @@ export default function EquipmentPanel({
                   )}
                   <button
                     className="equip-export-btn"
-                    onClick={() => downloadSlot(slot.id, exportFormat)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      downloadSlot(slot.id, exportFormat);
+                    }}
                     title={`Export ${slot.name} GLB (${exportFormat === "game" ? "Y-up" : "Z-up"})`}
                   >
                     GLB
@@ -160,13 +174,20 @@ export default function EquipmentPanel({
               const blocker = isHiddenByRule(slot);
               const blocked = blocker !== null;
               const color = slot.color ?? SLOT_COLORS[slot.id] ?? DEFAULT_COLOR;
+              const isSelected = selectedSlot === slot.id;
 
               return (
                 <div
                   key={slot.id}
-                  className={`equip-slot ${enabled && !blocked ? "active" : ""} ${blocked ? "blocked" : ""}`}
+                  className={`equip-slot ${enabled && !blocked ? "active" : ""} ${blocked ? "blocked" : ""} ${isSelected ? "equip-selected" : ""}`}
+                  onClick={() => {
+                    if (enabled && !blocked) {
+                      onSelectSlot(isSelected ? null : slot.id);
+                    }
+                  }}
+                  style={{ cursor: enabled && !blocked ? "pointer" : undefined }}
                 >
-                  <label className="equip-toggle">
+                  <label className="equip-toggle" onClick={(e) => e.stopPropagation()}>
                     <input
                       type="checkbox"
                       checked={enabled && !blocked}
@@ -189,7 +210,10 @@ export default function EquipmentPanel({
                   )}
                   <button
                     className="equip-export-btn"
-                    onClick={() => downloadSlot(slot.id, exportFormat)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      downloadSlot(slot.id, exportFormat);
+                    }}
                     title={`Export ${slot.name} GLB (${exportFormat === "game" ? "Y-up" : "Z-up"})`}
                   >
                     GLB
@@ -203,6 +227,7 @@ export default function EquipmentPanel({
           </>
         )}
       </div>
+
     </div>
   );
 }

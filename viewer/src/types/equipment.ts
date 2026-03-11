@@ -33,6 +33,8 @@ export interface EquipmentSlot {
   /** Category for grouping in UI (e.g. "meshes", "equipment"). Defaults to "equipment". */
   category?: string;
   color?: string;
+  /** If set, this slot only appears when the matching gender model is active. */
+  gender?: "male" | "female";
   bones: SlotBone[];
   bounds: SlotBounds;
   rules: SlotRules;
@@ -62,6 +64,18 @@ export interface EquipmentState {
   [slotId: string]: boolean;
 }
 
+export interface EquipTransform {
+  position: [number, number, number];
+  rotation: [number, number, number];
+  scale: number;
+}
+
+export const DEFAULT_EQUIP_TRANSFORM: EquipTransform = {
+  position: [0, 0, 0],
+  rotation: [0, 0, 0],
+  scale: 1,
+};
+
 export const SLOT_COLORS: Record<string, string> = {
   base_body: "#e8b4a0",
   base_male: "#e8b4a0",
@@ -69,7 +83,13 @@ export const SLOT_COLORS: Record<string, string> = {
   base_male_with_skin_texture: "#e8b4a0",
   base_female_with_skin_texture: "#e8b4a0",
   head: "#c084fc",
+  amulet: "#fbbf24",
   upper_body: "#4a9eff",
+  crimson_wizard_robe: "#7f1d1d",
+  crimson_wizard_hat: "#991b1b",
+  crimson_wizard_robe_bottom: "#b91c1c",
+  crimson_wizard_gloves: "#dc2626",
+  crimson_wizard_boots: "#ef4444",
   lower_body: "#ff6b6b",
   gloves: "#4adb7a",
   ring: "#ffd93d",
