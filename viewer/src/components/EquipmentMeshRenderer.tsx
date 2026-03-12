@@ -8,6 +8,7 @@ import type {
   EquipmentSlot,
   EquipTransform,
   SlotBone,
+  SlotTextures,
 } from "../types/equipment";
 import type { GizmoMode } from "../types/tools";
 import type { CharacterModel } from "../types";
@@ -26,6 +27,7 @@ interface EquipmentMeshRendererProps {
   equipTransforms: Record<string, EquipTransform>;
   equipGizmoMode: GizmoMode;
   onEquipTransformChange: (id: string, t: EquipTransform) => void;
+  slotTextures?: SlotTextures;
 }
 
 const BODY_SLOT_IDS = new Set([
@@ -42,12 +44,78 @@ interface LoadedSlot {
   scene: THREE.Group;
   skinnedMeshes: THREE.SkinnedMesh[];
   needsAutoSkin?: boolean;
+  originalMaterials?: Map<THREE.Mesh, THREE.Material>;
 }
 
 const loader = new GLTFLoader();
 const slotCache = new Map<string, LoadedSlot>();
 const correctedSlots = new Set<string>();
 const _buildTimestamp = Date.now();
+const textureLoader = new THREE.TextureLoader();
+const textureCache = new Map<string, THREE.Texture>();
+
+/**
+ * Build a MeshStandardMaterial that uses triplanar world-space projection
+ * instead of UV coordinates.  The texture is projected from all 3 axes and
+ * blended by surface normal, giving a natural wrapped look on body meshes
+ * without requiring a hand-authored UV layout.
+ */
+function createTriplanarMaterial(
+  texture: THREE.Texture,
+  scale = 1.0,
+  sharpness = 2.0,
+): THREE.MeshStandardMaterial {
+  const mat = new THREE.MeshStandardMaterial({
+    map: texture,
+    side: THREE.FrontSide,
+    depthWrite: true,
+    polygonOffset: true,
+    polygonOffsetFactor: -1,
+    polygonOffsetUnits: -1,
+  });
+
+  mat.onBeforeCompile = (shader) => {
+    shader.uniforms.tpScale = { value: scale };
+    shader.uniforms.tpSharp = { value: sharpness };
+
+    shader.vertexShader = shader.vertexShader.replace(
+      "#include <common>",
+      `#include <common>
+       varying vec3 vTriPos;
+       varying vec3 vTriNorm;`,
+    );
+    shader.vertexShader = shader.vertexShader.replace(
+      "#include <project_vertex>",
+      `#include <project_vertex>
+       vTriPos  = (modelMatrix * vec4(transformed, 1.0)).xyz;
+       vTriNorm = normalize(mat3(modelMatrix) * objectNormal);`,
+    );
+
+    shader.fragmentShader = shader.fragmentShader.replace(
+      "#include <common>",
+      `#include <common>
+       varying vec3 vTriPos;
+       varying vec3 vTriNorm;
+       uniform float tpScale;
+       uniform float tpSharp;`,
+    );
+    shader.fragmentShader = shader.fragmentShader.replace(
+      "#include <map_fragment>",
+      `#ifdef USE_MAP
+         vec3 tpW = pow(abs(vTriNorm), vec3(tpSharp));
+         tpW /= (tpW.x + tpW.y + tpW.z);
+         vec4 tpX = texture2D(map, vTriPos.yz * tpScale);
+         vec4 tpY = texture2D(map, vTriPos.xz * tpScale);
+         vec4 tpZ = texture2D(map, vTriPos.xy * tpScale);
+         vec4 sampledDiffuseColor = tpX * tpW.x + tpY * tpW.y + tpZ * tpW.z;
+         sampledDiffuseColor = sRGBTransferOETF(sampledDiffuseColor);
+         diffuseColor *= sampledDiffuseColor;
+       #endif`,
+    );
+  };
+
+  return mat;
+}
 const _identityMatrix = new THREE.Matrix4();
 const _equipFacingCorrection = new THREE.Matrix4().makeRotationZ(Math.PI);
 
@@ -687,6 +755,7 @@ export default function EquipmentMeshRenderer({
   equipTransforms,
   equipGizmoMode,
   onEquipTransformChange,
+  slotTextures,
 }: EquipmentMeshRendererProps) {
   const groupRef = useRef<THREE.Group>(null);
   const [loadedSlots, setLoadedSlots] = useState<Map<string, LoadedSlot>>(
@@ -753,13 +822,23 @@ export default function EquipmentMeshRenderer({
             : _equipFacingCorrection;
 
           const color = SLOT_COLORS[slotId] ?? "#94a3b8";
+          const origMats = new Map<THREE.Mesh, THREE.Material>();
           scene.traverse((child) => {
             if ((child as THREE.Mesh).isMesh) {
               const mesh = child as THREE.Mesh;
               if (!isImported) {
                 mesh.geometry.applyMatrix4(geoCorrection);
               }
-              if (!isImported) {
+              const existingMat = mesh.material as THREE.MeshStandardMaterial;
+              const hasBakedTexture = existingMat?.isMeshStandardMaterial && existingMat.map != null;
+              if (hasBakedTexture) {
+                existingMat.side = THREE.FrontSide;
+                existingMat.depthWrite = true;
+                existingMat.polygonOffset = true;
+                existingMat.polygonOffsetFactor = -1;
+                existingMat.polygonOffsetUnits = -1;
+                origMats.set(mesh, existingMat);
+              } else if (!isImported) {
                 mesh.material = new THREE.MeshStandardMaterial({
                   color,
                   transparent: true,
@@ -770,6 +849,11 @@ export default function EquipmentMeshRenderer({
                   polygonOffsetFactor: -1,
                   polygonOffsetUnits: -1,
                 });
+              }
+              if (!hasBakedTexture && !isImported) {
+                origMats.set(mesh, mesh.material as THREE.Material);
+              } else if (isImported) {
+                origMats.set(mesh, mesh.material as THREE.Material);
               }
               mesh.frustumCulled = false;
             }
@@ -787,7 +871,7 @@ export default function EquipmentMeshRenderer({
             }
           }
 
-          const loaded: LoadedSlot = { scene, skinnedMeshes, needsAutoSkin };
+          const loaded: LoadedSlot = { scene, skinnedMeshes, needsAutoSkin, originalMaterials: origMats };
           slotCache.set(slotId, loaded);
           setLoadedSlots((prev) => {
             const next = new Map(prev);
@@ -807,6 +891,50 @@ export default function EquipmentMeshRenderer({
       cancelled = true;
     };
   }, [equipmentSlotIds, equipState, slotMap]);
+
+  useEffect(() => {
+    if (!slotTextures) return;
+    for (const [slotId, slot] of slotCache) {
+      const texUrl = slotTextures[slotId];
+      slot.scene.traverse((child) => {
+        if (!(child as THREE.Mesh).isMesh) return;
+        const mesh = child as THREE.Mesh;
+
+        if (texUrl) {
+          let tex = textureCache.get(texUrl);
+          if (!tex) {
+            tex = textureLoader.load(texUrl);
+            tex.colorSpace = THREE.SRGBColorSpace;
+            tex.wrapS = THREE.RepeatWrapping;
+            tex.wrapT = THREE.RepeatWrapping;
+            tex.magFilter = THREE.LinearFilter;
+            tex.minFilter = THREE.LinearMipmapLinearFilter;
+            textureCache.set(texUrl, tex);
+          }
+          const triMat = createTriplanarMaterial(tex, 0.8, 2.0);
+          triMat.customProgramCacheKey = () => "triplanar_" + slotId;
+          mesh.material = triMat;
+        } else {
+          const origMat = slot.originalMaterials?.get(mesh);
+          if (origMat) {
+            mesh.material = origMat;
+          } else {
+            const color = SLOT_COLORS[slotId] ?? "#94a3b8";
+            mesh.material = new THREE.MeshStandardMaterial({
+              color,
+              transparent: true,
+              opacity: 0.35,
+              side: THREE.FrontSide,
+              depthWrite: true,
+              polygonOffset: true,
+              polygonOffsetFactor: -1,
+              polygonOffsetUnits: -1,
+            });
+          }
+        }
+      });
+    }
+  }, [slotTextures, loadedSlots]);
 
   useFrame(() => {
     const player = playerRef.current;

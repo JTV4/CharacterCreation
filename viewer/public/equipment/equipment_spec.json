@@ -1339,6 +1339,34 @@
       "mesh_params": {},
       "gender": "female",
       "url": "/equipment/shell_boots.glb"
+    },
+    {
+      "id": "shell_upper_body_crimson",
+      "name": "Crimson Upper Body",
+      "bilateral": false,
+      "color": "#9f1239",
+      "bones": [
+        { "name": "mixamorigHips", "weight": 0.6 },
+        { "name": "mixamorigSpine", "weight": 1.0 },
+        { "name": "mixamorigSpine1", "weight": 1.0 },
+        { "name": "mixamorigSpine2", "weight": 1.0 },
+        { "name": "mixamorigLeftShoulder", "weight": 0.8 },
+        { "name": "mixamorigRightShoulder", "weight": 0.8 },
+        { "name": "mixamorigLeftArm", "weight": 1.0 },
+        { "name": "mixamorigRightArm", "weight": 1.0 },
+        { "name": "mixamorigLeftForeArm", "weight": 1.0 },
+        { "name": "mixamorigRightForeArm", "weight": 1.0 },
+        { "name": "mixamorigLeftHand", "weight": 0.1 },
+        { "name": "mixamorigRightHand", "weight": 0.1 },
+        { "name": "mixamorigNeck", "weight": 0.1 }
+      ],
+      "bounds": { "z_min": 1.01, "z_max": 1.54, "radius": 0.75, "weight_radius": 0.3 },
+      "rules": {},
+      "hides_body_regions": ["torso", "neck", "arms"],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "gender": "female",
+      "url": "/equipment/shell_upper_body_crimson.glb"
     }
   ]
 }

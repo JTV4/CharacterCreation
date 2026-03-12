@@ -4,6 +4,7 @@ import type {
   EquipmentState,
   EquipmentSlotType,
   EquipTransform,
+  SlotTextures,
 } from "../types/equipment";
 import {
   SLOT_COLORS,
@@ -21,6 +22,8 @@ interface EquipmentPanelProps {
   onSelectSlot: (id: string | null) => void;
   onImportEquipment: (slotType: EquipmentSlotType, name: string, url: string) => void;
   equipTransforms: Record<string, EquipTransform>;
+  slotTextures: SlotTextures;
+  onSetSlotTexture: (slotId: string, dataUrl: string | null) => void;
 }
 
 type ExportFormat = "viewer" | "game";
@@ -203,9 +206,33 @@ export default function EquipmentPanel({
   onSelectSlot,
   onImportEquipment,
   equipTransforms,
+  slotTextures,
+  onSetSlotTexture,
 }: EquipmentPanelProps) {
   const [exportFormat, setExportFormat] = useState<ExportFormat>("game");
   const [copiedSlot, setCopiedSlot] = useState<string | null>(null);
+  const textureInputRef = useRef<HTMLInputElement>(null);
+  const [textureTargetSlot, setTextureTargetSlot] = useState<string | null>(null);
+
+  const handleTextureClick = useCallback((slotId: string) => {
+    setTextureTargetSlot(slotId);
+    if (textureInputRef.current) {
+      textureInputRef.current.value = "";
+      textureInputRef.current.click();
+    }
+  }, []);
+
+  const handleTextureFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !textureTargetSlot) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === "string") {
+        onSetSlotTexture(textureTargetSlot, reader.result);
+      }
+    };
+    reader.readAsDataURL(file);
+  }, [textureTargetSlot, onSetSlotTexture]);
 
   const isHiddenByRule = useCallback(
     (slot: EquipmentSlot): string | null => {
@@ -312,6 +339,29 @@ export default function EquipmentPanel({
             GLB
           </button>
         )}
+        {slotTextures[slot.id] ? (
+          <button
+            className="equip-texture-btn has-texture"
+            onClick={(e) => {
+              e.stopPropagation();
+              onSetSlotTexture(slot.id, null);
+            }}
+            title="Remove texture"
+          >
+            Tex &times;
+          </button>
+        ) : (
+          <button
+            className="equip-texture-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleTextureClick(slot.id);
+            }}
+            title="Upload texture image"
+          >
+            Tex
+          </button>
+        )}
         <span className="equip-bone-count">
           {slot.bones.length} bones
         </span>
@@ -335,6 +385,14 @@ export default function EquipmentPanel({
       </div>
 
       <ImportSection onImport={onImportEquipment} />
+
+      <input
+        ref={textureInputRef}
+        type="file"
+        accept="image/*"
+        style={{ display: "none" }}
+        onChange={handleTextureFileChange}
+      />
 
       <div className="equip-format-row">
         <span className="equip-format-label">Export format:</span>

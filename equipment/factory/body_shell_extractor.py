@@ -557,6 +557,13 @@ def extract_slot_shell(
         print(f"  After Solidify: {final_faces} faces, {final_verts} vertices "
               f"(thickness={thickness:.4f}m)")
 
+    _ensure_object_mode(shell)
+    bpy.ops.object.mode_set(mode="EDIT")
+    bpy.ops.mesh.select_all(action="SELECT")
+    bpy.ops.uv.smart_project(angle_limit=1.15192, island_margin=0.02)
+    bpy.ops.object.mode_set(mode="OBJECT")
+    print(f"  UV unwrapped ({len(shell.data.uv_layers)} UV layer(s))")
+
     return shell
 
 

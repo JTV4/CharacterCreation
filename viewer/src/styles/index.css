@@ -910,6 +910,37 @@ body,
   border-color: var(--accent);
 }
 
+.equip-texture-btn {
+  padding: 2px 6px;
+  font-size: 10px;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 500;
+  flex-shrink: 0;
+  transition: background 0.12s, color 0.12s;
+}
+
+.equip-texture-btn:hover {
+  background: #8b5cf6;
+  color: #fff;
+  border-color: #8b5cf6;
+}
+
+.equip-texture-btn.has-texture {
+  background: rgba(139, 92, 246, 0.25);
+  color: #c4b5fd;
+  border-color: #8b5cf6;
+}
+
+.equip-texture-btn.has-texture:hover {
+  background: rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  border-color: #ef4444;
+}
+
 .equip-format-row {
   display: flex;
   align-items: center;

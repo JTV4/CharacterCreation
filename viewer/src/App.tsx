@@ -4,7 +4,7 @@ import { useCharacterModel } from "./hooks/useCharacterModel";
 import { useTransformShortcuts } from "./hooks/useTransformShortcuts";
 import type { AnimSpec, AnimManifest } from "./types/animation";
 import type { AnimationPlayerState } from "./hooks/useAnimationPlayer";
-import type { EquipmentSpec, EquipmentState, EquipTransform, EquipmentSlotType } from "./types/equipment";
+import type { EquipmentSpec, EquipmentState, EquipTransform, EquipmentSlotType, SlotTextures } from "./types/equipment";
 import { SLOT_TYPE_CONFIGS } from "./types/equipment";
 import type { BoneTransformOverride, ModelGender, GlbBoneInfo } from "./types";
 import Scene from "./components/Scene";
@@ -241,6 +241,19 @@ export default function App() {
   const [selectedEquipSlot, setSelectedEquipSlot] = useState<string | null>(null);
   const [equipTransforms, setEquipTransforms] = useState<Record<string, EquipTransform>>({});
   const [equipGizmoMode, setEquipGizmoMode] = useState<GizmoMode>("translate");
+  const [slotTextures, setSlotTextures] = useState<SlotTextures>({});
+
+  const handleSetSlotTexture = useCallback((slotId: string, dataUrl: string | null) => {
+    setSlotTextures((prev) => {
+      const next = { ...prev };
+      if (dataUrl) {
+        next[slotId] = dataUrl;
+      } else {
+        delete next[slotId];
+      }
+      return next;
+    });
+  }, []);
 
   const handleEquipTransformChange = useCallback(
     (id: string, t: EquipTransform) => {
@@ -499,6 +512,7 @@ export default function App() {
                 equipTransforms={equipTransforms}
                 equipGizmoMode={equipGizmoMode}
                 onEquipTransformChange={handleEquipTransformChange}
+                slotTextures={slotTextures}
               />
             )}
             {showSlotBounds && equipSpec && (
@@ -601,6 +615,8 @@ export default function App() {
             onSelectSlot={setSelectedEquipSlot}
             onImportEquipment={handleImportEquipment}
             equipTransforms={equipTransforms}
+            slotTextures={slotTextures}
+            onSetSlotTexture={handleSetSlotTexture}
           />
         )}
         {!poseMode && (

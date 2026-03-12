@@ -66,6 +66,10 @@ export interface EquipmentState {
   [slotId: string]: boolean;
 }
 
+export interface SlotTextures {
+  [slotId: string]: string;
+}
+
 export interface EquipTransform {
   position: [number, number, number];
   rotation: [number, number, number];
@@ -245,4 +249,5 @@ export const SLOT_COLORS: Record<string, string> = {
   shell_gloves: "#34d399",
   shell_lower_body: "#f87171",
   shell_boots: "#fb923c",
+  shell_upper_body_crimson: "#9f1239",
 };
