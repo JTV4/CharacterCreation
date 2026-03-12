@@ -4,7 +4,8 @@ import { useCharacterModel } from "./hooks/useCharacterModel";
 import { useTransformShortcuts } from "./hooks/useTransformShortcuts";
 import type { AnimSpec, AnimManifest } from "./types/animation";
 import type { AnimationPlayerState } from "./hooks/useAnimationPlayer";
-import type { EquipmentSpec, EquipmentState, EquipTransform } from "./types/equipment";
+import type { EquipmentSpec, EquipmentState, EquipTransform, EquipmentSlotType } from "./types/equipment";
+import { SLOT_TYPE_CONFIGS } from "./types/equipment";
 import type { BoneTransformOverride, ModelGender, GlbBoneInfo } from "./types";
 import Scene from "./components/Scene";
 import ViewportErrorBoundary from "./components/ViewportErrorBoundary";
@@ -19,6 +20,7 @@ import ToolPanel from "./components/ToolPanel";
 import ToolAttachment from "./components/ToolAttachment";
 import PoseEditor from "./components/PoseEditor";
 import type { PoseKeyframe, PoseAnimationConfig } from "./components/PoseEditor";
+import SlotBoundsVisualizer from "./components/SlotBoundsVisualizer";
 import { TOOLS, DEFAULT_TOOL_TRANSFORM } from "./types/tools";
 import type { ToolTransform, GizmoMode } from "./types/tools";
 
@@ -199,6 +201,43 @@ export default function App() {
     setEquipState((prev) => ({ ...prev, [slotId]: enabled }));
   }, []);
 
+  const handleImportEquipment = useCallback(
+    (slotType: EquipmentSlotType, name: string, url: string) => {
+      const slotId = name.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/_+$/, "");
+      const config = SLOT_TYPE_CONFIGS[slotType];
+
+      const newSlot = {
+        id: slotId,
+        name,
+        bilateral: config.bilateral,
+        color: config.color,
+        bones: config.bones,
+        bounds: config.bounds,
+        rules: {},
+        hides_body_regions: config.hides_body_regions,
+        url,
+        mesh_type: config.mesh_type,
+        mesh_params: {},
+        source: "imported" as const,
+      };
+
+      setEquipSpec((prev) => {
+        if (!prev) return prev;
+        const existing = prev.slots.findIndex((s) => s.id === slotId);
+        const slots = [...prev.slots];
+        if (existing >= 0) {
+          slots[existing] = newSlot;
+        } else {
+          slots.push(newSlot);
+        }
+        return { ...prev, slots };
+      });
+
+      setEquipState((prev) => ({ ...prev, [slotId]: true }));
+    },
+    [],
+  );
+
   const [selectedEquipSlot, setSelectedEquipSlot] = useState<string | null>(null);
   const [equipTransforms, setEquipTransforms] = useState<Record<string, EquipTransform>>({});
   const [equipGizmoMode, setEquipGizmoMode] = useState<GizmoMode>("translate");
@@ -292,6 +331,7 @@ export default function App() {
   }, [equipSpec, equipState]);
 
   const [basePose] = useState<Map<string, BoneTransformOverride>>(new Map());
+  const [showSlotBounds, setShowSlotBounds] = useState(false);
 
   useEffect(() => {
     fetch("/animations/manifest.json")
@@ -408,6 +448,15 @@ export default function App() {
                 Bones
               </button>
             </div>
+            <div className="model-selector">
+              <button
+                className={`model-toggle-btn ${showSlotBounds ? "active" : ""}`}
+                onClick={() => setShowSlotBounds((v) => !v)}
+                title="Show equipment slot bounding volumes"
+              >
+                Slot Bounds
+              </button>
+            </div>
             <span>
               {boneList.length} bones
               {(animState.activeAnimId ?? "T-pose") && (
@@ -450,6 +499,13 @@ export default function App() {
                 equipTransforms={equipTransforms}
                 equipGizmoMode={equipGizmoMode}
                 onEquipTransformChange={handleEquipTransformChange}
+              />
+            )}
+            {showSlotBounds && equipSpec && (
+              <SlotBoundsVisualizer
+                slots={equipSpec.slots.filter(
+                  (s) => !BODY_SLOT_IDS.has(s.id) && (!s.gender || s.gender === activeGender),
+                )}
               />
             )}
             {selectedTool && (
@@ -543,6 +599,8 @@ export default function App() {
             onToggleSlot={handleToggleSlot}
             selectedSlot={selectedEquipSlot}
             onSelectSlot={setSelectedEquipSlot}
+            onImportEquipment={handleImportEquipment}
+            equipTransforms={equipTransforms}
           />
         )}
         {!poseMode && (

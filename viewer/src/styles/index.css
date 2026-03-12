@@ -1567,3 +1567,141 @@ body,
 .pose-import-btn:hover {
   background: rgba(74, 158, 255, 0.25);
 }
+
+/* ---- Equipment Import Section ---- */
+
+.equip-import-toggle {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px dashed var(--border);
+  background: rgba(74, 158, 255, 0.06);
+  color: var(--accent);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.equip-import-toggle:hover {
+  background: rgba(74, 158, 255, 0.14);
+  border-color: var(--accent);
+}
+
+.equip-import-section {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-primary);
+}
+
+.equip-import-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.equip-import-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.equip-import-close:hover {
+  color: var(--text-primary);
+}
+
+.equip-import-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.equip-import-row label {
+  flex: 0 0 60px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.equip-import-row select,
+.equip-import-row input[type="text"] {
+  flex: 1;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.equip-import-row input[type="file"] {
+  flex: 1;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.equip-import-row input[type="file"]::file-selector-button {
+  padding: 3px 8px;
+  font-size: 11px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.equip-import-mode {
+  display: flex;
+  gap: 4px;
+}
+
+.equip-import-btn {
+  width: 100%;
+  padding: 6px 12px;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 4px;
+  border: 1px solid rgba(74, 158, 255, 0.4);
+  background: rgba(74, 158, 255, 0.15);
+  color: var(--accent);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.equip-import-btn:not(:disabled):hover {
+  background: rgba(74, 158, 255, 0.25);
+}
+
+.equip-import-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.equip-copy-spec-btn {
+  flex-shrink: 0;
+  padding: 2px 6px;
+  font-size: 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(74, 219, 122, 0.4);
+  background: rgba(74, 219, 122, 0.1);
+  color: #4adb7a;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.equip-copy-spec-btn:hover {
+  background: rgba(74, 219, 122, 0.2);
+}

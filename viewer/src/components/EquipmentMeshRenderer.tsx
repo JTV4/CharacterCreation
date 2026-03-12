@@ -7,6 +7,7 @@ import type {
   EquipmentState,
   EquipmentSlot,
   EquipTransform,
+  SlotBone,
 } from "../types/equipment";
 import type { GizmoMode } from "../types/tools";
 import type { CharacterModel } from "../types";
@@ -40,6 +41,7 @@ const FINE_BONE_SLOTS = new Set(["gloves", "ring"]);
 interface LoadedSlot {
   scene: THREE.Group;
   skinnedMeshes: THREE.SkinnedMesh[];
+  needsAutoSkin?: boolean;
 }
 
 const loader = new GLTFLoader();
@@ -192,6 +194,144 @@ function findSkinnedMeshes(root: THREE.Object3D): THREE.SkinnedMesh[] {
     }
   });
   return result;
+}
+
+function findRegularMeshes(root: THREE.Object3D): THREE.Mesh[] {
+  const result: THREE.Mesh[] = [];
+  root.traverse((child) => {
+    if (
+      (child as THREE.Mesh).isMesh &&
+      !(child as THREE.SkinnedMesh).isSkinnedMesh
+    ) {
+      result.push(child as THREE.Mesh);
+    }
+  });
+  return result;
+}
+
+/**
+ * Converts an unrigged Mesh to a SkinnedMesh with proximity-based bone weights.
+ * Port of the assign_weights() logic from equipment/factory/mesh_factory.py.
+ */
+function autoSkinMesh(
+  mesh: THREE.Mesh,
+  slotBones: SlotBone[],
+  animBones: Map<string, THREE.Bone>,
+  charBoneInverseMap: Map<string, THREE.Matrix4>,
+  slotBounds: { z_min: number; z_max: number; radius: number },
+): THREE.SkinnedMesh | null {
+  const MAX_INFLUENCES = 4;
+  const weightRadius = slotBounds.radius * 2.0;
+
+  const usedBones: THREE.Bone[] = [];
+  const usedInverses: THREE.Matrix4[] = [];
+  const boneConfigs: { bone: THREE.Bone; specWeight: number; position: THREE.Vector3 }[] = [];
+
+  for (const sb of slotBones) {
+    const animBone = animBones.get(sb.name);
+    const inv = charBoneInverseMap.get(sb.name);
+    if (!animBone || !inv) continue;
+    animBone.updateMatrixWorld(true);
+    const pos = new THREE.Vector3().setFromMatrixPosition(animBone.matrixWorld);
+    usedBones.push(animBone);
+    usedInverses.push(inv.clone());
+    boneConfigs.push({ bone: animBone, specWeight: sb.weight, position: pos });
+  }
+
+  if (usedBones.length === 0) return null;
+
+  const geo = mesh.geometry.clone();
+  const position = geo.getAttribute("position") as THREE.BufferAttribute;
+  if (!position) return null;
+
+  const vertexCount = position.count;
+  const skinIndices = new Float32Array(vertexCount * 4);
+  const skinWeights = new Float32Array(vertexCount * 4);
+
+  const vtx = new THREE.Vector3();
+
+  for (let vi = 0; vi < vertexCount; vi++) {
+    vtx.set(position.getX(vi), position.getY(vi), position.getZ(vi));
+
+    const influences: { idx: number; w: number }[] = [];
+
+    for (let bi = 0; bi < boneConfigs.length; bi++) {
+      const dist = vtx.distanceTo(boneConfigs[bi].position);
+      if (dist > weightRadius) continue;
+      const falloff = Math.max(0, 1 - dist / weightRadius);
+      const w = Math.pow(falloff, 3) * boneConfigs[bi].specWeight;
+      if (w > 0.001) {
+        influences.push({ idx: bi, w });
+      }
+    }
+
+    influences.sort((a, b) => b.w - a.w);
+    const top = influences.slice(0, MAX_INFLUENCES);
+    const totalW = top.reduce((s, i) => s + i.w, 0);
+
+    const base = vi * 4;
+    for (let j = 0; j < 4; j++) {
+      if (j < top.length && totalW > 0) {
+        skinIndices[base + j] = top[j].idx;
+        skinWeights[base + j] = top[j].w / totalW;
+      } else {
+        skinIndices[base + j] = 0;
+        skinWeights[base + j] = 0;
+      }
+    }
+  }
+
+  geo.setAttribute("skinIndex", new THREE.BufferAttribute(skinIndices, 4));
+  geo.setAttribute("skinWeight", new THREE.BufferAttribute(skinWeights, 4));
+
+  const skinnedMesh = new THREE.SkinnedMesh(geo, mesh.material);
+  skinnedMesh.name = mesh.name;
+  skinnedMesh.frustumCulled = false;
+
+  const skeleton = new THREE.Skeleton(usedBones, usedInverses);
+  skinnedMesh.bind(skeleton, new THREE.Matrix4());
+
+  return skinnedMesh;
+}
+
+/**
+ * Scale an unrigged mesh to fit within a slot's bounding volume,
+ * then center it on the slot's midpoint.
+ */
+function scaleToSlotBounds(
+  scene: THREE.Group,
+  slotBounds: { z_min: number; z_max: number; radius: number },
+): void {
+  const box = new THREE.Box3().setFromObject(scene);
+  const size = new THREE.Vector3();
+  box.getSize(size);
+  const center = new THREE.Vector3();
+  box.getCenter(center);
+
+  const maxCurrent = Math.max(size.x, size.y, size.z);
+  if (maxCurrent < 0.0001) return;
+
+  const slotHeight = slotBounds.z_max - slotBounds.z_min;
+  const slotWidth = slotBounds.radius * 2;
+  const maxTarget = Math.max(slotHeight, slotWidth);
+  if (maxTarget < 0.0001) return;
+
+  const scaleFactor = maxTarget / maxCurrent;
+
+  scene.scale.multiplyScalar(scaleFactor);
+  scene.updateMatrixWorld(true);
+
+  const newBox = new THREE.Box3().setFromObject(scene);
+  const newCenter = new THREE.Vector3();
+  newBox.getCenter(newCenter);
+
+  const targetCenter = new THREE.Vector3(
+    0,
+    0,
+    (slotBounds.z_min + slotBounds.z_max) / 2,
+  );
+  const offset = targetCenter.sub(newCenter);
+  scene.position.add(offset);
 }
 
 function fixZeroWeightVertices(sm: THREE.SkinnedMesh): void {
@@ -588,7 +728,9 @@ export default function EquipmentMeshRenderer({
           const scene = gltf.scene;
           scene.visible = true;
 
-          const skinnedMeshes = findSkinnedMeshes(scene);
+          let skinnedMeshes = findSkinnedMeshes(scene);
+          const isImported = slot?.source === "imported";
+          let needsAutoSkin = false;
 
           const geoCorrection = isExternal
             ? _yupToZupCorrection
@@ -598,8 +740,10 @@ export default function EquipmentMeshRenderer({
           scene.traverse((child) => {
             if ((child as THREE.Mesh).isMesh) {
               const mesh = child as THREE.Mesh;
-              mesh.geometry.applyMatrix4(geoCorrection);
-              if (!isExternal) {
+              if (!isImported) {
+                mesh.geometry.applyMatrix4(geoCorrection);
+              }
+              if (!isExternal && !isImported) {
                 mesh.material = new THREE.MeshStandardMaterial({
                   color,
                   transparent: true,
@@ -612,7 +756,19 @@ export default function EquipmentMeshRenderer({
             }
           });
 
-          const loaded: LoadedSlot = { scene, skinnedMeshes };
+          if (skinnedMeshes.length === 0) {
+            const regularMeshes = findRegularMeshes(scene);
+            if (regularMeshes.length > 0 && slot) {
+              if (isImported) {
+                scene.rotation.set(Math.PI / 2, 0, 0);
+                scene.updateMatrixWorld(true);
+              }
+              scaleToSlotBounds(scene, slot.bounds);
+              needsAutoSkin = true;
+            }
+          }
+
+          const loaded: LoadedSlot = { scene, skinnedMeshes, needsAutoSkin };
           slotCache.set(slotId, loaded);
           setLoadedSlots((prev) => {
             const next = new Map(prev);
@@ -644,7 +800,30 @@ export default function EquipmentMeshRenderer({
       if (!effectiveState[slotId]) continue;
 
       if (!boundRef.current.has(slotId)) {
-        bindSlotSkeleton(slot, animBones, charBoneInverseMap, slotId);
+        if (slot.needsAutoSkin && slot.skinnedMeshes.length === 0) {
+          const slotDef = slotMap.get(slotId);
+          if (slotDef) {
+            const regularMeshes = findRegularMeshes(slot.scene);
+            for (const mesh of regularMeshes) {
+              const sm = autoSkinMesh(
+                mesh, slotDef.bones, animBones, charBoneInverseMap, slotDef.bounds,
+              );
+              if (sm) {
+                const parent = mesh.parent;
+                if (parent) {
+                  parent.add(sm);
+                  parent.remove(mesh);
+                }
+                slot.skinnedMeshes.push(sm);
+              }
+            }
+            slot.needsAutoSkin = false;
+          }
+        }
+
+        if (slot.skinnedMeshes.length > 0) {
+          bindSlotSkeleton(slot, animBones, charBoneInverseMap, slotId);
+        }
         slot.scene.visible = true;
         boundRef.current.add(slotId);
       }

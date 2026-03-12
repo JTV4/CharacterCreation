@@ -2,7 +2,12 @@
   "meta": {
     "version": "2.0.0",
     "description": "Equipment slot definitions with Mixamo bone mappings, spatial boundaries, and visibility rules.",
-    "coordinate_system": { "up": "+Z", "forward": "+Y", "right": "+X", "scale": "meters" },
+    "coordinate_system": {
+      "up": "+Z",
+      "forward": "+Y",
+      "right": "+X",
+      "scale": "meters"
+    },
     "rig": "mixamo"
   },
   "slots": [
@@ -13,62 +18,218 @@
       "bilateral": false,
       "color": "#e8b4a0",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 },
-        { "name": "mixamorigSpine", "weight": 1.0 },
-        { "name": "mixamorigSpine1", "weight": 1.0 },
-        { "name": "mixamorigSpine2", "weight": 1.0 },
-        { "name": "mixamorigNeck", "weight": 1.0 },
-        { "name": "mixamorigHead", "weight": 1.0 },
-        { "name": "mixamorigLeftShoulder", "weight": 1.0 },
-        { "name": "mixamorigRightShoulder", "weight": 1.0 },
-        { "name": "mixamorigLeftArm", "weight": 1.0 },
-        { "name": "mixamorigRightArm", "weight": 1.0 },
-        { "name": "mixamorigLeftForeArm", "weight": 1.0 },
-        { "name": "mixamorigRightForeArm", "weight": 1.0 },
-        { "name": "mixamorigLeftHand", "weight": 1.0 },
-        { "name": "mixamorigRightHand", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky3", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb1", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb2", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb3", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex1", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex2", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex3", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle1", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle2", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle3", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing1", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing2", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing3", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky1", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky2", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky3", "weight": 1.0 },
-        { "name": "mixamorigLeftUpLeg", "weight": 1.0 },
-        { "name": "mixamorigRightUpLeg", "weight": 1.0 },
-        { "name": "mixamorigLeftLeg", "weight": 1.0 },
-        { "name": "mixamorigRightLeg", "weight": 1.0 },
-        { "name": "mixamorigLeftFoot", "weight": 1.0 },
-        { "name": "mixamorigRightFoot", "weight": 1.0 },
-        { "name": "mixamorigLeftToeBase", "weight": 1.0 },
-        { "name": "mixamorigRightToeBase", "weight": 1.0 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        }
       ],
       "bounds": {
         "z_min": -0.02,
-        "z_max": 1.90,
+        "z_max": 1.9,
         "radius": 0.25,
         "weight_radius": 0.35
       },
@@ -100,9 +261,17 @@
       "bilateral": false,
       "color": "#e8b4a0",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        }
       ],
-      "bounds": { "z_min": -0.02, "z_max": 1.90, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/equipment/base_male.glb",
       "mesh_type": "external",
@@ -115,9 +284,17 @@
       "bilateral": false,
       "color": "#e8b4a0",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        }
       ],
-      "bounds": { "z_min": -0.02, "z_max": 1.90, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/equipment/base_female.glb",
       "mesh_type": "external",
@@ -130,9 +307,17 @@
       "bilateral": false,
       "color": "#e8b4a0",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        }
       ],
-      "bounds": { "z_min": -0.02, "z_max": 1.90, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/equipment/base_male_with_skin_texture.glb",
       "mesh_type": "external",
@@ -145,9 +330,17 @@
       "bilateral": false,
       "color": "#e8b4a0",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        }
       ],
-      "bounds": { "z_min": -0.02, "z_max": 1.90, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/equipment/base_female_with_skin_texture.glb",
       "mesh_type": "external",
@@ -159,17 +352,25 @@
       "bilateral": false,
       "color": "#c084fc",
       "bones": [
-        { "name": "mixamorigHead", "weight": 1.0 },
-        { "name": "mixamorigNeck", "weight": 0.25 }
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.25
+        }
       ],
       "bounds": {
         "z_min": 1.61,
-        "z_max": 1.90,
+        "z_max": 1.9,
         "radius": 0.13,
-        "weight_radius": 0.20
+        "weight_radius": 0.2
       },
       "rules": {},
-      "hides_body_regions": ["head"],
+      "hides_body_regions": [
+        "head"
+      ],
       "mesh_type": "dome",
       "mesh_params": {
         "segments": 16,
@@ -183,14 +384,20 @@
       "bilateral": false,
       "color": "#fbbf24",
       "bones": [
-        { "name": "mixamorigSpine2", "weight": 0.7 },
-        { "name": "mixamorigNeck", "weight": 1.0 }
+        {
+          "name": "mixamorigSpine2",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1.0
+        }
       ],
       "bounds": {
         "z_min": 1.41,
         "z_max": 1.59,
         "radius": 0.06,
-        "weight_radius": 0.10
+        "weight_radius": 0.1
       },
       "rules": {},
       "mesh_type": "pendant",
@@ -214,47 +421,145 @@
       "bilateral": true,
       "color": "#4adb7a",
       "bones": [
-        { "name": "mixamorigLeftHand", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky3", "weight": 1.0 },
-        { "name": "mixamorigRightHand", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb1", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb2", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb3", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex1", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex2", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex3", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle1", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle2", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle3", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing1", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing2", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing3", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky1", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky2", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky3", "weight": 1.0 }
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1.0
+        }
       ],
       "bounds": {
         "z_min": 1.49,
         "z_max": 1.54,
-        "radius": 0.20,
+        "radius": 0.2,
         "weight_radius": 0.05
       },
       "rules": {},
-      "hides_body_regions": ["hands"],
+      "hides_body_regions": [
+        "hands"
+      ],
       "mesh_type": "glove",
       "mesh_params": {
         "tube_radius": 0.015,
@@ -268,8 +573,14 @@
       "bilateral": false,
       "color": "#ffd93d",
       "bones": [
-        { "name": "mixamorigLeftHandRing1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing2", "weight": 0.4 }
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 0.4
+        }
       ],
       "bounds": {
         "z_min": 1.51,
@@ -278,7 +589,9 @@
         "weight_radius": 0.03
       },
       "rules": {
-        "hidden_by": ["gloves"]
+        "hidden_by": [
+          "gloves"
+        ]
       },
       "mesh_type": "torus",
       "mesh_params": {
@@ -296,34 +609,77 @@
       "bilateral": false,
       "color": "#4a9eff",
       "bones": [
-        { "name": "mixamorigHips", "weight": 0.6 },
-        { "name": "mixamorigSpine", "weight": 1.0 },
-        { "name": "mixamorigSpine1", "weight": 1.0 },
-        { "name": "mixamorigSpine2", "weight": 1.0 },
-        { "name": "mixamorigLeftShoulder", "weight": 0.8 },
-        { "name": "mixamorigRightShoulder", "weight": 0.8 },
-        { "name": "mixamorigLeftArm", "weight": 1.0 },
-        { "name": "mixamorigRightArm", "weight": 1.0 },
-        { "name": "mixamorigLeftForeArm", "weight": 1.0 },
-        { "name": "mixamorigRightForeArm", "weight": 1.0 },
-        { "name": "mixamorigLeftHand", "weight": 0.1 },
-        { "name": "mixamorigRightHand", "weight": 0.1 },
-        { "name": "mixamorigNeck", "weight": 0.1 }
+        {
+          "name": "mixamorigHips",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.1
+        }
       ],
       "bounds": {
         "z_min": 1.01,
         "z_max": 1.54,
         "radius": 0.75,
-        "weight_radius": 0.30
+        "weight_radius": 0.3
       },
       "rules": {},
-      "hides_body_regions": ["torso", "neck", "arms"],
+      "hides_body_regions": [
+        "torso",
+        "neck",
+        "arms"
+      ],
       "mesh_type": "torso",
       "mesh_params": {
         "pelvis_radius": 0.13,
         "waist_radius": 0.14,
         "chest_radius": 0.17,
-        "shoulder_radius": 0.20,
+        "shoulder_radius": 0.2,
         "sleeve_radius": 0.04,
         "wrist_radius": 0.025,
         "segments": 16,
@@ -338,28 +694,71 @@
       "color": "#7f1d1d",
       "gender": "female",
       "bones": [
-        { "name": "mixamorigHips", "weight": 0.6 },
-        { "name": "mixamorigSpine", "weight": 1.0 },
-        { "name": "mixamorigSpine1", "weight": 1.0 },
-        { "name": "mixamorigSpine2", "weight": 1.0 },
-        { "name": "mixamorigLeftShoulder", "weight": 0.8 },
-        { "name": "mixamorigRightShoulder", "weight": 0.8 },
-        { "name": "mixamorigLeftArm", "weight": 1.0 },
-        { "name": "mixamorigRightArm", "weight": 1.0 },
-        { "name": "mixamorigLeftForeArm", "weight": 1.0 },
-        { "name": "mixamorigRightForeArm", "weight": 1.0 },
-        { "name": "mixamorigLeftHand", "weight": 0.1 },
-        { "name": "mixamorigRightHand", "weight": 0.1 },
-        { "name": "mixamorigNeck", "weight": 0.1 }
+        {
+          "name": "mixamorigHips",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.1
+        }
       ],
       "bounds": {
         "z_min": 1.01,
         "z_max": 1.54,
         "radius": 0.75,
-        "weight_radius": 0.30
+        "weight_radius": 0.3
       },
       "rules": {},
-      "hides_body_regions": ["torso", "neck", "arms"],
+      "hides_body_regions": [
+        "torso",
+        "neck",
+        "arms"
+      ],
       "url": "https://res.cloudinary.com/dyd9wffl9/image/upload/v1772549880/crimson_wizard_robe_topF_lzvvt9.glb",
       "mesh_type": "torso",
       "mesh_params": {}
@@ -371,17 +770,25 @@
       "color": "#991b1b",
       "gender": "female",
       "bones": [
-        { "name": "mixamorigHead", "weight": 1.0 },
-        { "name": "mixamorigNeck", "weight": 0.25 }
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.25
+        }
       ],
       "bounds": {
         "z_min": 1.61,
-        "z_max": 1.90,
+        "z_max": 1.9,
         "radius": 0.13,
-        "weight_radius": 0.20
+        "weight_radius": 0.2
       },
       "rules": {},
-      "hides_body_regions": ["head"],
+      "hides_body_regions": [
+        "head"
+      ],
       "url": "https://res.cloudinary.com/dyd9wffl9/image/upload/v1772549870/crimson_wizard_hat_bkb4lj.glb",
       "mesh_type": "dome",
       "mesh_params": {}
@@ -393,11 +800,26 @@
       "color": "#b91c1c",
       "gender": "female",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 },
-        { "name": "mixamorigLeftUpLeg", "weight": 1.0 },
-        { "name": "mixamorigRightUpLeg", "weight": 1.0 },
-        { "name": "mixamorigLeftLeg", "weight": 0.8 },
-        { "name": "mixamorigRightLeg", "weight": 0.8 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        }
       ],
       "bounds": {
         "z_min": 0.29,
@@ -406,7 +828,10 @@
         "weight_radius": 0.15
       },
       "rules": {},
-      "hides_body_regions": ["torso", "legs"],
+      "hides_body_regions": [
+        "torso",
+        "legs"
+      ],
       "url": "https://res.cloudinary.com/dyd9wffl9/image/upload/v1772549871/crimson_wizard_robe_bottomF_drsdgd.glb",
       "mesh_type": "pants",
       "mesh_params": {}
@@ -418,47 +843,145 @@
       "color": "#dc2626",
       "gender": "female",
       "bones": [
-        { "name": "mixamorigLeftHand", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky3", "weight": 1.0 },
-        { "name": "mixamorigRightHand", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb1", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb2", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb3", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex1", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex2", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex3", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle1", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle2", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle3", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing1", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing2", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing3", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky1", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky2", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky3", "weight": 1.0 }
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1.0
+        }
       ],
       "bounds": {
         "z_min": 1.49,
         "z_max": 1.54,
-        "radius": 0.20,
+        "radius": 0.2,
         "weight_radius": 0.05
       },
       "rules": {},
-      "hides_body_regions": ["hands"],
+      "hides_body_regions": [
+        "hands"
+      ],
       "url": "https://res.cloudinary.com/dyd9wffl9/image/upload/v1772549870/crimson_wizard_gloves_svmtwf.glb",
       "mesh_type": "glove",
       "mesh_params": {}
@@ -470,12 +993,30 @@
       "color": "#ef4444",
       "gender": "female",
       "bones": [
-        { "name": "mixamorigLeftLeg", "weight": 0.6 },
-        { "name": "mixamorigRightLeg", "weight": 0.6 },
-        { "name": "mixamorigLeftFoot", "weight": 1.0 },
-        { "name": "mixamorigRightFoot", "weight": 1.0 },
-        { "name": "mixamorigLeftToeBase", "weight": 1.0 },
-        { "name": "mixamorigRightToeBase", "weight": 1.0 }
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        }
       ],
       "bounds": {
         "z_min": -0.02,
@@ -484,7 +1025,10 @@
         "weight_radius": 0.12
       },
       "rules": {},
-      "hides_body_regions": ["feet", "legs"],
+      "hides_body_regions": [
+        "feet",
+        "legs"
+      ],
       "url": "https://res.cloudinary.com/dyd9wffl9/image/upload/v1772549870/crimson_wizard_boots_yqt7k0.glb",
       "mesh_type": "boot",
       "mesh_params": {}
@@ -495,11 +1039,26 @@
       "bilateral": true,
       "color": "#ff6b6b",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 },
-        { "name": "mixamorigLeftUpLeg", "weight": 1.0 },
-        { "name": "mixamorigRightUpLeg", "weight": 1.0 },
-        { "name": "mixamorigLeftLeg", "weight": 0.8 },
-        { "name": "mixamorigRightLeg", "weight": 0.8 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        }
       ],
       "bounds": {
         "z_min": 0.29,
@@ -508,7 +1067,10 @@
         "weight_radius": 0.15
       },
       "rules": {},
-      "hides_body_regions": ["torso", "legs"],
+      "hides_body_regions": [
+        "torso",
+        "legs"
+      ],
       "mesh_type": "pants",
       "mesh_params": {
         "hip_radius": 0.15,
@@ -525,12 +1087,30 @@
       "bilateral": true,
       "color": "#f97316",
       "bones": [
-        { "name": "mixamorigLeftLeg", "weight": 0.6 },
-        { "name": "mixamorigRightLeg", "weight": 0.6 },
-        { "name": "mixamorigLeftFoot", "weight": 1.0 },
-        { "name": "mixamorigRightFoot", "weight": 1.0 },
-        { "name": "mixamorigLeftToeBase", "weight": 1.0 },
-        { "name": "mixamorigRightToeBase", "weight": 1.0 }
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        }
       ],
       "bounds": {
         "z_min": -0.02,
@@ -539,7 +1119,10 @@
         "weight_radius": 0.12
       },
       "rules": {},
-      "hides_body_regions": ["feet", "legs"],
+      "hides_body_regions": [
+        "feet",
+        "legs"
+      ],
       "mesh_type": "boot",
       "mesh_params": {
         "calf_radius": 0.055,
@@ -547,6 +1130,82 @@
         "sole_thickness": 0.015,
         "segments": 14
       }
+    },
+    {
+      "id": "crimson_upperbody_f",
+      "name": "Crimson Upperbody (Meshy)",
+      "bilateral": false,
+      "color": "#8B0000",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.54,
+        "radius": 0.75,
+        "weight_radius": 0.3
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "torso",
+        "neck",
+        "arms"
+      ],
+      "mesh_type": "torso",
+      "mesh_params": {},
+      "gender": "female",
+      "url": "/equipment/Female/Upperbody/crimson_upperbody_f.glb"
     }
   ]
 }
