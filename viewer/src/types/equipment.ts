@@ -240,4 +240,9 @@ export const SLOT_COLORS: Record<string, string> = {
   ring: "#ffd93d",
   boots: "#f97316",
   crimson_upperbody_f: "#9f1239",
+  shell_head: "#a78bfa",
+  shell_upper_body: "#60a5fa",
+  shell_gloves: "#34d399",
+  shell_lower_body: "#f87171",
+  shell_boots: "#fb923c",
 };

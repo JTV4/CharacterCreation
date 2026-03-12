@@ -25,10 +25,12 @@ interface EquipmentPanelProps {
 
 type ExportFormat = "viewer" | "game";
 
-function downloadSlot(slotId: string, format: ExportFormat) {
-  const path = format === "game"
-    ? `/equipment/game/${slotId}.glb`
-    : `/equipment/${slotId}.glb`;
+function downloadSlot(slotId: string, format: ExportFormat, slotUrl?: string) {
+  const path = slotUrl
+    ? slotUrl
+    : format === "game"
+      ? `/equipment/game/${slotId}.glb`
+      : `/equipment/${slotId}.glb`;
   const a = document.createElement("a");
   a.href = path;
   a.download = `${slotId}.glb`;
@@ -44,7 +46,7 @@ function downloadAllEnabled(
 ) {
   const enabled = slots.filter((s) => equipState[s.id]);
   for (const slot of enabled) {
-    setTimeout(() => downloadSlot(slot.id, format), enabled.indexOf(slot) * 200);
+    setTimeout(() => downloadSlot(slot.id, format, slot.url), enabled.indexOf(slot) * 200);
   }
 }
 
@@ -303,9 +305,9 @@ export default function EquipmentPanel({
             className="equip-export-btn"
             onClick={(e) => {
               e.stopPropagation();
-              downloadSlot(slot.id, exportFormat);
+              downloadSlot(slot.id, exportFormat, slot.url);
             }}
-            title={`Export ${slot.name} GLB (${exportFormat === "game" ? "Y-up" : "Z-up"})`}
+            title={`Download ${slot.name} GLB (rigged)`}
           >
             GLB
           </button>

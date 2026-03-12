@@ -47,9 +47,22 @@ interface LoadedSlot {
 const loader = new GLTFLoader();
 const slotCache = new Map<string, LoadedSlot>();
 const correctedSlots = new Set<string>();
+const _buildTimestamp = Date.now();
 const _identityMatrix = new THREE.Matrix4();
 const _equipFacingCorrection = new THREE.Matrix4().makeRotationZ(Math.PI);
+
+// Character model is displayed at 1.9 / 1.75 scale (see useCharacterModel).
+// External equipment GLBs are built at 1.75m rig height, so we bake the same
+// scale into the geometry correction so equipment matches the character.
+const _CHARACTER_HEIGHT_SCALE = 1.9 / 1.75;
 const _yupToZupCorrection = new THREE.Matrix4().makeRotationX(Math.PI / 2);
+_yupToZupCorrection.scale(
+  new THREE.Vector3(
+    _CHARACTER_HEIGHT_SCALE,
+    _CHARACTER_HEIGHT_SCALE,
+    _CHARACTER_HEIGHT_SCALE,
+  ),
+);
 
 /**
  * Remap non-Mixamo bone names found in equipment GLBs to Mixamo names.
@@ -715,10 +728,13 @@ export default function EquipmentMeshRenderer({
 
     let cancelled = false;
     for (const slotId of toLoad) {
+      slotCache.delete(slotId);
+      correctedSlots.delete(slotId);
       loadingRef.current.add(slotId);
       const slot = slotMap.get(slotId);
       const isExternal = !!slot?.url;
-      const loadUrl = slot?.url ?? `/equipment/${slotId}.glb`;
+      const baseUrl = slot?.url ?? `/equipment/${slotId}.glb`;
+      const loadUrl = `${baseUrl}${baseUrl.includes("?") ? "&" : "?"}v=${Date.now()}`;
       loader.load(
         loadUrl,
         (gltf) => {
@@ -743,13 +759,16 @@ export default function EquipmentMeshRenderer({
               if (!isImported) {
                 mesh.geometry.applyMatrix4(geoCorrection);
               }
-              if (!isExternal && !isImported) {
+              if (!isImported) {
                 mesh.material = new THREE.MeshStandardMaterial({
                   color,
                   transparent: true,
-                  opacity: 0.35,
-                  side: THREE.DoubleSide,
-                  depthWrite: false,
+                  opacity: isExternal ? 0.6 : 0.35,
+                  side: THREE.FrontSide,
+                  depthWrite: true,
+                  polygonOffset: true,
+                  polygonOffsetFactor: -1,
+                  polygonOffsetUnits: -1,
                 });
               }
               mesh.frustumCulled = false;
