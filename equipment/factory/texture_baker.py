@@ -1,19 +1,31 @@
-"""Texture Baker — Transfer textures from a source model onto a body shell.
+"""Texture Baker — Transfer textures from a source model or flat image onto a
+body shell or custom equipment mesh.
 
-Uses Blender's Cycles "Selected to Active" bake to project a source model's
-texture (e.g. from Meshy AI) onto a body shell's UV layout, producing a new
-GLB with the texture embedded.
+Two modes:
+
+1. **3D Bake** (--source): Uses Blender's Cycles "Selected to Active" bake to
+   project a source model's texture onto the target mesh's UV layout.
+
+2. **Image Apply** (--image): Directly applies a flat image (PNG/JPG) to the
+   target mesh's material via its UV coordinates. No baking needed.
+
+In both modes the original target file is never modified; a new GLB is produced.
 
 Usage
 -----
+    # Bake from a 3D model (explicit output path):
     blender --background --python equipment/factory/texture_baker.py -- \\
-        --source  viewer/public/equipment/Female/Upperbody/CrimsonUpperbodyF.glb \\
-        --shell   viewer/public/equipment/shell_upper_body.glb \\
-        --out     viewer/public/equipment/shell_upper_body_crimson.glb \\
-        --resolution 2048
+        --source  path/to/textured_model.glb \\
+        --target  viewer/public/equipment/shell_upper_body.glb \\
+        --out     viewer/public/equipment/shell_upper_body_crimson.glb
 
-The output GLB contains the shell mesh + armature + baked texture, ready for
-the viewer to load with the embedded material intact.
+    # Apply a flat image (auto-named output):
+    blender --background --python equipment/factory/texture_baker.py -- \\
+        --image   path/to/texture.jpg \\
+        --target  viewer/public/equipment/custom_upper_body_f.glb
+
+    # Output auto-generates as: custom_upper_body_f_textured.glb
+    # in the same directory as the target.
 """
 
 import bpy
@@ -36,17 +48,23 @@ def parse_args() -> argparse.Namespace:
         argv = []
 
     parser = argparse.ArgumentParser(description="Texture Baker")
-    parser.add_argument(
-        "--source", required=True,
-        help="Path to source GLB with textures (e.g. Meshy export)",
+    source_group = parser.add_mutually_exclusive_group(required=True)
+    source_group.add_argument(
+        "--source",
+        help="Path to source GLB with textures (3D bake mode)",
+    )
+    source_group.add_argument(
+        "--image",
+        help="Path to a flat image file (PNG/JPG) to apply directly via UVs",
     )
     parser.add_argument(
-        "--shell", required=True,
-        help="Path to target body shell GLB",
+        "--target", "--shell", dest="target", required=True,
+        help="Path to target mesh GLB (shell or custom equipment)",
     )
     parser.add_argument(
-        "--out", required=True,
-        help="Output path for textured shell GLB",
+        "--out", default=None,
+        help="Output path for textured GLB. If omitted, auto-generates "
+             "<target_name>_textured.glb in the same directory as --target",
     )
     parser.add_argument(
         "--texture-out", default=None,
@@ -54,17 +72,24 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--resolution", type=int, default=2048,
-        help="Baked texture resolution in pixels (default 2048)",
+        help="Baked texture resolution in pixels (default 2048, 3D bake only)",
     )
     parser.add_argument(
         "--cage-extrusion", type=float, default=0.15,
-        help="Ray distance for bake projection in meters (default 0.15)",
+        help="Ray distance for bake projection in meters (default 0.15, 3D bake only)",
     )
     parser.add_argument(
         "--samples", type=int, default=4,
-        help="Cycles bake samples (default 4, higher = smoother but slower)",
+        help="Cycles bake samples (default 4, 3D bake only)",
     )
-    return parser.parse_args(argv)
+    args = parser.parse_args(argv)
+
+    if args.out is None:
+        target_dir = os.path.dirname(os.path.abspath(args.target))
+        target_stem = os.path.splitext(os.path.basename(args.target))[0]
+        args.out = os.path.join(target_dir, f"{target_stem}_textured.glb")
+
+    return args
 
 
 # ---------------------------------------------------------------------------
@@ -148,6 +173,42 @@ def align_source_to_target(
     bpy.context.view_layer.update()
 
 
+def remove_inner_faces(mesh_obj: bpy.types.Object) -> int:
+    """Remove inward-facing faces from a solidified mesh.
+
+    For solidified shells, roughly half the faces have normals pointing inward
+    (toward the body center).  These produce black bake results because rays
+    never hit the external source model.  Stripping them gives the outer faces
+    full UV space and 100% bake coverage.
+    """
+    bm = bmesh.new()
+    bm.from_mesh(mesh_obj.data)
+    bm.faces.ensure_lookup_table()
+
+    if not bm.faces:
+        bm.free()
+        return 0
+
+    center = Vector((0, 0, 0))
+    for v in bm.verts:
+        center += v.co
+    center /= len(bm.verts)
+
+    inner = []
+    for face in bm.faces:
+        to_center = center - face.calc_center_median()
+        if face.normal.dot(to_center) > 0:
+            inner.append(face)
+
+    if inner:
+        bmesh.ops.delete(bm, geom=inner, context="FACES")
+        bm.to_mesh(mesh_obj.data)
+        mesh_obj.data.update()
+
+    bm.free()
+    return len(inner)
+
+
 def ensure_uv_layer(mesh_obj: bpy.types.Object) -> bool:
     """Ensure the mesh has at least one UV layer. Returns True if one was created."""
     if mesh_obj.data.uv_layers:
@@ -170,7 +231,7 @@ def ensure_uv_layer(mesh_obj: bpy.types.Object) -> bool:
 
 def bake_texture(
     source_path: str,
-    shell_path: str,
+    target_path: str,
     output_path: str,
     texture_out: str | None,
     resolution: int,
@@ -180,7 +241,7 @@ def bake_texture(
     """Run the full bake pipeline. Returns the output GLB path or None on failure."""
     print("=== Texture Baker ===")
     print(f"  Source:     {source_path}")
-    print(f"  Shell:      {shell_path}")
+    print(f"  Target:     {target_path}")
     print(f"  Output:     {output_path}")
     print(f"  Resolution: {resolution}x{resolution}")
     print(f"  Cage:       {cage_extrusion}m")
@@ -189,9 +250,9 @@ def bake_texture(
     # ---- Clean scene ----
     bpy.ops.wm.read_factory_settings(use_empty=True)
 
-    # ---- Import shell (target) ----
-    print("\n--- Importing shell ---")
-    shell_objects = import_glb(shell_path)
+    # ---- Import target mesh ----
+    print("\n--- Importing target ---")
+    shell_objects = import_glb(target_path)
     shell_meshes = collect_meshes(shell_objects)
     shell_armature = find_armature(shell_objects)
 
@@ -240,12 +301,47 @@ def bake_texture(
     print("\n--- Aligning source to shell ---")
     align_source_to_target(source_meshes, shell_meshes)
 
+    # ---- Sample dominant color from source texture ----
+    fill_color = [0.3, 0.02, 0.02, 1.0]  # fallback dark red
+    for src_mesh in source_meshes:
+        for mat in src_mesh.data.materials:
+            if not mat or not mat.use_nodes:
+                continue
+            for node in mat.node_tree.nodes:
+                if node.type == "TEX_IMAGE" and node.image:
+                    px = list(node.image.pixels)
+                    n_pixels = len(px) // 4
+                    if n_pixels == 0:
+                        continue
+                    r_sum = g_sum = b_sum = 0.0
+                    count = 0
+                    step = max(1, n_pixels // 2000)
+                    for i in range(0, n_pixels, step):
+                        r, g, b, a = px[i*4], px[i*4+1], px[i*4+2], px[i*4+3]
+                        if a > 0.1 and (r + g + b) > 0.05:
+                            r_sum += r; g_sum += g; b_sum += b
+                            count += 1
+                    if count > 0:
+                        fill_color = [r_sum/count, g_sum/count, b_sum/count, 1.0]
+                    break
+            break
+    print(f"  Fill color for misses: ({fill_color[0]:.3f}, {fill_color[1]:.3f}, {fill_color[2]:.3f})")
+
     # ---- Prepare bake target material on shell ----
     print("\n--- Preparing bake target ---")
     bake_img = bpy.data.images.new(
         "bake_result", width=resolution, height=resolution, alpha=True,
     )
     bake_img.colorspace_settings.name = "sRGB"
+
+    # Pre-fill with dominant color so ray misses blend instead of going black
+    px = list(bake_img.pixels)
+    for i in range(0, len(px), 4):
+        px[i] = fill_color[0]
+        px[i+1] = fill_color[1]
+        px[i+2] = fill_color[2]
+        px[i+3] = fill_color[3]
+    bake_img.pixels = px
 
     bake_mat = bpy.data.materials.new("baked_material")
     bake_mat.use_nodes = True
@@ -270,18 +366,41 @@ def bake_texture(
     shell_mesh.data.materials.clear()
     shell_mesh.data.materials.append(bake_mat)
 
+    # ---- Rewire source materials to Emission for raw color capture ----
+    print("\n--- Rewiring source materials to Emission ---")
+    rewired = 0
+    for src_mesh in source_meshes:
+        for mat in src_mesh.data.materials:
+            if not mat or not mat.use_nodes:
+                continue
+            nodes = mat.node_tree.nodes
+            links = mat.node_tree.links
+            bsdf = next((n for n in nodes if n.type == "BSDF_PRINCIPLED"), None)
+            if not bsdf:
+                continue
+            base_color_links = bsdf.inputs["Base Color"].links
+            if not base_color_links:
+                continue
+            color_source = base_color_links[0].from_socket
+            emit = nodes.new("ShaderNodeEmission")
+            output_mat = next((n for n in nodes if n.type == "OUTPUT_MATERIAL"), None)
+            if not output_mat:
+                continue
+            links.new(color_source, emit.inputs["Color"])
+            links.new(emit.outputs["Emission"], output_mat.inputs["Surface"])
+            rewired += 1
+    print(f"  Rewired {rewired} material(s) to Emission")
+
     # ---- Configure Cycles bake ----
     print("\n--- Configuring Cycles ---")
     bpy.context.scene.render.engine = "CYCLES"
     bpy.context.scene.cycles.device = "CPU"
     bpy.context.scene.cycles.samples = samples
 
-    bpy.context.scene.render.bake.use_pass_direct = False
-    bpy.context.scene.render.bake.use_pass_indirect = False
-    bpy.context.scene.render.bake.use_pass_color = True
     bpy.context.scene.render.bake.use_selected_to_active = True
     bpy.context.scene.render.bake.cage_extrusion = cage_extrusion
     bpy.context.scene.render.bake.max_ray_distance = 0
+    bpy.context.scene.render.bake.margin = 16
 
     # ---- Select source → active shell and bake ----
     print("\n--- Baking ---")
@@ -298,8 +417,22 @@ def bake_texture(
     shell_mesh.select_set(True)
     bpy.context.view_layer.objects.active = shell_mesh
 
-    bpy.ops.object.bake(type="DIFFUSE")
+    bpy.ops.object.bake(type="EMIT")
     print(f"  Bake complete ({resolution}x{resolution})")
+
+    # ---- Post-process: replace black (ray-miss) pixels with fill color ----
+    px = list(bake_img.pixels)
+    replaced = 0
+    for i in range(0, len(px), 4):
+        r, g, b = px[i], px[i+1], px[i+2]
+        if r < 0.002 and g < 0.002 and b < 0.002:
+            px[i] = fill_color[0]
+            px[i+1] = fill_color[1]
+            px[i+2] = fill_color[2]
+            replaced += 1
+    bake_img.pixels = px
+    total_px = len(px) // 4
+    print(f"  Filled {replaced}/{total_px} black pixels with dominant color")
 
     # ---- Save texture ----
     out_dir = os.path.dirname(os.path.abspath(output_path))
@@ -362,20 +495,136 @@ def bake_texture(
 
 
 # ---------------------------------------------------------------------------
+# Image-apply pipeline (flat image → UVs, no baking)
+# ---------------------------------------------------------------------------
+
+def apply_image_texture(
+    image_path: str,
+    target_path: str,
+    output_path: str,
+) -> str | None:
+    """Apply a flat image to a target mesh's material. No Cycles baking."""
+    print("=== Texture Apply (Image Mode) ===")
+    print(f"  Image:  {image_path}")
+    print(f"  Target: {target_path}")
+    print(f"  Output: {output_path}")
+
+    bpy.ops.wm.read_factory_settings(use_empty=True)
+
+    # ---- Import target ----
+    print("\n--- Importing target ---")
+    target_objects = import_glb(target_path)
+    target_meshes = collect_meshes(target_objects)
+    target_armature = find_armature(target_objects)
+
+    if not target_meshes:
+        print("ERROR: No meshes found in target GLB")
+        return None
+
+    real_meshes = [m for m in target_meshes if len(m.data.vertices) > 100]
+    if not real_meshes:
+        real_meshes = target_meshes
+    target_mesh = max(real_meshes, key=lambda m: len(m.data.polygons))
+    print(f"  Target mesh: {target_mesh.name} "
+          f"({len(target_mesh.data.vertices)} verts, "
+          f"{len(target_mesh.data.polygons)} faces)")
+
+    ensure_uv_layer(target_mesh)
+
+    # ---- Load image ----
+    print("\n--- Loading image ---")
+    abs_image = os.path.abspath(image_path)
+    if not os.path.isfile(abs_image):
+        print(f"ERROR: Image file not found: {abs_image}")
+        return None
+
+    img = bpy.data.images.load(abs_image)
+    img.pack()
+    print(f"  Loaded: {img.name} ({img.size[0]}x{img.size[1]})")
+
+    # ---- Create material with image texture ----
+    print("\n--- Creating material ---")
+    mat = bpy.data.materials.new("textured_material")
+    mat.use_nodes = True
+    nodes = mat.node_tree.nodes
+    links = mat.node_tree.links
+    nodes.clear()
+
+    bsdf = nodes.new("ShaderNodeBsdfPrincipled")
+    bsdf.location = (0, 0)
+    output_node = nodes.new("ShaderNodeOutputMaterial")
+    output_node.location = (300, 0)
+    links.new(bsdf.outputs["BSDF"], output_node.inputs["Surface"])
+
+    tex_node = nodes.new("ShaderNodeTexImage")
+    tex_node.image = img
+    tex_node.location = (-300, 0)
+    links.new(tex_node.outputs["Color"], bsdf.inputs["Base Color"])
+
+    target_mesh.data.materials.clear()
+    target_mesh.data.materials.append(mat)
+    print(f"  Applied to {target_mesh.name}")
+
+    # ---- Export ----
+    print("\n--- Exporting ---")
+    for obj in bpy.data.objects:
+        obj.hide_set(False)
+        obj.hide_render = False
+
+    bpy.ops.object.select_all(action="DESELECT")
+    target_mesh.select_set(True)
+    if target_armature:
+        target_armature.select_set(True)
+        bpy.context.view_layer.objects.active = target_armature
+    else:
+        bpy.context.view_layer.objects.active = target_mesh
+
+    os.makedirs(os.path.dirname(os.path.abspath(output_path)) or ".", exist_ok=True)
+
+    export_kwargs = dict(
+        filepath=os.path.abspath(output_path),
+        export_format="GLB",
+        use_selection=True,
+        export_apply=False,
+        export_yup=True,
+        export_materials="EXPORT",
+        export_animations=False,
+        export_image_format="AUTO",
+    )
+    if target_armature:
+        export_kwargs["export_skins"] = True
+        export_kwargs["export_all_influences"] = True
+        export_kwargs["export_def_bones"] = True
+
+    bpy.ops.export_scene.gltf(**export_kwargs)
+
+    print(f"\n=== Done — {output_path} ===")
+    return output_path
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 
 def main() -> None:
     args = parse_args()
-    bake_texture(
-        source_path=args.source,
-        shell_path=args.shell,
-        output_path=args.out,
-        texture_out=args.texture_out,
-        resolution=args.resolution,
-        cage_extrusion=args.cage_extrusion,
-        samples=args.samples,
-    )
+
+    if args.image:
+        apply_image_texture(
+            image_path=args.image,
+            target_path=args.target,
+            output_path=args.out,
+        )
+    else:
+        bake_texture(
+            source_path=args.source,
+            target_path=args.target,
+            output_path=args.out,
+            texture_out=args.texture_out,
+            resolution=args.resolution,
+            cage_extrusion=args.cage_extrusion,
+            samples=args.samples,
+        )
 
 
 if __name__ == "__main__":

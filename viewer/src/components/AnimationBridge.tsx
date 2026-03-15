@@ -33,6 +33,17 @@ export default function AnimationBridge({
     characterModel.scene.traverse((child) => {
       if ((child as THREE.SkinnedMesh).isSkinnedMesh) {
         child.visible = showMesh;
+        child.renderOrder = 10;
+        const mat = (child as THREE.SkinnedMesh).material as THREE.MeshStandardMaterial;
+        if (mat?.isMaterial) {
+          mat.stencilWrite = true;
+          mat.stencilRef = 1;
+          mat.stencilFunc = THREE.NotEqualStencilFunc;
+          mat.stencilFail = THREE.KeepStencilOp;
+          mat.stencilZFail = THREE.KeepStencilOp;
+          mat.stencilZPass = THREE.KeepStencilOp;
+          mat.needsUpdate = true;
+        }
       }
     });
   }, [characterModel, showMesh]);

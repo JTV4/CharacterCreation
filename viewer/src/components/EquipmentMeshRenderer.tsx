@@ -40,6 +40,28 @@ const BODY_SLOT_IDS = new Set([
 
 const FINE_BONE_SLOTS = new Set(["gloves", "ring"]);
 
+const SLOT_RENDER_ORDER: Record<string, number> = {
+  upper_body: 1, shell_upper_body: 1, custom_upper_body_f: 1, custom_upper_body_f_textured: 1, custom_upper_body_f_crimson_meshy: 1, meshy_crimson_upperbody_f: 1,
+  boots: 1, shell_boots: 1, custom_boots_f: 1, meshy_crimson_boots_f: 1,
+  crimson_wizard_robe: 1, crimson_upperbody_f: 1, crimson_upperbody_meshy_v2: 1, crimson_wizard_boots: 1,
+  lower_body: 2, shell_lower_body: 2, custom_lower_body_f: 2, meshy_crimson_lower_body_f: 2,
+  crimson_wizard_robe_bottom: 2,
+  head: 3, shell_head: 3, custom_head_f: 3, meshy_crimson_head_f: 3, meshy_crimson_wizard_hat_f: 3, crimson_wizard_hat: 3,
+  gloves: 3, shell_gloves: 3, custom_gloves_f: 3, meshy_crimson_gloves_f: 3, crimson_wizard_gloves: 3,
+  amulet: 4, ring: 4,
+};
+
+const STENCIL_WRITE_SLOTS = new Set([
+  "upper_body", "shell_upper_body", "custom_upper_body_f", "custom_upper_body_f_textured", "custom_upper_body_f_crimson_meshy", "meshy_crimson_upperbody_f",
+  "boots", "shell_boots", "custom_boots_f", "meshy_crimson_boots_f",
+  "crimson_wizard_robe", "crimson_upperbody_f", "crimson_upperbody_meshy_v2", "crimson_wizard_boots",
+  "meshy_crimson_head_f", "meshy_crimson_wizard_hat_f", "meshy_crimson_gloves_f",
+]);
+const STENCIL_TEST_SLOTS = new Set([
+  "lower_body", "shell_lower_body", "custom_lower_body_f", "meshy_crimson_lower_body_f",
+  "crimson_wizard_robe_bottom",
+]);
+
 interface LoadedSlot {
   scene: THREE.Group;
   skinnedMeshes: THREE.SkinnedMesh[];
@@ -579,6 +601,7 @@ function bindSlotSkeleton(
     sm.bind(newSkeleton, _identityMatrix);
 
     fixZeroWeightVertices(sm);
+
   }
 
   if (isFineSlot && !alreadyCorrected) {
@@ -808,7 +831,6 @@ export default function EquipmentMeshRenderer({
         loadUrl,
         (gltf) => {
           loadingRef.current.delete(slotId);
-          if (cancelled) return;
 
           const scene = gltf.scene;
           scene.visible = true;
@@ -826,23 +848,41 @@ export default function EquipmentMeshRenderer({
           scene.traverse((child) => {
             if ((child as THREE.Mesh).isMesh) {
               const mesh = child as THREE.Mesh;
+
               if (!isImported) {
                 mesh.geometry.applyMatrix4(geoCorrection);
               }
-              const existingMat = mesh.material as THREE.MeshStandardMaterial;
-              const hasBakedTexture = existingMat?.isMeshStandardMaterial && existingMat.map != null;
+
+              const isMultiMaterial = Array.isArray(mesh.material);
+              const materials: THREE.MeshStandardMaterial[] = isMultiMaterial
+                ? (mesh.material as THREE.Material[]).filter((m): m is THREE.MeshStandardMaterial => (m as any).isMeshStandardMaterial)
+                : ((mesh.material as any)?.isMeshStandardMaterial ? [mesh.material as THREE.MeshStandardMaterial] : []);
+              const hasBakedTexture = materials.length > 0 && materials.some(m => m.map != null);
+
+              for (const m of materials) {
+                if (hasBakedTexture) {
+                  m.side = THREE.DoubleSide;
+                  m.transparent = false;
+                  m.opacity = 1.0;
+                  m.alphaTest = 0;
+                  m.depthWrite = true;
+                  m.polygonOffset = true;
+                  m.polygonOffsetFactor = -1;
+                  m.polygonOffsetUnits = -1;
+                  m.blending = THREE.NormalBlending;
+                  if ((m as any).transmission !== undefined) (m as any).transmission = 0;
+                  if ((m as any).ior !== undefined) (m as any).ior = 1.5;
+                  if ((m as any).thickness !== undefined) (m as any).thickness = 0;
+                  m.needsUpdate = true;
+                }
+              }
               if (hasBakedTexture) {
-                existingMat.side = THREE.FrontSide;
-                existingMat.depthWrite = true;
-                existingMat.polygonOffset = true;
-                existingMat.polygonOffsetFactor = -1;
-                existingMat.polygonOffsetUnits = -1;
-                origMats.set(mesh, existingMat);
+                origMats.set(mesh, (isMultiMaterial ? (mesh.material as THREE.Material[])[0] : mesh.material) as THREE.Material);
               } else if (!isImported) {
                 mesh.material = new THREE.MeshStandardMaterial({
                   color,
-                  transparent: true,
-                  opacity: isExternal ? 0.6 : 0.35,
+                  transparent: false,
+                  opacity: 1.0,
                   side: THREE.FrontSide,
                   depthWrite: true,
                   polygonOffset: true,
@@ -850,12 +890,35 @@ export default function EquipmentMeshRenderer({
                   polygonOffsetUnits: -1,
                 });
               }
+
+              const matForStencil = isMultiMaterial
+                ? (mesh.material as THREE.Material[])
+                : [mesh.material as THREE.Material];
+              for (const sm of matForStencil) {
+                if (STENCIL_WRITE_SLOTS.has(slotId)) {
+                  (sm as any).stencilWrite = true;
+                  (sm as any).stencilRef = 1;
+                  (sm as any).stencilFunc = THREE.AlwaysStencilFunc;
+                  (sm as any).stencilZPass = THREE.ReplaceStencilOp;
+                  (sm as any).stencilZFail = THREE.KeepStencilOp;
+                  (sm as any).stencilFail = THREE.KeepStencilOp;
+                } else if (STENCIL_TEST_SLOTS.has(slotId)) {
+                  (sm as any).stencilWrite = true;
+                  (sm as any).stencilRef = 1;
+                  (sm as any).stencilFunc = THREE.NotEqualStencilFunc;
+                  (sm as any).stencilZPass = THREE.KeepStencilOp;
+                  (sm as any).stencilZFail = THREE.KeepStencilOp;
+                  (sm as any).stencilFail = THREE.KeepStencilOp;
+                }
+              }
               if (!hasBakedTexture && !isImported) {
                 origMats.set(mesh, mesh.material as THREE.Material);
               } else if (isImported) {
                 origMats.set(mesh, mesh.material as THREE.Material);
               }
               mesh.frustumCulled = false;
+              const slotRenderOrder = SLOT_RENDER_ORDER[slotId] ?? 0;
+              mesh.renderOrder = slotRenderOrder;
             }
           });
 
@@ -873,11 +936,13 @@ export default function EquipmentMeshRenderer({
 
           const loaded: LoadedSlot = { scene, skinnedMeshes, needsAutoSkin, originalMaterials: origMats };
           slotCache.set(slotId, loaded);
-          setLoadedSlots((prev) => {
-            const next = new Map(prev);
-            next.set(slotId, loaded);
-            return next;
-          });
+          if (!cancelled) {
+            setLoadedSlots((prev) => {
+              const next = new Map(prev);
+              next.set(slotId, loaded);
+              return next;
+            });
+          }
         },
         undefined,
         (err) => {
@@ -922,8 +987,8 @@ export default function EquipmentMeshRenderer({
             const color = SLOT_COLORS[slotId] ?? "#94a3b8";
             mesh.material = new THREE.MeshStandardMaterial({
               color,
-              transparent: true,
-              opacity: 0.35,
+              transparent: false,
+              opacity: 1.0,
               side: THREE.FrontSide,
               depthWrite: true,
               polygonOffset: true,

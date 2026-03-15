@@ -51,9 +51,6 @@ import bmesh
 SLOT_BONES: dict[str, list[str]] = {
     "head": [
         "head",
-        "neck_01",
-        "spine_03",
-        "jaw",
         "eye_L",
         "eye_R",
     ],
@@ -68,6 +65,10 @@ SLOT_BONES: dict[str, list[str]] = {
         "upperarm_R",
         "lowerarm_L",
         "lowerarm_R",
+        "hand_L",
+        "hand_R",
+        "thigh_L",
+        "thigh_R",
     ],
     "gloves": [
         "lowerarm_L",
@@ -110,11 +111,65 @@ SLOT_BONES: dict[str, list[str]] = {
 # visually bulkier.  Set to 0 to skip Solidify for a slot (flat shell).
 SHELL_THICKNESS: dict[str, float] = {
     "head": 0.005,
-    "upper_body": 0.005,
-    "lower_body": 0.005,
-    "gloves": 0.03,
-    "boots": 0.06,
+    "upper_body": 0.012,
+    "lower_body": 0.01,
+    "gloves": 0.015,
+    "boots": 0.04,
 }
+
+SHELL_THICKNESS_CLAMP: dict[str, float] = {
+    "head": 2.0,
+    "upper_body": 2.0,
+    "lower_body": 2.0,
+    "gloves": 2.0,
+    "boots": 0.0,
+}
+
+SHELL_EVEN_OFFSET: dict[str, bool] = {
+    "head": True,
+    "upper_body": True,
+    "lower_body": True,
+    "gloves": True,
+    "boots": False,
+}
+
+SHELL_OFFSET_MODE: dict[str, str] = {
+    "head": "solidify",
+    "upper_body": "displace",
+    "lower_body": "displace",
+    "gloves": "displace",
+    "boots": "displace",
+}
+
+SHELL_SMOOTH_ITERS: dict[str, int] = {
+    "head": 10,
+    "upper_body": 10,
+    "lower_body": 10,
+    "gloves": 10,
+    "boots": 20,
+}
+
+SHELL_SMOOTH_FACTOR: dict[str, float] = {
+    "head": 0.5,
+    "upper_body": 0.5,
+    "lower_body": 0.5,
+    "gloves": 0.5,
+    "boots": 0.5,
+}
+
+# Post-displace solidify wall thickness (meters).  Applied after vertex
+# displacement to close the single-surface shell into a proper manifold
+# mesh with inner/outer faces and edge walls.  Only affects "displace"
+# mode slots; "solidify" mode slots already produce closed geometry.
+# Set to 0 to skip (leaves the mesh as a single surface).
+SHELL_WALL_THICKNESS: dict[str, float] = {
+    "head": 0.0,
+    "upper_body": 0.002,
+    "lower_body": 0.002,
+    "gloves": 0.002,
+    "boots": 0.002,
+}
+
 
 # Slot pairs that share faces in their overlap region.  Each member
 # expands into the other's territory wherever it has bone weight above
@@ -123,6 +178,8 @@ SHELL_THICKNESS: dict[str, float] = {
 OVERLAP_PAIRS: list[tuple[str, str]] = [
     ("lower_body", "boots"),
     ("upper_body", "lower_body"),
+    ("upper_body", "head"),
+    ("upper_body", "gloves"),
 ]
 
 # Lower = more overlap (faces claimed further from slot's bone centers).
@@ -440,11 +497,18 @@ def _ensure_object_mode(obj: bpy.types.Object) -> None:
 def _remove_spike_vertices(
     mesh_obj: bpy.types.Object,
     max_edge_ratio: float = 3.0,
+    solidify_thickness: float = 0.0,
 ) -> int:
-    """Remove vertices connected to abnormally long edges (post-solidify spikes).
+    """Remove vertices that form spikes (post-solidify artifacts).
 
-    Computes the median edge length, then deletes any vertex that has an edge
-    longer than median * max_edge_ratio.  Returns count of removed vertices.
+    Two-pass detection:
+      1. **Global pass** – any edge longer than
+         ``max(median * max_edge_ratio, solidify_thickness * 1.5)``
+         flags both its vertices.
+      2. **Per-vertex pass** – for every vertex whose longest edge is
+         more than 6x its *second-longest* edge, flag it.  This catches
+         spikes whose absolute length is close to the solidify thickness
+         but whose shape is locally anomalous.
     """
     import bmesh as _bm
 
@@ -459,23 +523,174 @@ def _remove_spike_vertices(
 
     lengths = sorted(e.calc_length() for e in bm.edges)
     median_len = lengths[len(lengths) // 2]
-    threshold = median_len * max_edge_ratio
+    global_threshold = max(median_len * max_edge_ratio,
+                           solidify_thickness * 1.5)
 
     spike_verts: set = set()
+
+    global_flagged: set = set()
     for e in bm.edges:
-        if e.calc_length() > threshold:
-            for v in e.verts:
-                spike_verts.add(v)
+        if e.calc_length() > global_threshold:
+            global_flagged.update(e.verts)
+    spike_verts.update(global_flagged)
+
+    pervert_flagged: set = set()
+    for v in bm.verts:
+        edge_lens = sorted((e.calc_length() for e in v.link_edges), reverse=True)
+        if len(edge_lens) >= 2 and edge_lens[1] > 1e-8:
+            if edge_lens[0] / edge_lens[1] > 6.0:
+                pervert_flagged.add(v)
+    spike_verts.update(pervert_flagged)
 
     if spike_verts:
         _bm.ops.delete(bm, geom=list(spike_verts), context="VERTS")
         bm.to_mesh(mesh_obj.data)
         mesh_obj.data.update()
         print(f"  Removed {len(spike_verts)} spike vertices "
-              f"(threshold={threshold:.5f}m, median={median_len:.5f}m)")
+              f"(global_threshold={global_threshold:.5f}m, median={median_len:.5f}m)")
 
     bm.free()
     return len(spike_verts)
+
+
+def _smooth_and_cap_boundaries(
+    mesh_obj: bpy.types.Object,
+    smooth_iterations: int = 16,
+    smooth_factor: float = 0.5,
+) -> int:
+    """Project open boundary loops onto best-fit circles and cap them.
+
+    After slot extraction, cut boundaries follow the raw face-assignment
+    edge and are typically jagged.  This:
+      1. Walks each boundary loop in vertex order.
+      2. Laplacian-smooths using loop neighbours to soften extremes.
+      3. Computes a best-fit plane (PCA) and projects vertices onto it.
+      4. Snaps vertices to a best-fit circle for a perfectly round opening.
+      5. Fills each loop to cap the opening.
+    """
+    import bmesh as _bm
+    from mathutils import Vector
+    import numpy as np
+
+    _ensure_object_mode(mesh_obj)
+
+    bm = _bm.new()
+    bm.from_mesh(mesh_obj.data)
+    bm.edges.ensure_lookup_table()
+    bm.verts.ensure_lookup_table()
+
+    boundary_edges = [e for e in bm.edges if e.is_boundary]
+    if not boundary_edges:
+        bm.free()
+        return 0
+
+    # --- Walk ordered boundary loops ---
+    visited: set = set()
+    loops: list[list] = []
+
+    for start_edge in boundary_edges:
+        if start_edge in visited:
+            continue
+
+        loop_verts: list = []
+        current_edge = start_edge
+        current_vert = start_edge.verts[0]
+
+        while True:
+            visited.add(current_edge)
+            next_vert = current_edge.other_vert(current_vert)
+            loop_verts.append(next_vert)
+
+            found_next = False
+            for e in next_vert.link_edges:
+                if e.is_boundary and e not in visited:
+                    current_edge = e
+                    current_vert = next_vert
+                    found_next = True
+                    break
+
+            if not found_next or next_vert == start_edge.verts[0]:
+                break
+
+        if len(loop_verts) >= 3:
+            loops.append(loop_verts)
+
+    total_boundary_verts = sum(len(lp) for lp in loops)
+    caps_created = 0
+
+    for loop_verts in loops:
+        n = len(loop_verts)
+
+        # --- Phase 1: Laplacian smooth using ordered loop neighbours ---
+        for _ in range(smooth_iterations):
+            new_positions: dict = {}
+            for i, v in enumerate(loop_verts):
+                prev_co = loop_verts[(i - 1) % n].co
+                next_co = loop_verts[(i + 1) % n].co
+                avg = (prev_co + next_co) * 0.5
+                new_positions[v] = v.co.lerp(avg, smooth_factor)
+            for v, co in new_positions.items():
+                v.co = co
+
+        # --- Phase 2: PCA best-fit plane ---
+        coords = np.array([[v.co.x, v.co.y, v.co.z] for v in loop_verts])
+        centroid = coords.mean(axis=0)
+        centered = coords - centroid
+
+        if n >= 4:
+            cov = np.cov(centered.T)
+            eigenvalues, eigenvectors = np.linalg.eigh(cov)
+            plane_normal = eigenvectors[:, 0]
+        else:
+            v1 = centered[1] - centered[0]
+            v2 = centered[2] - centered[0]
+            plane_normal = np.cross(v1, v2)
+            norm = np.linalg.norm(plane_normal)
+            plane_normal = plane_normal / norm if norm > 1e-8 else np.array([0, 0, 1])
+
+        depths = centered @ plane_normal
+        projected = coords - np.outer(depths, plane_normal)
+
+        # --- Phase 3: Circle projection ---
+        proj_centered = projected - centroid
+        radii = np.linalg.norm(proj_centered, axis=1)
+        avg_radius = radii.mean()
+
+        for i, v in enumerate(loop_verts):
+            r = radii[i]
+            if r > 1e-6:
+                direction = proj_centered[i] / r
+                circle_pos = centroid + direction * avg_radius
+                blend = 0.9
+                final = blend * circle_pos + (1.0 - blend) * projected[i]
+                v.co.x, v.co.y, v.co.z = float(final[0]), float(final[1]), float(final[2])
+
+        # --- Cap ---
+        try:
+            bm.faces.new(loop_verts)
+            caps_created += 1
+        except (ValueError, IndexError):
+            pass
+
+    if caps_created > 0:
+        cap_faces = [f for f in bm.faces if len(f.verts) > 4]
+        if cap_faces:
+            _bm.ops.triangulate(bm, faces=cap_faces)
+        bm.normal_update()
+
+    bm.to_mesh(mesh_obj.data)
+    mesh_obj.data.update()
+    bm.free()
+
+    _ensure_object_mode(mesh_obj)
+    bpy.ops.object.mode_set(mode="EDIT")
+    bpy.ops.mesh.select_all(action="SELECT")
+    bpy.ops.mesh.normals_make_consistent(inside=False)
+    bpy.ops.object.mode_set(mode="OBJECT")
+
+    print(f"  Projected {total_boundary_verts} boundary vertices onto best-fit circles, "
+          f"capped {caps_created} loop(s)")
+    return caps_created
 
 
 def extract_slot_shell(
@@ -531,15 +746,73 @@ def extract_slot_shell(
     remaining = len(shell.data.polygons)
     print(f"  Shell mesh: {remaining} faces, {len(shell.data.vertices)} vertices")
 
-    if thickness > 0:
+    _smooth_and_cap_boundaries(shell)
+
+    offset_mode = SHELL_OFFSET_MODE.get(slot_type, "solidify")
+
+    if thickness > 0 and offset_mode == "displace":
+        _ensure_object_mode(shell)
+        mesh_data = shell.data
+
+        for v in mesh_data.vertices:
+            v.co += v.normal * thickness
+        mesh_data.update()
+
+        print(f"  Displaced {len(mesh_data.vertices)} vertices outward by {thickness:.4f}m")
+
+        _sm_iters = SHELL_SMOOTH_ITERS.get(slot_type, 10)
+        _sm_factor = SHELL_SMOOTH_FACTOR.get(slot_type, 0.5)
+
+        smooth_mod = shell.modifiers.new("CorrectiveSmooth", type="CORRECTIVE_SMOOTH")
+        smooth_mod.factor = _sm_factor
+        smooth_mod.iterations = _sm_iters
+        smooth_mod.smooth_type = 'LENGTH_WEIGHTED'
+        smooth_mod.use_only_smooth = True
+        bpy.ops.object.modifier_apply(modifier=smooth_mod.name)
+        print(f"  Applied corrective smooth ({_sm_iters} iters, factor={_sm_factor})")
+
+        _ensure_object_mode(shell)
+        bpy.ops.object.mode_set(mode="EDIT")
+        bpy.ops.mesh.select_all(action="SELECT")
+        bpy.ops.mesh.normals_make_consistent(inside=False)
+        bpy.ops.object.mode_set(mode="OBJECT")
+
+        final_faces = len(mesh_data.polygons)
+        final_verts = len(mesh_data.vertices)
+        print(f"  After Displace: {final_faces} faces, {final_verts} vertices "
+              f"(offset={thickness:.4f}m)")
+
+        wall = SHELL_WALL_THICKNESS.get(slot_type, 0.0)
+        if wall > 0:
+            _ensure_object_mode(shell)
+            wall_mod = shell.modifiers.new("WallSolidify", type="SOLIDIFY")
+            wall_mod.thickness = wall
+            wall_mod.offset = -1.0
+            wall_mod.use_even_offset = True
+            wall_mod.use_quality_normals = True
+            wall_mod.thickness_clamp = 2.0
+            bpy.ops.object.modifier_apply(modifier=wall_mod.name)
+
+            _ensure_object_mode(shell)
+            bpy.ops.object.mode_set(mode="EDIT")
+            bpy.ops.mesh.select_all(action="SELECT")
+            bpy.ops.mesh.remove_doubles(threshold=0.0002)
+            bpy.ops.mesh.normals_make_consistent(inside=False)
+            bpy.ops.object.mode_set(mode="OBJECT")
+
+            print(f"  Applied wall solidify ({wall:.4f}m) → "
+                  f"{len(shell.data.polygons)} faces, "
+                  f"{len(shell.data.vertices)} vertices")
+
+    elif thickness > 0:
         _ensure_object_mode(shell)
 
         mod = shell.modifiers.new("Solidify", type="SOLIDIFY")
         mod.thickness = thickness
         mod.offset = -1.0
-        mod.use_even_offset = True
+        mod.use_even_offset = SHELL_EVEN_OFFSET.get(slot_type, True)
         mod.use_quality_normals = True
-        mod.thickness_clamp = 2.0
+        mod.thickness_clamp = SHELL_THICKNESS_CLAMP.get(slot_type, 2.0)
 
         bpy.ops.object.modifier_apply(modifier=mod.name)
 
@@ -550,7 +823,8 @@ def extract_slot_shell(
         bpy.ops.mesh.normals_make_consistent(inside=False)
         bpy.ops.object.mode_set(mode="OBJECT")
 
-        _remove_spike_vertices(shell, max_edge_ratio=6.0)
+        _remove_spike_vertices(shell, max_edge_ratio=6.0,
+                               solidify_thickness=thickness)
 
         final_faces = len(shell.data.polygons)
         final_verts = len(shell.data.vertices)
@@ -792,15 +1066,15 @@ def extract_shells(
     # region so both meshes cover the area (boots sit on top via thickness).
     # Each slot is expanded into its partner's territory wherever it still has
     # meaningful bone weight, keeping dominant boundaries clean elsewhere.
-    slot_face_views: dict[str, dict[int, str]] = {s: face_assignments for s in valid_slots}
+    slot_face_views: dict[str, dict[int, str]] = {
+        s: dict(face_assignments) for s in valid_slots
+    }
 
     for s1, s2 in OVERLAP_PAIRS:
         if s1 not in valid_slots or s2 not in valid_slots:
             continue
         s1_vg = get_slot_vgroup_indices(body_mesh, s1)
         s2_vg = get_slot_vgroup_indices(body_mesh, s2)
-        s1_view = dict(face_assignments)
-        s2_view = dict(face_assignments)
         s1_gained = 0
         s2_gained = 0
 
@@ -813,7 +1087,7 @@ def extract_shells(
                     if g.group in s1_vg
                 )
                 if w > OVERLAP_WEIGHT_THRESHOLD:
-                    s1_view[face.index] = s1
+                    slot_face_views[s1][face.index] = s1
                     s1_gained += 1
             elif assigned == s1:
                 w = sum(
@@ -822,11 +1096,9 @@ def extract_shells(
                     if g.group in s2_vg
                 )
                 if w > OVERLAP_WEIGHT_THRESHOLD:
-                    s2_view[face.index] = s2
+                    slot_face_views[s2][face.index] = s2
                     s2_gained += 1
 
-        slot_face_views[s1] = s1_view
-        slot_face_views[s2] = s2_view
         print(f"  Overlap expansion: {s1} gained {s1_gained} faces from {s2}, "
               f"{s2} gained {s2_gained} faces from {s1}")
 

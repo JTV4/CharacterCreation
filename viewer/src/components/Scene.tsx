@@ -108,6 +108,7 @@ export default function Scene({
   return (
     <div style={{ width: "100%", height: "100%", position: "relative" }}>
       <Canvas
+        gl={{ stencil: true }}
         camera={{ position: [0, 3, 0.95], fov: 45, near: 0.01, far: 100 }}
         style={{ width: "100%", height: "100%", cursor: cursorStyle }}
         onPointerMissed={() => {
