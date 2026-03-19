@@ -34,31 +34,35 @@ const BODY_SLOT_IDS = new Set([
   "base_body",
   "base_male",
   "base_female",
-  "base_male_with_skin_texture",
-  "base_female_with_skin_texture",
 ]);
 
 const FINE_BONE_SLOTS = new Set(["gloves", "ring"]);
 
+const INFLATE_SLOTS = new Set([
+  "shell_gloves", "custom_gloves_f", "meshy_crimson_gloves_f", "crimson_wizard_gloves",
+]);
+const INFLATE_AMOUNT = 0.0;
+const FINGERTIP_EXTEND = 0.022;
+
 const SLOT_RENDER_ORDER: Record<string, number> = {
-  upper_body: 1, shell_upper_body: 1, custom_upper_body_f: 1, custom_upper_body_f_textured: 1, custom_upper_body_f_crimson_meshy: 1, meshy_crimson_upperbody_f: 1,
-  boots: 1, shell_boots: 1, custom_boots_f: 1, meshy_crimson_boots_f: 1,
+  upper_body: 1, shell_upper_body: 1, shell_upper_body_test_v1: 1, custom_upper_body_f: 1, custom_upper_body_f_textured: 1, custom_upper_body_f_crimson_meshy: 1, meshy_crimson_upperbody_f: 1,
+  boots: 1, shell_boots: 1, shell_boots_test_v1: 1, custom_boots_f: 1, meshy_crimson_boots_f: 1,
   crimson_wizard_robe: 1, crimson_upperbody_f: 1, crimson_upperbody_meshy_v2: 1, crimson_wizard_boots: 1,
-  lower_body: 2, shell_lower_body: 2, custom_lower_body_f: 2, meshy_crimson_lower_body_f: 2,
+  lower_body: 2, shell_lower_body: 2, shell_lower_body_test_v1: 2, custom_lower_body_f: 2, meshy_crimson_lower_body_f: 2, red_lower_body_f: 2,
   crimson_wizard_robe_bottom: 2,
-  head: 3, shell_head: 3, custom_head_f: 3, meshy_crimson_head_f: 3, meshy_crimson_wizard_hat_f: 3, crimson_wizard_hat: 3,
-  gloves: 3, shell_gloves: 3, custom_gloves_f: 3, meshy_crimson_gloves_f: 3, crimson_wizard_gloves: 3,
+  head: 3, shell_head: 3, shell_head_test_v1: 3, custom_head_f: 3, meshy_crimson_head_f: 3, meshy_crimson_wizard_hat_f: 3, crimson_wizard_hat: 3,
+  gloves: 3, shell_gloves: 3, shell_gloves_test_v1: 3, custom_gloves_f: 3, meshy_crimson_gloves_f: 3, crimson_wizard_gloves: 3,
   amulet: 4, ring: 4,
 };
 
 const STENCIL_WRITE_SLOTS = new Set([
-  "upper_body", "shell_upper_body", "custom_upper_body_f", "custom_upper_body_f_textured", "custom_upper_body_f_crimson_meshy", "meshy_crimson_upperbody_f",
-  "boots", "shell_boots", "custom_boots_f", "meshy_crimson_boots_f",
+  "upper_body", "shell_upper_body", "shell_upper_body_test_v1", "custom_upper_body_f", "custom_upper_body_f_textured", "custom_upper_body_f_crimson_meshy", "meshy_crimson_upperbody_f",
+  "boots", "shell_boots", "shell_boots_test_v1", "custom_boots_f", "meshy_crimson_boots_f",
   "crimson_wizard_robe", "crimson_upperbody_f", "crimson_upperbody_meshy_v2", "crimson_wizard_boots",
   "meshy_crimson_head_f", "meshy_crimson_wizard_hat_f", "meshy_crimson_gloves_f",
 ]);
 const STENCIL_TEST_SLOTS = new Set([
-  "lower_body", "shell_lower_body", "custom_lower_body_f", "meshy_crimson_lower_body_f",
+  "lower_body", "shell_lower_body", "custom_lower_body_f", "meshy_crimson_lower_body_f", "red_lower_body_f",
   "crimson_wizard_robe_bottom",
 ]);
 
@@ -437,6 +441,162 @@ function scaleToSlotBounds(
   scene.position.add(offset);
 }
 
+function smoothOutlierVertices(
+  geo: THREE.BufferGeometry,
+  threshold: number,
+  maxPasses = 6,
+): number {
+  const position = geo.getAttribute("position") as THREE.BufferAttribute;
+  const idx = geo.index;
+  if (!position || !idx) return 0;
+
+  const adjMap = new Map<number, Set<number>>();
+  for (let t = 0; t < idx.count; t += 3) {
+    const a = idx.getX(t), b = idx.getX(t + 1), c = idx.getX(t + 2);
+    for (const [v1, v2] of [[a, b], [b, c], [c, a]] as [number, number][]) {
+      if (!adjMap.has(v1)) adjMap.set(v1, new Set());
+      if (!adjMap.has(v2)) adjMap.set(v2, new Set());
+      adjMap.get(v1)!.add(v2);
+      adjMap.get(v2)!.add(v1);
+    }
+  }
+
+  let totalFixed = 0;
+  for (let pass = 0; pass < maxPasses; pass++) {
+    let passFixed = 0;
+    for (let vi = 0; vi < position.count; vi++) {
+      const neighbors = adjMap.get(vi);
+      if (!neighbors || neighbors.size < 2) continue;
+      const px = position.getX(vi), py = position.getY(vi), pz = position.getZ(vi);
+      let sx = 0, sy = 0, sz = 0, cnt = 0;
+      for (const ni of neighbors) {
+        sx += position.getX(ni); sy += position.getY(ni); sz += position.getZ(ni); cnt++;
+      }
+      const ax = sx / cnt, ay = sy / cnt, az = sz / cnt;
+      const d = Math.sqrt((px - ax) ** 2 + (py - ay) ** 2 + (pz - az) ** 2);
+      if (d > threshold) {
+        position.setXYZ(vi, ax, ay, az);
+        passFixed++;
+      }
+    }
+    totalFixed += passFixed;
+    if (passFixed === 0) break;
+  }
+
+  if (totalFixed > 0) position.needsUpdate = true;
+  return totalFixed;
+}
+
+function inflateGeometry(geo: THREE.BufferGeometry, amount: number): void {
+  const position = geo.getAttribute("position") as THREE.BufferAttribute;
+  let normal = geo.getAttribute("normal") as THREE.BufferAttribute;
+  if (!position) return;
+  if (!normal) {
+    geo.computeVertexNormals();
+    normal = geo.getAttribute("normal") as THREE.BufferAttribute;
+    if (!normal) return;
+  }
+  for (let i = 0; i < position.count; i++) {
+    const px = position.getX(i), py = position.getY(i), pz = position.getZ(i);
+    const nx = normal.getX(i), ny = normal.getY(i), nz = normal.getZ(i);
+    const absPx = Math.abs(px);
+    if (absPx > 0.75) {
+      const radialLen = Math.sqrt(px * px + py * py);
+      if (radialLen > 0.01) {
+        const dot = (px * nx + py * ny) / radialLen;
+        if (dot < 0) continue;
+      }
+    }
+    position.setXYZ(i, px + nx * amount, py + ny * amount, pz + nz * amount);
+  }
+  position.needsUpdate = true;
+}
+
+function extendFingertips(
+  geo: THREE.BufferGeometry,
+  skeleton: THREE.Skeleton,
+  amount: number,
+): void {
+  const position = geo.getAttribute("position") as THREE.BufferAttribute;
+  const skinIndex = geo.getAttribute("skinIndex") as THREE.BufferAttribute;
+  const skinWeight = geo.getAttribute("skinWeight") as THREE.BufferAttribute;
+  if (!position || !skinIndex || !skinWeight) return;
+
+  const boneScale = new Map<number, number>();
+  const thumbBones = new Set<number>();
+  const indexBones = new Set<number>();
+  const middleBones = new Set<number>();
+  const pinkyBones = new Set<number>();
+
+  for (let i = 0; i < skeleton.bones.length; i++) {
+    const n = skeleton.bones[i].name;
+    let s = 0;
+    if (/_03_|_03$|03_[LR]|Thumb3|Index3|Middle3|Ring3|Pinky3/.test(n)) s = 1.0;
+    else if (/_02_|_02$|02_[LR]|Thumb2|Index2|Middle2|Ring2|Pinky2/.test(n)) s = 0.6;
+    else if (/_01_|_01$|01_[LR]|Thumb1|Index1|Middle1|Ring1|Pinky1/.test(n)) s = 0.2;
+    if (s === 0) continue;
+    boneScale.set(i, s);
+    if (/[Tt]humb/.test(n)) thumbBones.add(i);
+    if (/[Ii]ndex/.test(n)) indexBones.add(i);
+    if (/[Mm]iddle/.test(n)) middleBones.add(i);
+    if (/[Pp]inky/.test(n)) pinkyBones.add(i);
+  }
+  if (boneScale.size === 0) return;
+
+  const siGet = [
+    (vi: number) => skinIndex.getX(vi),
+    (vi: number) => skinIndex.getY(vi),
+    (vi: number) => skinIndex.getZ(vi),
+    (vi: number) => skinIndex.getW(vi),
+  ];
+  const swGet = [
+    (vi: number) => skinWeight.getX(vi),
+    (vi: number) => skinWeight.getY(vi),
+    (vi: number) => skinWeight.getZ(vi),
+    (vi: number) => skinWeight.getW(vi),
+  ];
+
+  for (let vi = 0; vi < position.count; vi++) {
+    let dx = 0, dy = 0;
+    let matched = false;
+
+    for (let slot = 0; slot < 4; slot++) {
+      const bIdx = siGet[slot](vi);
+      const bW = swGet[slot](vi);
+      if (bW < 0.05) continue;
+
+      const s = boneScale.get(bIdx);
+      if (s === undefined) continue;
+
+      const px = position.getX(vi);
+      const sign = px > 0 ? 1 : -1;
+      const contrib = amount * s * bW;
+      dx += sign * contrib;
+
+      if (thumbBones.has(bIdx)) {
+        dy -= contrib * 1.2;
+      } else if (indexBones.has(bIdx)) {
+        dy -= contrib * 0.4;
+      } else if (pinkyBones.has(bIdx)) {
+        dy += contrib * 0.4;
+      } else if (middleBones.has(bIdx)) {
+        dy -= contrib * 0.3;
+      }
+      matched = true;
+    }
+
+    if (matched) {
+      position.setXYZ(
+        vi,
+        position.getX(vi) + dx,
+        position.getY(vi) + dy,
+        position.getZ(vi),
+      );
+    }
+  }
+  position.needsUpdate = true;
+}
+
 function fixZeroWeightVertices(sm: THREE.SkinnedMesh): void {
   const geo = sm.geometry;
   const skinWeight = geo.getAttribute("skinWeight") as THREE.BufferAttribute;
@@ -587,6 +747,7 @@ function bindSlotSkeleton(
       } else {
         newBones.push(oldSk.bones[i] as THREE.Bone);
         newInverses.push(oldSk.boneInverses[i].clone());
+
         if (isFineSlot && !alreadyCorrected) {
           boneDeltas.push(new THREE.Vector3(0, 0, 0));
         }
@@ -810,8 +971,82 @@ export default function EquipmentMeshRenderer({
     return characterModel.boneRestWorldInverses;
   }, [characterModel]);
 
+  const skinSlots = useMemo(
+    () => slots.filter((s) => s.mesh_type === "skin_color" || s.mesh_type === "skin_texture"),
+    [slots],
+  );
+  const skinTextureSlotIds = useMemo(
+    () => new Set(skinSlots.map((s) => s.id)),
+    [skinSlots],
+  );
+
+  const originalBodyMatsRef = useRef<Map<THREE.SkinnedMesh, THREE.Material | THREE.Material[]>>(new Map());
+
   useEffect(() => {
-    const enabledSlots = equipmentSlotIds.filter((id) => equipState[id]);
+    if (!characterModel) return;
+    const activeSkinSlot = skinSlots.find((s) => effectiveState[s.id]);
+
+    if (activeSkinSlot) {
+      if (activeSkinSlot.mesh_type === "skin_color" && activeSkinSlot.color) {
+        const color = new THREE.Color(activeSkinSlot.color);
+        for (const sm of characterModel.skinnedMeshes) {
+          if (!originalBodyMatsRef.current.has(sm)) {
+            originalBodyMatsRef.current.set(sm, sm.material);
+          }
+          const mats = Array.isArray(sm.material) ? sm.material : [sm.material];
+          for (const m of mats) {
+            if ((m as any).isMeshStandardMaterial) {
+              const stdMat = m as THREE.MeshStandardMaterial;
+              stdMat.color.copy(color);
+              stdMat.map = null;
+              stdMat.roughness = 0.7;
+              stdMat.metalness = 0.0;
+              stdMat.needsUpdate = true;
+            }
+          }
+        }
+      } else if (activeSkinSlot.mesh_type === "skin_texture" && activeSkinSlot.url) {
+        loader.load(activeSkinSlot.url + "?v=" + Date.now(), (gltf) => {
+          let skinTexture: THREE.Texture | null = null;
+          gltf.scene.traverse((child) => {
+            if (skinTexture) return;
+            if ((child as THREE.Mesh).isMesh) {
+              const mesh = child as THREE.Mesh;
+              const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+              for (const m of mats) {
+                if ((m as any).isMeshStandardMaterial && (m as THREE.MeshStandardMaterial).map) {
+                  skinTexture = (m as THREE.MeshStandardMaterial).map;
+                  break;
+                }
+              }
+            }
+          });
+          if (!skinTexture) return;
+          for (const sm of characterModel.skinnedMeshes) {
+            if (!originalBodyMatsRef.current.has(sm)) {
+              originalBodyMatsRef.current.set(sm, sm.material);
+            }
+            const mats = Array.isArray(sm.material) ? sm.material : [sm.material];
+            for (const m of mats) {
+              if ((m as any).isMeshStandardMaterial) {
+                const stdMat = m as THREE.MeshStandardMaterial;
+                stdMat.map = skinTexture;
+                stdMat.needsUpdate = true;
+              }
+            }
+          }
+        });
+      }
+    } else {
+      for (const [sm, origMat] of originalBodyMatsRef.current) {
+        sm.material = origMat;
+      }
+      originalBodyMatsRef.current.clear();
+    }
+  }, [characterModel, skinSlots, effectiveState]);
+
+  useEffect(() => {
+    const enabledSlots = equipmentSlotIds.filter((id) => equipState[id] && !skinTextureSlotIds.has(id));
     const toLoad = enabledSlots.filter(
       (id) => !slotCache.has(id) && !loadingRef.current.has(id),
     );
@@ -853,6 +1088,14 @@ export default function EquipmentMeshRenderer({
                 mesh.geometry.applyMatrix4(geoCorrection);
               }
 
+              if (INFLATE_SLOTS.has(slotId)) {
+                smoothOutlierVertices(mesh.geometry, 0.05);
+                inflateGeometry(mesh.geometry, INFLATE_AMOUNT);
+                if ((mesh as THREE.SkinnedMesh).isSkinnedMesh) {
+                  extendFingertips(mesh.geometry, (mesh as THREE.SkinnedMesh).skeleton, FINGERTIP_EXTEND);
+                }
+              }
+
               const isMultiMaterial = Array.isArray(mesh.material);
               const materials: THREE.MeshStandardMaterial[] = isMultiMaterial
                 ? (mesh.material as THREE.Material[]).filter((m): m is THREE.MeshStandardMaterial => (m as any).isMeshStandardMaterial)
@@ -883,7 +1126,7 @@ export default function EquipmentMeshRenderer({
                   color,
                   transparent: false,
                   opacity: 1.0,
-                  side: THREE.FrontSide,
+                  side: THREE.DoubleSide,
                   depthWrite: true,
                   polygonOffset: true,
                   polygonOffsetFactor: -1,
@@ -1052,6 +1295,7 @@ export default function EquipmentMeshRenderer({
     <group ref={groupRef} name="equipment-meshes">
       {equipmentSlotIds.map((id) => {
         if (!effectiveState[id]) return null;
+        if (skinTextureSlotIds.has(id)) return null;
         const slot = slotCache.get(id) ?? loadedSlots.get(id);
         if (!slot) return null;
         return (

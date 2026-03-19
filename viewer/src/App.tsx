@@ -110,8 +110,6 @@ const BODY_SLOT_IDS = new Set([
   "base_body",
   "base_male",
   "base_female",
-  "base_male_with_skin_texture",
-  "base_female_with_skin_texture",
 ]);
 
 export default function App() {

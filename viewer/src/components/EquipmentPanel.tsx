@@ -249,18 +249,21 @@ export default function EquipmentPanel({
 
   const slotsByCategory = useMemo(() => {
     const meshes: EquipmentSlot[] = [];
+    const skinTextures: EquipmentSlot[] = [];
     const equipment: EquipmentSlot[] = [];
     const imported: EquipmentSlot[] = [];
     for (const slot of slots) {
       if (slot.source === "imported") {
         imported.push(slot);
+      } else if (slot.category === "skin_textures") {
+        skinTextures.push(slot);
       } else if (slot.category === "meshes") {
         meshes.push(slot);
       } else {
         equipment.push(slot);
       }
     }
-    return { meshes, equipment, imported };
+    return { meshes, skinTextures, equipment, imported };
   }, [slots]);
 
   const handleCopySpec = useCallback(
@@ -423,6 +426,12 @@ export default function EquipmentPanel({
           <>
             <div className="equip-category-label">Meshes</div>
             {slotsByCategory.meshes.map(renderSlotRow)}
+          </>
+        )}
+        {slotsByCategory.skinTextures.length > 0 && (
+          <>
+            <div className="equip-category-label">Skin Textures</div>
+            {slotsByCategory.skinTextures.map(renderSlotRow)}
           </>
         )}
         {slotsByCategory.equipment.length > 0 && (
