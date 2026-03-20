@@ -13,6 +13,7 @@ interface ToolAttachmentProps {
   transform: ToolTransform;
   gizmoMode: GizmoMode;
   onTransformChange: (t: ToolTransform) => void;
+  detached?: boolean;
 }
 
 const loader = new GLTFLoader();
@@ -22,7 +23,6 @@ const RAD2DEG = 180 / Math.PI;
 
 const _pos = new THREE.Vector3();
 const _quat = new THREE.Quaternion();
-const _scl = new THREE.Vector3();
 
 export default function ToolAttachment({
   tool,
@@ -31,6 +31,7 @@ export default function ToolAttachment({
   transform,
   gizmoMode,
   onTransformChange,
+  detached = false,
 }: ToolAttachmentProps) {
   const boneGroupRef = useRef<THREE.Group>(null);
   const offsetRef = useRef<THREE.Group | null>(null);
@@ -82,19 +83,27 @@ export default function ToolAttachment({
 
   useFrame(() => {
     const group = boneGroupRef.current;
+    if (!group) return;
+
+    if (detached) {
+      group.position.set(0, 0, 0);
+      group.quaternion.identity();
+      group.scale.setScalar(1);
+      return;
+    }
+
     const player = playerRef.current;
-    if (!group || !player) return;
+    if (!player) return;
 
     const bone = player.boneObjMap.get(boneName);
     if (!bone) return;
 
     bone.getWorldPosition(_pos);
     bone.getWorldQuaternion(_quat);
-    bone.getWorldScale(_scl);
 
     group.position.copy(_pos);
     group.quaternion.copy(_quat);
-    group.scale.copy(_scl);
+    group.scale.setScalar(1);
   });
 
   const readTransform = useCallback(() => {
@@ -138,11 +147,7 @@ export default function ToolAttachment({
     <>
       <group ref={boneGroupRef}>
         <group ref={offsetCallback}>
-          <group rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
-            <group rotation={[0, Math.PI / 2 + (10 * Math.PI) / 180, 0]}>
-              <primitive object={model} />
-            </group>
-          </group>
+          <primitive object={model} />
         </group>
       </group>
       {offsetObj && (

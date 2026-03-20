@@ -337,7 +337,7 @@ export default function EquipmentPanel({
               e.stopPropagation();
               downloadSlot(slot.id, exportFormat, slot.url);
             }}
-            title={`Download ${slot.name} GLB (rigged)`}
+            title={`Download ${slot.name} GLB`}
           >
             GLB
           </button>

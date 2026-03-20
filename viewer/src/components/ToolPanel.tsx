@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { ToolDefinition, ToolTransform, GizmoMode } from "../types/tools";
 
 interface ToolPanelProps {
@@ -10,6 +10,154 @@ interface ToolPanelProps {
   onGizmoModeChange: (mode: GizmoMode) => void;
   onTransformChange: (t: ToolTransform) => void;
   onResetTransform: () => void;
+  detached: boolean;
+  onDetachedChange: (v: boolean) => void;
+}
+
+const DRAG_THRESHOLD = 3;
+
+function DraggableInput({
+  axis,
+  value,
+  step,
+  onChange,
+}: {
+  axis: string;
+  value: number;
+  step: number;
+  onChange: (v: number) => void;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [localText, setLocalText] = useState(String(value));
+  const focused = useRef(false);
+
+  useEffect(() => {
+    if (!focused.current) {
+      setLocalText(String(value));
+    }
+  }, [value]);
+
+  const dragState = useRef<{
+    startX: number;
+    startValue: number;
+    dragging: boolean;
+    totalDx: number;
+  } | null>(null);
+
+  const sensitivity = step * 0.5;
+
+  const handlePointerDown = useCallback(
+    (e: React.PointerEvent) => {
+      if (document.activeElement === inputRef.current) return;
+
+      e.preventDefault();
+      dragState.current = {
+        startX: e.clientX,
+        startValue: value,
+        dragging: false,
+        totalDx: 0,
+      };
+
+      const cleanup = () => {
+        dragState.current = null;
+        document.body.style.cursor = "";
+        document.body.style.userSelect = "";
+        window.removeEventListener("pointermove", handleMove);
+        window.removeEventListener("pointerup", handleUp);
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+
+      const handleMove = (ev: PointerEvent) => {
+        const state = dragState.current;
+        if (!state) return;
+
+        if (!state.dragging) {
+          if (Math.abs(ev.clientX - state.startX) > DRAG_THRESHOLD) {
+            state.dragging = true;
+            state.totalDx = ev.clientX - state.startX;
+            document.body.style.cursor = "ew-resize";
+            document.body.style.userSelect = "none";
+          }
+          return;
+        }
+
+        state.totalDx = ev.clientX - state.startX;
+        const rawNext = state.startValue + state.totalDx * sensitivity;
+        const rounded = Math.round(rawNext / step) * step;
+        onChange(parseFloat(rounded.toFixed(6)));
+      };
+
+      const handleKeyDown = (ev: KeyboardEvent) => {
+        if (ev.key === "Escape") {
+          ev.preventDefault();
+          const state = dragState.current;
+          if (state?.dragging) {
+            onChange(state.startValue);
+          }
+          cleanup();
+        }
+      };
+
+      const handleUp = () => {
+        const state = dragState.current;
+        const wasDragging = state?.dragging ?? false;
+        cleanup();
+
+        if (!wasDragging && inputRef.current) {
+          inputRef.current.focus();
+          inputRef.current.select();
+        }
+      };
+
+      window.addEventListener("pointermove", handleMove);
+      window.addEventListener("pointerup", handleUp);
+      window.addEventListener("keydown", handleKeyDown);
+    },
+    [value, step, sensitivity, onChange],
+  );
+
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const text = e.target.value;
+      setLocalText(text);
+      const num = parseFloat(text);
+      if (!isNaN(num)) {
+        onChange(num);
+      }
+    },
+    [onChange],
+  );
+
+  const handleFocus = useCallback(() => {
+    focused.current = true;
+  }, []);
+
+  const handleBlur = useCallback(() => {
+    focused.current = false;
+    const num = parseFloat(localText);
+    if (isNaN(num) || localText.trim() === "") {
+      setLocalText(String(value));
+    } else {
+      setLocalText(String(num));
+    }
+  }, [localText, value]);
+
+  return (
+    <label className="override-input-wrap draggable-input-wrap">
+      <span className="override-axis">{axis}</span>
+      <input
+        ref={inputRef}
+        type="number"
+        className="override-input"
+        step={step}
+        value={localText}
+        onChange={handleInputChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onPointerDown={handlePointerDown}
+      />
+    </label>
+  );
 }
 
 function Vec3Input({
@@ -29,20 +177,17 @@ function Vec3Input({
       <span className="override-field-label">{label}</span>
       <div className="override-inputs">
         {labels.map((axis, i) => (
-          <label key={axis} className="override-input-wrap">
-            <span className="override-axis">{axis}</span>
-            <input
-              type="number"
-              className="override-input"
-              step={step}
-              value={value[i]}
-              onChange={(e) => {
-                const next: [number, number, number] = [...value];
-                next[i] = parseFloat(e.target.value) || 0;
-                onChange(next);
-              }}
-            />
-          </label>
+          <DraggableInput
+            key={axis}
+            axis={axis}
+            value={value[i]}
+            step={step}
+            onChange={(v) => {
+              const next: [number, number, number] = [...value];
+              next[i] = v;
+              onChange(next);
+            }}
+          />
         ))}
       </div>
     </div>
@@ -58,6 +203,8 @@ export default function ToolPanel({
   onGizmoModeChange,
   onTransformChange,
   onResetTransform,
+  detached,
+  onDetachedChange,
 }: ToolPanelProps) {
   const updatePosition = useCallback(
     (v: [number, number, number]) =>
@@ -73,6 +220,25 @@ export default function ToolPanel({
     (s: number) => onTransformChange({ ...transform, scale: s }),
     [transform, onTransformChange],
   );
+
+  const activeTool = tools.find((t) => t.id === selectedToolId) ?? null;
+
+  const [copied, setCopied] = useState(false);
+  const handleCopyTransform = useCallback(() => {
+    const lines = [
+      `Tool: ${activeTool?.name ?? selectedToolId ?? "none"}`,
+      `Position: [${transform.position.join(", ")}]`,
+      `Rotation: [${transform.rotation.join(", ")}] deg`,
+      `Scale: ${transform.scale}`,
+      "",
+      "JSON:",
+      JSON.stringify({ position: transform.position, rotation: transform.rotation, scale: transform.scale }, null, 2),
+    ];
+    navigator.clipboard.writeText(lines.join("\n")).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }, [transform, activeTool, selectedToolId]);
 
   const hasOffset =
     transform.position.some((v) => v !== 0) ||
@@ -96,22 +262,32 @@ export default function ToolPanel({
         {tools.map((tool) => {
           const active = selectedToolId === tool.id;
           return (
-            <button
-              key={tool.id}
-              className={`tool-item ${active ? "active" : ""}`}
-              onClick={() => onSelectTool(active ? null : tool.id)}
-            >
-              <span
-                className="tool-dot"
-                style={{
-                  background: active ? tool.color : "var(--bg-tertiary)",
-                }}
-              />
-              <span className="tool-name">{tool.name}</span>
-              {active && (
-                <span className="tool-equipped-badge">Equipped</span>
-              )}
-            </button>
+            <div key={tool.id} className="tool-row">
+              <button
+                className={`tool-item ${active ? "active" : ""}`}
+                onClick={() => onSelectTool(active ? null : tool.id)}
+              >
+                <span
+                  className="tool-dot"
+                  style={{
+                    background: active ? tool.color : "var(--bg-tertiary)",
+                  }}
+                />
+                <span className="tool-name">{tool.name}</span>
+                {active && (
+                  <span className="tool-equipped-badge">Equipped</span>
+                )}
+              </button>
+              <a
+                className="tool-dl-btn"
+                href={tool.url}
+                download={`${tool.id}.glb`}
+                onClick={(e) => e.stopPropagation()}
+                title={`Download ${tool.name} GLB`}
+              >
+                GLB
+              </a>
+            </div>
           );
         })}
       </div>
@@ -145,6 +321,15 @@ export default function ToolPanel({
             )}
           </div>
 
+          <label className="tool-detach-toggle">
+            <input
+              type="checkbox"
+              checked={detached}
+              onChange={(e) => onDetachedChange(e.target.checked)}
+            />
+            <span>Detach from bone (preview raw position)</span>
+          </label>
+
           <Vec3Input
             label="Position"
             value={transform.position}
@@ -160,19 +345,21 @@ export default function ToolPanel({
           <div className="override-field">
             <span className="override-field-label">Scale</span>
             <div className="override-inputs">
-              <label className="override-input-wrap" style={{ maxWidth: "33%" }}>
-                <input
-                  type="number"
-                  className="override-input"
-                  step={0.01}
-                  value={transform.scale}
-                  onChange={(e) =>
-                    updateScale(parseFloat(e.target.value) || 1)
-                  }
-                />
-              </label>
+              <DraggableInput
+                axis=""
+                value={transform.scale}
+                step={0.01}
+                onChange={updateScale}
+              />
             </div>
           </div>
+          <button
+            className="tool-copy-transform-btn"
+            onClick={handleCopyTransform}
+            title="Copy current transform as JSON to clipboard"
+          >
+            {copied ? "Copied!" : "Copy Transform"}
+          </button>
         </div>
       )}
     </div>

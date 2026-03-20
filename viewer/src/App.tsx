@@ -4,6 +4,8 @@ import { useCharacterModel } from "./hooks/useCharacterModel";
 import { useTransformShortcuts } from "./hooks/useTransformShortcuts";
 import type { AnimSpec, AnimManifest } from "./types/animation";
 import type { AnimationPlayerState } from "./hooks/useAnimationPlayer";
+import type { CharacterModel } from "./types";
+import { animSpecToClip } from "./utils/animSpecToClip";
 import type { EquipmentSpec, EquipmentState, EquipTransform, EquipmentSlotType, SlotTextures } from "./types/equipment";
 import { SLOT_TYPE_CONFIGS } from "./types/equipment";
 import type { BoneTransformOverride, ModelGender, GlbBoneInfo } from "./types";
@@ -33,14 +35,44 @@ function triggerDownload(href: string, filename: string) {
   document.body.removeChild(a);
 }
 
+function cloneBoneHierarchy(root: THREE.Object3D): THREE.Object3D {
+  const scene = new THREE.Scene();
+  function walk(src: THREE.Object3D, parent: THREE.Object3D) {
+    for (const child of src.children) {
+      if ((child as THREE.Bone).isBone) {
+        const bone = new THREE.Bone();
+        bone.name = child.name;
+        bone.position.copy(child.position);
+        bone.quaternion.copy(child.quaternion);
+        bone.scale.copy(child.scale);
+        parent.add(bone);
+        walk(child, bone);
+      } else if (child.children.length > 0) {
+        const group = new THREE.Object3D();
+        group.name = child.name;
+        group.position.copy(child.position);
+        group.quaternion.copy(child.quaternion);
+        group.scale.copy(child.scale);
+        parent.add(group);
+        walk(child, group);
+      }
+    }
+  }
+  walk(root, scene);
+  return scene;
+}
+
 function ExportPanel({
   characters,
   animations,
+  characterModel,
 }: {
   characters: AnimManifest["characters"];
   animations: AnimManifest["animations"];
+  characterModel: CharacterModel | null;
 }) {
   const [open, setOpen] = useState(false);
+  const [exportingAnim, setExportingAnim] = useState<string | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -56,9 +88,32 @@ function ExportPanel({
     triggerDownload(`/models/${model}`, model);
   };
 
-  const handleExportAnim = (file: string) => {
-    triggerDownload(`/animations/${file}`, file);
-  };
+  const handleExportAnimGlb = useCallback(async (file: string, animId: string) => {
+    if (!characterModel) return;
+    setExportingAnim(animId);
+    try {
+      const res = await fetch(`/animations/${file}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const spec = await res.json() as AnimSpec;
+      const clip = animSpecToClip(spec, characterModel.boneRestPose);
+      const skeletonScene = cloneBoneHierarchy(characterModel.skeletonRoot);
+
+      const { GLTFExporter } = await import("three/examples/jsm/exporters/GLTFExporter.js");
+      const exporter = new GLTFExporter();
+      const glb = await exporter.parseAsync(skeletonScene, {
+        binary: true,
+        animations: [clip],
+      });
+      const blob = new Blob([glb as ArrayBuffer], { type: "model/gltf-binary" });
+      const url = URL.createObjectURL(blob);
+      triggerDownload(url, `${animId}.glb`);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Failed to export animation as GLB:", err);
+    } finally {
+      setExportingAnim(null);
+    }
+  }, [characterModel]);
 
   return (
     <div className="export-dropdown" ref={ref}>
@@ -85,7 +140,7 @@ function ExportPanel({
           </div>
           <div className="export-panel-divider" />
           <div className="export-panel-header">Animations</div>
-          <div className="export-panel-subhint">Animation data only (no mesh)</div>
+          <div className="export-panel-subhint">Animation data only (GLB with skeleton)</div>
           <div className="export-panel-divider" />
           <div className="export-panel-list">
             {animations.map((anim) => (
@@ -93,9 +148,10 @@ function ExportPanel({
                 <span className="export-panel-label">{anim.id}</span>
                 <button
                   className="export-panel-dl"
-                  onClick={() => handleExportAnim(anim.file)}
+                  disabled={exportingAnim === anim.id}
+                  onClick={() => handleExportAnimGlb(anim.file, anim.id)}
                 >
-                  {anim.file}
+                  {exportingAnim === anim.id ? "Exporting..." : `${anim.id}.glb`}
                 </button>
               </div>
             ))}
@@ -275,13 +331,20 @@ export default function App() {
   );
   const [toolTransforms, setToolTransforms] = useState<Record<string, ToolTransform>>({});
   const [toolGizmoMode, setToolGizmoMode] = useState<GizmoMode>("translate");
+  const [toolDetached, setToolDetached] = useState(false);
+
+  const getToolDefault = useCallback((toolId: string | null): ToolTransform => {
+    if (!toolId) return DEFAULT_TOOL_TRANSFORM;
+    const tool = TOOLS.find((t) => t.id === toolId);
+    return tool?.defaultTransform ?? DEFAULT_TOOL_TRANSFORM;
+  }, []);
 
   const selectedToolTransform = useMemo(
     () =>
       selectedToolId
-        ? toolTransforms[selectedToolId] ?? DEFAULT_TOOL_TRANSFORM
+        ? toolTransforms[selectedToolId] ?? getToolDefault(selectedToolId)
         : DEFAULT_TOOL_TRANSFORM,
-    [selectedToolId, toolTransforms],
+    [selectedToolId, toolTransforms, getToolDefault],
   );
 
   const handleToolTransformChange = useCallback(
@@ -296,9 +359,9 @@ export default function App() {
     if (!selectedToolId) return;
     setToolTransforms((prev) => ({
       ...prev,
-      [selectedToolId]: { ...DEFAULT_TOOL_TRANSFORM },
+      [selectedToolId]: { ...getToolDefault(selectedToolId) },
     }));
-  }, [selectedToolId]);
+  }, [selectedToolId, getToolDefault]);
 
   const [poseMode, setPoseMode] = useState(false);
   const [poseConfig, setPoseConfig] = useState<PoseAnimationConfig>({
@@ -479,7 +542,7 @@ export default function App() {
               )}
             </span>
           </div>
-          <ExportPanel characters={characters} animations={manifest} />
+          <ExportPanel characters={characters} animations={manifest} characterModel={characterModel} />
           <ViewportErrorBoundary>
             <Scene
               characterModel={characterModel}
@@ -529,6 +592,7 @@ export default function App() {
                 transform={selectedToolTransform}
                 gizmoMode={toolGizmoMode}
                 onTransformChange={handleToolTransformChange}
+                detached={toolDetached}
               />
             )}
             </Scene>
@@ -627,6 +691,8 @@ export default function App() {
             onGizmoModeChange={setToolGizmoMode}
             onTransformChange={handleToolTransformChange}
             onResetTransform={handleResetToolTransform}
+            detached={toolDetached}
+            onDetachedChange={setToolDetached}
           />
         )}
       </div>
