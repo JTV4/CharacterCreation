@@ -35,6 +35,8 @@ export interface EquipmentSlot {
   color?: string;
   /** If set, this slot only appears when the matching gender model is active. */
   gender?: "male" | "female";
+  /** Clothing line / set this slot belongs to (e.g. "crimson_wizard", "shell"). Derived automatically when absent. */
+  collection?: string;
   bones: SlotBone[];
   bounds: SlotBounds;
   rules: SlotRules;
@@ -46,6 +48,8 @@ export interface EquipmentSlot {
   mesh_params: Record<string, number | string>;
   /** Whether this slot was imported at runtime (not from the spec file). */
   source?: "spec" | "imported";
+  /** URL of a reference GLB whose bounding box is used for scale-matching during auto-skin. */
+  scale_reference?: string;
 }
 
 export interface EquipmentSpec {
@@ -255,4 +259,9 @@ export const SLOT_COLORS: Record<string, string> = {
   shell_lower_body: "#f87171",
   shell_boots: "#fb923c",
   shell_upper_body_crimson: "#9f1239",
+  green_dragon_wizard_hat_f: "#166534",
+  green_dragon_top_f: "#15803d",
+  green_dragon_legs_f: "#16a34a",
+  green_dragon_gloves_f: "#22c55e",
+  green_dragon_boots_f: "#4ade80",
 };

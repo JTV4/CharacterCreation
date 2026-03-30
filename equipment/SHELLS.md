@@ -40,6 +40,12 @@ Comprehensive reference for the five body shell meshes: **Head**, **Upper Body**
   - [Step 5 — Transfer Weights](#step-5--transfer-weights)
   - [Troubleshooting](#troubleshooting)
   - [End-to-End Example: Custom Female Boots](#end-to-end-example-custom-female-boots)
+- [Viewer Skin Transfer (In-App Weight Copy)](#viewer-skin-transfer-in-app-weight-copy)
+- [Download Re-weighted GLB](#download-re-weighted-glb)
+- [External Equipment Items](#external-equipment-items)
+  - [Adding Items Permanently](#adding-items-permanently)
+  - [Hat Weighting (weight_hat.py)](#hat-weighting-weight_hatpy)
+- [Layering Rules & Clipping Prevention](#layering-rules--clipping-prevention)
 - [File Locations](#file-locations)
 
 ---
@@ -1725,6 +1731,294 @@ cp ~/Desktop/Boots.glb rig/CharacterMesh/Female/Boots/Boots.glb
 
 ---
 
+## Viewer Skin Transfer (In-App Weight Copy)
+
+The viewer includes a **Skin Transfer** feature that lets you copy the exact skeleton binding, vertex weights, scale, and position from any reference mesh onto a target mesh — entirely in the browser, without needing Blender or CLI scripts.
+
+### When to Use
+
+Use Skin Transfer when you have a textured mesh (e.g. from Meshy AI) that needs to be rigged to the character. This is the recommended workflow for re-importing Meshy exports into the viewer.
+
+### How It Works
+
+1. **Enable** the target equipment piece (e.g. "Green Dragon Top") in the Equipment panel
+2. Click the green **"Skin"** button on the target slot's row
+3. A **modal** opens centered on screen showing:
+   - The target item name
+   - A grouped list of all available equipment meshes to choose as the reference
+4. **Select the reference** — the working shell or Test item that the target was based on (e.g. "Test: Upper Body V1")
+5. Click **"Transfer Skin"**
+
+### What the Transfer Does
+
+The system loads both GLBs fresh and performs these steps:
+
+| Step | Action | Purpose |
+|------|--------|---------|
+| 1 | Load reference GLB with its Mixamo skeleton intact | Gets the source of truth for bone weights |
+| 2 | Load target GLB, strip Meshy's unrecognized skeleton | Produces clean regular meshes |
+| 3 | Apply geometry correction (Y-up → Z-up) to both | Matches the viewer's coordinate system |
+| 4 | Compute per-axis scale from reference bounding box | Matches the exact dimensions of the reference |
+| 5 | Translate target center to match reference center | Matches the exact position on the character |
+| 6 | Nearest-vertex weight transfer | Copies `skinIndex` and `skinWeight` from the closest reference vertex to each target vertex |
+| 7 | Build SkinnedMesh with reference's bone list | Uses the reference's skeleton, remapped to the animation skeleton via `BONE_NAME_REMAP` |
+| 8 | Install into slot cache and render | The mesh is immediately visible and animated |
+
+### `scale_reference` Field
+
+Equipment entries in `equipment_spec.json` can include an optional `scale_reference` field pointing to the reference GLB URL. This is metadata for documentation; the Skin Transfer modal lets you pick any reference interactively.
+
+```json
+{
+  "id": "green_dragon_top_f",
+  "name": "Green Dragon Top",
+  "url": "/equipment/Female/Upperbody/green_dragon_top(F).glb",
+  "scale_reference": "/equipment/Female/Upperbody/UpperbodyTestV1.glb"
+}
+```
+
+### Reference Selection Guide
+
+| Target Slot Type | Recommended Reference |
+|------------------|-----------------------|
+| Hat / Head | Test: Head V1 (`shell_head_test_v1`) or Shell: Head (`shell_head`) |
+| Upper Body | Test: Upper Body V1 (`shell_upper_body_test_v1`) or Shell: Upper Body (`shell_upper_body`) |
+| Lower Body | Test: Lower Body V1 (`shell_lower_body_test_v1`) or Shell: Lower Body (`shell_lower_body`) |
+| Gloves | Test: Gloves V1 (`shell_gloves_test_v1`) or Shell: Gloves (`shell_gloves`) |
+| Boots | Test: Boots V1 (`shell_boots_test_v1`) or Shell: Boots (`shell_boots`) |
+
+### Console Diagnostics
+
+Open the browser DevTools console to see `[SkinTransfer]` log messages with:
+- Reference and target vertex counts
+- Per-axis scale factors
+- Bounding box dimensions and centers
+- Average and maximum vertex-match distance (should be near zero for identical geometry)
+- Final bone count
+
+---
+
+## Layering Rules & Clipping Prevention
+
+Equipment pieces must follow strict layering rules to prevent clipping (body parts or other equipment showing through). These rules are enforced by **shell thickness**, **render order**, and **stencil masking**.
+
+### Thickness Hierarchy
+
+Each slot has a defined thickness that determines how far it sits from the body surface. When two slots overlap the same body region, the thicker one sits visually on top.
+
+| Slot | Thickness | Layer (inner → outer) |
+|------|-----------|----------------------|
+| Head | 5 mm | 1 (thinnest — sits under upper body at neck) |
+| Lower Body | 10 mm | 2 |
+| Upper Body | 12 mm | 3 (thicker than lower body — covers waist overlap) |
+| Gloves | 15 mm | 4 (thicker than upper body — covers wrist overlap) |
+| Boots | 40 mm | 5 (thickest — sits outside lower body at shin) |
+
+**Rule: An outer layer must always be thicker than the inner layer it overlaps.**
+
+### Overlap Regions & Required Relationships
+
+| Overlap Region | Inner Layer | Outer Layer | Why |
+|---------------|-------------|-------------|-----|
+| Neck | Head (5 mm) | Upper Body (12 mm) | Upper body collar covers the base of the head shell |
+| Waist / Hips | Lower Body (10 mm) | Upper Body (12 mm) | Shirt extends past the waistline over pants |
+| Wrists | Upper Body (12 mm) | Gloves (15 mm) | Gloves cover the end of the sleeves |
+| Shins | Lower Body (10 mm) | Boots (40 mm) | Boots sit outside pants at the calf |
+
+### Render Order
+
+Controls the GPU draw order. Lower numbers draw first (closer to body surface).
+
+| Render Order | Slots | Purpose |
+|-------------|-------|---------|
+| 1 | Upper Body, Boots | Drawn first — these write to the stencil buffer |
+| 2 | Lower Body | Drawn second — uses stencil test to skip pixels already covered by upper body/boots |
+| 3 | Head, Gloves | Drawn last — sit on top of everything |
+| 4 | Accessories (Amulet, Ring) | Decorative items on the very top |
+
+### Stencil Rules
+
+The stencil buffer prevents z-fighting at overlap boundaries:
+
+| Stencil Action | Slots | What It Does |
+|---------------|-------|-------------|
+| **WRITE** | Upper Body, Boots | Marks their pixels in the stencil buffer (`stencilRef = 1`) |
+| **TEST** | Lower Body | Only renders where stencil is NOT 1 (skips pixels covered by upper body/boots) |
+| **WRITE** (body) | Base character mesh | Renders last (order 10), only where NO equipment has drawn |
+
+### Rules for New Equipment
+
+When adding a new equipment piece, follow these rules:
+
+1. **Copy bones/bounds from the matching shell** — ensures the equipment covers the same body region
+2. **Set the correct render order** — match the slot type from the table above
+3. **Add to the correct stencil set**:
+   - Upper Body type → `STENCIL_WRITE_SLOTS`
+   - Boots type → `STENCIL_WRITE_SLOTS`
+   - Lower Body type → `STENCIL_TEST_SLOTS`
+   - Head / Gloves → neither (no stencil needed)
+4. **Set `hides_body_regions`** — tells the viewer which body parts to hide when this equipment is active
+5. **Maintain thickness hierarchy** — if creating new shells, ensure thicknesses follow the inner-to-outer ordering
+
+### Checklist for Adding a New Equipment Slot
+
+```
+[ ] GLB file placed in viewer/public/equipment/
+[ ] Entry added to equipment_spec.json with correct:
+    - id, name, color, collection
+    - bones (copy from matching shell)
+    - bounds (copy from matching shell)
+    - hides_body_regions (copy from matching shell)
+    - mesh_type: "external"
+    - gender
+    - url
+    - scale_reference (if Meshy-textured, point to the Test V1 reference)
+[ ] Slot ID added to SLOT_RENDER_ORDER in EquipmentMeshRenderer.tsx
+[ ] Slot ID added to STENCIL_WRITE_SLOTS or STENCIL_TEST_SLOTS
+[ ] Slot color added to SLOT_COLORS in equipment.ts (if custom color needed)
+```
+
+---
+
+## Download Re-weighted GLB
+
+Every enabled equipment item in the panel has a **↓ W** button (shown in the Equipment panel row) that exports the current in-memory mesh as a game-ready GLB. This is the primary way to get a final, rigged equipment file out of the viewer.
+
+### What it exports
+
+The exported GLB:
+- Has the **full 55-bone generic-name skeleton** (pelvis, spine_01, upperarm_L, …) so the viewer's `BONE_NAME_REMAP` and any engine using the same Mixamo rig can load it identically
+- Has the **complete parent-child armature hierarchy**, matching the structure of `UpperbodyTestV1.glb` and all `shell_*.glb` files
+- Is **Y-up** (glTF standard) with `export_animations=false`
+- Has **position, rotation, and scale baked permanently** into the vertex rest positions (see below)
+
+### Transform baking
+
+When you position, rotate, or scale an item using the gizmo and then click ↓ W, all three transform components are baked into the GLB's vertex positions. The item will appear in exactly the same place in any engine, with no extra transform needed in the scene.
+
+**Why this is safe for skinned meshes:**
+
+The viewer applies the transform via a bind-matrix offset (`_offsetMatrix`) that sits inside the bone hierarchy, not outside it. The net skinning formula is:
+
+```
+vertex_world = Σ weight_i · bone_current · bone_inv · M · vertex_rest
+```
+
+Because `M` (the user transform) is applied _before_ the bone chain, baking it into `vertex_rest` gives the same result for both T-pose and all animated poses, for single-bone and multi-bone meshes alike. Scale is skinning-invariant; position and rotation also bake correctly because they are pre-bone, not post-bone.
+
+The **boneInverses are not modified** — they represent the skeleton rest pose only.
+
+### Button appearance
+
+| Button state | Color | Meaning |
+|---|---|---|
+| Default grey | `↓ W` | Item is enabled; no skin transfer has been applied |
+| Bright purple | `↓ W` | Skin Transfer has been applied to this item (re-weighted) |
+
+### Workflow
+
+1. Enable the item in the Equipment panel
+2. Optionally adjust position / rotation / scale with the gizmo
+3. Optionally click **Skin** to transfer weights from a reference mesh
+4. Click **↓ W** — the file downloads as `<slotId>_weighted.glb`
+5. Click **Spec** to copy the full `equipment_spec.json` entry (including any `transform` you set)
+
+---
+
+## External Equipment Items
+
+External equipment (like the Green Dragon or Crimson Wizard sets) are 3D models sourced outside the shell pipeline — from Meshy AI, hand-modeling, or third-party assets. They follow the same spec/viewer format as shells but have externally-authored geometry.
+
+### Adding Items Permanently
+
+Equipment items must be hardcoded in `viewer/public/equipment/equipment_spec.json` to appear every time the viewer loads. Items added only through the browser's **Import** button are session-only — they disappear when the server restarts.
+
+**Checklist for permanent external equipment:**
+
+```
+[ ] GLB file placed in viewer/public/equipment/Female/<Slot>/<Name>.glb
+[ ] Entry added to viewer/public/equipment/equipment_spec.json with:
+    - id          (snake_case, ends with _f for female)
+    - name        (display name)
+    - bilateral   (true if covers both sides, e.g. gloves/legs/boots)
+    - color       (hex color for the panel chip)
+    - gender      ("female" or "male")
+    - bones       (copy from matching slot type — see table below)
+    - bounds      (copy from matching slot type)
+    - rules: {}
+    - hides_body_regions  (copy from matching slot type)
+    - mesh_type: "external"
+    - mesh_params: {}
+    - url         (/equipment/Female/<Slot>/<Name>.glb)
+[ ] Slot ID added to SLOT_RENDER_ORDER in EquipmentMeshRenderer.tsx
+[ ] Slot ID added to STENCIL_WRITE_SLOTS or STENCIL_TEST_SLOTS
+```
+
+**Slot type reference — bones, bounds, and stencil group:**
+
+| Slot Type | Copy bones/bounds from | Stencil | Render Order |
+|-----------|------------------------|---------|--------------|
+| Hat / Head | `crimson_wizard_hat` | — (none) | 3 |
+| Upper Body | `crimson_wizard_robe` | `STENCIL_WRITE_SLOTS` | 1 |
+| Lower Body | `crimson_wizard_robe_bottom` | `STENCIL_TEST_SLOTS` | 2 |
+| Gloves | `crimson_wizard_gloves` | — (none) | 3 |
+| Boots | `crimson_wizard_boots` | `STENCIL_WRITE_SLOTS` | 1 |
+
+**Collection routing** — `EquipmentPanel.tsx` uses `deriveCollection(slot)` to group items into categories. Add an entry to `COLLECTION_ORDER` and update the `deriveCollection` function if a new category is needed. The current routing rules are:
+
+```typescript
+if (id.includes("green_dragon")) return "green_dragon_wizard";
+if (id.includes("crimson"))      return "crimson_wizard";
+if (id.startsWith("shell_v2_"))  return "shell_v2";
+if (id.startsWith("shell_") && !id.includes("test")) return "shell";
+if (id.includes("test_v"))       return "test";
+if (id.startsWith("custom_"))    return "custom";
+```
+
+If an item's `id` contains one of the above substrings it will automatically appear in the right category — no extra code needed.
+
+---
+
+### Hat Weighting (weight_hat.py)
+
+Hats and rigid head accessories require a different weighting strategy than the head shell. The head shell has complex weights across many facial bones (jaw, eyes, neck) to handle the face/neck anatomy. A hat sits *above* the head and should follow only one bone: `head`.
+
+**The script:** `weight_hat.py` (in the repo root)
+
+**What it does:**
+
+1. Loads the full character rig (`rig/output/rig_tpose.glb`) to get all 56 bone world positions in T-pose
+2. Loads the hat GLB and selects the largest mesh (avoids accidental debug primitives like Icospheres)
+3. **Moves the hat mesh vertices to head height** — adds an offset so the hat brim aligns to the head bone's Z position (Z ≈ 1.52 m). This is critical: skinning math requires vertex rest positions to be at their intended world location. A hat stored at the origin would appear at the origin in the game, not on the head.
+4. **Assigns all vertices 100% to the `head` bone** and 0% to all other bones. The neck bone is present in the armature (structural requirement) but receives zero weight. A rigid hat must not deform at the brim when the neck moves.
+5. Creates a **full 56-bone armature** — every bone from the rig is present (required for most game engines to resolve the full skeleton hierarchy correctly)
+6. Exports as a Y-up GLB
+
+**Run:**
+```bash
+/Applications/Blender.app/Contents/MacOS/Blender --background \
+  --python weight_hat.py
+```
+
+**Output:** Overwrites `viewer/public/equipment/Female/Hats/green_dragon_wizard_hat(F).glb`
+
+**Why NOT to use Skin Transfer for hats:**
+
+The Skin Transfer feature copies weights from a reference mesh using nearest-vertex matching. If the reference is the Head shell, the top-of-head vertices are likely weighted to `head` only — so the transfer *would* work for the crown. However, the jaw/eye bones are localized to specific facial regions, and the hat brim is spatially close to those areas. Using the head shell as reference risks assigning small jaw/eye weights to the brim, which would cause the hat brim to deform subtly when the character opens their mouth or blinks.
+
+Assigning 100% `head` bone directly (via the script) is the guaranteed-clean approach.
+
+**Adapting for other hats:**
+
+To weight a different hat GLB, update these two variables at the top of `weight_hat.py`:
+
+```python
+HAT_IN = os.path.join(ROOT, "viewer/public/equipment/Female/Hats/<your_hat>.glb")
+OUT    = os.path.join(ROOT, "viewer/public/equipment/Female/Hats/<your_hat>.glb")
+```
+
+---
+
 ## File Locations
 
 | File | Purpose |
@@ -1732,15 +2026,22 @@ cp ~/Desktop/Boots.glb rig/CharacterMesh/Female/Boots/Boots.glb
 | `equipment/factory/body_shell_extractor.py` | Shell extraction script (run via Blender CLI) |
 | `equipment/factory/transfer_weights.py` | Weight transfer script for custom meshes (run via Blender CLI) |
 | `equipment/factory/texture_baker.py` | Texture baking script (run via Blender CLI) |
+| `weight_hat.py` | Assigns 100% head-bone weights to a hat GLB and repositions verts to head height; exports full-rig GLB |
 | `equipment/output/shells/shell_*.glb` | Generated shell GLBs (extraction output) |
 | `rig/CharacterMesh/Female/<Slot>/<Slot>.glb` | User-edited custom meshes (input to weight transfer) |
 | `viewer/public/equipment/shell_*.glb` | Shell GLBs served to the viewer |
 | `viewer/public/equipment/custom_*_f.glb` | Custom female equipment GLBs (weight-transfer output) |
 | `viewer/public/equipment/custom_*_m.glb` | Custom male equipment GLBs (weight-transfer output) |
-| `equipment/spec/equipment_spec.json` | Slot definitions (source of truth) |
-| `viewer/public/equipment/equipment_spec.json` | Slot definitions loaded by the viewer (keep in sync) |
-| `viewer/src/components/EquipmentMeshRenderer.tsx` | Viewer rendering logic for shells and custom equipment |
+| `viewer/public/equipment/Female/Hats/*.glb` | Hat GLBs (externally sourced, weighted via `weight_hat.py`) |
+| `viewer/public/equipment/Female/Upperbody/*.glb` | External upper body GLBs (Green Dragon, Crimson Meshy, etc.) |
+| `viewer/public/equipment/Female/Lowerbody/*.glb` | External lower body GLBs |
+| `viewer/public/equipment/Female/Gloves/*.glb` | External gloves GLBs |
+| `viewer/public/equipment/Female/Boots/*.glb` | External boots GLBs |
+| `viewer/public/equipment/equipment_spec.json` | **Single source of truth** for all slot definitions loaded by the viewer. Items must be hardcoded here to appear permanently — browser-imported items are session-only. |
+| `viewer/src/components/EquipmentMeshRenderer.tsx` | Viewer rendering, skeleton binding, skin transfer, and GLB export logic |
+| `viewer/src/components/EquipmentPanel.tsx` | Equipment panel UI; `COLLECTION_ORDER` and `deriveCollection` control category grouping |
 | `viewer/src/components/AnimationBridge.tsx` | Base body mesh rendering with stencil masking |
 | `viewer/src/types/equipment.ts` | `SLOT_COLORS` and TypeScript types |
 | `rig/output/rig.blend` | Canonical armature (input to extractor) |
-| `rig/CharacterMesh/BaseFemale.glb` | Base character mesh (input to extractor) |
+| `rig/output/rig_tpose.glb` | T-pose rig GLB (used by `weight_hat.py` and shell extractor) |
+| `rig/CharacterMesh/BaseFemale.glb` | Base female character mesh (input to extractor) |

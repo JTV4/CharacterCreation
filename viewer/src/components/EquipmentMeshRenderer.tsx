@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { useFrame, ThreeEvent } from "@react-three/fiber";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter.js";
 import { TransformControls } from "@react-three/drei";
 import type {
   EquipmentState,
@@ -28,6 +29,8 @@ interface EquipmentMeshRendererProps {
   equipGizmoMode: GizmoMode;
   onEquipTransformChange: (id: string, t: EquipTransform) => void;
   slotTextures?: SlotTextures;
+  skinTransferRequest?: { targetSlotId: string; referenceSlotId: string } | null;
+  onSkinTransferDone?: (reweightedSlotId?: string) => void;
 }
 
 const BODY_SLOT_IDS = new Set([
@@ -44,25 +47,34 @@ const INFLATE_SLOTS = new Set([
 const INFLATE_AMOUNT = 0.0;
 const FINGERTIP_EXTEND = 0.022;
 
+
+// Render order controls draw layering. Lower numbers draw first (closer to body).
+// 1 = Upper body / Boots (thinnest layer, drawn first)
+// 2 = Lower body (draws on top of upper body at waist overlap)
+// 3 = Head / Gloves (thickest items, drawn last to cover seams)
+// 4 = Accessories (amulet, ring)
 const SLOT_RENDER_ORDER: Record<string, number> = {
-  upper_body: 1, shell_upper_body: 1, shell_upper_body_test_v1: 1, custom_upper_body_f: 1, custom_upper_body_f_textured: 1, custom_upper_body_f_crimson_meshy: 1, meshy_crimson_upperbody_f: 1,
-  boots: 1, shell_boots: 1, shell_boots_test_v1: 1, custom_boots_f: 1, meshy_crimson_boots_f: 1,
+  upper_body: 1, shell_upper_body: 1, shell_upper_body_test_v1: 1, custom_upper_body_f: 1, custom_upper_body_f_textured: 1, custom_upper_body_f_crimson_meshy: 1, meshy_crimson_upperbody_f: 1, green_dragon_top_f: 1,
+  boots: 1, shell_boots: 1, shell_boots_test_v1: 1, custom_boots_f: 1, meshy_crimson_boots_f: 1, green_dragon_boots_f: 1,
   crimson_wizard_robe: 1, crimson_upperbody_f: 1, crimson_upperbody_meshy_v2: 1, crimson_wizard_boots: 1,
-  lower_body: 2, shell_lower_body: 2, shell_lower_body_test_v1: 2, custom_lower_body_f: 2, meshy_crimson_lower_body_f: 2, red_lower_body_f: 2,
+  lower_body: 2, shell_lower_body: 2, shell_lower_body_test_v1: 2, custom_lower_body_f: 2, meshy_crimson_lower_body_f: 2, red_lower_body_f: 2, green_dragon_legs_f: 2,
   crimson_wizard_robe_bottom: 2,
-  head: 3, shell_head: 3, shell_head_test_v1: 3, custom_head_f: 3, meshy_crimson_head_f: 3, meshy_crimson_wizard_hat_f: 3, crimson_wizard_hat: 3,
-  gloves: 3, shell_gloves: 3, shell_gloves_test_v1: 3, custom_gloves_f: 3, meshy_crimson_gloves_f: 3, crimson_wizard_gloves: 3,
+  head: 3, shell_head: 3, shell_head_test_v1: 3, custom_head_f: 3, meshy_crimson_head_f: 3, meshy_crimson_wizard_hat_f: 3, crimson_wizard_hat: 3, green_dragon_wizard_hat_f: 3,
+  gloves: 3, shell_gloves: 3, shell_gloves_test_v1: 3, custom_gloves_f: 3, meshy_crimson_gloves_f: 3, crimson_wizard_gloves: 3, green_dragon_gloves_f: 3,
   amulet: 4, ring: 4,
 };
 
+// Stencil write slots mark their pixels so overlapping stencil-test slots skip those areas.
+// Upper body and boots WRITE so lower body doesn't z-fight at the waist/shin overlap.
 const STENCIL_WRITE_SLOTS = new Set([
-  "upper_body", "shell_upper_body", "shell_upper_body_test_v1", "custom_upper_body_f", "custom_upper_body_f_textured", "custom_upper_body_f_crimson_meshy", "meshy_crimson_upperbody_f",
-  "boots", "shell_boots", "shell_boots_test_v1", "custom_boots_f", "meshy_crimson_boots_f",
+  "upper_body", "shell_upper_body", "shell_upper_body_test_v1", "custom_upper_body_f", "custom_upper_body_f_textured", "custom_upper_body_f_crimson_meshy", "meshy_crimson_upperbody_f", "green_dragon_top_f",
+  "boots", "shell_boots", "shell_boots_test_v1", "custom_boots_f", "meshy_crimson_boots_f", "green_dragon_boots_f",
   "crimson_wizard_robe", "crimson_upperbody_f", "crimson_upperbody_meshy_v2", "crimson_wizard_boots",
   "meshy_crimson_head_f", "meshy_crimson_wizard_hat_f", "meshy_crimson_gloves_f",
 ]);
+// Stencil test slots only draw where write-slots haven't already drawn.
 const STENCIL_TEST_SLOTS = new Set([
-  "lower_body", "shell_lower_body", "custom_lower_body_f", "meshy_crimson_lower_body_f", "red_lower_body_f",
+  "lower_body", "shell_lower_body", "custom_lower_body_f", "meshy_crimson_lower_body_f", "red_lower_body_f", "green_dragon_legs_f",
   "crimson_wizard_robe_bottom",
 ]);
 
@@ -79,6 +91,198 @@ const correctedSlots = new Set<string>();
 const _buildTimestamp = Date.now();
 const textureLoader = new THREE.TextureLoader();
 const textureCache = new Map<string, THREE.Texture>();
+
+/**
+ * Export the current in-memory SkinnedMesh as a binary GLB that matches the
+ * structure of the original equipment files (UpperbodyTestV1, shell_*.glb, etc.)
+ * and is compatible with external game engines that use the same Mixamo rig.
+ *
+ * Triggered by the "↓ W" (Download re-weighted) button in the Equipment panel.
+ * Pass the slot's `equipTransform` to permanently bake position, rotation, and
+ * scale into the exported geometry.
+ *
+ * ── EquipTransform baking ─────────────────────────────────────────────────────
+ *   The viewer applies the user's gizmo transform (position / rotation / scale)
+ *   via a bind-matrix offset in Z-up viewer space. The net skinning formula is:
+ *
+ *     vertex_world = Σ weight_i · bone_current · bone_inv · M_zup · vertex_zup
+ *
+ *   where M_zup is the full transform matrix (TRS) in Z-up. Because M_zup sits
+ *   BEFORE the bone chain (not after), baking it permanently into the rest-pose
+ *   vertex positions is mathematically correct for both T-pose and all animated
+ *   poses, for single-bone AND multi-bone meshes alike:
+ *
+ *     vertex_yup_exported = Cinv · M_zup · vertex_zup
+ *
+ *   The boneInverses are NOT changed — they encode the skeleton rest pose only.
+ *   Uniform scale is skinning-invariant; position and rotation also bake cleanly
+ *   because they are applied inside the bone hierarchy, not outside it.
+ *
+ * ── Coordinate system ────────────────────────────────────────────────────────
+ *   Viewer  = Z-up  (geometry was converted by _yupToZupCorrection on load).
+ *   GLB/Blender = Y-up (glTF standard).
+ *   Let C = _yupToZupCorrection, Cinv = C⁻¹.
+ *
+ *   Three components are converted consistently:
+ *     Geometry    : v_yup    = Cinv · M_zup · v_zup   (bakes TRS + coord flip)
+ *     BoneInverse : Minv_yup = Cinv · Minv_zup · C    (coord flip only)
+ *     Bone world  : B_yup    = Minv_yup⁻¹             (B · Minv = I → T-pose)
+ *
+ * ── Bone structure ───────────────────────────────────────────────────────────
+ *   • Names converted back to GENERIC (pelvis, spine_01, upperarm_L, …)
+ *     so the viewer's BONE_NAME_REMAP re-maps them correctly on reload.
+ *   • Full parent-child hierarchy rebuilt from _EXPORT_BONE_PARENT.
+ *   • Each bone stores its LOCAL transform relative to its parent so the
+ *     armature matches the original rig layout in Blender.
+ *
+ * ── GLB compatibility ────────────────────────────────────────────────────────
+ *   The output GLB is structurally identical to UpperbodyTestV1.glb / the
+ *   shell_*.glb files: generic bone names, full 55-bone skeleton, skinned mesh
+ *   parented to the armature, Y-up, no animations. It can be imported directly
+ *   into any engine that supports the same Mixamo rig without any modifications.
+ */
+export function exportSlotAsGlb(
+  slotId: string,
+  fileName?: string,
+  /** Optional equipTransform for the slot — position, rotation, and scale are all baked into geometry. */
+  equipTransform?: { position: [number, number, number]; rotation: [number, number, number]; scale: number },
+): void {
+  const loaded = slotCache.get(slotId);
+  if (!loaded || loaded.skinnedMeshes.length === 0) {
+    console.warn(`[Export] No skinned mesh in cache for "${slotId}". Enable the item first.`);
+    return;
+  }
+
+  const sm = loaded.skinnedMeshes[0];
+  const oldSk = sm.skeleton;
+  const boneCount = oldSk.bones.length;
+
+  const C    = _yupToZupCorrection;
+  const Cinv = C.clone().invert();
+
+  // ── 1. Geometry: Z-up → Y-up (bake full position + rotation + scale) ─────
+  // The equipTransform is applied in the viewer's Z-up space as:
+  //   vertex_world = Σ(weight_i × bone_current × bone_inv × M_zup × vertex_zup)
+  // Baking M_zup into vertex positions is correct for ALL bones because the
+  // transform is applied BEFORE the bone hierarchy, not after — so it holds
+  // for both T-pose and all animated poses.
+  //   vertex_yup_exported = Cinv × M_zup × vertex_zup
+  // The boneInverses are unchanged (they represent bone rest positions only).
+  const _DEG2RAD = Math.PI / 180;
+  const M_zup = new THREE.Matrix4(); // identity when no transform set
+  if (equipTransform) {
+    const { position, rotation, scale } = equipTransform;
+    M_zup.compose(
+      new THREE.Vector3(...position),
+      new THREE.Quaternion().setFromEuler(
+        new THREE.Euler(rotation[0] * _DEG2RAD, rotation[1] * _DEG2RAD, rotation[2] * _DEG2RAD),
+      ),
+      new THREE.Vector3(scale, scale, scale),
+    );
+  }
+  const geoClone = sm.geometry.clone();
+  geoClone.applyMatrix4(M_zup); // bake position + rotation + scale in Z-up
+  geoClone.applyMatrix4(Cinv);  // convert Z-up → Y-up for GLB
+  geoClone.computeVertexNormals();
+
+  // GLTFExporter needs integer skinIndex (Uint16).
+  const siAttr = geoClone.getAttribute("skinIndex") as THREE.BufferAttribute;
+  if (siAttr && siAttr.array instanceof Float32Array) {
+    geoClone.setAttribute("skinIndex", new THREE.BufferAttribute(new Uint16Array(siAttr.array), 4));
+  }
+
+  // ── 2. BoneInverses: Z-up → Y-up ──────────────────────────────────────────
+  //   Minv_yup = Cinv · Minv_zup · C
+  const newInverses = oldSk.boneInverses.map((inv) =>
+    Cinv.clone().multiply(inv).multiply(C),
+  );
+
+  // ── 3. World bind matrices (Y-up) ─────────────────────────────────────────
+  //   B_yup = Minv_yup⁻¹  →  B_yup · Minv_yup = I  (T-pose rest in Blender)
+  const bindWorldMatrices = newInverses.map((inv) => inv.clone().invert());
+
+  // ── 4. Build bone objects with GENERIC names ───────────────────────────────
+  const standaloneBones: THREE.Bone[] = oldSk.bones.map((b, i) => {
+    const bone = new THREE.Bone();
+    // Convert Mixamo name → generic; keep as-is if not in the map (jaw, eye_L…)
+    bone.name = _MIXAMO_TO_GENERIC[b.name] ?? b.name;
+    return bone;
+  });
+
+  // Index lookup by the ORIGINAL (Mixamo) name for parent resolution
+  const boneByMixamo = new Map<string, number>();
+  for (let i = 0; i < boneCount; i++) boneByMixamo.set(oldSk.bones[i].name, i);
+
+  // ── 5. Parent-child hierarchy + LOCAL transforms ───────────────────────────
+  const armature = new THREE.Object3D();
+  armature.name = "Armature";
+
+  for (let i = 0; i < boneCount; i++) {
+    const mixamoName  = oldSk.bones[i].name;
+    const parentMixamo = _EXPORT_BONE_PARENT[mixamoName];
+    const parentIdx    = parentMixamo !== undefined ? boneByMixamo.get(parentMixamo) : undefined;
+
+    if (parentIdx !== undefined) {
+      // Local transform = parentWorld⁻¹ · childWorld
+      const localMat = bindWorldMatrices[parentIdx].clone().invert()
+        .multiply(bindWorldMatrices[i]);
+      localMat.decompose(
+        standaloneBones[i].position,
+        standaloneBones[i].quaternion,
+        standaloneBones[i].scale,
+      );
+      standaloneBones[parentIdx].add(standaloneBones[i]);
+    } else {
+      // Root bone (mixamorigHips or unmapped) — local = world
+      bindWorldMatrices[i].decompose(
+        standaloneBones[i].position,
+        standaloneBones[i].quaternion,
+        standaloneBones[i].scale,
+      );
+      armature.add(standaloneBones[i]);
+    }
+  }
+
+  // Ensure world matrices are up-to-date before the exporter reads them
+  armature.updateMatrixWorld(true);
+
+  // ── 6. SkinnedMesh ─────────────────────────────────────────────────────────
+  const newSm = new THREE.SkinnedMesh(geoClone, sm.material);
+  newSm.name = sm.name || slotId;
+  newSm.frustumCulled = false;
+
+  const newSkeleton = new THREE.Skeleton(standaloneBones, newInverses);
+  newSm.bind(newSkeleton, new THREE.Matrix4());
+
+  const exportGroup = new THREE.Group();
+  exportGroup.add(armature);
+  exportGroup.add(newSm);
+
+  // ── 7. Export ──────────────────────────────────────────────────────────────
+  const exporter = new GLTFExporter();
+  exporter.parse(
+    exportGroup,
+    (result) => {
+      const blob = new Blob([result as ArrayBuffer], { type: "model/gltf-binary" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = fileName ?? `${slotId}_weighted.glb`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      console.log(
+        `[Export] "${a.download}" — ${sm.geometry.getAttribute("position").count} verts, ` +
+        `${boneCount} bones`,
+      );
+    },
+    (err) => {
+      console.error("[Export] GLTFExporter failed:", err);
+    },
+    { binary: true },
+  );
+}
 
 /**
  * Build a MeshStandardMaterial that uses triplanar world-space projection
@@ -291,6 +495,83 @@ const BONE_NAME_REMAP: Record<string, string> = {
   Avatar_RightHandPinky2: "mixamorigRightHandPinky2",
   Avatar_RightHandPinky3: "mixamorigRightHandPinky3",
   Avatar_RightHandPinky4: "mixamorigRightHandPinky3",
+};
+
+/**
+ * Reverse of BONE_NAME_REMAP — maps Mixamo names back to the generic rig names
+ * used by the original equipment GLBs (pelvis, spine_01, upperarm_L, …).
+ * Used when exporting so the output matches the UpperbodyTestV1/ShellV2 format.
+ */
+const _MIXAMO_TO_GENERIC: Record<string, string> = {};
+for (const [generic, mixamo] of Object.entries(BONE_NAME_REMAP)) {
+  if (!_MIXAMO_TO_GENERIC[mixamo]) _MIXAMO_TO_GENERIC[mixamo] = generic;
+}
+
+/**
+ * Standard skeleton parent map keyed by bone name as it appears in oldSk.bones
+ * after skin-transfer (Mixamo names for remapped bones; original for the rest).
+ * Defines the parent-child hierarchy for the exported armature.
+ */
+const _EXPORT_BONE_PARENT: Record<string, string> = {
+  // spine chain
+  mixamorigSpine:  "mixamorigHips",
+  mixamorigSpine1: "mixamorigSpine",
+  mixamorigSpine2: "mixamorigSpine1",
+  mixamorigNeck:   "mixamorigSpine2",
+  mixamorigHead:   "mixamorigNeck",
+  // left arm
+  mixamorigLeftShoulder: "mixamorigSpine2",
+  mixamorigLeftArm:      "mixamorigLeftShoulder",
+  mixamorigLeftForeArm:  "mixamorigLeftArm",
+  mixamorigLeftHand:     "mixamorigLeftForeArm",
+  mixamorigLeftHandThumb1:  "mixamorigLeftHand",
+  mixamorigLeftHandThumb2:  "mixamorigLeftHandThumb1",
+  mixamorigLeftHandThumb3:  "mixamorigLeftHandThumb2",
+  mixamorigLeftHandIndex1:  "mixamorigLeftHand",
+  mixamorigLeftHandIndex2:  "mixamorigLeftHandIndex1",
+  mixamorigLeftHandIndex3:  "mixamorigLeftHandIndex2",
+  mixamorigLeftHandMiddle1: "mixamorigLeftHand",
+  mixamorigLeftHandMiddle2: "mixamorigLeftHandMiddle1",
+  mixamorigLeftHandMiddle3: "mixamorigLeftHandMiddle2",
+  mixamorigLeftHandRing1:   "mixamorigLeftHand",
+  mixamorigLeftHandRing2:   "mixamorigLeftHandRing1",
+  mixamorigLeftHandRing3:   "mixamorigLeftHandRing2",
+  mixamorigLeftHandPinky1:  "mixamorigLeftHand",
+  mixamorigLeftHandPinky2:  "mixamorigLeftHandPinky1",
+  mixamorigLeftHandPinky3:  "mixamorigLeftHandPinky2",
+  // right arm
+  mixamorigRightShoulder: "mixamorigSpine2",
+  mixamorigRightArm:      "mixamorigRightShoulder",
+  mixamorigRightForeArm:  "mixamorigRightArm",
+  mixamorigRightHand:     "mixamorigRightForeArm",
+  mixamorigRightHandThumb1:  "mixamorigRightHand",
+  mixamorigRightHandThumb2:  "mixamorigRightHandThumb1",
+  mixamorigRightHandThumb3:  "mixamorigRightHandThumb2",
+  mixamorigRightHandIndex1:  "mixamorigRightHand",
+  mixamorigRightHandIndex2:  "mixamorigRightHandIndex1",
+  mixamorigRightHandIndex3:  "mixamorigRightHandIndex2",
+  mixamorigRightHandMiddle1: "mixamorigRightHand",
+  mixamorigRightHandMiddle2: "mixamorigRightHandMiddle1",
+  mixamorigRightHandMiddle3: "mixamorigRightHandMiddle2",
+  mixamorigRightHandRing1:   "mixamorigRightHand",
+  mixamorigRightHandRing2:   "mixamorigRightHandRing1",
+  mixamorigRightHandRing3:   "mixamorigRightHandRing2",
+  mixamorigRightHandPinky1:  "mixamorigRightHand",
+  mixamorigRightHandPinky2:  "mixamorigRightHandPinky1",
+  mixamorigRightHandPinky3:  "mixamorigRightHandPinky2",
+  // legs
+  mixamorigLeftUpLeg:   "mixamorigHips",
+  mixamorigLeftLeg:     "mixamorigLeftUpLeg",
+  mixamorigLeftFoot:    "mixamorigLeftLeg",
+  mixamorigLeftToeBase: "mixamorigLeftFoot",
+  mixamorigRightUpLeg:   "mixamorigHips",
+  mixamorigRightLeg:     "mixamorigRightUpLeg",
+  mixamorigRightFoot:    "mixamorigRightLeg",
+  mixamorigRightToeBase: "mixamorigRightFoot",
+  // extra bones that weren't in BONE_NAME_REMAP (keep generic names after transfer)
+  jaw:   "mixamorigHead",
+  eye_L: "mixamorigHead",
+  eye_R: "mixamorigHead",
 };
 
 function findSkinnedMeshes(root: THREE.Object3D): THREE.SkinnedMesh[] {
@@ -940,6 +1221,8 @@ export default function EquipmentMeshRenderer({
   equipGizmoMode,
   onEquipTransformChange,
   slotTextures,
+  skinTransferRequest,
+  onSkinTransferDone,
 }: EquipmentMeshRendererProps) {
   const groupRef = useRef<THREE.Group>(null);
   const [loadedSlots, setLoadedSlots] = useState<Map<string, LoadedSlot>>(
@@ -1201,6 +1484,330 @@ export default function EquipmentMeshRenderer({
   }, [equipmentSlotIds, equipState, slotMap]);
 
   useEffect(() => {
+    if (!skinTransferRequest) return;
+    const { targetSlotId, referenceSlotId } = skinTransferRequest;
+    const targetDef = slotMap.get(targetSlotId);
+    const refDef = slotMap.get(referenceSlotId);
+    if (!targetDef || !refDef) {
+      console.warn(`[SkinTransfer] Missing slot definition`, { targetSlotId, referenceSlotId });
+      onSkinTransferDone?.();
+      return;
+    }
+
+    const targetUrl = targetDef.url ?? `/equipment/${targetSlotId}.glb`;
+    const refUrl = refDef.url ?? `/equipment/${referenceSlotId}.glb`;
+    const geoCorrection = _yupToZupCorrection;
+
+    console.log(`[SkinTransfer] Target: "${targetDef.name}" (${targetUrl})`);
+    console.log(`[SkinTransfer] Reference: "${refDef.name}" (${refUrl})`);
+
+    let loadsDone = 0;
+    let targetGltf: { scene: THREE.Group } | null = null;
+    let refGltf: { scene: THREE.Group } | null = null;
+
+    const tryFinish = () => {
+      loadsDone++;
+      if (loadsDone < 2 || !targetGltf || !refGltf) return;
+
+      const player = playerRef.current;
+      const animBones = player?.boneObjMap;
+      if (!animBones || animBones.size === 0) {
+        console.warn(`[SkinTransfer] Animation bones not ready yet.`);
+        onSkinTransferDone?.();
+        return;
+      }
+
+      const tScene = targetGltf.scene;
+      const rScene = refGltf.scene;
+      tScene.visible = true;
+
+      // --- Process reference: keep its SkinnedMesh with skeleton intact ---
+      rScene.traverse((child) => {
+        if ((child as THREE.Mesh).isMesh) {
+          (child as THREE.Mesh).geometry.applyMatrix4(geoCorrection);
+        }
+      });
+      const refSkinnedMeshes = findSkinnedMeshes(rScene);
+      if (refSkinnedMeshes.length === 0) {
+        console.warn(`[SkinTransfer] Reference has no skinned meshes. Cannot transfer.`);
+        onSkinTransferDone?.();
+        return;
+      }
+      const refSM = refSkinnedMeshes[0];
+      console.log(
+        `[SkinTransfer] Reference skinned mesh: "${refSM.name}", ` +
+        `verts=${refSM.geometry.getAttribute("position").count}, ` +
+        `bones=${refSM.skeleton.bones.length}`,
+      );
+
+      // Bake reference skeleton to get world-space vertex positions for matching
+      refSM.updateMatrixWorld(true);
+      const refGeo = refSM.geometry;
+      const refPos = refGeo.getAttribute("position") as THREE.BufferAttribute;
+      const refSkinIdx = refGeo.getAttribute("skinIndex") as THREE.BufferAttribute;
+      const refSkinWt = refGeo.getAttribute("skinWeight") as THREE.BufferAttribute;
+      const refWorldMatrix = refSM.matrixWorld;
+
+      const refWorldVerts: THREE.Vector3[] = [];
+      for (let i = 0; i < refPos.count; i++) {
+        const v = new THREE.Vector3(refPos.getX(i), refPos.getY(i), refPos.getZ(i));
+        v.applyMatrix4(refWorldMatrix);
+        refWorldVerts.push(v);
+      }
+
+      // --- Process target: strip skeleton, apply geo correction ---
+      const tSkinnedToStrip = findSkinnedMeshes(tScene);
+      for (const sm of tSkinnedToStrip) {
+        sm.geometry.applyMatrix4(geoCorrection);
+        const reg = new THREE.Mesh(sm.geometry, sm.material);
+        reg.name = sm.name;
+        reg.frustumCulled = false;
+        const p = sm.parent;
+        if (p) { p.add(reg); p.remove(sm); }
+      }
+      const tRegular = findRegularMeshes(tScene);
+      for (const mesh of tRegular) {
+        if (!tSkinnedToStrip.some((sm) => sm.name === mesh.name)) {
+          mesh.geometry.applyMatrix4(geoCorrection);
+        }
+      }
+
+      // Bake target's world transforms into geometry
+      tScene.updateMatrixWorld(true);
+      for (const mesh of tRegular) {
+        mesh.updateMatrixWorld(true);
+        mesh.geometry.applyMatrix4(mesh.matrixWorld);
+        mesh.position.set(0, 0, 0);
+        mesh.rotation.set(0, 0, 0);
+        mesh.scale.set(1, 1, 1);
+        mesh.updateMatrix();
+      }
+      tScene.traverse((c) => {
+        c.position.set(0, 0, 0);
+        c.rotation.set(0, 0, 0);
+        c.scale.set(1, 1, 1);
+        c.updateMatrix();
+      });
+      tScene.updateMatrixWorld(true);
+
+      if (tRegular.length === 0) {
+        console.warn(`[SkinTransfer] Target has no regular meshes after strip.`);
+        onSkinTransferDone?.();
+        return;
+      }
+
+      const targetMesh = tRegular[0];
+      const tPos = targetMesh.geometry.getAttribute("position") as THREE.BufferAttribute;
+
+      console.log(
+        `[SkinTransfer] Target mesh: "${targetMesh.name}", verts=${tPos.count}`,
+      );
+
+      // --- Per-axis scale + translate to match reference bounding box ---
+      const refBox = new THREE.Box3();
+      for (const v of refWorldVerts) refBox.expandByPoint(v);
+      const refSize = new THREE.Vector3();
+      const refCenter = new THREE.Vector3();
+      refBox.getSize(refSize);
+      refBox.getCenter(refCenter);
+
+      const tBox = new THREE.Box3().setFromObject(tScene);
+      const tSize = new THREE.Vector3();
+      const tCenter = new THREE.Vector3();
+      tBox.getSize(tSize);
+      tBox.getCenter(tCenter);
+
+      const sx = tSize.x > 0.0001 ? refSize.x / tSize.x : 1;
+      const sy = tSize.y > 0.0001 ? refSize.y / tSize.y : 1;
+      const sz = tSize.z > 0.0001 ? refSize.z / tSize.z : 1;
+
+      console.log(
+        `[SkinTransfer] Scale: [${sx.toFixed(4)}, ${sy.toFixed(4)}, ${sz.toFixed(4)}]`,
+      );
+      console.log(
+        `[SkinTransfer] Ref bounds: size=[${refSize.x.toFixed(4)},${refSize.y.toFixed(4)},${refSize.z.toFixed(4)}] ` +
+        `center=[${refCenter.x.toFixed(4)},${refCenter.y.toFixed(4)},${refCenter.z.toFixed(4)}]`,
+      );
+
+      // Apply per-axis scale and reposition to all target meshes
+      for (const mesh of findRegularMeshes(tScene)) {
+        const geo = mesh.geometry;
+        const pos = geo.getAttribute("position") as THREE.BufferAttribute;
+        for (let i = 0; i < pos.count; i++) {
+          const x = (pos.getX(i) - tCenter.x) * sx + refCenter.x;
+          const y = (pos.getY(i) - tCenter.y) * sy + refCenter.y;
+          const z = (pos.getZ(i) - tCenter.z) * sz + refCenter.z;
+          pos.setXYZ(i, x, y, z);
+        }
+        pos.needsUpdate = true;
+        geo.computeBoundingBox();
+        geo.computeBoundingSphere();
+      }
+
+      // --- Nearest-vertex weight transfer ---
+      const tGeo = targetMesh.geometry;
+      const tPosAttr = tGeo.getAttribute("position") as THREE.BufferAttribute;
+      const vertCount = tPosAttr.count;
+      const newSkinIndices = new Float32Array(vertCount * 4);
+      const newSkinWeights = new Float32Array(vertCount * 4);
+
+      let totalDist = 0;
+      let maxDist = 0;
+      const refVertCount = refWorldVerts.length;
+
+      for (let vi = 0; vi < vertCount; vi++) {
+        const tv = new THREE.Vector3(
+          tPosAttr.getX(vi), tPosAttr.getY(vi), tPosAttr.getZ(vi),
+        );
+
+        let bestIdx = 0;
+        let bestDist = Infinity;
+        for (let ri = 0; ri < refVertCount; ri++) {
+          const d = tv.distanceToSquared(refWorldVerts[ri]);
+          if (d < bestDist) {
+            bestDist = d;
+            bestIdx = ri;
+          }
+        }
+        const dist = Math.sqrt(bestDist);
+        totalDist += dist;
+        if (dist > maxDist) maxDist = dist;
+
+        const base = vi * 4;
+        const refSkinIdxArr = refSkinIdx.array as Float32Array;
+        const refSkinWtArr = refSkinWt.array as Float32Array;
+        const refBase = bestIdx * 4;
+        for (let j = 0; j < 4; j++) {
+          newSkinIndices[base + j] = refSkinIdxArr[refBase + j];
+          newSkinWeights[base + j] = refSkinWtArr[refBase + j];
+        }
+      }
+
+      console.log(
+        `[SkinTransfer] Weight transfer: avgDist=${(totalDist / vertCount).toFixed(5)}, ` +
+        `maxDist=${maxDist.toFixed(5)}`,
+      );
+
+      tGeo.setAttribute("skinIndex", new THREE.BufferAttribute(newSkinIndices, 4));
+      tGeo.setAttribute("skinWeight", new THREE.BufferAttribute(newSkinWeights, 4));
+
+      // --- Build SkinnedMesh using the reference's skeleton ---
+      const refOldSk = refSM.skeleton;
+      const newBones: THREE.Bone[] = [];
+      const newInverses: THREE.Matrix4[] = [];
+
+      for (let i = 0; i < refOldSk.bones.length; i++) {
+        const rawName = refOldSk.bones[i].name;
+        const boneName = BONE_NAME_REMAP[rawName] ?? rawName;
+        const animBone = animBones.get(boneName);
+        const charInv = charBoneInverseMap.get(boneName);
+        if (animBone && charInv) {
+          newBones.push(animBone);
+          newInverses.push(charInv.clone());
+        } else {
+          newBones.push(refOldSk.bones[i] as THREE.Bone);
+          newInverses.push(refOldSk.boneInverses[i].clone());
+        }
+      }
+
+      // Preserve materials from target
+      const origMats = new Map<THREE.Mesh, THREE.Material>();
+      const isMultiMat = Array.isArray(targetMesh.material);
+      const matList: THREE.MeshStandardMaterial[] = isMultiMat
+        ? (targetMesh.material as THREE.Material[]).filter(
+            (m): m is THREE.MeshStandardMaterial => (m as any).isMeshStandardMaterial,
+          )
+        : (targetMesh.material as any)?.isMeshStandardMaterial
+          ? [targetMesh.material as THREE.MeshStandardMaterial]
+          : [];
+      const hasBakedTexture = matList.length > 0 && matList.some((m) => m.map != null);
+      for (const m of matList) {
+        if (hasBakedTexture) {
+          m.side = THREE.DoubleSide;
+          m.transparent = false;
+          m.opacity = 1.0;
+          m.depthWrite = true;
+          m.needsUpdate = true;
+        }
+      }
+
+      const skinnedMesh = new THREE.SkinnedMesh(tGeo, targetMesh.material);
+      skinnedMesh.name = targetMesh.name;
+      skinnedMesh.frustumCulled = false;
+      skinnedMesh.renderOrder = SLOT_RENDER_ORDER[targetSlotId] ?? 0;
+
+      const newSkeleton = new THREE.Skeleton(newBones, newInverses);
+      skinnedMesh.bind(newSkeleton, _identityMatrix);
+
+      origMats.set(skinnedMesh, (isMultiMat
+        ? (targetMesh.material as THREE.Material[])[0]
+        : targetMesh.material) as THREE.Material);
+
+      // Replace the target mesh in the scene
+      const parent = targetMesh.parent ?? tScene;
+      parent.add(skinnedMesh);
+      parent.remove(targetMesh);
+
+      console.log(
+        `[SkinTransfer] Created SkinnedMesh with ${newBones.length} bones, ` +
+        `${vertCount} verts. Transfer complete.`,
+      );
+
+      // --- Install into slotCache ---
+      const loaded: LoadedSlot = {
+        scene: tScene,
+        skinnedMeshes: [skinnedMesh],
+        needsAutoSkin: false,
+        originalMaterials: origMats,
+      };
+
+      const oldSlot = slotCache.get(targetSlotId);
+      if (oldSlot) {
+        oldSlot.scene.visible = false;
+        oldSlot.scene.traverse((c) => {
+          if ((c as THREE.Mesh).isMesh) (c as THREE.Mesh).geometry.dispose();
+        });
+      }
+
+      slotCache.set(targetSlotId, loaded);
+      boundRef.current.add(targetSlotId);
+      correctedSlots.delete(targetSlotId);
+
+      setLoadedSlots((prev) => {
+        const next = new Map(prev);
+        next.set(targetSlotId, loaded);
+        return next;
+      });
+
+      // Clean up reference
+      rScene.traverse((c) => {
+        if ((c as THREE.Mesh).isMesh) (c as THREE.Mesh).geometry.dispose();
+      });
+
+      onSkinTransferDone?.(targetSlotId);
+    };
+
+    loader.load(
+      `${targetUrl}?v=${Date.now()}`,
+      (gltf) => { targetGltf = { scene: gltf.scene }; tryFinish(); },
+      undefined,
+      (err) => {
+        console.warn(`[SkinTransfer] Failed to load target`, err);
+        onSkinTransferDone?.();
+      },
+    );
+    loader.load(
+      `${refUrl}?v=${Date.now()}`,
+      (gltf) => { refGltf = { scene: gltf.scene }; tryFinish(); },
+      undefined,
+      (err) => {
+        console.warn(`[SkinTransfer] Failed to load reference`, err);
+        onSkinTransferDone?.();
+      },
+    );
+  }, [skinTransferRequest, slotMap, charBoneInverseMap, onSkinTransferDone]);
+
+  useEffect(() => {
     if (!slotTextures) return;
     for (const [slotId, slot] of slotCache) {
       const texUrl = slotTextures[slotId];
@@ -1242,7 +1849,7 @@ export default function EquipmentMeshRenderer({
         }
       });
     }
-  }, [slotTextures, loadedSlots]);
+  }, [slotTextures]);
 
   useFrame(() => {
     const player = playerRef.current;
@@ -1270,6 +1877,13 @@ export default function EquipmentMeshRenderer({
                   parent.remove(mesh);
                 }
                 slot.skinnedMeshes.push(sm);
+                if (slot.originalMaterials) {
+                  const origMat = slot.originalMaterials.get(mesh);
+                  if (origMat) {
+                    slot.originalMaterials.delete(mesh);
+                    slot.originalMaterials.set(sm, origMat);
+                  }
+                }
               }
             }
             slot.needsAutoSkin = false;

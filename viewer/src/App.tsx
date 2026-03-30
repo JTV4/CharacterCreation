@@ -16,7 +16,7 @@ import BoneInfoPanel from "./components/BoneInfoPanel";
 import AnimationControls from "./components/AnimationControls";
 import AnimationBridge from "./components/AnimationBridge";
 import EquipmentPanel from "./components/EquipmentPanel";
-import EquipmentMeshRenderer from "./components/EquipmentMeshRenderer";
+import EquipmentMeshRenderer, { exportSlotAsGlb } from "./components/EquipmentMeshRenderer";
 import MeshInfoPanel from "./components/MeshInfoPanel";
 import ToolPanel from "./components/ToolPanel";
 import ToolAttachment from "./components/ToolAttachment";
@@ -25,6 +25,8 @@ import type { PoseKeyframe, PoseAnimationConfig } from "./components/PoseEditor"
 import SlotBoundsVisualizer from "./components/SlotBoundsVisualizer";
 import { TOOLS, DEFAULT_TOOL_TRANSFORM } from "./types/tools";
 import type { ToolTransform, GizmoMode } from "./types/tools";
+import SkinTransferModal from "./components/SkinTransferModal";
+import type { SkinTransferRequest } from "./components/SkinTransferModal";
 
 function triggerDownload(href: string, filename: string) {
   const a = document.createElement("a");
@@ -166,6 +168,39 @@ const BODY_SLOT_IDS = new Set([
   "base_body",
   "base_male",
   "base_female",
+  "base_female_v2",
+]);
+
+// Maps hides_body_regions strings → mesh object names in BaseFemaleV2.glb
+const REGION_TO_MESH: Record<string, string> = {
+  head:         "base_body_head",
+  neck:         "base_body_head",
+  upper_torso:  "base_body_upper_torso",
+  lower_torso:  "base_body_lower_torso",
+  arm_upper:    "base_body_arm_upper",
+  arm_lower:    "base_body_arm_lower",
+  hands:        "base_body_hands",
+  leg_upper:    "base_body_leg_upper",
+  leg_thigh:    "base_body_leg_thigh",
+  leg_knee:     "base_body_leg_knee",
+  leg_shin:     "base_body_leg_shin",
+  leg_ankle:    "base_body_leg_ankle",
+  foot:         "base_body_foot",
+};
+
+const BODY_PART_NAMES = new Set([
+  "base_body_head",
+  "base_body_upper_torso",
+  "base_body_lower_torso",
+  "base_body_arm_upper",
+  "base_body_arm_lower",
+  "base_body_hands",
+  "base_body_leg_upper",
+  "base_body_leg_thigh",
+  "base_body_leg_knee",
+  "base_body_leg_shin",
+  "base_body_leg_ankle",
+  "base_body_foot",
 ]);
 
 export default function App() {
@@ -293,9 +328,41 @@ export default function App() {
   );
 
   const [selectedEquipSlot, setSelectedEquipSlot] = useState<string | null>(null);
-  const [equipTransforms, setEquipTransforms] = useState<Record<string, EquipTransform>>({});
+  const [equipTransforms, setEquipTransforms] = useState<Record<string, EquipTransform>>(() => {
+    try {
+      const saved = localStorage.getItem("equipTransforms");
+      return saved ? JSON.parse(saved) : {};
+    } catch {
+      return {};
+    }
+  });
   const [equipGizmoMode, setEquipGizmoMode] = useState<GizmoMode>("translate");
   const [slotTextures, setSlotTextures] = useState<SlotTextures>({});
+  const [skinTransferTarget, setSkinTransferTarget] = useState<string | null>(null);
+  const [skinTransferRequest, setSkinTransferRequest] = useState<SkinTransferRequest | null>(null);
+
+  const handleOpenSkinModal = useCallback((slotId: string) => {
+    setSkinTransferTarget(slotId);
+  }, []);
+
+  const handleSkinTransfer = useCallback((req: SkinTransferRequest) => {
+    setSkinTransferRequest(req);
+  }, []);
+
+  const [reweightedSlots, setReweightedSlots] = useState<Set<string>>(new Set());
+
+  const handleSkinTransferDone = useCallback((reweightedSlotId?: string) => {
+    setSkinTransferRequest(null);
+    setSkinTransferTarget(null);
+    if (reweightedSlotId) {
+      setReweightedSlots((prev) => new Set([...prev, reweightedSlotId]));
+    }
+  }, []);
+
+  const handleExportWeightedSlot = useCallback((slotId: string) => {
+    const transform = equipTransforms[slotId];
+    exportSlotAsGlb(slotId, `${slotId}_weighted.glb`, transform);
+  }, [equipTransforms]);
 
   const handleSetSlotTexture = useCallback((slotId: string, dataUrl: string | null) => {
     setSlotTextures((prev) => {
@@ -308,6 +375,14 @@ export default function App() {
       return next;
     });
   }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("equipTransforms", JSON.stringify(equipTransforms));
+    } catch {
+      // ignore storage errors
+    }
+  }, [equipTransforms]);
 
   const handleEquipTransformChange = useCallback(
     (id: string, t: EquipTransform) => {
@@ -406,6 +481,45 @@ export default function App() {
 
   const [basePose] = useState<Map<string, BoneTransformOverride>>(new Map());
   const [showSlotBounds, setShowSlotBounds] = useState(false);
+
+  // Manual per-part visibility toggles (user-controlled)
+  const [hiddenBodyParts, setHiddenBodyParts] = useState<Set<string>>(new Set());
+
+  const handleToggleBodyPart = useCallback((partName: string) => {
+    setHiddenBodyParts((prev) => {
+      const next = new Set(prev);
+      if (next.has(partName)) {
+        next.delete(partName);
+      } else {
+        next.add(partName);
+      }
+      return next;
+    });
+  }, []);
+
+  // Auto-hide body parts covered by equipped items (Female V2 only)
+  const autoHiddenBodyParts = useMemo<Set<string>>(() => {
+    if (activeGender !== "female_v2" || !equipSpec) return new Set();
+    const hidden = new Set<string>();
+    for (const slot of equipSpec.slots) {
+      if (!effectiveEquipState[slot.id]) continue;
+      for (const region of (slot.hides_body_regions ?? [])) {
+        const meshName = REGION_TO_MESH[region];
+        if (meshName) hidden.add(meshName);
+      }
+    }
+    return hidden;
+  }, [activeGender, equipSpec, effectiveEquipState]);
+
+  // Apply visibility to scene: hide if auto-hidden OR manually hidden
+  useEffect(() => {
+    if (!characterModel) return;
+    characterModel.scene.traverse((child) => {
+      if (BODY_PART_NAMES.has(child.name)) {
+        child.visible = !autoHiddenBodyParts.has(child.name) && !hiddenBodyParts.has(child.name);
+      }
+    });
+  }, [characterModel, autoHiddenBodyParts, hiddenBodyParts]);
 
   useEffect(() => {
     fetch("/animations/manifest.json")
@@ -507,6 +621,13 @@ export default function App() {
               >
                 Male
               </button>
+              <button
+                className={`model-toggle-btn ${activeGender === "female_v2" ? "active" : ""}`}
+                onClick={() => setActiveGender("female_v2")}
+                title="Female V2 — segmented body (each region can be hidden by equipment)"
+              >
+                Female V2
+              </button>
             </div>
             <div className="model-selector">
               <button
@@ -530,6 +651,57 @@ export default function App() {
               >
                 Slot Bounds
               </button>
+            </div>
+            <div className="body-parts-dropdown">
+              {(() => {
+                const totalHidden = new Set([...hiddenBodyParts, ...autoHiddenBodyParts]).size;
+                return (
+                  <button className={`model-toggle-btn body-parts-trigger${totalHidden > 0 ? " has-hidden" : ""}`}>
+                    Body Parts{totalHidden > 0 ? ` (${totalHidden} hidden)` : ""}
+                  </button>
+                );
+              })()}
+              <div className="body-parts-menu">
+                <div className="body-parts-menu-inner">
+                  <div className="body-parts-menu-title">
+                    Visibility
+                    {activeGender === "female_v2" && autoHiddenBodyParts.size > 0 && (
+                      <span className="body-parts-auto-label"> (auto)</span>
+                    )}
+                  </div>
+                  {([
+                    { id: "base_body_head",         label: "Head"              },
+                    { id: "base_body_upper_torso",  label: "Upper Torso"       },
+                    { id: "base_body_lower_torso",  label: "Lower Torso"       },
+                    { id: "base_body_arm_upper",    label: "Arm — Upper"       },
+                    { id: "base_body_arm_lower",    label: "Arm — Lower"       },
+                    { id: "base_body_hands",        label: "Hands"             },
+                    { id: "base_body_leg_upper",    label: "Leg — Upper Thigh" },
+                    { id: "base_body_leg_thigh",    label: "Leg — Thigh"       },
+                    { id: "base_body_leg_knee",     label: "Leg — Knee"        },
+                    { id: "base_body_leg_shin",     label: "Leg — Shin"        },
+                    { id: "base_body_leg_ankle",    label: "Leg — Ankle"       },
+                    { id: "base_body_foot",         label: "Foot"              },
+                  ] as const).map(({ id, label }) => {
+                    const isAutoHidden = autoHiddenBodyParts.has(id);
+                    const isManualHidden = hiddenBodyParts.has(id);
+                    const isVisible = !isAutoHidden && !isManualHidden;
+                    return (
+                      <button
+                        key={id}
+                        className={`body-parts-item${isVisible ? " visible" : ""}${isAutoHidden ? " auto-hidden" : ""}`}
+                        onClick={() => handleToggleBodyPart(id)}
+                        title={isAutoHidden ? "Hidden by equipped item" : undefined}
+                      >
+                        <span className="body-parts-eye">
+                          {isAutoHidden ? "🎽" : isManualHidden ? "🚫" : "👁"}
+                        </span>
+                        {label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
             <span>
               {boneList.length} bones
@@ -574,6 +746,8 @@ export default function App() {
                 equipGizmoMode={equipGizmoMode}
                 onEquipTransformChange={handleEquipTransformChange}
                 slotTextures={slotTextures}
+                skinTransferRequest={skinTransferRequest}
+                onSkinTransferDone={handleSkinTransferDone}
               />
             )}
             {showSlotBounds && equipSpec && (
@@ -679,6 +853,9 @@ export default function App() {
             equipTransforms={equipTransforms}
             slotTextures={slotTextures}
             onSetSlotTexture={handleSetSlotTexture}
+            onForceAutoSkin={handleOpenSkinModal}
+            onExportWeightedSlot={handleExportWeightedSlot}
+            reweightedSlots={reweightedSlots}
           />
         )}
         {!poseMode && (
@@ -693,6 +870,18 @@ export default function App() {
             onResetTransform={handleResetToolTransform}
             detached={toolDetached}
             onDetachedChange={setToolDetached}
+          />
+        )}
+        {skinTransferTarget && equipSpec && (
+          <SkinTransferModal
+            targetSlotId={skinTransferTarget}
+            slots={equipSpec.slots.filter(
+              (s) => !BODY_SLOT_IDS.has(s.id) && (!s.gender || s.gender === activeGender),
+            )}
+            equipState={equipState}
+            onTransfer={handleSkinTransfer}
+            onClose={() => setSkinTransferTarget(null)}
+            isBusy={skinTransferRequest !== null}
           />
         )}
       </div>

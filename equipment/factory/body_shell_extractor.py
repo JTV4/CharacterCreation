@@ -107,14 +107,16 @@ SLOT_BONES: dict[str, list[str]] = {
     ],
 }
 
-# Per-slot outward offset (meters).  Larger values make the equipment
-# visually bulkier.  Set to 0 to skip Solidify for a slot (flat shell).
+# Per-slot outward offset (meters).
+# Layering order: head < lower_body < upper_body < gloves
+#                        lower_body < boots
+# Each outer layer is 2-8mm thicker so it always sits on top of its inner layer.
 SHELL_THICKNESS: dict[str, float] = {
-    "head": 0.005,
-    "upper_body": 0.012,
-    "lower_body": 0.01,
-    "gloves": 0.015,
-    "boots": 0.04,
+    "head":       0.006,   #  6mm — unchanged, form-fitting skull cap
+    "lower_body": 0.009,   #  9mm — 50% of original 18mm
+    "upper_body": 0.010,   # 10mm — 50% of original 20mm
+    "gloves":     0.012,   # 12mm — 50% of original 24mm
+    "boots":      0.013,   # 13mm — 50% of original 26mm
 }
 
 SHELL_THICKNESS_CLAMP: dict[str, float] = {
@@ -141,12 +143,26 @@ SHELL_OFFSET_MODE: dict[str, str] = {
     "boots": "displace",
 }
 
+# Pre-displacement normal smoothing passes per slot.
+# Averaging normals with neighbours before displacing fixes concave zones
+# (inner groin, armpits, finger webs) where raw vertex normals point inward
+# and would push shell vertices into — rather than away from — the body.
+# 0 = disabled (solidify-mode slots don't use this).
+NORMAL_SMOOTH_ITERS: dict[str, int] = {
+    "head":       0,    # solidify mode — not used
+    "upper_body": 20,   # armpits are concave
+    "lower_body": 25,   # inner groin is the worst concave zone
+    "gloves":     10,   # finger webs have mild concavity
+    "boots":      10,   # ankle fold — relatively convex
+}
+
+# Post-displacement corrective-smooth passes (applied after normal inflation).
 SHELL_SMOOTH_ITERS: dict[str, int] = {
-    "head": 10,
-    "upper_body": 10,
-    "lower_body": 10,
-    "gloves": 10,
-    "boots": 20,
+    "head":       10,
+    "upper_body": 15,
+    "lower_body": 15,
+    "gloves":     15,
+    "boots":      20,
 }
 
 SHELL_SMOOTH_FACTOR: dict[str, float] = {
@@ -157,17 +173,15 @@ SHELL_SMOOTH_FACTOR: dict[str, float] = {
     "boots": 0.5,
 }
 
-# Post-displace solidify wall thickness (meters).  Applied after vertex
-# displacement to close the single-surface shell into a proper manifold
-# mesh with inner/outer faces and edge walls.  Only affects "displace"
-# mode slots; "solidify" mode slots already produce closed geometry.
-# Set to 0 to skip (leaves the mesh as a single surface).
+# Post-displace solidify wall thickness (meters).
+# Disabled for all displace-mode slots — wall solidify generates spike
+# artefacts at open boundary caps (hands, ankles, wrists).
 SHELL_WALL_THICKNESS: dict[str, float] = {
-    "head": 0.0,
-    "upper_body": 0.002,
-    "lower_body": 0.002,
-    "gloves": 0.002,
-    "boots": 0.002,
+    "head":       0.0,
+    "upper_body": 0.0,
+    "lower_body": 0.0,
+    "gloves":     0.0,
+    "boots":      0.0,
 }
 
 
@@ -693,6 +707,44 @@ def _smooth_and_cap_boundaries(
     return caps_created
 
 
+def _compute_smooth_normals(
+    mesh_data,
+    iterations: int,
+) -> dict:
+    """Average vertex normals with edge-connected neighbours.
+
+    Raw vertex normals in concave zones (inner groin crease, armpits,
+    finger webs) point *inward*, so a naive ``v.co += v.normal * t``
+    pushes those shell vertices *into* the body.  Iteratively blending
+    each normal with its neighbours diffuses the inward vectors toward
+    the broader outward-facing surface direction, producing a clean
+    outward offset even in tight folds.
+    """
+    from mathutils import Vector
+
+    # Build per-vertex neighbour index list from edges
+    neighbors: dict[int, list[int]] = {v.index: [] for v in mesh_data.vertices}
+    for edge in mesh_data.edges:
+        v0, v1 = edge.vertices[0], edge.vertices[1]
+        neighbors[v0].append(v1)
+        neighbors[v1].append(v0)
+
+    # Seed with Blender's computed vertex normals
+    normals: dict[int, object] = {v.index: v.normal.copy() for v in mesh_data.vertices}
+
+    for _ in range(iterations):
+        new_normals: dict[int, object] = {}
+        for v in mesh_data.vertices:
+            n = normals[v.index].copy()
+            for ni in neighbors[v.index]:
+                n += normals[ni]
+            n.normalize()
+            new_normals[v.index] = n
+        normals = new_normals
+
+    return normals
+
+
 def extract_slot_shell(
     body_mesh: bpy.types.Object,
     slot_type: str,
@@ -754,11 +806,19 @@ def extract_slot_shell(
         _ensure_object_mode(shell)
         mesh_data = shell.data
 
-        for v in mesh_data.vertices:
-            v.co += v.normal * thickness
+        n_smooth = NORMAL_SMOOTH_ITERS.get(slot_type, 0)
+        if n_smooth > 0:
+            smooth_norms = _compute_smooth_normals(mesh_data, n_smooth)
+            for v in mesh_data.vertices:
+                v.co += smooth_norms[v.index] * thickness
+            print(f"  Displaced {len(mesh_data.vertices)} vertices outward by {thickness:.4f}m "
+                  f"(smooth-normal, {n_smooth} iters)")
+        else:
+            for v in mesh_data.vertices:
+                v.co += v.normal * thickness
+            print(f"  Displaced {len(mesh_data.vertices)} vertices outward by {thickness:.4f}m "
+                  f"(raw normal)")
         mesh_data.update()
-
-        print(f"  Displaced {len(mesh_data.vertices)} vertices outward by {thickness:.4f}m")
 
         _sm_iters = SHELL_SMOOTH_ITERS.get(slot_type, 10)
         _sm_factor = SHELL_SMOOTH_FACTOR.get(slot_type, 0.5)

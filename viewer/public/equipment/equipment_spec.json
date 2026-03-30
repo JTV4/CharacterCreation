@@ -331,7 +331,12 @@
       "bilateral": false,
       "color": "#8d5524",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_dark_brown.glb",
       "mesh_type": "skin_color",
@@ -345,7 +350,12 @@
       "bilateral": false,
       "color": "#c68642",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_medium_brown.glb",
       "mesh_type": "skin_color",
@@ -359,7 +369,12 @@
       "bilateral": false,
       "color": "#e0ac69",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_light_brown.glb",
       "mesh_type": "skin_color",
@@ -373,7 +388,12 @@
       "bilateral": false,
       "color": "#f1c27d",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_warm_beige.glb",
       "mesh_type": "skin_color",
@@ -387,7 +407,12 @@
       "bilateral": false,
       "color": "#ffdbac",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_fair.glb",
       "mesh_type": "skin_color",
@@ -401,7 +426,12 @@
       "bilateral": false,
       "color": "#714c43",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_deep_brown.glb",
       "mesh_type": "skin_color",
@@ -415,7 +445,12 @@
       "bilateral": false,
       "color": "#4b3331",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_espresso.glb",
       "mesh_type": "skin_color",
@@ -429,7 +464,12 @@
       "bilateral": false,
       "color": "#000000",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_black.glb",
       "mesh_type": "skin_color",
@@ -443,7 +483,12 @@
       "bilateral": false,
       "color": "#FFFFFF",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_white.glb",
       "mesh_type": "skin_color",
@@ -457,7 +502,12 @@
       "bilateral": false,
       "color": "#FF0000",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_red.glb",
       "mesh_type": "skin_color",
@@ -471,7 +521,12 @@
       "bilateral": false,
       "color": "#FF7F00",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_orange.glb",
       "mesh_type": "skin_color",
@@ -485,7 +540,12 @@
       "bilateral": false,
       "color": "#FFFF00",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_yellow.glb",
       "mesh_type": "skin_color",
@@ -499,7 +559,12 @@
       "bilateral": false,
       "color": "#00FF00",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_green.glb",
       "mesh_type": "skin_color",
@@ -513,7 +578,12 @@
       "bilateral": false,
       "color": "#0000FF",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_blue.glb",
       "mesh_type": "skin_color",
@@ -527,7 +597,12 @@
       "bilateral": false,
       "color": "#4B0082",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_indigo.glb",
       "mesh_type": "skin_color",
@@ -541,7 +616,12 @@
       "bilateral": false,
       "color": "#8B00FF",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_violet.glb",
       "mesh_type": "skin_color",
@@ -555,7 +635,12 @@
       "bilateral": false,
       "color": "#008080",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_teal.glb",
       "mesh_type": "skin_color",
@@ -569,7 +654,12 @@
       "bilateral": false,
       "color": "#FF69B4",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_pink.glb",
       "mesh_type": "skin_color",
@@ -583,7 +673,12 @@
       "bilateral": false,
       "color": "#FF7F50",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_coral.glb",
       "mesh_type": "skin_color",
@@ -597,7 +692,12 @@
       "bilateral": false,
       "color": "#FF00FF",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_magenta.glb",
       "mesh_type": "skin_color",
@@ -611,7 +711,12 @@
       "bilateral": false,
       "color": "#00FFFF",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_cyan.glb",
       "mesh_type": "skin_color",
@@ -625,7 +730,12 @@
       "bilateral": false,
       "color": "#E6E6FA",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_lavender.glb",
       "mesh_type": "skin_color",
@@ -639,7 +749,12 @@
       "bilateral": false,
       "color": "#FFD700",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_gold.glb",
       "mesh_type": "skin_color",
@@ -653,7 +768,12 @@
       "bilateral": false,
       "color": "#C0C0C0",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_silver.glb",
       "mesh_type": "skin_color",
@@ -1526,23 +1646,71 @@
       "bilateral": false,
       "color": "#991b1b",
       "bones": [
-        { "name": "mixamorigHips", "weight": 0.6 },
-        { "name": "mixamorigSpine", "weight": 1.0 },
-        { "name": "mixamorigSpine1", "weight": 1.0 },
-        { "name": "mixamorigSpine2", "weight": 1.0 },
-        { "name": "mixamorigLeftShoulder", "weight": 0.8 },
-        { "name": "mixamorigRightShoulder", "weight": 0.8 },
-        { "name": "mixamorigLeftArm", "weight": 1.0 },
-        { "name": "mixamorigRightArm", "weight": 1.0 },
-        { "name": "mixamorigLeftForeArm", "weight": 1.0 },
-        { "name": "mixamorigRightForeArm", "weight": 1.0 },
-        { "name": "mixamorigLeftHand", "weight": 0.1 },
-        { "name": "mixamorigRightHand", "weight": 0.1 },
-        { "name": "mixamorigNeck", "weight": 0.1 }
+        {
+          "name": "mixamorigHips",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.1
+        }
       ],
-      "bounds": { "z_min": 1.01, "z_max": 1.54, "radius": 0.75, "weight_radius": 0.3 },
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.54,
+        "radius": 0.75,
+        "weight_radius": 0.3
+      },
       "rules": {},
-      "hides_body_regions": ["torso", "neck", "arms"],
+      "hides_body_regions": [
+        "torso",
+        "neck",
+        "arms"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1554,12 +1722,25 @@
       "bilateral": false,
       "color": "#a78bfa",
       "bones": [
-        { "name": "mixamorigHead", "weight": 1.0 },
-        { "name": "mixamorigNeck", "weight": 0.25 }
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.25
+        }
       ],
-      "bounds": { "z_min": 1.61, "z_max": 1.9, "radius": 0.13, "weight_radius": 0.2 },
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.13,
+        "weight_radius": 0.2
+      },
       "rules": {},
-      "hides_body_regions": ["head"],
+      "hides_body_regions": [
+        "head"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1571,23 +1752,71 @@
       "bilateral": false,
       "color": "#60a5fa",
       "bones": [
-        { "name": "mixamorigHips", "weight": 0.6 },
-        { "name": "mixamorigSpine", "weight": 1.0 },
-        { "name": "mixamorigSpine1", "weight": 1.0 },
-        { "name": "mixamorigSpine2", "weight": 1.0 },
-        { "name": "mixamorigLeftShoulder", "weight": 0.8 },
-        { "name": "mixamorigRightShoulder", "weight": 0.8 },
-        { "name": "mixamorigLeftArm", "weight": 1.0 },
-        { "name": "mixamorigRightArm", "weight": 1.0 },
-        { "name": "mixamorigLeftForeArm", "weight": 1.0 },
-        { "name": "mixamorigRightForeArm", "weight": 1.0 },
-        { "name": "mixamorigLeftHand", "weight": 0.1 },
-        { "name": "mixamorigRightHand", "weight": 0.1 },
-        { "name": "mixamorigNeck", "weight": 0.1 }
+        {
+          "name": "mixamorigHips",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.1
+        }
       ],
-      "bounds": { "z_min": 1.01, "z_max": 1.54, "radius": 0.75, "weight_radius": 0.3 },
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.54,
+        "radius": 0.75,
+        "weight_radius": 0.3
+      },
       "rules": {},
-      "hides_body_regions": ["torso", "neck", "arms"],
+      "hides_body_regions": [
+        "torso",
+        "neck",
+        "arms"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1599,42 +1828,145 @@
       "bilateral": true,
       "color": "#34d399",
       "bones": [
-        { "name": "mixamorigLeftHand", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky3", "weight": 1.0 },
-        { "name": "mixamorigRightHand", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb1", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb2", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb3", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex1", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex2", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex3", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle1", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle2", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle3", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing1", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing2", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing3", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky1", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky2", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky3", "weight": 1.0 }
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1.0
+        }
       ],
-      "bounds": { "z_min": 1.49, "z_max": 1.54, "radius": 0.20, "weight_radius": 0.15 },
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2,
+        "weight_radius": 0.15
+      },
       "rules": {},
-      "hides_body_regions": ["hands"],
+      "hides_body_regions": [
+        "hands"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1646,15 +1978,38 @@
       "bilateral": true,
       "color": "#f87171",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 },
-        { "name": "mixamorigLeftUpLeg", "weight": 1.0 },
-        { "name": "mixamorigRightUpLeg", "weight": 1.0 },
-        { "name": "mixamorigLeftLeg", "weight": 0.8 },
-        { "name": "mixamorigRightLeg", "weight": 0.8 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        }
       ],
-      "bounds": { "z_min": 0.29, "z_max": 1.09, "radius": 0.18, "weight_radius": 0.15 },
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.18,
+        "weight_radius": 0.15
+      },
       "rules": {},
-      "hides_body_regions": ["torso", "legs"],
+      "hides_body_regions": [
+        "torso",
+        "legs"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1666,16 +2021,42 @@
       "bilateral": true,
       "color": "#fb923c",
       "bones": [
-        { "name": "mixamorigLeftLeg", "weight": 0.6 },
-        { "name": "mixamorigRightLeg", "weight": 0.6 },
-        { "name": "mixamorigLeftFoot", "weight": 1.0 },
-        { "name": "mixamorigRightFoot", "weight": 1.0 },
-        { "name": "mixamorigLeftToeBase", "weight": 1.0 },
-        { "name": "mixamorigRightToeBase", "weight": 1.0 }
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        }
       ],
-      "bounds": { "z_min": -0.02, "z_max": 0.52, "radius": 0.12, "weight_radius": 0.12 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12,
+        "weight_radius": 0.12
+      },
       "rules": {},
-      "hides_body_regions": ["feet", "legs"],
+      "hides_body_regions": [
+        "feet",
+        "legs"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1687,12 +2068,25 @@
       "bilateral": false,
       "color": "#a78bfa",
       "bones": [
-        { "name": "mixamorigHead", "weight": 1.0 },
-        { "name": "mixamorigNeck", "weight": 0.25 }
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.25
+        }
       ],
-      "bounds": { "z_min": 1.61, "z_max": 1.9, "radius": 0.13, "weight_radius": 0.2 },
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.13,
+        "weight_radius": 0.2
+      },
       "rules": {},
-      "hides_body_regions": ["head"],
+      "hides_body_regions": [
+        "head"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1704,23 +2098,71 @@
       "bilateral": false,
       "color": "#60a5fa",
       "bones": [
-        { "name": "mixamorigHips", "weight": 0.6 },
-        { "name": "mixamorigSpine", "weight": 1.0 },
-        { "name": "mixamorigSpine1", "weight": 1.0 },
-        { "name": "mixamorigSpine2", "weight": 1.0 },
-        { "name": "mixamorigLeftShoulder", "weight": 0.8 },
-        { "name": "mixamorigRightShoulder", "weight": 0.8 },
-        { "name": "mixamorigLeftArm", "weight": 1.0 },
-        { "name": "mixamorigRightArm", "weight": 1.0 },
-        { "name": "mixamorigLeftForeArm", "weight": 1.0 },
-        { "name": "mixamorigRightForeArm", "weight": 1.0 },
-        { "name": "mixamorigLeftHand", "weight": 0.1 },
-        { "name": "mixamorigRightHand", "weight": 0.1 },
-        { "name": "mixamorigNeck", "weight": 0.1 }
+        {
+          "name": "mixamorigHips",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.1
+        }
       ],
-      "bounds": { "z_min": 1.01, "z_max": 1.54, "radius": 0.75, "weight_radius": 0.3 },
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.54,
+        "radius": 0.75,
+        "weight_radius": 0.3
+      },
       "rules": {},
-      "hides_body_regions": ["torso", "neck", "arms"],
+      "hides_body_regions": [
+        "torso",
+        "neck",
+        "arms"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1732,42 +2174,145 @@
       "bilateral": true,
       "color": "#34d399",
       "bones": [
-        { "name": "mixamorigLeftHand", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky3", "weight": 1.0 },
-        { "name": "mixamorigRightHand", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb1", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb2", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb3", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex1", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex2", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex3", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle1", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle2", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle3", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing1", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing2", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing3", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky1", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky2", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky3", "weight": 1.0 }
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1.0
+        }
       ],
-      "bounds": { "z_min": 1.49, "z_max": 1.54, "radius": 0.20, "weight_radius": 0.15 },
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2,
+        "weight_radius": 0.15
+      },
       "rules": {},
-      "hides_body_regions": ["hands"],
+      "hides_body_regions": [
+        "hands"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1779,15 +2324,38 @@
       "bilateral": true,
       "color": "#f87171",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 },
-        { "name": "mixamorigLeftUpLeg", "weight": 1.0 },
-        { "name": "mixamorigRightUpLeg", "weight": 1.0 },
-        { "name": "mixamorigLeftLeg", "weight": 0.8 },
-        { "name": "mixamorigRightLeg", "weight": 0.8 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        }
       ],
-      "bounds": { "z_min": 0.29, "z_max": 1.09, "radius": 0.18, "weight_radius": 0.15 },
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.18,
+        "weight_radius": 0.15
+      },
       "rules": {},
-      "hides_body_regions": ["torso", "legs"],
+      "hides_body_regions": [
+        "torso",
+        "legs"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1799,16 +2367,42 @@
       "bilateral": true,
       "color": "#fb923c",
       "bones": [
-        { "name": "mixamorigLeftLeg", "weight": 0.6 },
-        { "name": "mixamorigRightLeg", "weight": 0.6 },
-        { "name": "mixamorigLeftFoot", "weight": 1.0 },
-        { "name": "mixamorigRightFoot", "weight": 1.0 },
-        { "name": "mixamorigLeftToeBase", "weight": 1.0 },
-        { "name": "mixamorigRightToeBase", "weight": 1.0 }
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        }
       ],
-      "bounds": { "z_min": -0.02, "z_max": 0.52, "radius": 0.12, "weight_radius": 0.12 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12,
+        "weight_radius": 0.12
+      },
       "rules": {},
-      "hides_body_regions": ["feet", "legs"],
+      "hides_body_regions": [
+        "feet",
+        "legs"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1820,12 +2414,25 @@
       "bilateral": false,
       "color": "#c4b5fd",
       "bones": [
-        { "name": "mixamorigHead", "weight": 1.0 },
-        { "name": "mixamorigNeck", "weight": 0.25 }
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.25
+        }
       ],
-      "bounds": { "z_min": 1.61, "z_max": 1.9, "radius": 0.13, "weight_radius": 0.2 },
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.13,
+        "weight_radius": 0.2
+      },
       "rules": {},
-      "hides_body_regions": ["head"],
+      "hides_body_regions": [
+        "head"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1837,12 +2444,25 @@
       "bilateral": false,
       "color": "#b91c1c",
       "bones": [
-        { "name": "mixamorigHead", "weight": 1.0 },
-        { "name": "mixamorigNeck", "weight": 0.25 }
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.25
+        }
       ],
-      "bounds": { "z_min": 1.61, "z_max": 1.9, "radius": 0.13, "weight_radius": 0.2 },
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.13,
+        "weight_radius": 0.2
+      },
       "rules": {},
-      "hides_body_regions": ["head"],
+      "hides_body_regions": [
+        "head"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1854,12 +2474,25 @@
       "bilateral": false,
       "color": "#b91c1c",
       "bones": [
-        { "name": "mixamorigHead", "weight": 1.0 },
-        { "name": "mixamorigNeck", "weight": 0.25 }
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.25
+        }
       ],
-      "bounds": { "z_min": 1.61, "z_max": 1.9, "radius": 0.13, "weight_radius": 0.2 },
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.13,
+        "weight_radius": 0.2
+      },
       "rules": {},
-      "hides_body_regions": ["head"],
+      "hides_body_regions": [
+        "head"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1871,23 +2504,71 @@
       "bilateral": false,
       "color": "#93c5fd",
       "bones": [
-        { "name": "mixamorigHips", "weight": 0.6 },
-        { "name": "mixamorigSpine", "weight": 1.0 },
-        { "name": "mixamorigSpine1", "weight": 1.0 },
-        { "name": "mixamorigSpine2", "weight": 1.0 },
-        { "name": "mixamorigLeftShoulder", "weight": 0.8 },
-        { "name": "mixamorigRightShoulder", "weight": 0.8 },
-        { "name": "mixamorigLeftArm", "weight": 1.0 },
-        { "name": "mixamorigRightArm", "weight": 1.0 },
-        { "name": "mixamorigLeftForeArm", "weight": 1.0 },
-        { "name": "mixamorigRightForeArm", "weight": 1.0 },
-        { "name": "mixamorigLeftHand", "weight": 0.1 },
-        { "name": "mixamorigRightHand", "weight": 0.1 },
-        { "name": "mixamorigNeck", "weight": 0.1 }
+        {
+          "name": "mixamorigHips",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.1
+        }
       ],
-      "bounds": { "z_min": 1.01, "z_max": 1.54, "radius": 0.75, "weight_radius": 0.3 },
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.54,
+        "radius": 0.75,
+        "weight_radius": 0.3
+      },
       "rules": {},
-      "hides_body_regions": ["torso", "neck", "arms"],
+      "hides_body_regions": [
+        "torso",
+        "neck",
+        "arms"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1899,23 +2580,71 @@
       "bilateral": false,
       "color": "#8B0000",
       "bones": [
-        { "name": "mixamorigHips", "weight": 0.6 },
-        { "name": "mixamorigSpine", "weight": 1.0 },
-        { "name": "mixamorigSpine1", "weight": 1.0 },
-        { "name": "mixamorigSpine2", "weight": 1.0 },
-        { "name": "mixamorigLeftShoulder", "weight": 0.8 },
-        { "name": "mixamorigRightShoulder", "weight": 0.8 },
-        { "name": "mixamorigLeftArm", "weight": 1.0 },
-        { "name": "mixamorigRightArm", "weight": 1.0 },
-        { "name": "mixamorigLeftForeArm", "weight": 1.0 },
-        { "name": "mixamorigRightForeArm", "weight": 1.0 },
-        { "name": "mixamorigLeftHand", "weight": 0.1 },
-        { "name": "mixamorigRightHand", "weight": 0.1 },
-        { "name": "mixamorigNeck", "weight": 0.1 }
+        {
+          "name": "mixamorigHips",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.1
+        }
       ],
-      "bounds": { "z_min": 1.01, "z_max": 1.54, "radius": 0.75, "weight_radius": 0.3 },
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.54,
+        "radius": 0.75,
+        "weight_radius": 0.3
+      },
       "rules": {},
-      "hides_body_regions": ["torso", "neck", "arms"],
+      "hides_body_regions": [
+        "torso",
+        "neck",
+        "arms"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1927,23 +2656,71 @@
       "bilateral": false,
       "color": "#7f1d1d",
       "bones": [
-        { "name": "mixamorigHips", "weight": 0.6 },
-        { "name": "mixamorigSpine", "weight": 1.0 },
-        { "name": "mixamorigSpine1", "weight": 1.0 },
-        { "name": "mixamorigSpine2", "weight": 1.0 },
-        { "name": "mixamorigLeftShoulder", "weight": 0.8 },
-        { "name": "mixamorigRightShoulder", "weight": 0.8 },
-        { "name": "mixamorigLeftArm", "weight": 1.0 },
-        { "name": "mixamorigRightArm", "weight": 1.0 },
-        { "name": "mixamorigLeftForeArm", "weight": 1.0 },
-        { "name": "mixamorigRightForeArm", "weight": 1.0 },
-        { "name": "mixamorigLeftHand", "weight": 0.1 },
-        { "name": "mixamorigRightHand", "weight": 0.1 },
-        { "name": "mixamorigNeck", "weight": 0.1 }
+        {
+          "name": "mixamorigHips",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.1
+        }
       ],
-      "bounds": { "z_min": 1.01, "z_max": 1.54, "radius": 0.75, "weight_radius": 0.3 },
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.54,
+        "radius": 0.75,
+        "weight_radius": 0.3
+      },
       "rules": {},
-      "hides_body_regions": ["torso", "neck", "arms"],
+      "hides_body_regions": [
+        "torso",
+        "neck",
+        "arms"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1955,23 +2732,71 @@
       "bilateral": false,
       "color": "#b91c1c",
       "bones": [
-        { "name": "mixamorigHips", "weight": 0.6 },
-        { "name": "mixamorigSpine", "weight": 1.0 },
-        { "name": "mixamorigSpine1", "weight": 1.0 },
-        { "name": "mixamorigSpine2", "weight": 1.0 },
-        { "name": "mixamorigLeftShoulder", "weight": 0.8 },
-        { "name": "mixamorigRightShoulder", "weight": 0.8 },
-        { "name": "mixamorigLeftArm", "weight": 1.0 },
-        { "name": "mixamorigRightArm", "weight": 1.0 },
-        { "name": "mixamorigLeftForeArm", "weight": 1.0 },
-        { "name": "mixamorigRightForeArm", "weight": 1.0 },
-        { "name": "mixamorigLeftHand", "weight": 0.1 },
-        { "name": "mixamorigRightHand", "weight": 0.1 },
-        { "name": "mixamorigNeck", "weight": 0.1 }
+        {
+          "name": "mixamorigHips",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.1
+        }
       ],
-      "bounds": { "z_min": 1.01, "z_max": 1.54, "radius": 0.75, "weight_radius": 0.3 },
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.54,
+        "radius": 0.75,
+        "weight_radius": 0.3
+      },
       "rules": {},
-      "hides_body_regions": ["torso", "neck", "arms"],
+      "hides_body_regions": [
+        "torso",
+        "neck",
+        "arms"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -1983,42 +2808,145 @@
       "bilateral": true,
       "color": "#6ee7b7",
       "bones": [
-        { "name": "mixamorigLeftHand", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky3", "weight": 1.0 },
-        { "name": "mixamorigRightHand", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb1", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb2", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb3", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex1", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex2", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex3", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle1", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle2", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle3", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing1", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing2", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing3", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky1", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky2", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky3", "weight": 1.0 }
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1.0
+        }
       ],
-      "bounds": { "z_min": 1.49, "z_max": 1.54, "radius": 0.20, "weight_radius": 0.15 },
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2,
+        "weight_radius": 0.15
+      },
       "rules": {},
-      "hides_body_regions": ["hands"],
+      "hides_body_regions": [
+        "hands"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -2030,42 +2958,145 @@
       "bilateral": true,
       "color": "#b91c1c",
       "bones": [
-        { "name": "mixamorigLeftHand", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandThumb3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandIndex3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandMiddle3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandRing3", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky1", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky2", "weight": 1.0 },
-        { "name": "mixamorigLeftHandPinky3", "weight": 1.0 },
-        { "name": "mixamorigRightHand", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb1", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb2", "weight": 1.0 },
-        { "name": "mixamorigRightHandThumb3", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex1", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex2", "weight": 1.0 },
-        { "name": "mixamorigRightHandIndex3", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle1", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle2", "weight": 1.0 },
-        { "name": "mixamorigRightHandMiddle3", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing1", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing2", "weight": 1.0 },
-        { "name": "mixamorigRightHandRing3", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky1", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky2", "weight": 1.0 },
-        { "name": "mixamorigRightHandPinky3", "weight": 1.0 }
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1.0
+        }
       ],
-      "bounds": { "z_min": 1.49, "z_max": 1.54, "radius": 0.20, "weight_radius": 0.15 },
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2,
+        "weight_radius": 0.15
+      },
       "rules": {},
-      "hides_body_regions": ["hands"],
+      "hides_body_regions": [
+        "hands"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -2077,15 +3108,38 @@
       "bilateral": true,
       "color": "#fca5a5",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 },
-        { "name": "mixamorigLeftUpLeg", "weight": 1.0 },
-        { "name": "mixamorigRightUpLeg", "weight": 1.0 },
-        { "name": "mixamorigLeftLeg", "weight": 0.8 },
-        { "name": "mixamorigRightLeg", "weight": 0.8 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        }
       ],
-      "bounds": { "z_min": 0.29, "z_max": 1.09, "radius": 0.18, "weight_radius": 0.15 },
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.18,
+        "weight_radius": 0.15
+      },
       "rules": {},
-      "hides_body_regions": ["torso", "legs"],
+      "hides_body_regions": [
+        "torso",
+        "legs"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -2097,15 +3151,38 @@
       "bilateral": true,
       "color": "#b91c1c",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 },
-        { "name": "mixamorigLeftUpLeg", "weight": 1.0 },
-        { "name": "mixamorigRightUpLeg", "weight": 1.0 },
-        { "name": "mixamorigLeftLeg", "weight": 0.8 },
-        { "name": "mixamorigRightLeg", "weight": 0.8 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        }
       ],
-      "bounds": { "z_min": 0.29, "z_max": 1.09, "radius": 0.18, "weight_radius": 0.15 },
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.18,
+        "weight_radius": 0.15
+      },
       "rules": {},
-      "hides_body_regions": ["torso", "legs"],
+      "hides_body_regions": [
+        "torso",
+        "legs"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -2117,15 +3194,38 @@
       "bilateral": true,
       "color": "#dc2626",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 },
-        { "name": "mixamorigLeftUpLeg", "weight": 1.0 },
-        { "name": "mixamorigRightUpLeg", "weight": 1.0 },
-        { "name": "mixamorigLeftLeg", "weight": 0.8 },
-        { "name": "mixamorigRightLeg", "weight": 0.8 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        }
       ],
-      "bounds": { "z_min": 0.29, "z_max": 1.09, "radius": 0.18, "weight_radius": 0.15 },
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.18,
+        "weight_radius": 0.15
+      },
       "rules": {},
-      "hides_body_regions": ["torso", "legs"],
+      "hides_body_regions": [
+        "torso",
+        "legs"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -2137,16 +3237,42 @@
       "bilateral": true,
       "color": "#fdba74",
       "bones": [
-        { "name": "mixamorigLeftLeg", "weight": 0.6 },
-        { "name": "mixamorigRightLeg", "weight": 0.6 },
-        { "name": "mixamorigLeftFoot", "weight": 1.0 },
-        { "name": "mixamorigRightFoot", "weight": 1.0 },
-        { "name": "mixamorigLeftToeBase", "weight": 1.0 },
-        { "name": "mixamorigRightToeBase", "weight": 1.0 }
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        }
       ],
-      "bounds": { "z_min": -0.02, "z_max": 0.52, "radius": 0.12, "weight_radius": 0.12 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12,
+        "weight_radius": 0.12
+      },
       "rules": {},
-      "hides_body_regions": ["feet", "legs"],
+      "hides_body_regions": [
+        "feet",
+        "legs"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -2158,16 +3284,42 @@
       "bilateral": true,
       "color": "#b91c1c",
       "bones": [
-        { "name": "mixamorigLeftLeg", "weight": 0.6 },
-        { "name": "mixamorigRightLeg", "weight": 0.6 },
-        { "name": "mixamorigLeftFoot", "weight": 1.0 },
-        { "name": "mixamorigRightFoot", "weight": 1.0 },
-        { "name": "mixamorigLeftToeBase", "weight": 1.0 },
-        { "name": "mixamorigRightToeBase", "weight": 1.0 }
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        }
       ],
-      "bounds": { "z_min": -0.02, "z_max": 0.52, "radius": 0.12, "weight_radius": 0.12 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12,
+        "weight_radius": 0.12
+      },
       "rules": {},
-      "hides_body_regions": ["feet", "legs"],
+      "hides_body_regions": [
+        "feet",
+        "legs"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
@@ -2179,19 +3331,902 @@
       "bilateral": true,
       "color": "#dc2626",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 },
-        { "name": "mixamorigLeftUpLeg", "weight": 1.0 },
-        { "name": "mixamorigRightUpLeg", "weight": 1.0 },
-        { "name": "mixamorigLeftLeg", "weight": 0.8 },
-        { "name": "mixamorigRightLeg", "weight": 0.8 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        }
       ],
-      "bounds": { "z_min": 0.29, "z_max": 1.09, "radius": 0.18, "weight_radius": 0.15 },
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.18,
+        "weight_radius": 0.15
+      },
       "rules": {},
-      "hides_body_regions": ["torso", "legs"],
+      "hides_body_regions": [
+        "torso",
+        "legs"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "gender": "female",
       "url": "/equipment/red_lower_body_f.glb"
+    },
+    {
+      "id": "shell_v1_head",
+      "name": "Shell V1: Head",
+      "category": "equipment_shell_v1",
+      "bilateral": false,
+      "color": "#a78bfa",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.25
+        }
+      ],
+      "bounds": {
+        "z_min": 1.45,
+        "z_max": 1.9,
+        "radius": 0.15,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "head"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "gender": "female_v2",
+      "url": "/equipment/Female/ShellV1/shell_v1_head.glb"
+    },
+    {
+      "id": "shell_v1_upper_torso",
+      "name": "Shell V1: Upper Torso",
+      "category": "equipment_shell_v1",
+      "bilateral": false,
+      "color": "#818cf8",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 1.2,
+        "z_max": 1.5,
+        "radius": 0.25,
+        "weight_radius": 0.3
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "gender": "female_v2",
+      "url": "/equipment/Female/ShellV1/shell_v1_upper_torso.glb"
+    },
+    {
+      "id": "shell_v1_lower_torso",
+      "name": "Shell V1: Lower Torso",
+      "category": "equipment_shell_v1",
+      "bilateral": false,
+      "color": "#6366f1",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        }
+      ],
+      "bounds": {
+        "z_min": 1.03,
+        "z_max": 1.26,
+        "radius": 0.22,
+        "weight_radius": 0.25
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "lower_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "gender": "female_v2",
+      "url": "/equipment/Female/ShellV1/shell_v1_lower_torso.glb"
+    },
+    {
+      "id": "shell_v1_arm_upper",
+      "name": "Shell V1: Upper Arms",
+      "category": "equipment_shell_v1",
+      "bilateral": false,
+      "color": "#c084fc",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.35,
+        "z_max": 1.5,
+        "radius": 0.35,
+        "weight_radius": 0.3
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "arm_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "gender": "female_v2",
+      "url": "/equipment/Female/ShellV1/shell_v1_arm_upper.glb"
+    },
+    {
+      "id": "shell_v1_arm_lower",
+      "name": "Shell V1: Lower Arms",
+      "category": "equipment_shell_v1",
+      "bilateral": false,
+      "color": "#a855f7",
+      "bones": [
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.35,
+        "z_max": 1.45,
+        "radius": 0.65,
+        "weight_radius": 0.3
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "arm_lower"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "gender": "female_v2",
+      "url": "/equipment/Female/ShellV1/shell_v1_arm_lower.glb"
+    },
+    {
+      "id": "shell_v1_hands",
+      "name": "Shell V1: Gloves",
+      "category": "equipment_shell_v1",
+      "bilateral": false,
+      "color": "#d946ef",
+      "bones": [
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.3,
+        "z_max": 1.45,
+        "radius": 0.8,
+        "weight_radius": 0.3
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "gender": "female_v2",
+      "url": "/equipment/Female/ShellV1/shell_v1_hands.glb"
+    },
+    {
+      "id": "shell_v1_leg_upper",
+      "name": "Shell V1: Upper Leg",
+      "category": "equipment_shell_v1",
+      "bilateral": false,
+      "color": "#38bdf8",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.76,
+        "z_max": 1.09,
+        "radius": 0.18,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "gender": "female_v2",
+      "url": "/equipment/Female/ShellV1/shell_v1_leg_upper.glb"
+    },
+    {
+      "id": "shell_v1_leg_thigh",
+      "name": "Shell V1: Thigh",
+      "category": "equipment_shell_v1",
+      "bilateral": false,
+      "color": "#22d3ee",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 0.54,
+        "z_max": 0.82,
+        "radius": 0.16,
+        "weight_radius": 0.18
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_thigh"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "gender": "female_v2",
+      "url": "/equipment/Female/ShellV1/shell_v1_leg_thigh.glb"
+    },
+    {
+      "id": "shell_v1_leg_knee",
+      "name": "Shell V1: Knee",
+      "category": "equipment_shell_v1",
+      "bilateral": false,
+      "color": "#2dd4bf",
+      "bones": [
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 0.4,
+        "z_max": 0.6,
+        "radius": 0.14,
+        "weight_radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_knee"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "gender": "female_v2",
+      "url": "/equipment/Female/ShellV1/shell_v1_leg_knee.glb"
+    },
+    {
+      "id": "shell_v1_leg_shin",
+      "name": "Shell V1: Shin",
+      "category": "equipment_shell_v1",
+      "bilateral": false,
+      "color": "#34d399",
+      "bones": [
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 0.24,
+        "z_max": 0.46,
+        "radius": 0.12,
+        "weight_radius": 0.14
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "gender": "female_v2",
+      "url": "/equipment/Female/ShellV1/shell_v1_leg_shin.glb"
+    },
+    {
+      "id": "shell_v1_leg_ankle",
+      "name": "Shell V1: Ankle",
+      "category": "equipment_shell_v1",
+      "bilateral": false,
+      "color": "#4ade80",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.07,
+        "z_max": 0.3,
+        "radius": 0.1,
+        "weight_radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "gender": "female_v2",
+      "url": "/equipment/Female/ShellV1/shell_v1_leg_ankle.glb"
+    },
+    {
+      "id": "shell_v1_foot",
+      "name": "Shell V1: Boots",
+      "category": "equipment_shell_v1",
+      "bilateral": false,
+      "color": "#a3e635",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.12,
+        "radius": 0.12,
+        "weight_radius": 0.14
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "gender": "female_v2",
+      "url": "/equipment/Female/ShellV1/shell_v1_foot.glb"
+    },
+    {
+      "id": "skin_tone_dark_brown_v2",
+      "name": "Dark Brown",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#8d5524",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_dark_brown.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_medium_brown_v2",
+      "name": "Medium Brown",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#c68642",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_medium_brown.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_light_brown_v2",
+      "name": "Light Brown",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#e0ac69",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_light_brown.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_warm_beige_v2",
+      "name": "Warm Beige",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f1c27d",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_warm_beige.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_fair_v2",
+      "name": "Fair",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#ffdbac",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_fair.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_deep_brown_v2",
+      "name": "Deep Brown",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#714c43",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_deep_brown.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_espresso_v2",
+      "name": "Espresso",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#4b3331",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_espresso.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_black_v2",
+      "name": "Black",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#000000",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_black.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_white_v2",
+      "name": "White",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#FFFFFF",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_white.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_red_v2",
+      "name": "Red",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#FF0000",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_red.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_orange_v2",
+      "name": "Orange",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#FF7F00",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_orange.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_yellow_v2",
+      "name": "Yellow",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#FFFF00",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_yellow.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_green_v2",
+      "name": "Green",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#00FF00",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_green.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_blue_v2",
+      "name": "Blue",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#0000FF",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_blue.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_indigo_v2",
+      "name": "Indigo",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#4B0082",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_indigo.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_violet_v2",
+      "name": "Violet",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#8B00FF",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_violet.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_teal_v2",
+      "name": "Teal",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#008080",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_teal.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_pink_v2",
+      "name": "Pink",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#FF69B4",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_pink.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_coral_v2",
+      "name": "Coral",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#FF7F50",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_coral.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_magenta_v2",
+      "name": "Magenta",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#FF00FF",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_magenta.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_cyan_v2",
+      "name": "Cyan",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#00FFFF",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_cyan.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_lavender_v2",
+      "name": "Lavender",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#E6E6FA",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_lavender.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_gold_v2",
+      "name": "Gold",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#FFD700",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_gold.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
+    },
+    {
+      "id": "skin_tone_silver_v2",
+      "name": "Silver",
+      "category": "skin_textures",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#C0C0C0",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
+      "rules": {},
+      "url": "/models/skins/skin_tone_silver.glb",
+      "mesh_type": "skin_color",
+      "mesh_params": {}
     }
   ]
 }

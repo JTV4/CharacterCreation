@@ -14,6 +14,47 @@ import {
 
 const DEFAULT_COLOR = "#94a3b8";
 
+const PRIMITIVE_IDS = new Set([
+  "head", "amulet", "gloves", "ring", "upper_body", "lower_body", "boots",
+]);
+
+interface CollectionInfo {
+  key: string;
+  label: string;
+  color: string;
+}
+
+const COLLECTION_ORDER: CollectionInfo[] = [
+  { key: "base",                 label: "Base Meshes",          color: "#e8b4a0" },
+  { key: "skin",                 label: "Skin Colors",          color: "#f0c8a0" },
+  { key: "primitives",           label: "Primitives",           color: "#94a3b8" },
+  { key: "crimson_wizard",       label: "Crimson Wizard",       color: "#b91c1c" },
+  { key: "green_dragon_wizard",  label: "Green Dragon Wizard",  color: "#16a34a" },
+  { key: "shell",                label: "Shell",                color: "#60a5fa" },
+  { key: "shell_v2",             label: "Shells V2",            color: "#3b82f6" },
+  { key: "test",                 label: "Test",                 color: "#a78bfa" },
+  { key: "custom",               label: "Custom",               color: "#f59e0b" },
+  { key: "other",                label: "Other",                color: "#6b7280" },
+  { key: "imported",             label: "Imported",             color: "#10b981" },
+];
+
+function deriveCollection(slot: EquipmentSlot): string {
+  if (slot.collection) return slot.collection;
+  if (slot.source === "imported") return "imported";
+  if (slot.category === "meshes") return "base";
+  if (slot.category === "skin_textures") return "skin";
+
+  const id = slot.id;
+  if (PRIMITIVE_IDS.has(id)) return "primitives";
+  if (id.includes("green_dragon")) return "green_dragon_wizard";
+  if (id.includes("crimson")) return "crimson_wizard";
+  if (id.startsWith("shell_v2_")) return "shell_v2";
+  if (id.startsWith("shell_") && !id.includes("test")) return "shell";
+  if (id.includes("test_v")) return "test";
+  if (id.startsWith("custom_")) return "custom";
+  return "other";
+}
+
 interface EquipmentPanelProps {
   slots: EquipmentSlot[];
   equipState: EquipmentState;
@@ -24,6 +65,9 @@ interface EquipmentPanelProps {
   equipTransforms: Record<string, EquipTransform>;
   slotTextures: SlotTextures;
   onSetSlotTexture: (slotId: string, dataUrl: string | null) => void;
+  onForceAutoSkin?: (slotId: string) => void;
+  onExportWeightedSlot?: (slotId: string) => void;
+  reweightedSlots?: Set<string>;
 }
 
 type ExportFormat = "viewer" | "game";
@@ -208,11 +252,28 @@ export default function EquipmentPanel({
   equipTransforms,
   slotTextures,
   onSetSlotTexture,
+  onForceAutoSkin,
+  onExportWeightedSlot,
+  reweightedSlots,
 }: EquipmentPanelProps) {
   const [exportFormat, setExportFormat] = useState<ExportFormat>("game");
   const [copiedSlot, setCopiedSlot] = useState<string | null>(null);
   const textureInputRef = useRef<HTMLInputElement>(null);
   const [textureTargetSlot, setTextureTargetSlot] = useState<string | null>(null);
+  const [collapsed, setCollapsed] = useState<Set<string>>(() => {
+    const all = new Set(COLLECTION_ORDER.map((c) => c.key));
+    all.delete("primitives");
+    return all;
+  });
+
+  const toggleCollapse = useCallback((key: string) => {
+    setCollapsed((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  }, []);
 
   const handleTextureClick = useCallback((slotId: string) => {
     setTextureTargetSlot(slotId);
@@ -247,23 +308,29 @@ export default function EquipmentPanel({
 
   const anyEnabled = slots.some((s) => equipState[s.id]);
 
-  const slotsByCategory = useMemo(() => {
-    const meshes: EquipmentSlot[] = [];
-    const skinTextures: EquipmentSlot[] = [];
-    const equipment: EquipmentSlot[] = [];
-    const imported: EquipmentSlot[] = [];
+  const collectionGroups = useMemo(() => {
+    const map = new Map<string, EquipmentSlot[]>();
     for (const slot of slots) {
-      if (slot.source === "imported") {
-        imported.push(slot);
-      } else if (slot.category === "skin_textures") {
-        skinTextures.push(slot);
-      } else if (slot.category === "meshes") {
-        meshes.push(slot);
-      } else {
-        equipment.push(slot);
+      const key = deriveCollection(slot);
+      let list = map.get(key);
+      if (!list) { list = []; map.set(key, list); }
+      list.push(slot);
+    }
+    const ordered: { info: CollectionInfo; items: EquipmentSlot[] }[] = [];
+    for (const info of COLLECTION_ORDER) {
+      const items = map.get(info.key);
+      if (items && items.length > 0) ordered.push({ info, items });
+      map.delete(info.key);
+    }
+    for (const [key, items] of map) {
+      if (items.length > 0) {
+        ordered.push({
+          info: { key, label: key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()), color: "#6b7280" },
+          items,
+        });
       }
     }
-    return { meshes, skinTextures, equipment, imported };
+    return ordered;
   }, [slots]);
 
   const handleCopySpec = useCallback(
@@ -291,11 +358,21 @@ export default function EquipmentPanel({
         key={slot.id}
         className={`equip-slot ${enabled && !blocked ? "active" : ""} ${blocked ? "blocked" : ""} ${isSelected ? "equip-selected" : ""}`}
         onClick={() => {
-          if (enabled && !blocked) {
-            onSelectSlot(isSelected ? null : slot.id);
+          if (blocked) return;
+          if (!enabled) {
+            // Not equipped → equip and select
+            onToggleSlot(slot.id, true);
+            onSelectSlot(slot.id);
+          } else if (isSelected) {
+            // Equipped and already selected → clicking again unequips
+            onToggleSlot(slot.id, false);
+            onSelectSlot(null);
+          } else {
+            // Equipped but not selected → select it
+            onSelectSlot(slot.id);
           }
         }}
-        style={{ cursor: enabled && !blocked ? "pointer" : undefined }}
+        style={{ cursor: blocked ? "default" : "pointer" }}
       >
         <label className="equip-toggle" onClick={(e) => e.stopPropagation()}>
           <input
@@ -318,18 +395,16 @@ export default function EquipmentPanel({
             hidden by {blocker}
           </span>
         )}
-        {isImported && (
-          <button
-            className="equip-copy-spec-btn"
-            onClick={(e) => {
-              e.stopPropagation();
-              handleCopySpec(slot);
-            }}
-            title="Copy equipment_spec.json entry to clipboard"
-          >
-            {copiedSlot === slot.id ? "Copied!" : "Spec"}
-          </button>
-        )}
+        <button
+          className="equip-copy-spec-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+            handleCopySpec(slot);
+          }}
+          title="Copy equipment_spec.json entry to clipboard"
+        >
+          {copiedSlot === slot.id ? "Copied!" : "Spec"}
+        </button>
         {!isImported && (
           <button
             className="equip-export-btn"
@@ -340,6 +415,22 @@ export default function EquipmentPanel({
             title={`Download ${slot.name} GLB`}
           >
             GLB
+          </button>
+        )}
+        {enabled && !blocked && !isImported && onExportWeightedSlot && (
+          <button
+            className={`equip-export-weighted-btn${reweightedSlots?.has(slot.id) ? " reweighted" : ""}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              onExportWeightedSlot(slot.id);
+            }}
+            title={
+              reweightedSlots?.has(slot.id)
+                ? `Download re-weighted GLB for ${slot.name} (skin transfer applied)`
+                : `Download current in-memory GLB for ${slot.name}`
+            }
+          >
+            ↓ W
           </button>
         )}
         {slotTextures[slot.id] ? (
@@ -363,6 +454,18 @@ export default function EquipmentPanel({
             title="Upload texture image"
           >
             Tex
+          </button>
+        )}
+        {enabled && !blocked && onForceAutoSkin && (
+          <button
+            className="equip-autoskin-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              onForceAutoSkin(slot.id);
+            }}
+            title="Force auto-skin this mesh to the character skeleton"
+          >
+            Skin
           </button>
         )}
         <span className="equip-bone-count">
@@ -416,30 +519,28 @@ export default function EquipmentPanel({
       </div>
 
       <div className="equip-slots">
-        {slotsByCategory.imported.length > 0 && (
-          <>
-            <div className="equip-category-label">Imported</div>
-            {slotsByCategory.imported.map(renderSlotRow)}
-          </>
-        )}
-        {slotsByCategory.meshes.length > 0 && (
-          <>
-            <div className="equip-category-label">Meshes</div>
-            {slotsByCategory.meshes.map(renderSlotRow)}
-          </>
-        )}
-        {slotsByCategory.skinTextures.length > 0 && (
-          <>
-            <div className="equip-category-label">Skin Textures</div>
-            {slotsByCategory.skinTextures.map(renderSlotRow)}
-          </>
-        )}
-        {slotsByCategory.equipment.length > 0 && (
-          <>
-            <div className="equip-category-label">Equipment</div>
-            {slotsByCategory.equipment.map(renderSlotRow)}
-          </>
-        )}
+        {collectionGroups.map(({ info, items }) => {
+          const isOpen = !collapsed.has(info.key);
+          return (
+            <div className="equip-collection-group" key={info.key}>
+              <div
+                className="equip-collection-header"
+                onClick={() => toggleCollapse(info.key)}
+              >
+                <span
+                  className="equip-collection-dot"
+                  style={{ background: info.color }}
+                />
+                <span className="equip-collection-label">{info.label}</span>
+                <span className="equip-collection-count">({items.length})</span>
+                <span className={`equip-collection-chevron ${isOpen ? "open" : ""}`}>
+                  &#9654;
+                </span>
+              </div>
+              {isOpen && items.map(renderSlotRow)}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
