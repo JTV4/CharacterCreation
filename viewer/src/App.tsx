@@ -169,6 +169,7 @@ const BODY_SLOT_IDS = new Set([
   "base_male",
   "base_female",
   "base_female_v2",
+  "base_male_v2",
 ]);
 
 // Maps hides_body_regions strings → mesh object names in BaseFemaleV2.glb
@@ -263,24 +264,41 @@ export default function App() {
   );
 
   useEffect(() => {
-    fetch("/equipment/equipment_spec.json?t=" + Date.now(), {
-      cache: "no-store",
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json() as Promise<EquipmentSpec>;
-      })
-      .then((spec) => {
-        setEquipSpec(spec);
+    const specFiles = [
+      "/equipment/equipment_spec.json",
+      "/equipment/equipment_spec_female_v2.json",
+      "/equipment/equipment_spec_male_v2.json",
+    ];
+    Promise.all(
+      specFiles.map((url) =>
+        fetch(url + "?t=" + Date.now(), { cache: "no-store" })
+          .then((res) => {
+            if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+            return res.json() as Promise<EquipmentSpec>;
+          }),
+      ),
+    )
+      .then((specs) => {
+        const merged: EquipmentSpec = { meta: specs[0].meta, slots: [] };
+        const seen = new Set<string>();
+        for (const spec of specs) {
+          for (const slot of spec.slots) {
+            if (!seen.has(slot.id)) {
+              seen.add(slot.id);
+              merged.slots.push(slot);
+            }
+          }
+        }
+        setEquipSpec(merged);
         const initial: EquipmentState = {};
-        for (const slot of spec.slots) {
+        for (const slot of merged.slots) {
           if (BODY_SLOT_IDS.has(slot.id)) continue;
           initial[slot.id] = false;
         }
         setEquipState(initial);
       })
       .catch((err) => {
-        console.error("Failed to load equipment spec:", err);
+        console.error("Failed to load equipment specs:", err);
         setEquipSpec(null);
       });
   }, []);
@@ -499,7 +517,8 @@ export default function App() {
 
   // Auto-hide body parts covered by equipped items (Female V2 only)
   const autoHiddenBodyParts = useMemo<Set<string>>(() => {
-    if (activeGender !== "female_v2" || !equipSpec) return new Set();
+    if (activeGender !== "female_v2" && activeGender !== "male_v2") return new Set();
+    if (!equipSpec) return new Set();
     const hidden = new Set<string>();
     for (const slot of equipSpec.slots) {
       if (!effectiveEquipState[slot.id]) continue;
@@ -627,6 +646,13 @@ export default function App() {
                 title="Female V2 — segmented body (each region can be hidden by equipment)"
               >
                 Female V2
+              </button>
+              <button
+                className={`model-toggle-btn ${activeGender === "male_v2" ? "active" : ""}`}
+                onClick={() => setActiveGender("male_v2")}
+                title="Male V2 — segmented body (morphed from female, same skeleton)"
+              >
+                Male V2
               </button>
             </div>
             <div className="model-selector">

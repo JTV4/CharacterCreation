@@ -60,4 +60,4 @@ export interface BoneTransformOverride {
   scale: [number, number, number];
 }
 
-export type ModelGender = "female" | "male" | "female_v2";
+export type ModelGender = "female" | "male" | "female_v2" | "male_v2";

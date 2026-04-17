@@ -17,6 +17,7 @@ const MODEL_URLS: Record<ModelGender, string> = {
   female: "/models/BaseFemale.glb",
   male: "/models/BaseMale.glb",
   female_v2: "/models/BaseFemaleV2.glb",
+  male_v2: "/models/BaseMaleV2.glb",
 };
 
 function categorizeBone(name: string): BoneCategory {

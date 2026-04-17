@@ -48,34 +48,40 @@ const INFLATE_AMOUNT = 0.0;
 const FINGERTIP_EXTEND = 0.022;
 
 
-// Render order controls draw layering. Lower numbers draw first (closer to body).
-// 1 = Upper body / Boots (thinnest layer, drawn first)
-// 2 = Lower body (draws on top of upper body at waist overlap)
-// 3 = Head / Gloves (thickest items, drawn last to cover seams)
-// 4 = Accessories (amulet, ring)
+// Render-order layers control draw priority. Lower numbers draw first (base layer).
+// Higher-layer pieces overlap lower-layer pieces at transitions via polygon offset.
+//   Layer 1 = Lowerbody (base layer, drawn first)
+//   Layer 2 = Upperbody / Boots / Head (overlap lowerbody at waist/shin/neck)
+//   Layer 3 = Gloves (overlap upperbody at arm transitions)
+//   Layer 4 = Accessories (amulet, ring)
 const SLOT_RENDER_ORDER: Record<string, number> = {
-  upper_body: 1, shell_upper_body: 1, shell_upper_body_test_v1: 1, custom_upper_body_f: 1, custom_upper_body_f_textured: 1, custom_upper_body_f_crimson_meshy: 1, meshy_crimson_upperbody_f: 1, green_dragon_top_f: 1,
-  boots: 1, shell_boots: 1, shell_boots_test_v1: 1, custom_boots_f: 1, meshy_crimson_boots_f: 1, green_dragon_boots_f: 1,
-  crimson_wizard_robe: 1, crimson_upperbody_f: 1, crimson_upperbody_meshy_v2: 1, crimson_wizard_boots: 1,
-  lower_body: 2, shell_lower_body: 2, shell_lower_body_test_v1: 2, custom_lower_body_f: 2, meshy_crimson_lower_body_f: 2, red_lower_body_f: 2, green_dragon_legs_f: 2,
-  crimson_wizard_robe_bottom: 2,
-  head: 3, shell_head: 3, shell_head_test_v1: 3, custom_head_f: 3, meshy_crimson_head_f: 3, meshy_crimson_wizard_hat_f: 3, crimson_wizard_hat: 3, green_dragon_wizard_hat_f: 3,
-  gloves: 3, shell_gloves: 3, shell_gloves_test_v1: 3, custom_gloves_f: 3, meshy_crimson_gloves_f: 3, crimson_wizard_gloves: 3, green_dragon_gloves_f: 3,
+  lower_body: 1, shell_lower_body: 1, shell_lower_body_test_v1: 1, custom_lower_body_f: 1, meshy_crimson_lower_body_f: 1, red_lower_body_f: 1, green_dragon_legs_f: 1, green_ranged_lowerbody: 1,
+  crimson_wizard_robe_bottom: 1,
+  upper_body: 2, shell_upper_body: 2, shell_upper_body_test_v1: 2, custom_upper_body_f: 2, custom_upper_body_f_textured: 2, custom_upper_body_f_crimson_meshy: 2, meshy_crimson_upperbody_f: 2, green_dragon_top_f: 2, green_ranged_upperbody: 2,
+  boots: 2, shell_boots: 2, shell_boots_test_v1: 2, custom_boots_f: 2, meshy_crimson_boots_f: 2, green_dragon_boots_f: 2, green_ranged_boots: 2,
+  crimson_wizard_robe: 2, crimson_upperbody_f: 2, crimson_upperbody_meshy_v2: 2, crimson_wizard_boots: 2,
+  head: 2, shell_head: 2, shell_head_test_v1: 2, custom_head_f: 2, meshy_crimson_head_f: 2, meshy_crimson_wizard_hat_f: 2, crimson_wizard_hat: 2, green_dragon_wizard_hat_f: 2,
+  gloves: 3, shell_gloves: 3, shell_gloves_test_v1: 3, custom_gloves_f: 3, meshy_crimson_gloves_f: 3, crimson_wizard_gloves: 3, green_dragon_gloves_f: 3, green_ranged_gloves: 3,
   amulet: 4, ring: 4,
 };
 
-// Stencil write slots mark their pixels so overlapping stencil-test slots skip those areas.
-// Upper body and boots WRITE so lower body doesn't z-fight at the waist/shin overlap.
+// Polygon offset per render-order layer. More negative = pushed closer to camera = wins at overlap.
+const LAYER_POLYGON_OFFSET: Record<number, number> = {
+  1: -1,   // lowerbody (base)
+  2: -2,   // upperbody / boots / head
+  3: -3,   // gloves
+  4: -1,   // accessories
+};
+
+// All equipment writes stencil=1 so the base body mesh skips those pixels.
 const STENCIL_WRITE_SLOTS = new Set([
-  "upper_body", "shell_upper_body", "shell_upper_body_test_v1", "custom_upper_body_f", "custom_upper_body_f_textured", "custom_upper_body_f_crimson_meshy", "meshy_crimson_upperbody_f", "green_dragon_top_f",
-  "boots", "shell_boots", "shell_boots_test_v1", "custom_boots_f", "meshy_crimson_boots_f", "green_dragon_boots_f",
-  "crimson_wizard_robe", "crimson_upperbody_f", "crimson_upperbody_meshy_v2", "crimson_wizard_boots",
-  "meshy_crimson_head_f", "meshy_crimson_wizard_hat_f", "meshy_crimson_gloves_f",
-]);
-// Stencil test slots only draw where write-slots haven't already drawn.
-const STENCIL_TEST_SLOTS = new Set([
-  "lower_body", "shell_lower_body", "custom_lower_body_f", "meshy_crimson_lower_body_f", "red_lower_body_f", "green_dragon_legs_f",
+  "lower_body", "shell_lower_body", "shell_lower_body_test_v1", "custom_lower_body_f", "meshy_crimson_lower_body_f", "red_lower_body_f", "green_dragon_legs_f", "green_ranged_lowerbody",
   "crimson_wizard_robe_bottom",
+  "upper_body", "shell_upper_body", "shell_upper_body_test_v1", "custom_upper_body_f", "custom_upper_body_f_textured", "custom_upper_body_f_crimson_meshy", "meshy_crimson_upperbody_f", "green_dragon_top_f", "green_ranged_upperbody",
+  "boots", "shell_boots", "shell_boots_test_v1", "custom_boots_f", "meshy_crimson_boots_f", "green_dragon_boots_f", "green_ranged_boots",
+  "crimson_wizard_robe", "crimson_upperbody_f", "crimson_upperbody_meshy_v2", "crimson_wizard_boots",
+  "head", "shell_head", "shell_head_test_v1", "custom_head_f", "meshy_crimson_head_f", "meshy_crimson_wizard_hat_f", "crimson_wizard_hat", "green_dragon_wizard_hat_f",
+  "gloves", "shell_gloves", "shell_gloves_test_v1", "custom_gloves_f", "meshy_crimson_gloves_f", "crimson_wizard_gloves", "green_dragon_gloves_f", "green_ranged_gloves",
 ]);
 
 interface LoadedSlot {
@@ -898,6 +904,7 @@ function fixZeroWeightVertices(sm: THREE.SkinnedMesh): void {
   }
 
   let fixed = 0;
+  let normalised = 0;
   const vtx = new THREE.Vector3();
 
   for (let i = 0; i < position.count; i++) {
@@ -907,26 +914,36 @@ function fixZeroWeightVertices(sm: THREE.SkinnedMesh): void {
       skinWeight.getZ(i) +
       skinWeight.getW(i);
 
-    if (totalW > 0.001) continue;
+    if (totalW < 0.001) {
+      vtx.fromBufferAttribute(position, i);
+      let minDist = Infinity;
+      let nearestIdx = 0;
 
-    vtx.fromBufferAttribute(position, i);
-    let minDist = Infinity;
-    let nearestIdx = 0;
-
-    for (let b = 0; b < boneCount; b++) {
-      const d = vtx.distanceToSquared(bonePositions[b]);
-      if (d < minDist) {
-        minDist = d;
-        nearestIdx = b;
+      for (let b = 0; b < boneCount; b++) {
+        const d = vtx.distanceToSquared(bonePositions[b]);
+        if (d < minDist) {
+          minDist = d;
+          nearestIdx = b;
+        }
       }
-    }
 
-    skinIndex.setXYZW(i, nearestIdx, 0, 0, 0);
-    skinWeight.setXYZW(i, 1, 0, 0, 0);
-    fixed++;
+      skinIndex.setXYZW(i, nearestIdx, 0, 0, 0);
+      skinWeight.setXYZW(i, 1, 0, 0, 0);
+      fixed++;
+    } else if (Math.abs(totalW - 1.0) > 0.01) {
+      const inv = 1.0 / totalW;
+      skinWeight.setXYZW(
+        i,
+        skinWeight.getX(i) * inv,
+        skinWeight.getY(i) * inv,
+        skinWeight.getZ(i) * inv,
+        skinWeight.getW(i) * inv,
+      );
+      normalised++;
+    }
   }
 
-  if (fixed > 0) {
+  if (fixed > 0 || normalised > 0) {
     skinWeight.needsUpdate = true;
     skinIndex.needsUpdate = true;
   }
@@ -1385,20 +1402,28 @@ export default function EquipmentMeshRenderer({
                 : ((mesh.material as any)?.isMeshStandardMaterial ? [mesh.material as THREE.MeshStandardMaterial] : []);
               const hasBakedTexture = materials.length > 0 && materials.some(m => m.map != null);
 
+              const slotLayer = SLOT_RENDER_ORDER[slotId] ?? 2;
+              const polyOffset = LAYER_POLYGON_OFFSET[slotLayer] ?? -1;
+
               for (const m of materials) {
                 if (hasBakedTexture) {
                   m.side = THREE.DoubleSide;
                   m.transparent = false;
                   m.opacity = 1.0;
                   m.alphaTest = 0;
+                  m.alphaMap = null;
                   m.depthWrite = true;
+                  m.depthTest = true;
                   m.polygonOffset = true;
-                  m.polygonOffsetFactor = -1;
-                  m.polygonOffsetUnits = -1;
+                  m.polygonOffsetFactor = polyOffset;
+                  m.polygonOffsetUnits = polyOffset;
                   m.blending = THREE.NormalBlending;
                   if ((m as any).transmission !== undefined) (m as any).transmission = 0;
+                  if ((m as any).transmissionMap !== undefined) (m as any).transmissionMap = null;
                   if ((m as any).ior !== undefined) (m as any).ior = 1.5;
                   if ((m as any).thickness !== undefined) (m as any).thickness = 0;
+                  if ((m as any).thicknessMap !== undefined) (m as any).thicknessMap = null;
+                  if ((m as any).attenuationDistance !== undefined) (m as any).attenuationDistance = Infinity;
                   m.needsUpdate = true;
                 }
               }
@@ -1412,8 +1437,8 @@ export default function EquipmentMeshRenderer({
                   side: THREE.DoubleSide,
                   depthWrite: true,
                   polygonOffset: true,
-                  polygonOffsetFactor: -1,
-                  polygonOffsetUnits: -1,
+                  polygonOffsetFactor: polyOffset,
+                  polygonOffsetUnits: polyOffset,
                 });
               }
 
@@ -1426,13 +1451,6 @@ export default function EquipmentMeshRenderer({
                   (sm as any).stencilRef = 1;
                   (sm as any).stencilFunc = THREE.AlwaysStencilFunc;
                   (sm as any).stencilZPass = THREE.ReplaceStencilOp;
-                  (sm as any).stencilZFail = THREE.KeepStencilOp;
-                  (sm as any).stencilFail = THREE.KeepStencilOp;
-                } else if (STENCIL_TEST_SLOTS.has(slotId)) {
-                  (sm as any).stencilWrite = true;
-                  (sm as any).stencilRef = 1;
-                  (sm as any).stencilFunc = THREE.NotEqualStencilFunc;
-                  (sm as any).stencilZPass = THREE.KeepStencilOp;
                   (sm as any).stencilZFail = THREE.KeepStencilOp;
                   (sm as any).stencilFail = THREE.KeepStencilOp;
                 }
@@ -1458,6 +1476,36 @@ export default function EquipmentMeshRenderer({
               scaleToSlotBounds(scene, slot.bounds);
               needsAutoSkin = true;
             }
+          }
+
+          if (slotId.startsWith("green_ranged")) {
+            console.log(`[EquipDbg] ${slotId}: skinnedMeshes=${skinnedMeshes.length}, needsAutoSkin=${needsAutoSkin}, isExternal=${isExternal}`);
+            scene.traverse((child) => {
+              if ((child as THREE.Mesh).isMesh) {
+                const m = child as THREE.Mesh;
+                const geo = m.geometry;
+                const pos = geo.getAttribute("position") as THREE.BufferAttribute;
+                const sw = geo.getAttribute("skinWeight") as THREE.BufferAttribute;
+                const si = geo.getAttribute("skinIndex") as THREE.BufferAttribute;
+                const isSkinned = (m as THREE.SkinnedMesh).isSkinnedMesh;
+                const matArr = Array.isArray(m.material) ? m.material : [m.material];
+                const hasTex = matArr.some((mt: any) => mt?.map != null);
+                console.log(`[EquipDbg]   mesh "${m.name}" skinned=${isSkinned} verts=${pos?.count} hasWeights=${!!sw} hasIdx=${!!si} hasTex=${hasTex} visible=${m.visible} parent=${m.parent?.name}`);
+                if (pos) {
+                  const box = new THREE.Box3();
+                  const v = new THREE.Vector3();
+                  for (let i = 0; i < pos.count; i++) {
+                    v.set(pos.getX(i), pos.getY(i), pos.getZ(i));
+                    box.expandByPoint(v);
+                  }
+                  console.log(`[EquipDbg]   bounds: min=(${box.min.x.toFixed(1)},${box.min.y.toFixed(1)},${box.min.z.toFixed(1)}) max=(${box.max.x.toFixed(1)},${box.max.y.toFixed(1)},${box.max.z.toFixed(1)})`);
+                }
+                if (isSkinned) {
+                  const sk = (m as THREE.SkinnedMesh).skeleton;
+                  console.log(`[EquipDbg]   skeleton: bones=${sk?.bones.length} inverses=${sk?.boneInverses.length}`);
+                }
+              }
+            });
           }
 
           const loaded: LoadedSlot = { scene, skinnedMeshes, needsAutoSkin, originalMaterials: origMats };
@@ -1835,6 +1883,8 @@ export default function EquipmentMeshRenderer({
             mesh.material = origMat;
           } else {
             const color = SLOT_COLORS[slotId] ?? "#94a3b8";
+            const layer = SLOT_RENDER_ORDER[slotId] ?? 2;
+            const po = LAYER_POLYGON_OFFSET[layer] ?? -1;
             mesh.material = new THREE.MeshStandardMaterial({
               color,
               transparent: false,
@@ -1842,8 +1892,8 @@ export default function EquipmentMeshRenderer({
               side: THREE.FrontSide,
               depthWrite: true,
               polygonOffset: true,
-              polygonOffsetFactor: -1,
-              polygonOffsetUnits: -1,
+              polygonOffsetFactor: po,
+              polygonOffsetUnits: po,
             });
           }
         }
@@ -1892,6 +1942,20 @@ export default function EquipmentMeshRenderer({
 
         if (slot.skinnedMeshes.length > 0) {
           bindSlotSkeleton(slot, animBones, charBoneInverseMap, slotId);
+          if (slotId.startsWith("green_ranged")) {
+            for (const sm of slot.skinnedMeshes) {
+              console.log(`[EquipDbg] ${slotId} after bind: bones=${sm.skeleton?.bones.length}, visible=${sm.visible}, bindMatrix=[${sm.bindMatrix.elements.slice(0,4).map((v: number) => v.toFixed(3))}...]`);
+              const sw = sm.geometry.getAttribute("skinWeight") as THREE.BufferAttribute;
+              if (sw) {
+                let zeroCount = 0;
+                for (let i = 0; i < sw.count; i++) {
+                  const total = sw.getX(i) + sw.getY(i) + sw.getZ(i) + sw.getW(i);
+                  if (total < 0.001) zeroCount++;
+                }
+                console.log(`[EquipDbg]   skinWeight: ${sw.count} verts, ${zeroCount} zero-weight`);
+              }
+            }
+          }
         }
         slot.scene.visible = true;
         boundRef.current.add(slotId);

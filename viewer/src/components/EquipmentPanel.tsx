@@ -31,7 +31,13 @@ const COLLECTION_ORDER: CollectionInfo[] = [
   { key: "crimson_wizard",       label: "Crimson Wizard",       color: "#b91c1c" },
   { key: "green_dragon_wizard",  label: "Green Dragon Wizard",  color: "#16a34a" },
   { key: "shell",                label: "Shell",                color: "#60a5fa" },
+  { key: "shell_v1",             label: "Equipment Shell V1",   color: "#66bb6a" },
   { key: "shell_v2",             label: "Shells V2",            color: "#3b82f6" },
+  { key: "robes",                label: "Robes",                color: "#9c27b0" },
+  { key: "skirts",               label: "Skirts",               color: "#e91e63" },
+  { key: "upperbody_armor",      label: "Upperbody Armor",      color: "#ff5722" },
+  { key: "textured_shell_v2",   label: "Textured Shells V2",   color: "#8b5cf6" },
+  { key: "green_ranged",         label: "Green Ranged Armor",   color: "#2e7d32" },
   { key: "test",                 label: "Test",                 color: "#a78bfa" },
   { key: "custom",               label: "Custom",               color: "#f59e0b" },
   { key: "other",                label: "Other",                color: "#6b7280" },
@@ -43,11 +49,17 @@ function deriveCollection(slot: EquipmentSlot): string {
   if (slot.source === "imported") return "imported";
   if (slot.category === "meshes") return "base";
   if (slot.category === "skin_textures") return "skin";
+  if (slot.category === "robes") return "robes";
+  if (slot.category === "skirts") return "skirts";
+  if (slot.category === "upperbody_armor") return "upperbody_armor";
+  if (slot.category === "textured_shell_v2") return "textured_shell_v2";
+  if (slot.category === "green_ranged_armor") return "green_ranged";
 
   const id = slot.id;
   if (PRIMITIVE_IDS.has(id)) return "primitives";
   if (id.includes("green_dragon")) return "green_dragon_wizard";
   if (id.includes("crimson")) return "crimson_wizard";
+  if (id.startsWith("shell_v1_")) return "shell_v1";
   if (id.startsWith("shell_v2_")) return "shell_v2";
   if (id.startsWith("shell_") && !id.includes("test")) return "shell";
   if (id.includes("test_v")) return "test";

@@ -155,6 +155,19 @@ for label, pt in [("Elbow L", ELBOW_L), ("Wrist L", WRIST_L),
     lp = world_to_local_point(mat_inv, pt)
     print(f"  {label:10s} world ({pt[0]:.3f},{pt[1]:.3f},{pt[2]:.3f}) → local ({lp.x:.2f},{lp.y:.2f},{lp.z:.2f})")
 
+# Extract shoulder joint positions from armature (head of LeftArm/RightArm bones)
+SHOULDER_L_X = ELBOW_L[0] * 0.40
+SHOULDER_R_X = ELBOW_R[0] * 0.40
+if armature:
+    for bone in armature.data.bones:
+        if bone.name == "mixamorig:LeftArm":
+            pos = armature.matrix_world @ bone.head_local
+            SHOULDER_L_X = pos.x
+        elif bone.name == "mixamorig:RightArm":
+            pos = armature.matrix_world @ bone.head_local
+            SHOULDER_R_X = pos.x
+print(f"\nShoulder cut X positions: left={SHOULDER_L_X:.4f}, right={SHOULDER_R_X:.4f}")
+
 # ── 2. Pre-classify vertices ─────────────────────────────────────────────────
 vg_arm_upper = {vg.index for vg in src_mesh.vertex_groups if vg.name in ARM_UPPER_BONES}
 vg_arm_lower = {vg.index for vg in src_mesh.vertex_groups if vg.name in ARM_LOWER_BONES}
@@ -209,11 +222,16 @@ for region_name in REGION_ORDER:
 
     z_min, z_max = Z_RANGES[region_name]
 
-    SHOULDER_REGIONS = {"base_body_head", "base_body_upper_torso"}
-    exclude_set = arm_exclude_soft if region_name in SHOULDER_REGIONS else arm_exclude_hard
-    del_arm = [v for v in bm.verts if v.index in exclude_set]
-    if del_arm:
-        bmesh.ops.delete(bm, geom=del_arm, context="VERTS")
+    if region_name == "base_body_upper_torso":
+        exclude_set = None
+    elif region_name == "base_body_head":
+        exclude_set = arm_exclude_soft
+    else:
+        exclude_set = arm_exclude_hard
+    if exclude_set:
+        del_arm = [v for v in bm.verts if v.index in exclude_set]
+        if del_arm:
+            bmesh.ops.delete(bm, geom=del_arm, context="VERTS")
 
     if z_max < INF:
         lp = world_to_local_point(mat_inv, (0, 0, z_max))
@@ -223,6 +241,14 @@ for region_name in REGION_ORDER:
     if z_min > -INF:
         lp = world_to_local_point(mat_inv, (0, 0, z_min))
         ln = world_to_local_normal(mat_inv, (0, 0, -1))
+        bisect_clean(bm, tuple(lp), tuple(ln))
+
+    if region_name == "base_body_upper_torso":
+        lp = world_to_local_point(mat_inv, (SHOULDER_L_X, 0, 0))
+        ln = world_to_local_normal(mat_inv, (1, 0, 0))
+        bisect_clean(bm, tuple(lp), tuple(ln))
+        lp = world_to_local_point(mat_inv, (SHOULDER_R_X, 0, 0))
+        ln = world_to_local_normal(mat_inv, (-1, 0, 0))
         bisect_clean(bm, tuple(lp), tuple(ln))
 
     ensure_smooth(bm)
@@ -277,7 +303,11 @@ def build_arm_half(region_name, side):
         inward   = world_to_local_normal(mat_inv, (1, 0, 0))
 
     if region_name == "base_body_arm_upper":
-        # Keep shoulder to elbow: remove everything past elbow
+        if side == "left":
+            shoulder_lp = world_to_local_point(mat_inv, (SHOULDER_L_X, 0, 0))
+        else:
+            shoulder_lp = world_to_local_point(mat_inv, (SHOULDER_R_X, 0, 0))
+        bisect_clean(bm, tuple(shoulder_lp), tuple(inward))
         bisect_clean(bm, tuple(elbow_lp), tuple(outward))
 
     elif region_name == "base_body_arm_lower":

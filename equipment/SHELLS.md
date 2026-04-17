@@ -42,6 +42,13 @@ Comprehensive reference for the five body shell meshes: **Head**, **Upper Body**
   - [End-to-End Example: Custom Female Boots](#end-to-end-example-custom-female-boots)
 - [Viewer Skin Transfer (In-App Weight Copy)](#viewer-skin-transfer-in-app-weight-copy)
 - [Download Re-weighted GLB](#download-re-weighted-glb)
+- [Meshy V2 Equipment Pipeline (Female V2)](#meshy-v2-equipment-pipeline-female-v2)
+  - [Overview](#overview)
+  - [Available Shell V1 pieces](#available-shell-v1-pieces)
+  - [Piece composition reference](#piece-composition-reference)
+  - [Step 1–9 walkthrough](#step-1--export-shell-pieces-from-the-viewer)
+  - [Layer overlap system](#layer-overlap-system)
+  - [Troubleshooting](#troubleshooting-1)
 - [External Equipment Items](#external-equipment-items)
   - [Adding Items Permanently](#adding-items-permanently)
   - [Hat Weighting (weight_hat.py)](#hat-weighting-weight_hatpy)
@@ -992,11 +999,11 @@ Use this table to look up the correct shell, bones, bounds, and stencil group fo
 
 | Slot | Shell Source | Stencil Group | Render Order | `hides_body_regions` |
 |------|-------------|---------------|--------------|----------------------|
-| Head | `shell_head.glb` | `STENCIL_WRITE_SLOTS` | 3 | `["head"]` |
-| Upper Body | `shell_upper_body.glb` | `STENCIL_WRITE_SLOTS` | 1 | `["torso", "neck", "arms"]` |
+| Head | `shell_head.glb` | `STENCIL_WRITE_SLOTS` | 2 | `["head"]` |
+| Upper Body | `shell_upper_body.glb` | `STENCIL_WRITE_SLOTS` | 2 | `["torso", "neck", "arms"]` |
 | Gloves | `shell_gloves.glb` | `STENCIL_WRITE_SLOTS` | 3 | `["hands"]` |
-| Lower Body | `shell_lower_body.glb` | `STENCIL_TEST_SLOTS` | 2 | `["torso", "legs"]` |
-| Boots | `shell_boots.glb` | `STENCIL_WRITE_SLOTS` | 1 | `["feet", "legs"]` |
+| Lower Body | `shell_lower_body.glb` | `STENCIL_WRITE_SLOTS` | 1 | `["torso", "legs"]` |
+| Boots | `shell_boots.glb` | `STENCIL_WRITE_SLOTS` | 2 | `["feet", "legs"]` |
 
 Copy the `bones` and `bounds` arrays from the matching shell entry in `equipment_spec.json`.
 
@@ -1172,20 +1179,20 @@ const SLOT_RENDER_ORDER: Record<string, number> = {
   meshy_crimson_upperbody_f: 1,  // Upper Body → render order 1
 };
 
-// STENCIL_WRITE_SLOTS or STENCIL_TEST_SLOTS — add to the correct set
+// STENCIL_WRITE_SLOTS — add ALL equipment pieces (every piece writes stencil)
 const STENCIL_WRITE_SLOTS = new Set([
   // ... existing entries ...
-  "meshy_crimson_upperbody_f",   // Upper Body → WRITE
+  "meshy_crimson_upperbody_f",
 ]);
 ```
 
 | Slot Type | Add to | Render Order |
 |-----------|--------|--------------|
-| Head | `STENCIL_WRITE_SLOTS` | 3 |
-| Upper Body | `STENCIL_WRITE_SLOTS` | 1 |
+| Lower Body | `STENCIL_WRITE_SLOTS` | 1 |
+| Head | `STENCIL_WRITE_SLOTS` | 2 |
+| Upper Body | `STENCIL_WRITE_SLOTS` | 2 |
+| Boots | `STENCIL_WRITE_SLOTS` | 2 |
 | Gloves | `STENCIL_WRITE_SLOTS` | 3 |
-| Lower Body | `STENCIL_TEST_SLOTS` | 2 |
-| Boots | `STENCIL_WRITE_SLOTS` | 1 |
 
 ---
 
@@ -1298,8 +1305,8 @@ Lookup table for `<SHELL>` and `<custom_SLOT_f>`:
 **2. Add spec entry** — Add a JSON entry to **both** `equipment/spec/equipment_spec.json` and `viewer/public/equipment/equipment_spec.json`. Copy `bones`, `bounds`, `bilateral`, `hides_body_regions` from the matching `custom_<slot>_f` entry. Set a unique `id`, `name`, `color`, and `url` pointing to the output GLB.
 
 **3. Register in viewer** — In `viewer/src/components/EquipmentMeshRenderer.tsx`:
-- Add the new ID to `SLOT_RENDER_ORDER` with the correct render order (Head=3, Upper Body=1, Gloves=3, Lower Body=2, Boots=1).
-- Add the new ID to `STENCIL_WRITE_SLOTS` (all slots except Lower Body, which goes in `STENCIL_TEST_SLOTS`).
+- Add the new ID to `SLOT_RENDER_ORDER` with the correct render order (Lower Body=1, Upper Body/Boots/Head=2, Gloves=3).
+- Add the new ID to `STENCIL_WRITE_SLOTS` (all equipment slots go here).
 
 That's it. The viewer automatically handles DoubleSide rendering, opacity forcing, and PBR overrides for any mesh with a baked texture.
 
@@ -1357,8 +1364,7 @@ Add the new slot IDs to `SLOT_COLORS` in `viewer/src/types/equipment.ts`.
 
 If the new shells use the same layering strategy, add their IDs to the appropriate sets in `EquipmentMeshRenderer.tsx`:
 - `SLOT_RENDER_ORDER` — Same render order values as the female equivalents
-- `STENCIL_WRITE_SLOTS` — Add upper_body and boots variants
-- `STENCIL_TEST_SLOTS` — Add lower_body variant
+- `STENCIL_WRITE_SLOTS` — Add ALL variants (upper_body, lower_body, boots, gloves, head)
 
 ### Adjusting Thickness
 
@@ -1570,7 +1576,7 @@ boots: 1, shell_boots: 1, custom_boots_f: 1,
 "upper_body", "shell_upper_body", "custom_upper_body_f",
 "boots", "shell_boots", "custom_boots_f",
 
-// STENCIL_TEST_SLOTS — lower body tests stencil
+// STENCIL_WRITE_SLOTS — all equipment writes stencil
 "lower_body", "shell_lower_body", "custom_lower_body_f",
 ```
 
@@ -1854,9 +1860,7 @@ When adding a new equipment piece, follow these rules:
 2. **Set the correct render order** — match the slot type from the table above
 3. **Add to the correct stencil set**:
    - Upper Body type → `STENCIL_WRITE_SLOTS`
-   - Boots type → `STENCIL_WRITE_SLOTS`
-   - Lower Body type → `STENCIL_TEST_SLOTS`
-   - Head / Gloves → neither (no stencil needed)
+   - All equipment → `STENCIL_WRITE_SLOTS`
 4. **Set `hides_body_regions`** — tells the viewer which body parts to hide when this equipment is active
 5. **Maintain thickness hierarchy** — if creating new shells, ensure thicknesses follow the inner-to-outer ordering
 
@@ -1873,8 +1877,8 @@ When adding a new equipment piece, follow these rules:
     - gender
     - url
     - scale_reference (if Meshy-textured, point to the Test V1 reference)
-[ ] Slot ID added to SLOT_RENDER_ORDER in EquipmentMeshRenderer.tsx
-[ ] Slot ID added to STENCIL_WRITE_SLOTS or STENCIL_TEST_SLOTS
+[ ] Slot ID added to SLOT_RENDER_ORDER in EquipmentMeshRenderer.tsx (Lower Body=1, Upper Body/Boots/Head=2, Gloves=3)
+[ ] Slot ID added to STENCIL_WRITE_SLOTS
 [ ] Slot color added to SLOT_COLORS in equipment.ts (if custom color needed)
 ```
 
@@ -1925,6 +1929,335 @@ The **boneInverses are not modified** — they represent the skeleton rest pose 
 
 ---
 
+## Meshy V2 Equipment Pipeline (Female V2)
+
+Complete workflow for creating textured, weighted equipment sets for the **Female V2** character (`BaseFemaleV2.glb`). This is the pipeline used to produce the Green Ranged Armor set and should be followed for all new armor categories.
+
+### Overview
+
+The pipeline combines Shell V1 pieces in Blender, textures them in Meshy AI, then uses a Blender script to remap the textured mesh back to the character's coordinate space and transfer bone weights.
+
+```
+Shell V1 GLBs  ──▶  Blender (join pieces)  ──▶  Meshy AI (texture)  ──▶  weight script  ──▶  Viewer
+```
+
+### Prerequisites
+
+- **Blender 4.x** installed at `/Applications/Blender.app/Contents/MacOS/Blender`
+- A [Meshy AI](https://meshy.ai) account
+- The repo checked out with `viewer/public/models/BaseFemaleV2.glb` present
+- Shell V1 GLBs in `viewer/public/equipment/Female/ShellV1/`
+
+### Available Shell V1 pieces
+
+These are the individual body-region shells you can combine:
+
+| Shell | File | Body Region |
+|-------|------|-------------|
+| Head | `shell_v1_head.glb` | head |
+| Upper Torso | `shell_v1_upper_torso.glb` | upper_torso |
+| Lower Torso | `shell_v1_lower_torso.glb` | lower_torso |
+| Arm Upper | `shell_v1_arm_upper.glb` | arm_upper |
+| Arm Lower | `shell_v1_arm_lower.glb` | arm_lower |
+| Hands | `shell_v1_hands.glb` | hands |
+| Leg Upper | `shell_v1_leg_upper.glb` | leg_upper |
+| Leg Thigh | `shell_v1_leg_thigh.glb` | leg_thigh |
+| Leg Knee | `shell_v1_leg_knee.glb` | leg_knee |
+| Leg Shin | `shell_v1_leg_shin.glb` | leg_shin |
+| Leg Ankle | `shell_v1_leg_ankle.glb` | leg_ankle |
+| Foot | `shell_v1_foot.glb` | foot |
+
+### Piece composition reference
+
+Use this table when deciding which shells to combine for each equipment piece. The **regions** column lists the `base_body_*` mesh names used by the weight script. The **hides_body_regions** column lists which regions the viewer hides when the piece is equipped.
+
+| Equipment Piece | Shell V1 pieces to join | Weight script regions | hides_body_regions | Render Layer |
+|-----------------|------------------------|----------------------|-------------------|--------------|
+| Upperbody | upper_torso + lower_torso + arm_upper + arm_lower | `base_body_upper_torso`, `base_body_lower_torso`, `base_body_arm_upper`, `base_body_arm_lower` | `["upper_torso", "lower_torso", "arm_upper", "arm_lower"]` | 2 |
+| Gloves | hands | `base_body_hands` | `["hands"]` | 3 |
+| Lowerbody | leg_upper + leg_thigh + leg_knee + leg_shin + leg_ankle | `base_body_leg_upper`, `base_body_leg_thigh`, `base_body_leg_knee`, `base_body_leg_shin`, `base_body_leg_ankle` | `["leg_upper", "leg_thigh", "leg_knee", "leg_shin", "leg_ankle"]` | 1 |
+| Boots | foot + leg_ankle | `base_body_foot`, `base_body_leg_ankle` | `["foot", "leg_ankle"]` | 2 |
+| Head | head | `base_body_head` | `["head"]` | 2 |
+
+### Step 1 — Export shell pieces from the viewer
+
+Download the Shell V1 GLBs for the pieces you want to combine. They are in:
+
+```
+viewer/public/equipment/Female/ShellV1/
+```
+
+### Step 2 — Join pieces in Blender
+
+1. Open Blender and import all the shell GLBs for your equipment piece (File > Import > glTF 2.0)
+2. Select all the imported meshes
+3. Join them into a single mesh (Ctrl+J)
+4. **Important:** Do NOT move, rotate, or scale the joined mesh — keep it at the origin with identity transforms
+5. Export as GLB (File > Export > glTF 2.0, format: GLB)
+
+> **Tip:** You can sculpt, extrude, or otherwise modify the joined mesh before exporting. The weight script will remap it regardless of shape changes. Just keep it roughly in the right area.
+
+### Step 3 — Texture in Meshy AI
+
+1. Go to [meshy.ai](https://meshy.ai) and sign in
+2. Select **Text to Texture** (NOT Text-to-3D — only Text-to-Texture preserves your geometry)
+3. Upload the joined GLB from Step 2
+4. Enter a prompt describing the texture, e.g.:
+   > Green leather ranger armor with silver buckles, dark cloth underlayer, forest-themed accents
+5. Generate, review, and download the textured GLB
+
+**What Meshy does to your mesh:**
+- Normalizes vertex positions to [-1, 1] on the longest axis
+- May swap Y/Z axes
+- Centers the mesh at the origin
+- May slightly change the face count (~4% loss typical)
+- Bakes the AI texture into the GLB materials
+
+All of these transforms are handled automatically by the weight script.
+
+### Step 4 — Place the textured GLB
+
+Put the downloaded file in the appropriate slot directory:
+
+```bash
+# Upperbody
+viewer/public/equipment/Female/Upperbody/<SetName>Upperbody.glb
+
+# Lowerbody
+viewer/public/equipment/Female/Lowerbody/<SetName>Lowerbody.glb
+
+# Gloves
+viewer/public/equipment/Female/Gloves/<SetName>Gloves.glb
+
+# Boots
+viewer/public/equipment/Female/Boots/<SetName>Boots.glb
+```
+
+### Step 5 — Create the weight script
+
+Duplicate `weight_green_ranged_armor.py` and update it for your new set. The key things to change:
+
+1. **`PIECES` array** — Update `name`, `src`, `out`, and `regions` for each piece
+2. **File paths** — Point `src` and `out` to your new GLB files
+
+Example for a "Blue Mage" armor set:
+
+```python
+BASE_MODEL = os.path.abspath("viewer/public/models/BaseFemaleV2.glb")
+
+PIECES = [
+    {
+        "name": "blue_mage_upperbody",
+        "src": os.path.abspath("viewer/public/equipment/Female/Upperbody/BlueMageUpperbody.glb"),
+        "out": os.path.abspath("viewer/public/equipment/Female/Upperbody/BlueMageUpperbody.glb"),
+        "regions": [
+            "base_body_upper_torso",
+            "base_body_lower_torso",
+            "base_body_arm_upper",
+            "base_body_arm_lower",
+        ],
+    },
+    {
+        "name": "blue_mage_gloves",
+        "src": os.path.abspath("viewer/public/equipment/Female/Gloves/BlueMageGloves.glb"),
+        "out": os.path.abspath("viewer/public/equipment/Female/Gloves/BlueMageGloves.glb"),
+        "regions": [
+            "base_body_hands",
+        ],
+    },
+    {
+        "name": "blue_mage_lowerbody",
+        "src": os.path.abspath("viewer/public/equipment/Female/Lowerbody/BlueMageLowerbody.glb"),
+        "out": os.path.abspath("viewer/public/equipment/Female/Lowerbody/BlueMageLowerbody.glb"),
+        "regions": [
+            "base_body_leg_upper",
+            "base_body_leg_thigh",
+            "base_body_leg_knee",
+            "base_body_leg_shin",
+            "base_body_leg_ankle",
+        ],
+    },
+    {
+        "name": "blue_mage_boots",
+        "src": os.path.abspath("viewer/public/equipment/Female/Boots/BlueMageBoots.glb"),
+        "out": os.path.abspath("viewer/public/equipment/Female/Boots/BlueMageBoots.glb"),
+        "regions": [
+            "base_body_foot",
+            "base_body_leg_ankle",
+        ],
+    },
+]
+```
+
+**Run the script:**
+
+```bash
+/Applications/Blender.app/Contents/MacOS/Blender --background \
+    --python weight_blue_mage_armor.py
+```
+
+To process a single piece (useful when iterating on one slot):
+
+```bash
+/Applications/Blender.app/Contents/MacOS/Blender --background \
+    --python weight_blue_mage_armor.py -- --only=blue_mage_lowerbody
+```
+
+**What the script does:**
+
+1. Loads `BaseFemaleV2.glb` to get the body-region meshes and armature
+2. Loads each Meshy GLB
+3. If the mesh is already in body scale (from a previous run), normalizes it back to [-1, 1] first
+4. Tries all 48 axis-permutation x sign combinations to find the mapping that best aligns the Meshy mesh to the target body regions
+5. Scales and repositions the mesh to match the body-region bounding box
+6. Builds a KD-tree from the body-region vertices and transfers bone weights to every vertex via inverse-distance blending
+7. Exports the weighted GLB with the full armature
+
+**Expected output** — Look for these indicators of success:
+- `Avg sample distance to nearest body vert: < 0.01` (good alignment)
+- `Transferred N weight entries` (weights applied)
+- No error messages
+
+### Step 6 — Register in equipment_spec_female_v2.json
+
+Add entries for each piece in `viewer/public/equipment/equipment_spec_female_v2.json`. Use the Green Ranged entries as a template. Key fields:
+
+```json
+{
+  "id": "blue_mage_upperbody",
+  "name": "Blue Mage: Upperbody",
+  "category": "blue_mage_armor",
+  "gender": "female_v2",
+  "bilateral": false,
+  "color": "#1565c0",
+  "bones": [
+    { "name": "mixamorigSpine", "weight": 1.0 },
+    { "name": "mixamorigSpine1", "weight": 1.0 },
+    { "name": "mixamorigSpine2", "weight": 1.0 },
+    { "name": "mixamorigHips", "weight": 0.8 },
+    { "name": "mixamorigLeftShoulder", "weight": 0.7 },
+    { "name": "mixamorigRightShoulder", "weight": 0.7 },
+    { "name": "mixamorigLeftArm", "weight": 0.6 },
+    { "name": "mixamorigRightArm", "weight": 0.6 },
+    { "name": "mixamorigLeftForeArm", "weight": 0.5 },
+    { "name": "mixamorigRightForeArm", "weight": 0.5 }
+  ],
+  "bounds": { "z_min": 1.066, "z_max": 1.488, "radius": 0.70, "weight_radius": 0.70 },
+  "rules": {},
+  "hides_body_regions": ["upper_torso", "lower_torso", "arm_upper", "arm_lower"],
+  "mesh_type": "external",
+  "mesh_params": {},
+  "url": "/equipment/Female/Upperbody/BlueMageUpperbody.glb"
+}
+```
+
+**Per-piece spec reference** — Copy `bones`, `bounds`, and `hides_body_regions` from the matching Green Ranged entry:
+
+| Piece | Copy from | hides_body_regions |
+|-------|-----------|-------------------|
+| Upperbody | `green_ranged_upperbody` | `["upper_torso", "lower_torso", "arm_upper", "arm_lower"]` |
+| Gloves | `green_ranged_gloves` | `["hands"]` |
+| Lowerbody | `green_ranged_lowerbody` | `["leg_upper", "leg_thigh", "leg_knee", "leg_shin", "leg_ankle"]` |
+| Boots | `green_ranged_boots` | `["foot", "leg_ankle"]` |
+
+### Step 7 — Register in EquipmentMeshRenderer.tsx
+
+Add the new slot IDs to three places in `viewer/src/components/EquipmentMeshRenderer.tsx`:
+
+**1. `SLOT_RENDER_ORDER`** — Assign the correct layer number:
+
+```typescript
+const SLOT_RENDER_ORDER: Record<string, number> = {
+  // ... existing entries ...
+  blue_mage_lowerbody: 1,    // Layer 1: lowerbody (base)
+  blue_mage_upperbody: 2,    // Layer 2: upperbody/boots/head
+  blue_mage_boots: 2,        // Layer 2
+  blue_mage_gloves: 3,       // Layer 3: gloves
+};
+```
+
+**2. `STENCIL_WRITE_SLOTS`** — Add ALL pieces (every equipment piece writes stencil):
+
+```typescript
+const STENCIL_WRITE_SLOTS = new Set([
+  // ... existing entries ...
+  "blue_mage_lowerbody", "blue_mage_upperbody", "blue_mage_boots", "blue_mage_gloves",
+]);
+```
+
+### Layer overlap system
+
+All equipment uses a render-order + polygon-offset system to control which piece appears on top at transitions:
+
+| Layer | Render Order | Polygon Offset | Pieces | Overlaps |
+|-------|-------------|----------------|--------|----------|
+| 1 (base) | 1 | -1 | Lowerbody | — |
+| 2 (mid) | 2 | -2 | Upperbody, Boots, Head | Overlaps lowerbody at waist/shin/neck |
+| 3 (top) | 3 | -3 | Gloves | Overlaps upperbody at arm transitions |
+| 4 (accessories) | 4 | -1 | Amulet, Ring | — |
+
+Higher layers have more negative polygon offset, pushing them closer to the camera so they win the depth test at overlap zones. All equipment writes stencil=1 so the base body mesh never renders behind any equipment piece.
+
+### Step 8 — Register the collection in EquipmentPanel.tsx
+
+Add a category entry so the set appears as its own group in the Equipment panel.
+
+**1. Add to `COLLECTION_ORDER`:**
+
+```typescript
+const COLLECTION_ORDER: CollectionInfo[] = [
+  // ... existing entries ...
+  { key: "blue_mage", label: "Blue Mage Armor", color: "#1565c0" },
+];
+```
+
+**2. Add routing in `deriveCollection`:**
+
+```typescript
+if (slot.category === "blue_mage_armor") return "blue_mage";
+```
+
+This works because each piece's `"category": "blue_mage_armor"` in the spec file matches the routing rule.
+
+### Step 9 — Verify in the viewer
+
+1. Start the dev server: `cd viewer && npm run dev`
+2. Open `http://localhost:5173/`
+3. Select **Female V2** as the active character
+4. Find your new armor category in the Equipment panel
+5. Enable all pieces and verify:
+   - Mesh is correctly positioned and oriented
+   - Textures render opaque (no see-through)
+   - Animations deform the mesh naturally
+   - Overlap transitions (waist, shin, wrist) look clean
+   - No body mesh visible underneath
+
+### Troubleshooting
+
+| Symptom | Cause | Fix |
+|---------|-------|-----|
+| Mesh is upside down or backwards | Meshy axis swap differs from expected | Run the weight script again — it tries all 48 axis combos automatically. If the brute-force picks wrong for a symmetric mesh, create a dedicated script with hard-coded `AXIS_PERM` and `AXIS_SIGNS` (see `weight_green_ranged_upperbody.py` for an example). |
+| Mesh doesn't reach the ankle/wrist | Missing body region in the `regions` list | Add the missing region (e.g. `base_body_leg_ankle`) and re-run the script. |
+| See-through/transparent mesh | Meshy exported with alpha/transmission | Already handled by the viewer's material overrides. If it persists, check the browser console for the `[DEBUG]` material log. |
+| Body visible behind equipment | Slot ID missing from `STENCIL_WRITE_SLOTS` | Add it. All equipment must be in this set. |
+| Z-fighting at overlap zones | Wrong render order layer | Check the layer assignment in `SLOT_RENDER_ORDER`. Lowerbody=1, upperbody/boots/head=2, gloves=3. |
+| Equipment not appearing in panel | Missing `category` routing | Add a `deriveCollection` rule and `COLLECTION_ORDER` entry. |
+| Re-running script has no effect | Mesh already in body scale, skipping remap | The script now normalizes automatically before remapping. Verify the output prints "normalizing first..." |
+
+### Reference: Green Ranged Armor file locations
+
+```
+weight_green_ranged_armor.py                          — Weight/scale script (all pieces)
+weight_green_ranged_upperbody.py                      — Dedicated upperbody script (hard-coded axis)
+viewer/public/equipment/Female/Upperbody/TexturedGreenRangedUpperBody.glb
+viewer/public/equipment/Female/Lowerbody/TexturedGreenRangedLowerBody.glb
+viewer/public/equipment/Female/Gloves/TexturedGreenRangedGloves.glb
+viewer/public/equipment/Female/Boots/TexturedGreenRangedBoots.glb
+viewer/public/equipment/equipment_spec_female_v2.json — Spec entries (category: green_ranged_armor)
+```
+
+---
+
 ## External Equipment Items
 
 External equipment (like the Green Dragon or Crimson Wizard sets) are 3D models sourced outside the shell pipeline — from Meshy AI, hand-modeling, or third-party assets. They follow the same spec/viewer format as shells but have externally-authored geometry.
@@ -1950,19 +2283,19 @@ Equipment items must be hardcoded in `viewer/public/equipment/equipment_spec.jso
     - mesh_type: "external"
     - mesh_params: {}
     - url         (/equipment/Female/<Slot>/<Name>.glb)
-[ ] Slot ID added to SLOT_RENDER_ORDER in EquipmentMeshRenderer.tsx
-[ ] Slot ID added to STENCIL_WRITE_SLOTS or STENCIL_TEST_SLOTS
+[ ] Slot ID added to SLOT_RENDER_ORDER in EquipmentMeshRenderer.tsx (Lower Body=1, Upper Body/Boots/Head=2, Gloves=3)
+[ ] Slot ID added to STENCIL_WRITE_SLOTS
 ```
 
 **Slot type reference — bones, bounds, and stencil group:**
 
 | Slot Type | Copy bones/bounds from | Stencil | Render Order |
 |-----------|------------------------|---------|--------------|
-| Hat / Head | `crimson_wizard_hat` | — (none) | 3 |
-| Upper Body | `crimson_wizard_robe` | `STENCIL_WRITE_SLOTS` | 1 |
-| Lower Body | `crimson_wizard_robe_bottom` | `STENCIL_TEST_SLOTS` | 2 |
-| Gloves | `crimson_wizard_gloves` | — (none) | 3 |
-| Boots | `crimson_wizard_boots` | `STENCIL_WRITE_SLOTS` | 1 |
+| Hat / Head | `crimson_wizard_hat` | `STENCIL_WRITE_SLOTS` | 2 |
+| Upper Body | `crimson_wizard_robe` | `STENCIL_WRITE_SLOTS` | 2 |
+| Lower Body | `crimson_wizard_robe_bottom` | `STENCIL_WRITE_SLOTS` | 1 |
+| Gloves | `crimson_wizard_gloves` | `STENCIL_WRITE_SLOTS` | 3 |
+| Boots | `crimson_wizard_boots` | `STENCIL_WRITE_SLOTS` | 2 |
 
 **Collection routing** — `EquipmentPanel.tsx` uses `deriveCollection(slot)` to group items into categories. Add an entry to `COLLECTION_ORDER` and update the `deriveCollection` function if a new category is needed. The current routing rules are:
 
