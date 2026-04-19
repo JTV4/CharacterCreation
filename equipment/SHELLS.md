@@ -49,6 +49,18 @@ Comprehensive reference for the five body shell meshes: **Head**, **Upper Body**
   - [Step 1–9 walkthrough](#step-1--export-shell-pieces-from-the-viewer)
   - [Layer overlap system](#layer-overlap-system)
   - [Troubleshooting](#troubleshooting-1)
+- [Meshy Bilateral Pipeline (Gloves)](#meshy-bilateral-pipeline-gloves)
+  - [Why a different pipeline for bilateral items](#why-a-different-pipeline-for-bilateral-items)
+  - [Pipeline overview](#pipeline-overview)
+  - [Step 1 — Generate the Meshy-friendly input mesh](#step-1--generate-the-meshy-friendly-input-mesh)
+  - [Step 2 — Texture in Meshy AI](#step-2--texture-in-meshy-ai)
+  - [Step 3 — Drop the textured GLB into the Gloves folder](#step-3--drop-the-textured-glb-into-the-gloves-folder)
+  - [Step 4 — Run the return-trip weight script](#step-4--run-the-return-trip-weight-script)
+  - [Step 5 — Register the slot in spec + renderer](#step-5--register-the-slot-in-spec--renderer)
+  - [Adding another color variant](#adding-another-color-variant)
+  - [Algorithm reference](#algorithm-reference)
+  - [Troubleshooting (bilateral pipeline)](#troubleshooting-bilateral-pipeline)
+  - [Reference: Ranged Gloves file locations](#reference-ranged-gloves-file-locations)
 - [External Equipment Items](#external-equipment-items)
   - [Adding Items Permanently](#adding-items-permanently)
   - [Hat Weighting (weight_hat.py)](#hat-weighting-weight_hatpy)
@@ -2258,6 +2270,219 @@ viewer/public/equipment/equipment_spec_female_v2.json — Spec entries (category
 
 ---
 
+## Meshy Bilateral Pipeline (Gloves)
+
+Specialized four-step pipeline for **bilateral** equipment — items that come in mirrored left/right halves (gloves, optionally boots/pauldrons). This is the pipeline used to produce the Green / Red / Purple / Black / Blue Ranged Gloves and should be used for any bilateral Shell V1 piece going through Meshy.
+
+### Why a different pipeline for bilateral items
+
+The default [Meshy V2 Equipment Pipeline](#meshy-v2-equipment-pipeline-female-v2) feeds the raw shell straight into Meshy and relies on `weight_green_ranged_armor.py`'s **bounding-box fit** to snap the textured output back onto the body. That works for single-span pieces (upperbody, lowerbody), but it breaks for bilateral pieces for two reasons:
+
+1. **Meshy textures bilateral items poorly when the halves are far apart.** The raw `shell_v1_hands.glb` has the two gloves at shoulder-span distance (≈ 1.5 m apart). Meshy's UV-aware texture generator wastes most of its attention on the negative space between them and produces blurry, mismatched textures on each hand.
+2. **Bounding-box fit anisotropically stretches compressed bilateral geometry.** If you manually move the two halves closer together to fix (1) before uploading, the Meshy output has a narrow X-extent. `weight_green_ranged_armor.py` then stretches that narrow extent to the wide `base_body_hands` bounding box, producing gloves that are 5–10× too wide.
+
+The fix is to do the two things explicitly and separately:
+
+- Pre-compress the halves **programmatically** (so we know the exact offset applied), not manually in Blender
+- On return, **undo Meshy's single uniform scale** and then **translate each half independently** to its anatomical centroid — never stretch
+
+### Pipeline overview
+
+```
+shell_v1_hands.glb                      (production shell, halves 1.5 m apart)
+      │
+      ▼  make_meshy_input_hands.py
+MeshyInputHands.glb                      (halves 4 cm apart, static mesh)
+      │
+      ▼  user uploads to Meshy, textures, downloads
+<Color>RangedGloves.glb                  (Meshy output, normalized to [-1,1])
+      │
+      ▼  weight_meshy_gloves.py
+<Color>RangedGlovesWeighted.glb          (rigged, positioned, ready for viewer)
+```
+
+### Step 1 — Generate the Meshy-friendly input mesh
+
+The mesh you feed to Meshy is *not* the raw `shell_v1_hands.glb`. Use the dedicated pre-processor which pulls the two halves inward along the X axis:
+
+```bash
+/Applications/Blender.app/Contents/MacOS/Blender --background \
+  --python make_meshy_input_hands.py
+```
+
+What `make_meshy_input_hands.py` does:
+
+1. Loads `viewer/public/equipment/Female/ShellV1/shell_v1_hands.glb`
+2. Splits vertices into left (X < 0) and right (X > 0) halves
+3. Translates each half inward so their inner edges sit 4 cm apart (~62 cm offset per hand)
+4. Strips the armature, parenting, and all vertex groups (Meshy wants a plain static mesh)
+5. Exports `viewer/public/equipment/Female/Gloves/MeshyInputHands.glb`
+
+This file is committed/re-generated once and **reused as a calibration reference** by the return-trip script — do not delete it.
+
+Equivalent downloadable slot in the viewer: **Meshy Input: Hands (download for texturing)** in the "Meshy Input (pre-texture)" category. Click "Download GLB" to grab `MeshyInputHands.glb` without running Blender.
+
+### Step 2 — Texture in Meshy AI
+
+1. Go to [meshy.ai](https://meshy.ai) → **Text to Texture** (not Text-to-3D)
+2. Upload `MeshyInputHands.glb`
+3. Prompt, e.g.:
+   > Green leather ranger gloves with silver studs, matching left and right
+4. Generate, preview, **download the textured GLB**
+
+Meshy will still normalize to `[-1, 1]` on the longest axis and may swap Y/Z — both handled automatically on return.
+
+> **Why the 4 cm gap matters:** Meshy's UV-aware model pays attention to the whole bounding box. Touching or merged halves confuse the topology detector; too far apart and texture quality drops. 4 cm (roughly the width of a thumb) is the sweet spot — tight enough for shared texturing context, loose enough for Meshy to recognize two distinct bodies.
+
+### Step 3 — Drop the textured GLB into the Gloves folder
+
+Save the file as `<Color>RangedGloves.glb` (PascalCase) in:
+
+```
+viewer/public/equipment/Female/Gloves/<Color>RangedGloves.glb
+```
+
+Naming examples that are already in the repo: `GreenRangedGloves.glb`, `RedRangedGloves.glb`, `PurpleRangedGloves.glb`, `BlackRangedGloves.glb`, `BlueRangedGloves.glb`.
+
+> ⚠️ **Do not overwrite this file by hand and do not run any script that targets it as an output.** The return-trip script intentionally writes to a separate `*Weighted.glb` sibling so your Meshy texture work is never destroyed by a re-run.
+
+### Step 4 — Run the return-trip weight script
+
+```bash
+/Applications/Blender.app/Contents/MacOS/Blender --background \
+  --python weight_meshy_gloves.py
+```
+
+For each entry in `PIECES`, the script:
+
+1. **Loads shared references once** — `shell_v1_hands.glb` (per-hand target centroids) and `MeshyInputHands.glb` (calibration KD-tree).
+2. **Calibrates orientation + uniform scale** — brute-forces all 48 (axis permutation × sign flip) combinations. For each combo the uniform scale is derived from `MeshyInputHands.Y_extent / meshy.Y_axis_extent`; Y is the clean reference axis because the pre-processor only translated along X. Winning combo is the one that best matches `MeshyInputHands` vertices by total nearest-neighbour distance.
+3. **Splits by X sign** — left = `X < 0`, right = `X > 0`. Because we calibrated uniform (not per-axis) scale, the two halves retain their true proportions.
+4. **Snaps each half independently** — translates left-half and right-half as rigid bodies so their centroids land on `shell_v1_hands`'s per-hand centroids. No shape distortion.
+5. **KD-tree weight transfer** from `base_body_hands` inside `BaseFemaleV2.glb` (12 nearest neighbours, inverse-distance power 1.5, max 4 influences per vertex).
+6. **Parents to the base armature** and exports to `<Color>RangedGlovesWeighted.glb` alongside (never overwriting) the Meshy source.
+
+Expected output per piece:
+
+```
+[1/5] Loading BaseFemaleV2 (armature + body region)
+      Meshy bounds (local cm): X=[-1.000,1.000] Y=[-0.326,0.326] Z=[-0.160,0.160]
+[2/5] Calibrating orientation + uniform scale
+      Best axis mapping: body[XYZ] <- meshy[XZY], signs: ++-, uniform_scale=21.7776
+      Avg sample distance to MeshyInputHands: 0.0007          ← < 0.01 = calibration healthy
+[3/5] Splitting by X sign and snapping to per-hand centroids
+      Split: left=849  right=866  on-plane=0
+      Final bounds: X=[-83.90,83.92] Y=[135.16,142.17] Z=[-2.78,11.46]   ← matches shell bounds
+[4/5] KD-tree weight transfer from base_body_hands
+      Avg sample distance to nearest body_hands vert: 0.4477  ← < 1 cm = good fit
+      Transferred 5834 weight entries, 36 groups
+[5/5] Parent + export -> .../<Color>RangedGlovesWeighted.glb
+```
+
+### Step 5 — Register the slot in spec + renderer
+
+**1. Add a slot to `viewer/public/equipment/equipment_spec_female_v2.json`** (inside the `green_ranged_armor` category, next to the existing gloves):
+
+```json
+{
+  "id": "<color>_ranged_gloves",
+  "name": "<Color> Ranged: Gloves",
+  "category": "green_ranged_armor",
+  "gender": "female_v2",
+  "bilateral": false,
+  "color": "#<hex>",
+  "bones": [],
+  "bounds": { "z_min": 1.351, "z_max": 1.451, "radius": 0.85, "weight_radius": 0.85 },
+  "rules": {},
+  "hides_body_regions": ["hands"],
+  "mesh_type": "external",
+  "mesh_params": {},
+  "url": "/equipment/Female/Gloves/<Color>RangedGlovesWeighted.glb"
+}
+```
+
+Set `bilateral: false` — that flag is about viewer mirroring, not about the pipeline; the mesh already contains both hands.
+
+**2. Add the slot id to `viewer/src/components/EquipmentMeshRenderer.tsx`** in two places:
+
+```ts
+const SLOT_RENDER_ORDER: Record<string, number> = {
+  // ...
+  <color>_ranged_gloves: 3,
+};
+
+const STENCIL_WRITE_SLOTS = new Set([
+  // ...
+  "<color>_ranged_gloves",
+]);
+```
+
+Render layer 3 is correct for all gloves — layering rules are unchanged from the shell pipeline (lowerbody 1, upper/boots/head 2, gloves 3).
+
+No `EquipmentPanel.tsx` changes are needed: the slot's `"category": "green_ranged_armor"` routes it into the existing Green Ranged Armor collection automatically.
+
+### Adding another color variant
+
+Once Steps 1–5 have been done once, each additional color is one Meshy upload + one `PIECES` entry + one spec/renderer pair:
+
+1. Texture `MeshyInputHands.glb` in Meshy with a new prompt
+2. Save result as `viewer/public/equipment/Female/Gloves/<Color>RangedGloves.glb`
+3. Append to `PIECES` in `weight_meshy_gloves.py`:
+   ```python
+   PIECES = [
+       _variant("GreenRangedGloves"),
+       # ... existing ...
+       _variant("<Color>RangedGloves"),   # ← one new line
+   ]
+   ```
+4. Re-run `weight_meshy_gloves.py` (shared references are built once and reused — processing 5 variants takes ~2.5 s total)
+5. Register slot in spec + renderer as in Step 5
+
+### Algorithm reference
+
+The key numerical invariant that makes this work: `MeshyInputHands`'s Y-extent is identical to `shell_v1_hands`'s Y-extent (≈ 7 cm) because Step 1 only translates along X. That gives us a distortion-free reference axis for deriving a single uniform scale on return.
+
+```
+uniform_scale = mih_Y_extent / meshy.axis[perm[1]].extent
+result[body_ax] = (meshy.co[perm[body_ax]] - meshy_centroid) * signs[body_ax] * uniform_scale
+```
+
+The 48-combo search picks the `(perm, signs)` that minimise nearest-neighbour distance to the `MeshyInputHands` KD-tree. Typical best score: `0.0007 cm` — essentially identical geometry modulo Meshy's ~4% face-count retopology.
+
+**Coordinate-system note (important):** the script works entirely in **LOCAL, Y-up, centimeter** coordinates. Blender's glTF importer attaches a `0.01 × Y-up→Z-up` root empty to every imported GLB in this project; reading `.co` (LOCAL) and *not* applying `matrix_world` keeps the glove mesh in the same frame as the `base_body_hands` region inside `BaseFemaleV2.glb`. Applying `matrix_world` anywhere in the pipeline introduces a 100× unit + axis-swap mismatch that silently corrupts the depth axis.
+
+### Troubleshooting (bilateral pipeline)
+
+| Symptom | Cause | Fix |
+|---------|-------|-----|
+| Gloves are stretched horizontally across the shoulders | Input came from raw `shell_v1_hands.glb` instead of `MeshyInputHands.glb`, or you used `weight_green_ranged_armor.py` | Re-texture using `MeshyInputHands.glb` as the Meshy input and process with `weight_meshy_gloves.py` |
+| Depth (front-back) axis is flat / paper-thin | Input `*RangedGloves.glb` is actually the *output* of a previous run (not the Meshy file) | Re-download the original textured file from Meshy; the script writes to `*Weighted.glb` so the source stays pristine |
+| `Split failed - one side is empty` | Meshy merged the two halves in retopology, or the axis picked for "X" is wrong | Rare. Regenerate `MeshyInputHands.glb` with a wider gap (tweak `GAP_CM` in `make_meshy_input_hands.py`) and re-texture |
+| `Avg sample distance to MeshyInputHands` > 1.0 | Calibration failed — Meshy produced a very different topology, or `MeshyInputHands.glb` was modified after the source was textured | Regenerate `MeshyInputHands.glb` and re-texture in Meshy so the reference matches the Meshy input exactly |
+| `Avg sample distance to nearest body_hands vert` > 2.0 | Shell centroid drift (e.g. someone edited `shell_v1_hands.glb`) | Restore `shell_v1_hands.glb` from the Shell V1 set or re-run the shell extractor |
+| Fingers animate but wrist lags behind | Weight transfer missed the outer-arm bones | Normal for very tight gloves — if truly broken, increase `WEIGHT_NEIGHBORS` in `weight_meshy_gloves.py` from 12 to 20 |
+
+### Reference: Ranged Gloves file locations
+
+```
+make_meshy_input_hands.py                             — Generates the Meshy-friendly input mesh
+weight_meshy_gloves.py                                — Return-trip rig/scale/position for all colors
+viewer/public/equipment/Female/Gloves/MeshyInputHands.glb         ← Upload this to Meshy
+viewer/public/equipment/Female/Gloves/GreenRangedGloves.glb       ← Meshy output (source, never overwritten)
+viewer/public/equipment/Female/Gloves/RedRangedGloves.glb
+viewer/public/equipment/Female/Gloves/PurpleRangedGloves.glb
+viewer/public/equipment/Female/Gloves/BlackRangedGloves.glb
+viewer/public/equipment/Female/Gloves/BlueRangedGloves.glb
+viewer/public/equipment/Female/Gloves/GreenRangedGlovesWeighted.glb   ← Rigged output served by viewer
+viewer/public/equipment/Female/Gloves/RedRangedGlovesWeighted.glb
+viewer/public/equipment/Female/Gloves/PurpleRangedGlovesWeighted.glb
+viewer/public/equipment/Female/Gloves/BlackRangedGlovesWeighted.glb
+viewer/public/equipment/Female/Gloves/BlueRangedGlovesWeighted.glb
+viewer/public/equipment/equipment_spec_female_v2.json — Slot entries (id: <color>_ranged_gloves)
+```
+
+---
+
 ## External Equipment Items
 
 External equipment (like the Green Dragon or Crimson Wizard sets) are 3D models sourced outside the shell pipeline — from Meshy AI, hand-modeling, or third-party assets. They follow the same spec/viewer format as shells but have externally-authored geometry.
@@ -2360,6 +2585,8 @@ OUT    = os.path.join(ROOT, "viewer/public/equipment/Female/Hats/<your_hat>.glb"
 | `equipment/factory/transfer_weights.py` | Weight transfer script for custom meshes (run via Blender CLI) |
 | `equipment/factory/texture_baker.py` | Texture baking script (run via Blender CLI) |
 | `weight_hat.py` | Assigns 100% head-bone weights to a hat GLB and repositions verts to head height; exports full-rig GLB |
+| `make_meshy_input_hands.py` | Generates `MeshyInputHands.glb` — the pre-textured shell with left/right gloves pulled 4 cm apart. Upload this to Meshy for bilateral glove texturing. |
+| `weight_meshy_gloves.py` | Bilateral return-trip script. Loops over a `PIECES` list of Meshy-textured `<Color>RangedGloves.glb` files; calibrates orientation + uniform scale against `MeshyInputHands.glb`, splits by X sign, snaps each half to `shell_v1_hands` per-hand centroids, and exports rigged `<Color>RangedGlovesWeighted.glb`. Never overwrites the Meshy source. |
 | `equipment/output/shells/shell_*.glb` | Generated shell GLBs (extraction output) |
 | `rig/CharacterMesh/Female/<Slot>/<Slot>.glb` | User-edited custom meshes (input to weight transfer) |
 | `viewer/public/equipment/shell_*.glb` | Shell GLBs served to the viewer |

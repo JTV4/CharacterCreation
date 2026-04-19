@@ -674,6 +674,23 @@
       "url": "/equipment/Female/TexturedShellsV2/boots_textured_v2.glb"
     },
     {
+      "id": "green_ranged_hat",
+      "name": "Green Ranged: Hat",
+      "category": "green_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#2e7d32",
+      "bones": [
+        { "name": "mixamorigHead", "weight": 1.0 }
+      ],
+      "bounds": { "z_min": 1.735, "z_max": 1.854, "radius": 0.20, "weight_radius": 0.20 },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/GreenRangedHatWeighted.glb"
+    },
+    {
       "id": "green_ranged_upperbody",
       "name": "Green Ranged: Upperbody",
       "category": "green_ranged_armor",
@@ -697,7 +714,7 @@
       "hides_body_regions": ["upper_torso", "lower_torso", "arm_upper", "arm_lower"],
       "mesh_type": "external",
       "mesh_params": {},
-      "url": "/equipment/Female/Upperbody/TexturedGreenRangedUpperBody.glb"
+      "url": "/equipment/Female/Upperbody/GreenRangedUpperbodyWeighted.glb"
     },
     {
       "id": "green_ranged_gloves",
@@ -712,7 +729,81 @@
       "hides_body_regions": ["hands"],
       "mesh_type": "external",
       "mesh_params": {},
-      "url": "/equipment/Female/Gloves/TexturedGreenRangedGloves.glb"
+      "url": "/equipment/Female/Gloves/GreenRangedGlovesWeighted.glb"
+    },
+    {
+      "id": "red_ranged_gloves",
+      "name": "Red Ranged: Gloves",
+      "category": "red_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#c62828",
+      "bones": [],
+      "bounds": { "z_min": 1.351, "z_max": 1.451, "radius": 0.85, "weight_radius": 0.85 },
+      "rules": {},
+      "hides_body_regions": ["hands"],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/RedRangedGlovesWeighted.glb"
+    },
+    {
+      "id": "purple_ranged_gloves",
+      "name": "Purple Ranged: Gloves",
+      "category": "purple_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#7b1fa2",
+      "bones": [],
+      "bounds": { "z_min": 1.351, "z_max": 1.451, "radius": 0.85, "weight_radius": 0.85 },
+      "rules": {},
+      "hides_body_regions": ["hands"],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/PurpleRangedGlovesWeighted.glb"
+    },
+    {
+      "id": "black_ranged_gloves",
+      "name": "Black Ranged: Gloves",
+      "category": "black_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#212121",
+      "bones": [],
+      "bounds": { "z_min": 1.351, "z_max": 1.451, "radius": 0.85, "weight_radius": 0.85 },
+      "rules": {},
+      "hides_body_regions": ["hands"],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/BlackRangedGlovesWeighted.glb"
+    },
+    {
+      "id": "blue_ranged_gloves",
+      "name": "Blue Ranged: Gloves",
+      "category": "blue_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#1565c0",
+      "bones": [],
+      "bounds": { "z_min": 1.351, "z_max": 1.451, "radius": 0.85, "weight_radius": 0.85 },
+      "rules": {},
+      "hides_body_regions": ["hands"],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/BlueRangedGlovesWeighted.glb"
+    },
+    {
+      "id": "meshy_input_hands",
+      "name": "Meshy Input: Hands (download for texturing)",
+      "category": "meshy_input",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f59e0b",
+      "bones": [],
+      "bounds": { "z_min": 1.351, "z_max": 1.451, "radius": 0.85, "weight_radius": 0.85 },
+      "rules": {},
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/MeshyInputHands.glb"
     },
     {
       "id": "green_ranged_lowerbody",
@@ -735,7 +826,7 @@
       "hides_body_regions": ["leg_upper", "leg_thigh", "leg_knee", "leg_shin", "leg_ankle"],
       "mesh_type": "external",
       "mesh_params": {},
-      "url": "/equipment/Female/Lowerbody/TexturedGreenRangedLowerBody.glb"
+      "url": "/equipment/Female/Lowerbody/GreenRangedLowerbodyWeighted.glb"
     },
     {
       "id": "green_ranged_boots",
@@ -757,7 +848,7 @@
       "hides_body_regions": ["foot", "leg_ankle"],
       "mesh_type": "external",
       "mesh_params": {},
-      "url": "/equipment/Female/Boots/TexturedGreenRangedBoots.glb"
+      "url": "/equipment/Female/Boots/GreenRangedBootsWeighted.glb"
     }
   ]
 }

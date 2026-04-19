@@ -60,8 +60,8 @@ const SLOT_RENDER_ORDER: Record<string, number> = {
   upper_body: 2, shell_upper_body: 2, shell_upper_body_test_v1: 2, custom_upper_body_f: 2, custom_upper_body_f_textured: 2, custom_upper_body_f_crimson_meshy: 2, meshy_crimson_upperbody_f: 2, green_dragon_top_f: 2, green_ranged_upperbody: 2,
   boots: 2, shell_boots: 2, shell_boots_test_v1: 2, custom_boots_f: 2, meshy_crimson_boots_f: 2, green_dragon_boots_f: 2, green_ranged_boots: 2,
   crimson_wizard_robe: 2, crimson_upperbody_f: 2, crimson_upperbody_meshy_v2: 2, crimson_wizard_boots: 2,
-  head: 2, shell_head: 2, shell_head_test_v1: 2, custom_head_f: 2, meshy_crimson_head_f: 2, meshy_crimson_wizard_hat_f: 2, crimson_wizard_hat: 2, green_dragon_wizard_hat_f: 2,
-  gloves: 3, shell_gloves: 3, shell_gloves_test_v1: 3, custom_gloves_f: 3, meshy_crimson_gloves_f: 3, crimson_wizard_gloves: 3, green_dragon_gloves_f: 3, green_ranged_gloves: 3,
+  head: 2, shell_head: 2, shell_head_test_v1: 2, custom_head_f: 2, meshy_crimson_head_f: 2, meshy_crimson_wizard_hat_f: 2, crimson_wizard_hat: 2, green_dragon_wizard_hat_f: 2, green_ranged_hat: 2,
+  gloves: 3, shell_gloves: 3, shell_gloves_test_v1: 3, custom_gloves_f: 3, meshy_crimson_gloves_f: 3, crimson_wizard_gloves: 3, green_dragon_gloves_f: 3, green_ranged_gloves: 3, red_ranged_gloves: 3, purple_ranged_gloves: 3, black_ranged_gloves: 3, blue_ranged_gloves: 3,
   amulet: 4, ring: 4,
 };
 
@@ -80,8 +80,8 @@ const STENCIL_WRITE_SLOTS = new Set([
   "upper_body", "shell_upper_body", "shell_upper_body_test_v1", "custom_upper_body_f", "custom_upper_body_f_textured", "custom_upper_body_f_crimson_meshy", "meshy_crimson_upperbody_f", "green_dragon_top_f", "green_ranged_upperbody",
   "boots", "shell_boots", "shell_boots_test_v1", "custom_boots_f", "meshy_crimson_boots_f", "green_dragon_boots_f", "green_ranged_boots",
   "crimson_wizard_robe", "crimson_upperbody_f", "crimson_upperbody_meshy_v2", "crimson_wizard_boots",
-  "head", "shell_head", "shell_head_test_v1", "custom_head_f", "meshy_crimson_head_f", "meshy_crimson_wizard_hat_f", "crimson_wizard_hat", "green_dragon_wizard_hat_f",
-  "gloves", "shell_gloves", "shell_gloves_test_v1", "custom_gloves_f", "meshy_crimson_gloves_f", "crimson_wizard_gloves", "green_dragon_gloves_f", "green_ranged_gloves",
+  "head", "shell_head", "shell_head_test_v1", "custom_head_f", "meshy_crimson_head_f", "meshy_crimson_wizard_hat_f", "crimson_wizard_hat", "green_dragon_wizard_hat_f", "green_ranged_hat",
+  "gloves", "shell_gloves", "shell_gloves_test_v1", "custom_gloves_f", "meshy_crimson_gloves_f", "crimson_wizard_gloves", "green_dragon_gloves_f", "green_ranged_gloves", "red_ranged_gloves", "purple_ranged_gloves", "black_ranged_gloves", "blue_ranged_gloves",
 ]);
 
 interface LoadedSlot {

@@ -38,6 +38,11 @@ const COLLECTION_ORDER: CollectionInfo[] = [
   { key: "upperbody_armor",      label: "Upperbody Armor",      color: "#ff5722" },
   { key: "textured_shell_v2",   label: "Textured Shells V2",   color: "#8b5cf6" },
   { key: "green_ranged",         label: "Green Ranged Armor",   color: "#2e7d32" },
+  { key: "purple_ranged",        label: "Purple Ranged Armor",  color: "#7b1fa2" },
+  { key: "black_ranged",         label: "Black Ranged Armor",   color: "#212121" },
+  { key: "red_ranged",           label: "Red Ranged Armor",     color: "#c62828" },
+  { key: "blue_ranged",          label: "Blue Ranged Armor",    color: "#1565c0" },
+  { key: "meshy_input",          label: "Meshy Input (pre-texture)", color: "#f59e0b" },
   { key: "test",                 label: "Test",                 color: "#a78bfa" },
   { key: "custom",               label: "Custom",               color: "#f59e0b" },
   { key: "other",                label: "Other",                color: "#6b7280" },
@@ -54,6 +59,11 @@ function deriveCollection(slot: EquipmentSlot): string {
   if (slot.category === "upperbody_armor") return "upperbody_armor";
   if (slot.category === "textured_shell_v2") return "textured_shell_v2";
   if (slot.category === "green_ranged_armor") return "green_ranged";
+  if (slot.category === "purple_ranged_armor") return "purple_ranged";
+  if (slot.category === "black_ranged_armor") return "black_ranged";
+  if (slot.category === "red_ranged_armor") return "red_ranged";
+  if (slot.category === "blue_ranged_armor") return "blue_ranged";
+  if (slot.category === "meshy_input") return "meshy_input";
 
   const id = slot.id;
   if (PRIMITIVE_IDS.has(id)) return "primitives";
