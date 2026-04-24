@@ -23,7 +23,7 @@ import ToolAttachment from "./components/ToolAttachment";
 import PoseEditor from "./components/PoseEditor";
 import type { PoseKeyframe, PoseAnimationConfig } from "./components/PoseEditor";
 import SlotBoundsVisualizer from "./components/SlotBoundsVisualizer";
-import { TOOLS, DEFAULT_TOOL_TRANSFORM } from "./types/tools";
+import { TOOLS, DEFAULT_TOOL_TRANSFORM, DEFAULT_TOOL_ATTACH_BONE } from "./types/tools";
 import type { ToolTransform, GizmoMode } from "./types/tools";
 import SkinTransferModal from "./components/SkinTransferModal";
 import type { SkinTransferRequest } from "./components/SkinTransferModal";
@@ -787,7 +787,7 @@ export default function App() {
               <ToolAttachment
                 key={selectedTool.id}
                 tool={selectedTool}
-                boneName="mixamorigRightHand"
+                boneName={selectedTool.attachBone ?? DEFAULT_TOOL_ATTACH_BONE}
                 playerRef={playerRef}
                 transform={selectedToolTransform}
                 gizmoMode={toolGizmoMode}

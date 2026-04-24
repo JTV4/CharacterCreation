@@ -4,7 +4,11 @@ export interface ToolDefinition {
   url: string;
   color: string;
   defaultTransform?: ToolTransform;
+  /** Bone the tool is attached to. Defaults to the right hand. */
+  attachBone?: string;
 }
+
+export const DEFAULT_TOOL_ATTACH_BONE = "mixamorigRightHand";
 
 export type GizmoMode = "translate" | "rotate" | "scale";
 
@@ -138,5 +142,18 @@ export const TOOLS: ToolDefinition[] = [
     name: "Iron Hammer",
     url: "/tools/hammers/iron_hammer.glb",
     color: "#34d399",
+  },
+  // Longbows (held in the left hand)
+  {
+    id: "wrath_longbow",
+    name: "Wrath Longbow",
+    url: "/tools/Longbows/Wrath_dknocz.glb",
+    color: "#10b981",
+    attachBone: "mixamorigLeftHand",
+    defaultTransform: {
+      position: [-0.04, 0.19, 0.03],
+      rotation: [0, 0, -170],
+      scale: 0.76,
+    },
   },
 ];

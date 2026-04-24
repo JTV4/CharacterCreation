@@ -7,6 +7,21 @@
   "animations": [
     { "id": "FemaleIdle", "file": "FemaleIdle.anim.json", "loop": true },
     { "id": "FemaleWalk", "file": "FemaleWalk.anim.json", "loop": true },
-    { "id": "FemaleRun", "file": "FemaleRun.anim.json", "loop": true }
+    { "id": "FemaleRun", "file": "FemaleRun.anim.json", "loop": true },
+    { "id": "FemaleWoodcutting", "file": "FemaleWoodcutting.anim.json", "loop": true },
+    { "id": "FemaleFishing", "file": "FemaleFishing.anim.json", "loop": true },
+    { "id": "FemaleMining", "file": "FemaleMining.anim.json", "loop": true },
+    { "id": "FemaleFarming", "file": "FemaleFarming.anim.json", "loop": true },
+    { "id": "FemaleForging", "file": "FemaleForging.anim.json", "loop": true },
+    { "id": "FemaleSmelting", "file": "FemaleSmelting.anim.json", "loop": true },
+    { "id": "FemaleCarving", "file": "FemaleCarving.anim.json", "loop": true },
+    { "id": "FemaleApothecary", "file": "FemaleApothecary.anim.json", "loop": true },
+    { "id": "FemaleFireStarting", "file": "FemaleFireStarting.anim.json", "loop": true },
+    { "id": "FemaleAddLogs", "file": "FemaleAddLogs.anim.json", "loop": true },
+    { "id": "FemaleSwordSwing", "file": "FemaleSwordSwing.anim.json", "loop": true },
+    { "id": "FemaleMagicCast", "file": "FemaleMagicCast.anim.json", "loop": true },
+    { "id": "FemaleRangedAttack", "file": "FemaleRangedAttack.anim.json", "loop": true },
+    { "id": "FemalePunch", "file": "FemalePunch.anim.json", "loop": true },
+    { "id": "FemaleKick", "file": "FemaleKick.anim.json", "loop": true }
   ]
 }

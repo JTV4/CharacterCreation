@@ -1,0 +1,348 @@
+{
+  "meta": {
+    "name": "FemaleSmelting",
+    "id": "FemaleSmelting",
+    "duration": 1.0,
+    "fps": 30,
+    "loop": true
+  },
+  "tracks": [
+    {
+      "bone": "mixamorigHips",
+      "property": "position",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "time": 0.5,
+          "value": [
+            0,
+            20,
+            7
+          ]
+        },
+        {
+          "time": 1.0,
+          "value": [
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftLeg",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "time": 0.5,
+          "value": [
+            -0.25882,
+            0.0,
+            0.0,
+            0.96593
+          ]
+        },
+        {
+          "time": 1.0,
+          "value": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightLeg",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "time": 0.5,
+          "value": [
+            -0.25882,
+            0.0,
+            0.0,
+            0.96593
+          ]
+        },
+        {
+          "time": 1.0,
+          "value": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftFoot",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "time": 0.5,
+          "value": [
+            0.25882,
+            0.0,
+            0.0,
+            0.96593
+          ]
+        },
+        {
+          "time": 1.0,
+          "value": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightFoot",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "time": 0.5,
+          "value": [
+            0.25882,
+            0.0,
+            0.0,
+            0.96593
+          ]
+        },
+        {
+          "time": 1.0,
+          "value": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftForeArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0,
+            0,
+            -0.17365,
+            0.98481
+          ]
+        },
+        {
+          "time": 0.5,
+          "value": [
+            0.0,
+            0.0,
+            0.60876,
+            0.79335
+          ]
+        },
+        {
+          "time": 1.0,
+          "value": [
+            0,
+            0,
+            -0.17365,
+            0.98481
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightForeArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0,
+            0,
+            0.17365,
+            0.98481
+          ]
+        },
+        {
+          "time": 0.5,
+          "value": [
+            0.0,
+            0.0,
+            -0.60876,
+            0.79335
+          ]
+        },
+        {
+          "time": 1.0,
+          "value": [
+            0,
+            0,
+            0.17365,
+            0.98481
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.60838,
+            -0.02168,
+            0.01819,
+            0.79314
+          ]
+        },
+        {
+          "time": 0.5,
+          "value": [
+            0.5823,
+            -0.17755,
+            0.22174,
+            0.76173
+          ]
+        },
+        {
+          "time": 1.0,
+          "value": [
+            0.60838,
+            -0.02168,
+            0.01819,
+            0.79314
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.60838,
+            0.02168,
+            -0.01819,
+            0.79314
+          ]
+        },
+        {
+          "time": 0.5,
+          "value": [
+            0.58369,
+            0.1729,
+            -0.22532,
+            0.76068
+          ]
+        },
+        {
+          "time": 1.0,
+          "value": [
+            0.60838,
+            0.02168,
+            -0.01819,
+            0.79314
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigSpine",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "time": 0.5,
+          "value": [
+            0.3173,
+            0.0,
+            0.0,
+            0.94832
+          ]
+        },
+        {
+          "time": 1.0,
+          "value": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      ]
+    }
+  ]
+}

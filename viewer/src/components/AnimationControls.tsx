@@ -141,6 +141,21 @@ export default function AnimationControls({
               {s}x
             </button>
           ))}
+          <input
+            className={`anim-speed-input ${
+              !SPEED_OPTIONS.includes(speed) ? "active" : ""
+            }`}
+            type="number"
+            min={0}
+            step={0.05}
+            value={speed}
+            onChange={(e) => {
+              const v = parseFloat(e.target.value);
+              if (Number.isFinite(v) && v >= 0) onSetSpeed(v);
+            }}
+            title="Custom speed"
+          />
+          <span className="anim-speed-suffix">x</span>
         </div>
 
         {!hasTracks && activeAnimId && (
