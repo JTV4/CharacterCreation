@@ -316,6 +316,33 @@ export function useAnimationPlayer(
     };
   }, [skeletonRoot]);
 
+  // When the active character swaps (e.g. user flips between NPCs),
+  // rebind the currently-active animation spec onto the new skeleton
+  // so the clip keeps playing without the user re-selecting it.  We
+  // capture the pre-swap play state and time *before* calling
+  // setAnimation (which resets both), then restore them on the new
+  // skeleton.  The mixer that was bound to the old skeleton is
+  // already stopped + uncached by the [skeletonRoot] cleanup above.
+  const prevModelRef = useRef(characterModel);
+  useEffect(() => {
+    if (prevModelRef.current === characterModel) return;
+    prevModelRef.current = characterModel;
+
+    const spec = animSpecRef.current;
+    if (!characterModel || !spec) return;
+
+    const wasPlaying = isPlaying;
+    const wasTime = currentTime;
+
+    setAnimation(spec);
+    if (wasTime > 0) seek(wasTime);
+    if (wasPlaying) play();
+    // We intentionally trigger only on character/skeleton swap; the
+    // captured isPlaying/currentTime are read as the latest React
+    // state from the render that produced the swap.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [characterModel]);
+
   return {
     boneObjMap,
     boneRestPose,

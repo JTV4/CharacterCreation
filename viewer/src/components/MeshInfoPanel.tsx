@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { EquipmentSlot, EquipTransform } from "../types/equipment";
-import { DEFAULT_EQUIP_TRANSFORM, SLOT_COLORS } from "../types/equipment";
+import { SLOT_COLORS } from "../types/equipment";
 import type { GizmoMode } from "../types/tools";
 
 interface MeshInfoPanelProps {
@@ -13,6 +13,8 @@ interface MeshInfoPanelProps {
 }
 
 const DRAG_THRESHOLD = 3;
+
+const FACE_PAIR_CATEGORIES = new Set(["eyes", "eyebrows", "eyelashes", "ears"]);
 
 function DraggableInput({
   axis,
@@ -200,23 +202,40 @@ export default function MeshInfoPanel({
   onTransformChange,
   onReset,
 }: MeshInfoPanelProps) {
+  const isEyes = slot?.category === "eyes";
+  const isFacePair = !!slot?.category && FACE_PAIR_CATEGORIES.has(slot.category);
+  const pairSeparation = transform.eyeSeparation ?? 0;
+  const eyeRotationL = transform.eyeRotationL ?? ([0, 0, 0] as [number, number, number]);
+  const eyeRotationR = transform.eyeRotationR ?? ([0, 0, 0] as [number, number, number]);
+  const eyeRotDirty =
+    eyeRotationL.some((v) => v !== 0) || eyeRotationR.some((v) => v !== 0);
+
   const hasOffset =
     transform.position.some((v) => v !== 0) ||
     transform.rotation.some((v) => v !== 0) ||
-    transform.scale !== 1;
+    transform.scale.some((v) => v !== 1) ||
+    (isFacePair && pairSeparation !== 0) ||
+    (isEyes && eyeRotDirty);
 
   const handleCopyTransform = useCallback(() => {
     if (!slot) return;
     const fmt = (v: [number, number, number]) =>
       `[${v.map((n) => n.toFixed(4)).join(", ")}]`;
-    const text = [
+    const lines = [
       `Equipment: ${slot.id}`,
       `Name: ${slot.name}`,
       `Position: ${fmt(transform.position)}`,
       `Rotation: ${fmt(transform.rotation)}`,
-      `Scale: ${transform.scale.toFixed(4)}`,
-    ].join("\n");
-    navigator.clipboard.writeText(text);
+      `Scale: ${fmt(transform.scale)}`,
+    ];
+    if (slot.category && FACE_PAIR_CATEGORIES.has(slot.category)) {
+      lines.push(`Pair Separation: ${(transform.eyeSeparation ?? 0).toFixed(4)}`);
+    }
+    if (slot.category === "eyes") {
+      lines.push(`Eye Rotation L: ${fmt(transform.eyeRotationL ?? [0, 0, 0])}`);
+      lines.push(`Eye Rotation R: ${fmt(transform.eyeRotationR ?? [0, 0, 0])}`);
+    }
+    navigator.clipboard.writeText(lines.join("\n"));
   }, [slot, transform]);
 
   if (!slot) {
@@ -311,7 +330,7 @@ export default function MeshInfoPanel({
         <Vec3Input
           label="Position"
           value={transform.position}
-          step={0.01}
+          step={0.001}
           onChange={(v) => onTransformChange({ ...transform, position: v })}
         />
         <Vec3Input
@@ -320,17 +339,51 @@ export default function MeshInfoPanel({
           step={1}
           onChange={(v) => onTransformChange({ ...transform, rotation: v })}
         />
-        <div className="override-field">
-          <span className="override-field-label">Scale</span>
-          <div className="override-inputs">
-            <DraggableInput
-              axis=""
-              value={transform.scale}
-              step={0.01}
-              onChange={(v) => onTransformChange({ ...transform, scale: v })}
-            />
+        <Vec3Input
+          label="Scale"
+          value={transform.scale}
+          step={0.01}
+          onChange={(v) => onTransformChange({ ...transform, scale: v })}
+        />
+        {isFacePair && (
+          <div className="override-field">
+            <span
+              className="override-field-label"
+              title="Extra distance between left and right sides (meters). 0 = authored spacing; positive = wider; negative = closer."
+            >
+              {isEyes ? "Eye Dist" : "Pair Dist"}
+            </span>
+            <div className="override-inputs">
+              <DraggableInput
+                axis=""
+                value={pairSeparation}
+                step={0.001}
+                onChange={(v) =>
+                  onTransformChange({
+                    ...transform,
+                    eyeSeparation: parseFloat(Math.max(-0.05, Math.min(0.08, v)).toFixed(4)),
+                  })
+                }
+              />
+            </div>
           </div>
-        </div>
+        )}
+        {isEyes && (
+          <>
+            <Vec3Input
+              label="Eye Rot L"
+              value={eyeRotationL}
+              step={1}
+              onChange={(v) => onTransformChange({ ...transform, eyeRotationL: v })}
+            />
+            <Vec3Input
+              label="Eye Rot R"
+              value={eyeRotationR}
+              step={1}
+              onChange={(v) => onTransformChange({ ...transform, eyeRotationR: v })}
+            />
+          </>
+        )}
       </div>
     </div>
   );

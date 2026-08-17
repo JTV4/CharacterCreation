@@ -1,0 +1,53 @@
+GrindScape Male Assembled Modular — Assembly Report
+============================================================
+Source folder: /Users/stephenvillavaso/Desktop/Shells/BaseMale
+Reference armature: /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/viewer/public/models/BaseMaleV2.glb
+
+BODY_MODULAR:
+  - Body_Head: 1369 verts, 2592 faces
+  - Body_Upperbody: 1390 verts, 2663 faces
+  - Body_Hand_L: 685 verts, 1352 faces
+  - Body_Hand_R: 684 verts, 1349 faces
+  - Body_Lowerbody: 1380 verts, 2617 faces
+  - Body_Foot_L: 692 verts, 1333 faces
+  - Body_Foot_R: 695 verts, 1326 faces
+
+Vertices: 6895
+Triangles: 13232
+Materials (2): GS_Skin, GS_Underwear
+Bones: 65
+Bounds X -0.475..0.482  Y -0.163..0.227  Z 0.000..1.814
+Height: 1.814 m
+
+Modular hide: Head / Upperbody / Hand_L / Hand_R / Lowerbody / Foot_L / Foot_R
+Rig: shared Mixamo armature, automatic weights, ≤4 influences.
+Seams: caps opened, boundary radii matched, neighborhood smoothed.
+Materials: unified GS_Skin + GS_Underwear (+ eye mats).
+
+Blend: /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/GrindScape_Male_Assembled_Modular.blend
+GLB:   /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/GrindScape_Male_Assembled_Modular.glb
+Shots: /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots
+
+Re-import validation:
+  parts=['Body_Foot_L', 'Body_Foot_R', 'Body_Hand_L', 'Body_Hand_R', 'Body_Head', 'Body_Lowerbody', 'Body_Upperbody']
+  bones=65
+  height=1.814 centered=True
+  RESULT=PASS
+
+--- Aggressive seam repair follow-up ---
+Tried: repair_meshy_seams.py (Boolean + voxel remesh + project)
+       close_seams_aggressive.py (AABB snap + flare + remesh)
+
+Outcomes:
+  - Armature parent scale 0.01 initially crushed display if keep_transform omitted
+  - Whole-joint voxel remesh / cap-delete shredded wrists into needles and
+    damaged neck/ankle topology — not suitable as final geometry
+  - Deliverable restored to stable assemble_meshy_base_male.py baseline
+
+Recommended next step (manual in Blender, ~1–2 hrs sculpt):
+  1. Neck: proportional-edit flare head neck to torso collar; seat with overlap
+  2. Waist: translate lower into underwear; sculpt abdomen into waistband
+  3. Wrists: rebuild forearm end loops (do NOT delete large tip clusters);
+     match hand openings; sculpt blend
+  4. Ankles: match shin/foot loops; keep Body_Foot_L/R separate
+  Prefer sculpt smooth / shrinkwrap band over full-limb remesh.

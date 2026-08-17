@@ -56,11 +56,60 @@ MESHY_INPUT_REF = os.path.abspath(
 GLOVES_DIR = os.path.abspath("viewer/public/equipment/Female/Gloves")
 
 
-def _variant(name):
-    return {
+def _variant(name, axis_override=None):
+    """Build a piece entry.
+
+    `axis_override`, if set, skips the auto 48-combo and forces a specific
+    axis mapping.  Format:
+        {"perm": (0, 2, 1), "signs": (+1, +1, -1), "scale_anchor_mesh_axis": 0}
+
+    Fields:
+      perm   — tuple length 3.  body[XYZ] sources from meshy[perm[0..2]].
+      signs  — tuple length 3.  Per-axis sign flip after permutation.
+      scale_anchor_mesh_axis (optional, default = perm[1]):
+        Which meshy axis (0=X, 1=Y, 2=Z) to use as the uniform-scale anchor.
+        Default behaviour matches MIH's Y extent (the palm-to-fingertip dim)
+        against meshy[perm[1]].  Override this when the gauntlet's
+        palm-to-fingertip axis includes EXTRA geometry not present in MIH
+        (e.g. a sleeve/cuff that extends past the wrist):  pegging the
+        sleeve-extended axis to MIH's bare-hand reference shrinks the entire
+        gauntlet by the ratio of (sleeve-included length) / (bare-hand
+        length), so each hand comes out half-size.  Use the bilateral X
+        axis (0) instead — it represents the same hand-span in both Meshy
+        outputs and MIH, so the resulting scale puts the HAND region at the
+        correct dimensions and lets the sleeve extend naturally past it.
+
+    Used for the metal gauntlets:  Meshy normalised those exports with the
+    bilateral-X axis dominating (X=±1), so the auto-fitter greedily picks the
+    LONGEST non-X axis as the body-Y source — which collapses the gauntlet's
+    fingertip→sleeve direction into the 7 cm hand-vertical range and yields
+    a Z-squashed result.  Forcing the Ranged auto-pick `(0, 2, 1) / (+, +, -)`
+    (which is what the calibrator chooses for all 6 Ranged colours, also
+    derived from `meshy_input_hands`) preserves the gauntlet's shape;
+    anchoring scale on mesh-X keeps each hand at the real bare-hand size.
+    """
+    entry = {
         "src": os.path.join(GLOVES_DIR, f"{name}.glb"),
         "out": os.path.join(GLOVES_DIR, f"{name}Weighted.glb"),
     }
+    if axis_override is not None:
+        entry["axis_override"] = axis_override
+    return entry
+
+
+# Axis mapping for the metal gauntlets.  The Ranged-colour gloves auto-pick
+# perm XZY with signs (+, +, -) — and they were exported from Meshy starting
+# from the SAME `meshy_input_hands` shell as the metal gauntlets.  So the
+# metal gauntlets must use the SAME perm+signs to land in the correct
+# orientation.  Scale is anchored on meshy-X (the bilateral hand-span) rather
+# than the default perm[1] axis, because metal gauntlets have a cuff/sleeve
+# that lengthens the perm[1] axis past the bare-hand reference — using the
+# default would shrink the whole gauntlet by the sleeve-to-hand-length ratio.
+_METAL_AXIS_OVERRIDE = {
+    "perm":  (0, 2, 1),
+    "signs": (+1, +1, -1),
+    "scale_anchor_mesh_axis": 0,
+}
 
 
 # Each entry processes one Meshy-textured glove GLB through the return
@@ -72,6 +121,33 @@ PIECES = [
     _variant("BlackRangedGloves"),
     _variant("RedRangedGloves"),
     _variant("BlueRangedGloves"),
+    _variant("LeatherRangedGloves"),
+    # Metal armor gauntlets — re-uploaded to Meshy from the bare-hand
+    # `meshy_input_hands` shell (same as Mage gloves below), so the auto
+    # 48-combo calibrator now works without the previous _METAL_AXIS_OVERRIDE
+    # workaround.  The axis_override was needed when these were textured
+    # from a sleeve-extended shell; the new sleeveless versions calibrate
+    # cleanly with the default Y-axis scale anchor.
+    _variant("IronGloves"),
+    _variant("SteelGloves"),
+    _variant("GoldGloves"),
+    _variant("TitaniumGloves"),
+    _variant("TungstenGloves"),
+    _variant("LuminousGloves"),
+    # Magic Armor gloves — Meshy-textured from the same `meshy_input_hands`
+    # bilateral-hand shell as the Ranged colours.  No sleeve geometry, so
+    # the auto 48-combo + Y-axis scale anchor calibration works cleanly
+    # (no axis_override needed).
+    _variant("LeatherMageGloves"),
+    _variant("GreenMageGloves"),
+    _variant("BlueMageGloves"),
+    _variant("RedMageGloves"),
+    _variant("BlackMageGloves"),
+    _variant("PurpleMageGloves"),
+    # White Skin Textures shell hands — textured from a remeshed MIH-layout
+    # source.  Auto Y-anchor picks XYZ and squashes depth (avg dist ~1.9);
+    # force the same XZY / ++- / X-anchor mapping used by metal gauntlets.
+    _variant("WhiteSkinHands", axis_override=_METAL_AXIS_OVERRIDE),
 ]
 
 REGIONS = ["base_body_hands"]
@@ -146,7 +222,9 @@ def build_references():
     mih_verts = load_verts_from_glb(MESHY_INPUT_REF)
     mih_min, mih_max, mih_ctr = bounds_and_centroid(mih_verts)
     mih_centered = [v - mih_ctr for v in mih_verts]
+    mih_X_ext = mih_max.x - mih_min.x
     mih_Y_ext = mih_max.y - mih_min.y
+    mih_Z_ext = mih_max.z - mih_min.z
     print(f"  MeshyInputHands: {len(mih_verts)}v  "
           f"X=[{mih_min.x:.3f},{mih_max.x:.3f}]  "
           f"Y=[{mih_min.y:.3f},{mih_max.y:.3f}]  "
@@ -161,7 +239,9 @@ def build_references():
         "left_ctr": left_ctr,
         "right_ctr": right_ctr,
         "mih_kd": mih_kd,
+        "mih_X_ext": mih_X_ext,
         "mih_Y_ext": mih_Y_ext,
+        "mih_Z_ext": mih_Z_ext,
     }
 
 
@@ -241,40 +321,86 @@ def process_piece(piece, refs):
     sample = mv_centered[::step]
 
     mih_kd = refs["mih_kd"]
+    mih_X_ext = refs["mih_X_ext"]
     mih_Y_ext = refs["mih_Y_ext"]
+    mih_Z_ext = refs["mih_Z_ext"]
+    mih_ext_per_body_ax = (mih_X_ext, mih_Y_ext, mih_Z_ext)
 
-    best_score = float("inf")
-    best_perm = (0, 1, 2)
-    best_signs = (1, 1, 1)
-    best_scale = 1.0
+    axis_override = piece.get("axis_override")
+    if axis_override is not None:
+        # Forced mapping path — skip the 48-combo and use the caller's perm
+        # and signs.  uniform_scale is derived from the ratio of a CHOSEN
+        # mesh axis to its corresponding MIH body-axis extent.  Default is
+        # mesh axis perm[1] (= body Y source, MIH Y extent), but the caller
+        # can pick a different axis via `scale_anchor_mesh_axis` for cases
+        # where the chosen axis includes geometry NOT present in MIH (e.g.
+        # gauntlet sleeve extending past the bare-hand reference).
+        best_perm  = tuple(axis_override["perm"])
+        best_signs = tuple(axis_override["signs"])
+        anchor_mesh_ax = int(axis_override.get(
+            "scale_anchor_mesh_axis", best_perm[1]
+        ))
+        anchor_mesh_size = meshy_sizes[anchor_mesh_ax]
+        if anchor_mesh_size < 1e-6:
+            raise RuntimeError(
+                f"axis_override picks meshy axis {anchor_mesh_ax} with zero "
+                f"extent — cannot derive uniform scale"
+            )
+        anchor_body_ax = best_perm.index(anchor_mesh_ax)
+        anchor_mih_size = mih_ext_per_body_ax[anchor_body_ax]
+        best_scale = anchor_mih_size / anchor_mesh_size
 
-    for perm in itertools.permutations(range(3)):
-        for signs in itertools.product((-1, 1), repeat=3):
-            meshy_Y_axis = perm[1]
-            meshy_Y_size = meshy_sizes[meshy_Y_axis]
-            if meshy_Y_size < 1e-6:
-                continue
-            uniform_scale = mih_Y_ext / meshy_Y_size
+        # Compute the per-vert distance score the auto-fitter would have
+        # produced for this same mapping, purely as diagnostic telemetry.
+        total = 0.0
+        for mv in sample:
+            new_co = Vector((0.0, 0.0, 0.0))
+            for body_ax in range(3):
+                ma = best_perm[body_ax]
+                new_co[body_ax] = mv[ma] * best_signs[body_ax] * best_scale
+            _, _, dist = mih_kd.find(new_co)
+            total += dist
+        best_score = total
 
-            total = 0.0
-            for mv in sample:
-                new_co = Vector((0.0, 0.0, 0.0))
-                for body_ax in range(3):
-                    ma = perm[body_ax]
-                    new_co[body_ax] = mv[ma] * signs[body_ax] * uniform_scale
-                _, _, dist = mih_kd.find(new_co)
-                total += dist
-            if total < best_score:
-                best_score = total
-                best_perm = perm
-                best_signs = signs
-                best_scale = uniform_scale
+        axis_names_local = ["X", "Y", "Z"]
+        print(f"      scale anchor: mesh-{axis_names_local[anchor_mesh_ax]} "
+              f"(size={anchor_mesh_size:.4f}) -> "
+              f"MIH-{axis_names_local[anchor_body_ax]} "
+              f"(size={anchor_mih_size:.4f})  =>  scale={best_scale:.4f}")
+    else:
+        best_score = float("inf")
+        best_perm = (0, 1, 2)
+        best_signs = (1, 1, 1)
+        best_scale = 1.0
+
+        for perm in itertools.permutations(range(3)):
+            for signs in itertools.product((-1, 1), repeat=3):
+                meshy_Y_axis = perm[1]
+                meshy_Y_size = meshy_sizes[meshy_Y_axis]
+                if meshy_Y_size < 1e-6:
+                    continue
+                uniform_scale = mih_Y_ext / meshy_Y_size
+
+                total = 0.0
+                for mv in sample:
+                    new_co = Vector((0.0, 0.0, 0.0))
+                    for body_ax in range(3):
+                        ma = perm[body_ax]
+                        new_co[body_ax] = mv[ma] * signs[body_ax] * uniform_scale
+                    _, _, dist = mih_kd.find(new_co)
+                    total += dist
+                if total < best_score:
+                    best_score = total
+                    best_perm = perm
+                    best_signs = signs
+                    best_scale = uniform_scale
 
     axis_names = ["X", "Y", "Z"]
     perm_str = "".join(axis_names[i] for i in best_perm)
     sign_str = "".join("+" if s > 0 else "-" for s in best_signs)
     avg_dist = best_score / len(sample)
-    print(f"      Best axis mapping: body[XYZ] <- meshy[{perm_str}], "
+    mode_str = "FORCED" if axis_override is not None else "auto"
+    print(f"      Axis mapping ({mode_str}): body[XYZ] <- meshy[{perm_str}], "
           f"signs: {sign_str},  uniform_scale={best_scale:.4f}")
     print(f"      Avg sample distance to MeshyInputHands: {avg_dist:.4f}")
 
@@ -449,8 +575,20 @@ def main():
     print("=" * 60)
     refs = build_references()
 
+    only = None
+    for arg in sys.argv:
+        if arg.startswith("--only="):
+            raw = arg.split("=", 1)[1]
+            only = {p.strip() for p in raw.split(",") if p.strip()}
+
     ok = 0
+    skipped = 0
     for piece in PIECES:
+        if only is not None:
+            piece_name = os.path.splitext(os.path.basename(piece["src"]))[0]
+            if piece_name not in only:
+                skipped += 1
+                continue
         try:
             if process_piece(piece, refs):
                 ok += 1
@@ -458,7 +596,8 @@ def main():
             print(f"  ERROR processing {piece['src']}: {e}")
 
     print("=" * 60)
-    print(f"Finished: {ok}/{len(PIECES)} pieces")
+    print(f"Finished: {ok}/{len(PIECES) - skipped} pieces"
+          + (f" (skipped {skipped})" if skipped else ""))
     print("=" * 60)
     sys.stdout.flush()
 

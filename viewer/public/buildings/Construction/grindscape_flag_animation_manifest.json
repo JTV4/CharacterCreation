@@ -1,0 +1,197 @@
+{
+  "source": "GrindScapeFlag.glb",
+  "structureName": "GrindScape Flag",
+  "coordinateSystem": "Z-up",
+  "assembleAxis": "Z",
+  "pieces": [
+    {
+      "id": "flag_plinth",
+      "category": "Floor",
+      "staggerIndex": 0,
+      "spawnOffset": [
+        0.28,
+        0.0,
+        2.2
+      ],
+      "spawnYawDeg": 0.0,
+      "durationSec": 0.4
+    },
+    {
+      "id": "flag_body",
+      "category": "Floor",
+      "staggerIndex": 1,
+      "spawnOffset": [
+        0.28,
+        0.0,
+        2.2
+      ],
+      "spawnYawDeg": 6.44,
+      "durationSec": 0.4
+    },
+    {
+      "id": "flag_cap",
+      "category": "Wall",
+      "staggerIndex": 2,
+      "spawnOffset": [
+        0.28,
+        0.0,
+        2.2
+      ],
+      "spawnYawDeg": 9.85,
+      "durationSec": 0.4
+    },
+    {
+      "id": "flag_socket",
+      "category": "Wall",
+      "staggerIndex": 3,
+      "spawnOffset": [
+        0.28,
+        0.0,
+        2.2
+      ],
+      "spawnYawDeg": 8.63,
+      "durationSec": 0.4
+    },
+    {
+      "id": "flag_pole_low",
+      "category": "Wall",
+      "staggerIndex": 4,
+      "spawnOffset": [
+        0.28,
+        0.0,
+        2.2
+      ],
+      "spawnYawDeg": 3.35,
+      "durationSec": 0.4
+    },
+    {
+      "id": "flag_pole_mid",
+      "category": "Wall",
+      "staggerIndex": 5,
+      "spawnOffset": [
+        0.28,
+        0.0,
+        2.2
+      ],
+      "spawnYawDeg": -3.51,
+      "durationSec": 0.4
+    },
+    {
+      "id": "flag_pole_high",
+      "category": "Trim",
+      "staggerIndex": 6,
+      "spawnOffset": [
+        0.28,
+        0.0,
+        2.2
+      ],
+      "spawnYawDeg": -8.72,
+      "durationSec": 0.4
+    },
+    {
+      "id": "flag_finial",
+      "category": "Trim",
+      "staggerIndex": 7,
+      "spawnOffset": [
+        0.28,
+        0.0,
+        2.2
+      ],
+      "spawnYawDeg": -9.82,
+      "durationSec": 0.4
+    },
+    {
+      "id": "flag_cloth",
+      "category": "Roof",
+      "staggerIndex": 8,
+      "spawnOffset": [
+        0.2799,
+        0.0063,
+        2.2
+      ],
+      "spawnYawDeg": -6.31,
+      "durationSec": 0.4
+    }
+  ],
+  "stages": {
+    "foundation": [
+      "flag_plinth"
+    ],
+    "walls_a": [
+      "flag_plinth",
+      "flag_body"
+    ],
+    "walls_b": [
+      "flag_plinth",
+      "flag_body",
+      "flag_cap"
+    ],
+    "walls_c": [
+      "flag_plinth",
+      "flag_body",
+      "flag_cap",
+      "flag_socket"
+    ],
+    "walls_d": [
+      "flag_plinth",
+      "flag_body",
+      "flag_cap",
+      "flag_socket",
+      "flag_pole_low"
+    ],
+    "gable": [
+      "flag_plinth",
+      "flag_body",
+      "flag_cap",
+      "flag_socket",
+      "flag_pole_low",
+      "flag_pole_mid"
+    ],
+    "framing": [
+      "flag_plinth",
+      "flag_body",
+      "flag_cap",
+      "flag_socket",
+      "flag_pole_low",
+      "flag_pole_mid",
+      "flag_pole_high"
+    ],
+    "eaves": [
+      "flag_plinth",
+      "flag_body",
+      "flag_cap",
+      "flag_socket",
+      "flag_pole_low",
+      "flag_pole_mid",
+      "flag_pole_high",
+      "flag_finial"
+    ],
+    "complete": [
+      "flag_plinth",
+      "flag_body",
+      "flag_cap",
+      "flag_socket",
+      "flag_pole_low",
+      "flag_pole_mid",
+      "flag_pole_high",
+      "flag_finial",
+      "flag_cloth"
+    ]
+  },
+  "stageOrder": [
+    "foundation",
+    "walls_a",
+    "walls_b",
+    "walls_c",
+    "walls_d",
+    "gable",
+    "framing",
+    "eaves",
+    "complete"
+  ],
+  "tween": {
+    "staggerSec": 0.07,
+    "ease": "easeOutCubic",
+    "startScale": 0.92
+  }
+}

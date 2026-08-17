@@ -1,0 +1,581 @@
+{
+  "meta": {
+    "name": "NPCIdle",
+    "id": "NPCIdle",
+    "duration": 6.0,
+    "fps": 30,
+    "loop": true,
+    "absolute": false,
+    "_comment": "Idle for Meshy-rig NPCs.  Delta mode.  Constant arm-bone rotation deltas drop the arms from the rest T-pose to the side.  6-second breath/sway loop layers two rhythms: Spine/Spine01/Spine02/neck breathing rock + Hips Y bob (~0.8 cm peak-to-peak) for the breath; Hips Y/Z rotation weight-shift sway + multi-beat Head yaw/nod for the readable side-to-side motion the eye actually tracks.  Tracks omitted for legs, feet, toes, hands, and forearms \u2014 those sit at each character's own rest pose."
+  },
+  "tracks": [
+    {
+      "bone": "LeftArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.362233,
+            0.197454,
+            0.148483,
+            0.89875
+          ]
+        },
+        {
+          "time": 6.0,
+          "value": [
+            0.362233,
+            0.197454,
+            0.148483,
+            0.89875
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "LeftForeArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            -0.005284,
+            0.015493,
+            -0.077569,
+            0.996853
+          ]
+        },
+        {
+          "time": 6.0,
+          "value": [
+            -0.005284,
+            0.015493,
+            -0.077569,
+            0.996853
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "LeftHand",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.077442,
+            0.058269,
+            -0.023638,
+            0.995012
+          ]
+        },
+        {
+          "time": 6.0,
+          "value": [
+            0.077442,
+            0.058269,
+            -0.023638,
+            0.995012
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "LeftShoulder",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.136451,
+            0.083512,
+            0.068846,
+            0.984717
+          ]
+        },
+        {
+          "time": 6.0,
+          "value": [
+            0.136451,
+            0.083512,
+            0.068846,
+            0.984717
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "RightArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.268911,
+            -0.160981,
+            -0.20287,
+            0.927694
+          ]
+        },
+        {
+          "time": 6.0,
+          "value": [
+            0.268911,
+            -0.160981,
+            -0.20287,
+            0.927694
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "RightForeArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            -0.0044,
+            0.003529,
+            -0.02879,
+            0.99957
+          ]
+        },
+        {
+          "time": 6.0,
+          "value": [
+            -0.0044,
+            0.003529,
+            -0.02879,
+            0.99957
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "RightHand",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.051691,
+            -0.005514,
+            -0.01325,
+            0.99856
+          ]
+        },
+        {
+          "time": 6.0,
+          "value": [
+            0.051691,
+            -0.005514,
+            -0.01325,
+            0.99856
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "RightShoulder",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.143502,
+            -0.079925,
+            -0.022971,
+            0.98615
+          ]
+        },
+        {
+          "time": 6.0,
+          "value": [
+            0.143502,
+            -0.079925,
+            -0.022971,
+            0.98615
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "Spine",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 1.5,
+          "value": [
+            0.021815,
+            0.0,
+            0.0,
+            0.999762
+          ]
+        },
+        {
+          "time": 3.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 4.5,
+          "value": [
+            -0.010472,
+            -0.0,
+            -0.0,
+            0.999945
+          ]
+        },
+        {
+          "time": 6.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "Spine01",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 1.5,
+          "value": [
+            0.012217,
+            0.0,
+            0.0,
+            0.999925
+          ]
+        },
+        {
+          "time": 3.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 4.5,
+          "value": [
+            -0.005236,
+            -0.0,
+            -0.0,
+            0.999986
+          ]
+        },
+        {
+          "time": 6.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "Spine02",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 1.5,
+          "value": [
+            0.006981,
+            0.0,
+            0.0,
+            0.999976
+          ]
+        },
+        {
+          "time": 3.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 4.5,
+          "value": [
+            -0.003491,
+            -0.0,
+            -0.0,
+            0.999994
+          ]
+        },
+        {
+          "time": 6.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "neck",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 1.5,
+          "value": [
+            -0.01309,
+            -0.0,
+            -0.0,
+            0.999914
+          ]
+        },
+        {
+          "time": 3.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 4.5,
+          "value": [
+            0.006981,
+            0.0,
+            0.0,
+            0.999976
+          ]
+        },
+        {
+          "time": 6.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "Head",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 1.2,
+          "value": [
+            0.0,
+            0.026177,
+            0.0,
+            0.999657
+          ]
+        },
+        {
+          "time": 2.4,
+          "value": [
+            0.010472,
+            0.0,
+            0.0,
+            0.999945
+          ]
+        },
+        {
+          "time": 3.6,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 4.8,
+          "value": [
+            -0.0,
+            -0.021815,
+            -0.0,
+            0.999762
+          ]
+        },
+        {
+          "time": 6.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "Hips",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 1.5,
+          "value": [
+            -0.000152,
+            0.017452,
+            -0.008725,
+            0.99981
+          ]
+        },
+        {
+          "time": 3.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 4.5,
+          "value": [
+            -0.000152,
+            -0.017452,
+            0.008725,
+            0.99981
+          ]
+        },
+        {
+          "time": 6.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "Hips",
+      "property": "position",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "time": 1.5,
+          "value": [
+            0.0,
+            -0.8,
+            0.0
+          ]
+        },
+        {
+          "time": 3.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "time": 4.5,
+          "value": [
+            0.0,
+            0.4,
+            0.0
+          ]
+        },
+        {
+          "time": 6.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    }
+  ]
+}

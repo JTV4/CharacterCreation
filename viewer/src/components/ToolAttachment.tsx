@@ -5,6 +5,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { TransformControls } from "@react-three/drei";
 import type { AnimationPlayerState } from "../hooks/useAnimationPlayer";
 import type { ToolDefinition, ToolTransform, GizmoMode } from "../types/tools";
+import VesselLiquid, { VESSEL_LIQUID_BY_TOOL } from "./VesselLiquid";
 
 interface ToolAttachmentProps {
   tool: ToolDefinition;
@@ -148,6 +149,9 @@ export default function ToolAttachment({
       <group ref={boneGroupRef}>
         <group ref={offsetCallback}>
           <primitive object={model} />
+          {VESSEL_LIQUID_BY_TOOL[tool.id] && (
+            <VesselLiquid config={VESSEL_LIQUID_BY_TOOL[tool.id]} playerRef={playerRef} />
+          )}
         </group>
       </group>
       {offsetObj && (

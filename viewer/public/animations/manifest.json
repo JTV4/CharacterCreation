@@ -1,27 +1,483 @@
 {
   "characters": [
-    { "id": "BaseFemale", "model": "BaseFemale.glb", "defaultAnimation": "FemaleIdle" },
-    { "id": "BaseFemaleV2", "model": "BaseFemaleV2.glb", "defaultAnimation": "FemaleIdle" },
-    { "id": "BaseMale", "model": "BaseMale.glb", "defaultAnimation": "MaleIdle" }
+    {
+      "id": "BaseFemale",
+      "model": "BaseFemale.glb",
+      "defaultAnimation": "FemaleIdle"
+    },
+    {
+      "id": "BaseFemaleV2",
+      "model": "BaseFemaleV2.glb",
+      "defaultAnimation": "FemaleIdle"
+    },
+    {
+      "id": "BaseFemaleV3",
+      "model": "BaseFemaleV3.glb",
+      "defaultAnimation": "FemaleIdle"
+    },
+    {
+      "id": "BaseMale",
+      "model": "BaseMale.glb",
+      "defaultAnimation": "MaleIdle"
+    },
+    {
+      "id": "ApothecaryBlackFemale",
+      "model": "../NPCs/BlackFemale/ApothecaryBlackFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ApothecaryBlackMale",
+      "model": "../NPCs/BlackMale/ApothecaryBlackMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ApothecaryWhiteFemale",
+      "model": "../NPCs/WhiteFemale/ApothecaryWhiteFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ApothecaryWhiteMale",
+      "model": "../NPCs/WhiteMale/ApothecaryWhiteMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "BankerBlackFemale",
+      "model": "../NPCs/BlackFemale/BankerBlackFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "BankerBlackMale",
+      "model": "../NPCs/BlackMale/BankerBlackMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "BankerWhiteFemale",
+      "model": "../NPCs/WhiteFemale/BankerWhiteFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "BankerWhiteMale",
+      "model": "../NPCs/WhiteMale/BankerWhiteMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "BlaiseBlackFemale",
+      "model": "../NPCs/BlackFemale/BlaiseBlackFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "BlaiseBlackMale",
+      "model": "../NPCs/BlackMale/BlaiseBlackMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "BlaiseWhiteFemale",
+      "model": "../NPCs/WhiteFemale/BlaiseWhiteFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "BlaiseWhiteMale",
+      "model": "../NPCs/WhiteMale/BlaiseWhiteMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ChipBlackFemale",
+      "model": "../NPCs/BlackFemale/ChipBlackFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ChipBlackMale",
+      "model": "../NPCs/BlackMale/ChipBlackMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ChipWhiteMale",
+      "model": "../NPCs/WhiteMale/ChipWhiteMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ChronocrafterBlackFemale",
+      "model": "../NPCs/BlackFemale/ChronocrafterBlackFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ChronocrafterBlackMale",
+      "model": "../NPCs/BlackMale/ChronocrafterBlackMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ChronocrafterWhiteFemale",
+      "model": "../NPCs/WhiteFemale/ChronocrafterWhiteFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ChronocrafterWhiteMale",
+      "model": "../NPCs/WhiteMale/ChronocrafterWhiteMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ColeBlackMale",
+      "model": "../NPCs/BlackMale/ColeBlackMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ColeWhiteFemale",
+      "model": "../NPCs/WhiteFemale/ColeWhiteFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ColeWhiteMale",
+      "model": "../NPCs/WhiteMale/ColeWhiteMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "FarmerBlackFemale",
+      "model": "../NPCs/BlackFemale/FarmerBlackFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "FarmerBlackMale",
+      "model": "../NPCs/BlackMale/FarmerBlackMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "FarmerWhiteFemale",
+      "model": "../NPCs/WhiteFemale/FarmerWhiteFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "FarmerWhiteMale",
+      "model": "../NPCs/WhiteMale/FarmerWhiteMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "FinnBlackFemale",
+      "model": "../NPCs/BlackFemale/FinnBlackFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "FinnBlackMale",
+      "model": "../NPCs/BlackMale/FinnBlackMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "FinnWhiteMale",
+      "model": "../NPCs/WhiteMale/FinnWhiteMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "HopperBlackFemale",
+      "model": "../NPCs/BlackFemale/HopperBlackFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "HopperBlackMale",
+      "model": "../NPCs/BlackMale/HopperBlackMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "HopperWhiteFemale",
+      "model": "../NPCs/WhiteFemale/HopperWhiteFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "HopperWhiteMale",
+      "model": "../NPCs/WhiteMale/HopperWhiteMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "HunterBlackFemale",
+      "model": "../NPCs/BlackFemale/HunterBlackFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "HunterBlackMale",
+      "model": "../NPCs/BlackMale/HunterBlackMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "HunterWhiteFemale",
+      "model": "../NPCs/WhiteFemale/HunterWhiteFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "HunterWhiteMale",
+      "model": "../NPCs/WhiteMale/HunterWhiteMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "MannyBlackFemale",
+      "model": "../NPCs/BlackFemale/MannyBlackFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "MannyBlackMale",
+      "model": "../NPCs/BlackMale/MannyBlackMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "MannyWhiteMale",
+      "model": "../NPCs/WhiteMale/MannyWhiteMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "MarinaWhiteFemale",
+      "model": "../NPCs/WhiteFemale/MarinaWhiteFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "MerchantBlackFemale",
+      "model": "../NPCs/BlackFemale/MerchantBlackFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "MerchantBlackMale",
+      "model": "../NPCs/BlackMale/MerchantBlackMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "MerchantWhiteFemale",
+      "model": "../NPCs/WhiteFemale/MerchantWhiteFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "MerchantWhiteMale",
+      "model": "../NPCs/WhiteMale/MerchantWhiteMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "MillyWhiteFemale",
+      "model": "../NPCs/WhiteFemale/MillyWhiteFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "PyromaniacBlackFemale",
+      "model": "../NPCs/BlackFemale/PyromaniacBlackFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "PyromaniacBlackMale",
+      "model": "../NPCs/BlackMale/PyromaniacBlackMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "PyromaniacWhiteFemale",
+      "model": "../NPCs/WhiteFemale/PyromaniacWhiteFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "PyromaniacWhiteMale",
+      "model": "../NPCs/WhiteMale/PyromaniacWhiteMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "RubenBlackFemale",
+      "model": "../NPCs/BlackFemale/RubenBlackFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "RubenBlackMale",
+      "model": "../NPCs/BlackMale/RubenBlackMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "RubenWhiteFemale",
+      "model": "../NPCs/WhiteFemale/RubenWhiteFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "RubenWhiteMale",
+      "model": "../NPCs/WhiteMale/RubenWhiteMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ScavengerBlackFemale",
+      "model": "../NPCs/BlackFemale/ScavengerBlackFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ScavengerBlackMale",
+      "model": "../NPCs/BlackMale/ScavengerBlackMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ScavengerWhiteFemale",
+      "model": "../NPCs/WhiteFemale/ScavengerWhiteFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "ScavengerWhiteMale",
+      "model": "../NPCs/WhiteMale/ScavengerWhiteMale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "SlateBlackFemale",
+      "model": "../NPCs/BlackFemale/SlateBlackFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    },
+    {
+      "id": "WillowWhiteFemale",
+      "model": "../NPCs/WhiteFemale/WillowWhiteFemale.glb",
+      "defaultAnimation": "NPCIdle"
+    }
   ],
   "animations": [
-    { "id": "FemaleIdle", "file": "FemaleIdle.anim.json", "loop": true },
-    { "id": "FemaleWalk", "file": "FemaleWalk.anim.json", "loop": true },
-    { "id": "FemaleRun", "file": "FemaleRun.anim.json", "loop": true },
-    { "id": "FemaleWoodcutting", "file": "FemaleWoodcutting.anim.json", "loop": true },
-    { "id": "FemaleFishing", "file": "FemaleFishing.anim.json", "loop": true },
-    { "id": "FemaleMining", "file": "FemaleMining.anim.json", "loop": true },
-    { "id": "FemaleFarming", "file": "FemaleFarming.anim.json", "loop": true },
-    { "id": "FemaleForging", "file": "FemaleForging.anim.json", "loop": true },
-    { "id": "FemaleSmelting", "file": "FemaleSmelting.anim.json", "loop": true },
-    { "id": "FemaleCarving", "file": "FemaleCarving.anim.json", "loop": true },
-    { "id": "FemaleApothecary", "file": "FemaleApothecary.anim.json", "loop": true },
-    { "id": "FemaleFireStarting", "file": "FemaleFireStarting.anim.json", "loop": true },
-    { "id": "FemaleAddLogs", "file": "FemaleAddLogs.anim.json", "loop": true },
-    { "id": "FemaleSwordSwing", "file": "FemaleSwordSwing.anim.json", "loop": true },
-    { "id": "FemaleMagicCast", "file": "FemaleMagicCast.anim.json", "loop": true },
-    { "id": "FemaleRangedAttack", "file": "FemaleRangedAttack.anim.json", "loop": true },
-    { "id": "FemalePunch", "file": "FemalePunch.anim.json", "loop": true },
-    { "id": "FemaleKick", "file": "FemaleKick.anim.json", "loop": true }
+    {
+      "id": "NPCIdle",
+      "file": "NPCIdle.anim.json",
+      "loop": true,
+      "category": "npc"
+    },
+    {
+      "id": "NPCWalk",
+      "file": "NPCWalk.anim.json",
+      "loop": true,
+      "category": "npc"
+    },
+    {
+      "id": "FemaleIdle",
+      "file": "FemaleIdle.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleWalk",
+      "file": "FemaleWalk.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleWalkV2",
+      "file": "FemaleWalkV2.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleWalkV3",
+      "file": "FemaleWalkV3.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleRun",
+      "file": "FemaleRun.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleRunV2",
+      "file": "FemaleRunV2.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleRunV3",
+      "file": "FemaleRunV3.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleWoodcutting",
+      "file": "FemaleWoodcutting.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleFishing",
+      "file": "FemaleFishing.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleMining",
+      "file": "FemaleMining.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleFarming",
+      "file": "FemaleFarming.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleWatering",
+      "file": "FemaleWatering.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleBucketPour",
+      "file": "FemaleBucketPour.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleForging",
+      "file": "FemaleForging.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleSmelting",
+      "file": "FemaleSmelting.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleCarving",
+      "file": "FemaleCarving.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleApothecary",
+      "file": "FemaleApothecary.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleWellFill",
+      "file": "FemaleWellFill.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleFireStarting",
+      "file": "FemaleFireStarting.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleAddLogs",
+      "file": "FemaleAddLogs.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleSwordSwing",
+      "file": "FemaleSwordSwing.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleMagicCast",
+      "file": "FemaleMagicCast.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleRangedAttack",
+      "file": "FemaleRangedAttack.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemalePunch",
+      "file": "FemalePunch.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleKick",
+      "file": "FemaleKick.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleDeath",
+      "file": "FemaleDeath.anim.json",
+      "loop": false
+    },
+    {
+      "id": "FemaleHammerKneel",
+      "file": "FemaleHammerKneel.anim.json",
+      "loop": false
+    },
+    {
+      "id": "FemaleHammering",
+      "file": "FemaleHammering.anim.json",
+      "loop": true
+    },
+    {
+      "id": "FemaleHammerStand",
+      "file": "FemaleHammerStand.anim.json",
+      "loop": false
+    }
   ]
 }

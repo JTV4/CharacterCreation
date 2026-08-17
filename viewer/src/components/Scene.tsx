@@ -1,5 +1,5 @@
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
-import { OrbitControls, Grid, Text } from "@react-three/drei";
+import { OrbitControls, Grid, Text, Environment } from "@react-three/drei";
 import { useRef, useCallback } from "react";
 import * as THREE from "three";
 import SkeletonViewer from "./SkeletonViewer";
@@ -118,11 +118,17 @@ export default function Scene({
           camera.up.set(0, 0, 1);
         }}
       >
-        <ambientLight intensity={0.7} />
-        <hemisphereLight args={["#b1c4e0", "#3a3028", 0.6]} />
-        <directionalLight position={[5, 8, 5]} intensity={1.5} />
-        <directionalLight position={[-3, 4, -2]} intensity={0.6} />
-        <directionalLight position={[0, -5, 3]} intensity={0.4} />
+        {/* Balanced 4-cardinal lighting rig: equal directional intensity */}
+        {/* from +Y / -Y / +X / -X (all slightly elevated on Z) so no side */}
+        {/* of the character is brighter than another.  HDRI is left at a */}
+        {/* very low intensity purely to give metals their environment */}
+        {/* reflection — it contributes negligible diffuse lighting. */}
+        <ambientLight intensity={0.4} />
+        <Environment preset="studio" environmentIntensity={0.15} />
+        <directionalLight position={[0, 8, 3]}  intensity={0.7} />
+        <directionalLight position={[0, -8, 3]} intensity={0.7} />
+        <directionalLight position={[8, 0, 3]}  intensity={0.7} />
+        <directionalLight position={[-8, 0, 3]} intensity={0.7} />
 
         <Grid
           args={[10, 10]}

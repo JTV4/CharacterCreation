@@ -1,0 +1,629 @@
+{
+  "source": "CowFence.glb",
+  "structureName": "Cow Fence Animation",
+  "coordinateSystem": "Z-up",
+  "buildPath": "gate_gap_ccw",
+  "pieces": [
+    {
+      "id": "BA_Wall_27",
+      "category": "Wall",
+      "staggerIndex": 0,
+      "spawnOffset": [
+        -0.1116,
+        0.5385,
+        2.8
+      ],
+      "spawnYawDeg": -3.18,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_28",
+      "category": "Wall",
+      "staggerIndex": 1,
+      "spawnOffset": [
+        -0.2106,
+        0.5081,
+        2.8
+      ],
+      "spawnYawDeg": -5.66,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_29",
+      "category": "Wall",
+      "staggerIndex": 2,
+      "spawnOffset": [
+        -0.3058,
+        0.4572,
+        2.8
+      ],
+      "spawnYawDeg": -7.39,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_30",
+      "category": "Wall",
+      "staggerIndex": 3,
+      "spawnOffset": [
+        -0.3902,
+        0.3877,
+        2.8
+      ],
+      "spawnYawDeg": -8.0,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_31",
+      "category": "Wall",
+      "staggerIndex": 4,
+      "spawnOffset": [
+        -0.4566,
+        0.3066,
+        2.8
+      ],
+      "spawnYawDeg": -7.41,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_32",
+      "category": "Wall",
+      "staggerIndex": 5,
+      "spawnOffset": [
+        -0.5072,
+        0.2127,
+        2.8
+      ],
+      "spawnYawDeg": -5.71,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_33",
+      "category": "Wall",
+      "staggerIndex": 6,
+      "spawnOffset": [
+        -0.5425,
+        0.0907,
+        2.8
+      ],
+      "spawnYawDeg": -2.6,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_34",
+      "category": "Wall",
+      "staggerIndex": 7,
+      "spawnOffset": [
+        -0.55,
+        -0.0005,
+        2.8
+      ],
+      "spawnYawDeg": 0.02,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_01",
+      "category": "Wall",
+      "staggerIndex": 8,
+      "spawnOffset": [
+        -0.5423,
+        -0.0916,
+        2.8
+      ],
+      "spawnYawDeg": 2.63,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_02",
+      "category": "Wall",
+      "staggerIndex": 9,
+      "spawnOffset": [
+        -0.5069,
+        -0.2134,
+        2.8
+      ],
+      "spawnYawDeg": 5.72,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_03",
+      "category": "Wall",
+      "staggerIndex": 10,
+      "spawnOffset": [
+        -0.4563,
+        -0.3071,
+        2.8
+      ],
+      "spawnYawDeg": 7.41,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_04",
+      "category": "Wall",
+      "staggerIndex": 11,
+      "spawnOffset": [
+        -0.3875,
+        -0.3904,
+        2.8
+      ],
+      "spawnYawDeg": 8.0,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_05",
+      "category": "Wall",
+      "staggerIndex": 12,
+      "spawnOffset": [
+        -0.3073,
+        -0.4561,
+        2.8
+      ],
+      "spawnYawDeg": 7.41,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_06",
+      "category": "Wall",
+      "staggerIndex": 13,
+      "spawnOffset": [
+        -0.2146,
+        -0.5064,
+        2.8
+      ],
+      "spawnYawDeg": 5.75,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_07",
+      "category": "Wall",
+      "staggerIndex": 14,
+      "spawnOffset": [
+        -0.0944,
+        -0.5418,
+        2.8
+      ],
+      "spawnYawDeg": 2.7,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_08",
+      "category": "Wall",
+      "staggerIndex": 15,
+      "spawnOffset": [
+        0.0415,
+        -0.5484,
+        2.8
+      ],
+      "spawnYawDeg": -1.2,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_09",
+      "category": "Wall",
+      "staggerIndex": 16,
+      "spawnOffset": [
+        0.1701,
+        -0.523,
+        2.8
+      ],
+      "spawnYawDeg": -4.71,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_10",
+      "category": "Wall",
+      "staggerIndex": 17,
+      "spawnOffset": [
+        0.2741,
+        -0.4768,
+        2.8
+      ],
+      "spawnYawDeg": -6.91,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_11",
+      "category": "Wall",
+      "staggerIndex": 18,
+      "spawnOffset": [
+        0.3498,
+        -0.4244,
+        2.8
+      ],
+      "spawnYawDeg": -7.85,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_12",
+      "category": "Wall",
+      "staggerIndex": 19,
+      "spawnOffset": [
+        0.3885,
+        -0.3894,
+        2.8
+      ],
+      "spawnYawDeg": -8.0,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_13",
+      "category": "Wall",
+      "staggerIndex": 20,
+      "spawnOffset": [
+        0.4331,
+        -0.339,
+        2.8
+      ],
+      "spawnYawDeg": -7.77,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_14",
+      "category": "Wall",
+      "staggerIndex": 21,
+      "spawnOffset": [
+        0.4685,
+        -0.2881,
+        2.8
+      ],
+      "spawnYawDeg": -7.14,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_15",
+      "category": "Wall",
+      "staggerIndex": 22,
+      "spawnOffset": [
+        0.498,
+        -0.2335,
+        2.8
+      ],
+      "spawnYawDeg": -6.15,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_16",
+      "category": "Wall",
+      "staggerIndex": 23,
+      "spawnOffset": [
+        0.5149,
+        -0.1933,
+        2.8
+      ],
+      "spawnYawDeg": -5.26,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_17",
+      "category": "Wall",
+      "staggerIndex": 24,
+      "spawnOffset": [
+        0.5317,
+        -0.1407,
+        2.8
+      ],
+      "spawnYawDeg": -3.96,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_18",
+      "category": "Wall",
+      "staggerIndex": 25,
+      "spawnOffset": [
+        0.5453,
+        -0.072,
+        2.8
+      ],
+      "spawnYawDeg": -2.08,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_19",
+      "category": "Wall",
+      "staggerIndex": 26,
+      "spawnOffset": [
+        0.5498,
+        0.0147,
+        2.8
+      ],
+      "spawnYawDeg": 0.43,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_20",
+      "category": "Wall",
+      "staggerIndex": 27,
+      "spawnOffset": [
+        0.5362,
+        0.1224,
+        2.8
+      ],
+      "spawnYawDeg": 3.47,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_21",
+      "category": "Wall",
+      "staggerIndex": 28,
+      "spawnOffset": [
+        0.4949,
+        0.2399,
+        2.8
+      ],
+      "spawnYawDeg": 6.28,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_22",
+      "category": "Wall",
+      "staggerIndex": 29,
+      "spawnOffset": [
+        0.4429,
+        0.3262,
+        2.8
+      ],
+      "spawnYawDeg": 7.64,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_23",
+      "category": "Wall",
+      "staggerIndex": 30,
+      "spawnOffset": [
+        0.3906,
+        0.3872,
+        2.8
+      ],
+      "spawnYawDeg": 8.0,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_24",
+      "category": "Wall",
+      "staggerIndex": 31,
+      "spawnOffset": [
+        0.3067,
+        0.4565,
+        2.8
+      ],
+      "spawnYawDeg": 7.41,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_25",
+      "category": "Wall",
+      "staggerIndex": 32,
+      "spawnOffset": [
+        0.2117,
+        0.5076,
+        2.8
+      ],
+      "spawnYawDeg": 5.68,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_26",
+      "category": "Wall",
+      "staggerIndex": 33,
+      "spawnOffset": [
+        0.1127,
+        0.5383,
+        2.8
+      ],
+      "spawnYawDeg": 3.21,
+      "durationSec": 0.4
+    }
+  ],
+  "stages": {
+    "foundation": [
+      "BA_Wall_27",
+      "BA_Wall_28",
+      "BA_Wall_29",
+      "BA_Wall_30"
+    ],
+    "walls_a": [
+      "BA_Wall_27",
+      "BA_Wall_28",
+      "BA_Wall_29",
+      "BA_Wall_30",
+      "BA_Wall_31",
+      "BA_Wall_32",
+      "BA_Wall_33",
+      "BA_Wall_34"
+    ],
+    "walls_b": [
+      "BA_Wall_27",
+      "BA_Wall_28",
+      "BA_Wall_29",
+      "BA_Wall_30",
+      "BA_Wall_31",
+      "BA_Wall_32",
+      "BA_Wall_33",
+      "BA_Wall_34",
+      "BA_Wall_01",
+      "BA_Wall_02",
+      "BA_Wall_03",
+      "BA_Wall_04"
+    ],
+    "walls_c": [
+      "BA_Wall_27",
+      "BA_Wall_28",
+      "BA_Wall_29",
+      "BA_Wall_30",
+      "BA_Wall_31",
+      "BA_Wall_32",
+      "BA_Wall_33",
+      "BA_Wall_34",
+      "BA_Wall_01",
+      "BA_Wall_02",
+      "BA_Wall_03",
+      "BA_Wall_04",
+      "BA_Wall_05",
+      "BA_Wall_06",
+      "BA_Wall_07",
+      "BA_Wall_08"
+    ],
+    "walls_d": [
+      "BA_Wall_27",
+      "BA_Wall_28",
+      "BA_Wall_29",
+      "BA_Wall_30",
+      "BA_Wall_31",
+      "BA_Wall_32",
+      "BA_Wall_33",
+      "BA_Wall_34",
+      "BA_Wall_01",
+      "BA_Wall_02",
+      "BA_Wall_03",
+      "BA_Wall_04",
+      "BA_Wall_05",
+      "BA_Wall_06",
+      "BA_Wall_07",
+      "BA_Wall_08",
+      "BA_Wall_09",
+      "BA_Wall_10",
+      "BA_Wall_11",
+      "BA_Wall_12"
+    ],
+    "gable": [
+      "BA_Wall_27",
+      "BA_Wall_28",
+      "BA_Wall_29",
+      "BA_Wall_30",
+      "BA_Wall_31",
+      "BA_Wall_32",
+      "BA_Wall_33",
+      "BA_Wall_34",
+      "BA_Wall_01",
+      "BA_Wall_02",
+      "BA_Wall_03",
+      "BA_Wall_04",
+      "BA_Wall_05",
+      "BA_Wall_06",
+      "BA_Wall_07",
+      "BA_Wall_08",
+      "BA_Wall_09",
+      "BA_Wall_10",
+      "BA_Wall_11",
+      "BA_Wall_12",
+      "BA_Wall_13",
+      "BA_Wall_14",
+      "BA_Wall_15",
+      "BA_Wall_16"
+    ],
+    "framing": [
+      "BA_Wall_27",
+      "BA_Wall_28",
+      "BA_Wall_29",
+      "BA_Wall_30",
+      "BA_Wall_31",
+      "BA_Wall_32",
+      "BA_Wall_33",
+      "BA_Wall_34",
+      "BA_Wall_01",
+      "BA_Wall_02",
+      "BA_Wall_03",
+      "BA_Wall_04",
+      "BA_Wall_05",
+      "BA_Wall_06",
+      "BA_Wall_07",
+      "BA_Wall_08",
+      "BA_Wall_09",
+      "BA_Wall_10",
+      "BA_Wall_11",
+      "BA_Wall_12",
+      "BA_Wall_13",
+      "BA_Wall_14",
+      "BA_Wall_15",
+      "BA_Wall_16",
+      "BA_Wall_17",
+      "BA_Wall_18",
+      "BA_Wall_19",
+      "BA_Wall_20"
+    ],
+    "eaves": [
+      "BA_Wall_27",
+      "BA_Wall_28",
+      "BA_Wall_29",
+      "BA_Wall_30",
+      "BA_Wall_31",
+      "BA_Wall_32",
+      "BA_Wall_33",
+      "BA_Wall_34",
+      "BA_Wall_01",
+      "BA_Wall_02",
+      "BA_Wall_03",
+      "BA_Wall_04",
+      "BA_Wall_05",
+      "BA_Wall_06",
+      "BA_Wall_07",
+      "BA_Wall_08",
+      "BA_Wall_09",
+      "BA_Wall_10",
+      "BA_Wall_11",
+      "BA_Wall_12",
+      "BA_Wall_13",
+      "BA_Wall_14",
+      "BA_Wall_15",
+      "BA_Wall_16",
+      "BA_Wall_17",
+      "BA_Wall_18",
+      "BA_Wall_19",
+      "BA_Wall_20",
+      "BA_Wall_21",
+      "BA_Wall_22",
+      "BA_Wall_23"
+    ],
+    "complete": [
+      "BA_Wall_27",
+      "BA_Wall_28",
+      "BA_Wall_29",
+      "BA_Wall_30",
+      "BA_Wall_31",
+      "BA_Wall_32",
+      "BA_Wall_33",
+      "BA_Wall_34",
+      "BA_Wall_01",
+      "BA_Wall_02",
+      "BA_Wall_03",
+      "BA_Wall_04",
+      "BA_Wall_05",
+      "BA_Wall_06",
+      "BA_Wall_07",
+      "BA_Wall_08",
+      "BA_Wall_09",
+      "BA_Wall_10",
+      "BA_Wall_11",
+      "BA_Wall_12",
+      "BA_Wall_13",
+      "BA_Wall_14",
+      "BA_Wall_15",
+      "BA_Wall_16",
+      "BA_Wall_17",
+      "BA_Wall_18",
+      "BA_Wall_19",
+      "BA_Wall_20",
+      "BA_Wall_21",
+      "BA_Wall_22",
+      "BA_Wall_23",
+      "BA_Wall_24",
+      "BA_Wall_25",
+      "BA_Wall_26"
+    ]
+  },
+  "stageOrder": [
+    "foundation",
+    "walls_a",
+    "walls_b",
+    "walls_c",
+    "walls_d",
+    "gable",
+    "framing",
+    "eaves",
+    "complete"
+  ],
+  "tween": {
+    "staggerSec": 0.05,
+    "ease": "easeOutCubic",
+    "startScale": 0.92
+  }
+}

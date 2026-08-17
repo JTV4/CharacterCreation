@@ -1,0 +1,206 @@
+{
+  "source": "Building8Whole.glb",
+  "structureName": "Chronocrafting Animation",
+  "coordinateSystem": "Z-up",
+  "pieces": [
+    {
+      "id": "BA_Floor_01",
+      "category": "Floor",
+      "staggerIndex": 0,
+      "spawnOffset": [
+        -0.0378,
+        0.5487,
+        2.8
+      ],
+      "spawnYawDeg": -11.75,
+      "durationSec": 0.45
+    },
+    {
+      "id": "BA_Wall_02",
+      "category": "Wall",
+      "staggerIndex": 1,
+      "spawnOffset": [
+        0.0036,
+        -0.55,
+        2.8
+      ],
+      "spawnYawDeg": 12.0,
+      "durationSec": 0.45
+    },
+    {
+      "id": "BA_Wall_04",
+      "category": "Wall",
+      "staggerIndex": 2,
+      "spawnOffset": [
+        0.545,
+        -0.074,
+        2.8
+      ],
+      "spawnYawDeg": -4.73,
+      "durationSec": 0.45
+    },
+    {
+      "id": "BA_Wall_03",
+      "category": "Wall",
+      "staggerIndex": 3,
+      "spawnOffset": [
+        0.0,
+        -0.55,
+        2.8
+      ],
+      "spawnYawDeg": 12.0,
+      "durationSec": 0.45
+    },
+    {
+      "id": "BA_Wall_01",
+      "category": "Wall",
+      "staggerIndex": 4,
+      "spawnOffset": [
+        0.55,
+        0.0,
+        2.8
+      ],
+      "spawnYawDeg": 0.0,
+      "durationSec": 0.45
+    },
+    {
+      "id": "BA_Trim_02",
+      "category": "Trim",
+      "staggerIndex": 5,
+      "spawnOffset": [
+        -0.0012,
+        -0.55,
+        2.8
+      ],
+      "spawnYawDeg": 12.0,
+      "durationSec": 0.45
+    },
+    {
+      "id": "BA_Trim_01",
+      "category": "Trim",
+      "staggerIndex": 6,
+      "spawnOffset": [
+        -0.0668,
+        -0.5459,
+        2.8
+      ],
+      "spawnYawDeg": 11.21,
+      "durationSec": 0.45
+    },
+    {
+      "id": "BA_Trim_03",
+      "category": "Trim",
+      "staggerIndex": 7,
+      "spawnOffset": [
+        0.55,
+        0.0,
+        2.8
+      ],
+      "spawnYawDeg": 0.0,
+      "durationSec": 0.45
+    },
+    {
+      "id": "BA_Roof_01",
+      "category": "Roof",
+      "staggerIndex": 8,
+      "spawnOffset": [
+        0.55,
+        0.0,
+        2.8
+      ],
+      "spawnYawDeg": 0.0,
+      "durationSec": 0.45
+    },
+    {
+      "id": "BA_Roof_02",
+      "category": "Roof",
+      "staggerIndex": 9,
+      "spawnOffset": [
+        0.55,
+        0.0,
+        2.8
+      ],
+      "spawnYawDeg": 0.0,
+      "durationSec": 0.45
+    }
+  ],
+  "stages": {
+    "foundation": [
+      "BA_Floor_01"
+    ],
+    "walls_a": [
+      "BA_Floor_01",
+      "BA_Wall_02"
+    ],
+    "walls_b": [
+      "BA_Floor_01",
+      "BA_Wall_02",
+      "BA_Wall_04"
+    ],
+    "walls_c": [
+      "BA_Floor_01",
+      "BA_Wall_02",
+      "BA_Wall_04",
+      "BA_Wall_03"
+    ],
+    "walls_d": [
+      "BA_Floor_01",
+      "BA_Wall_02",
+      "BA_Wall_04",
+      "BA_Wall_03"
+    ],
+    "gable": [
+      "BA_Floor_01",
+      "BA_Wall_02",
+      "BA_Wall_04",
+      "BA_Wall_03",
+      "BA_Wall_01"
+    ],
+    "framing": [
+      "BA_Floor_01",
+      "BA_Wall_02",
+      "BA_Wall_04",
+      "BA_Wall_03",
+      "BA_Wall_01",
+      "BA_Trim_02"
+    ],
+    "eaves": [
+      "BA_Floor_01",
+      "BA_Wall_02",
+      "BA_Wall_04",
+      "BA_Wall_03",
+      "BA_Wall_01",
+      "BA_Trim_02",
+      "BA_Trim_01",
+      "BA_Trim_03"
+    ],
+    "complete": [
+      "BA_Floor_01",
+      "BA_Wall_02",
+      "BA_Wall_04",
+      "BA_Wall_03",
+      "BA_Wall_01",
+      "BA_Trim_02",
+      "BA_Trim_01",
+      "BA_Trim_03",
+      "BA_Roof_01",
+      "BA_Roof_02"
+    ]
+  },
+  "stageOrder": [
+    "foundation",
+    "walls_a",
+    "walls_b",
+    "walls_c",
+    "walls_d",
+    "gable",
+    "framing",
+    "eaves",
+    "complete"
+  ],
+  "tween": {
+    "staggerSec": 0.07,
+    "ease": "easeOutCubic",
+    "startScale": 0.92
+  }
+}

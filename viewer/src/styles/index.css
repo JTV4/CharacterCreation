@@ -326,6 +326,151 @@ body,
   text-align: center;
 }
 
+.npc-dropdown {
+  position: relative;
+  pointer-events: auto;
+  display: flex;
+  background: var(--bg-tertiary);
+  border-radius: 6px;
+  padding: 2px;
+  border: 1px solid var(--border);
+}
+
+.npc-trigger {
+  white-space: nowrap;
+}
+
+.npc-trigger.active {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.npc-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  /* Anchor the menu to the right edge of the trigger so it opens
+     leftward.  The trigger sits in the top-right cluster, so a
+     left:0 anchor would let the menu overflow off-screen. */
+  right: 0;
+  padding-top: 6px;
+  min-width: 160px;
+  z-index: 100;
+}
+
+.npc-menu.npc-menu-grid {
+  min-width: 240px;
+}
+
+.npc-menu-inner {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.npc-dropdown:hover .npc-menu {
+  display: flex;
+}
+
+.npc-menu-title {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 8px 6px;
+}
+
+.npc-item {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.npc-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+}
+
+.npc-item.active {
+  background: rgba(74, 158, 255, 0.18);
+  color: var(--text-primary);
+}
+
+/* ---- NPC grid (name x variant chips) ---- */
+
+.npc-grid-header,
+.npc-grid-row {
+  display: grid;
+  grid-template-columns: minmax(64px, 1fr) repeat(4, 32px);
+  gap: 4px;
+  align-items: center;
+  padding: 2px 6px;
+}
+
+.npc-grid-header {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+  padding-bottom: 4px;
+}
+
+.npc-grid-h {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.npc-grid-name {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  padding-right: 4px;
+}
+
+.npc-chip {
+  padding: 4px 0;
+  font-size: 10px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.12s ease;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+.npc-chip:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  border-color: rgba(74, 158, 255, 0.6);
+}
+
+.npc-chip.active {
+  background: rgba(74, 158, 255, 0.25);
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
 .model-selector {
   pointer-events: auto;
   display: flex;
@@ -358,11 +503,25 @@ body,
   color: #fff;
 }
 
-.export-dropdown {
+/* Top-right cluster: holds the Export button and the NPC dropdown
+   side-by-side, anchored to the upper-right corner of the viewport. */
+.top-right-cluster {
   position: absolute;
   top: 10px;
   right: 10px;
   z-index: 20;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.top-right-cluster > * {
+  pointer-events: auto;
+}
+
+.export-dropdown {
+  position: relative;
 }
 
 .export-btn {
@@ -842,6 +1001,42 @@ body,
 }
 
 /* ---- Axis View Controls ---- */
+
+.clip-controls {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: calc(100% - 180px);
+}
+
+.clip-btn {
+  padding: 4px 10px;
+  background: rgba(26, 29, 39, 0.82);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  text-transform: capitalize;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+
+.clip-btn:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--text-muted);
+  color: var(--text-primary);
+}
+
+.clip-btn.active {
+  background: rgba(74, 158, 255, 0.22);
+  border-color: #4a9eff;
+  color: var(--text-primary);
+}
 
 .axis-view-controls {
   position: absolute;
@@ -1560,6 +1755,64 @@ body,
   padding: 8px 0;
 }
 
+.tool-category-group {
+  margin-bottom: 2px;
+}
+
+.tool-category-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  transition: color 0.15s, background 0.12s;
+  border-radius: 4px;
+}
+
+.tool-category-header:hover {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+.tool-category-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tool-category-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tool-category-count {
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-left: 4px;
+  flex-shrink: 0;
+}
+
+.tool-category-chevron {
+  margin-left: auto;
+  font-size: 10px;
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+
+.tool-category-chevron.open {
+  transform: rotate(90deg);
+}
+
 .tool-item {
   display: flex;
   align-items: center;
@@ -1590,6 +1843,16 @@ body,
   flex-shrink: 0;
   border: 1.5px solid var(--border);
   transition: background 0.15s, border-color 0.15s;
+}
+
+.tool-thumb {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  object-fit: contain;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.25);
+  pointer-events: none;
 }
 
 .tool-item.active .tool-dot {
@@ -2211,3 +2474,54 @@ body,
   color: #fff;
   border-color: #818cf8;
 }
+
+/* ---- Buildings viewer ---- */
+
+.buildings-mode-btn {
+  padding: 6px 14px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.buildings-mode-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.building-header-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  padding: 4px 10px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.building-header-sub {
+  font-size: 11px;
+  color: var(--text-secondary);
+  padding: 4px 8px;
+}
+
+.building-stage-row {
+  padding: 6px 14px 6px 28px;
+}
+
+.building-stage-row:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.building-stage-row.selected {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+

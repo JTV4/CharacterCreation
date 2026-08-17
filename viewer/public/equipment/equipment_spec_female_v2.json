@@ -2,7 +2,12 @@
   "meta": {
     "version": "1.0",
     "description": "Female V2 equipment: Shell V1, skin colors, and robes",
-    "coordinate_system": { "up": "Y", "forward": "-Z", "right": "X", "scale": "meters" }
+    "coordinate_system": {
+      "up": "Y",
+      "forward": "-Z",
+      "right": "X",
+      "scale": "meters"
+    }
   },
   "slots": [
     {
@@ -13,9 +18,16 @@
       "bilateral": false,
       "color": "#66bb6a",
       "bones": [],
-      "bounds": { "z_min": 1.48, "z_max": 1.85, "radius": 0.15, "weight_radius": 0.15 },
+      "bounds": {
+        "z_min": 1.48,
+        "z_max": 1.85,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
       "rules": {},
-      "hides_body_regions": ["head"],
+      "hides_body_regions": [
+        "head"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/ShellV1/shell_v1_head.glb"
@@ -28,9 +40,16 @@
       "bilateral": false,
       "color": "#66bb6a",
       "bones": [],
-      "bounds": { "z_min": 1.24, "z_max": 1.49, "radius": 0.22, "weight_radius": 0.22 },
+      "bounds": {
+        "z_min": 1.24,
+        "z_max": 1.49,
+        "radius": 0.22,
+        "weight_radius": 0.22
+      },
       "rules": {},
-      "hides_body_regions": ["upper_torso"],
+      "hides_body_regions": [
+        "upper_torso"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/ShellV1/shell_v1_upper_torso.glb"
@@ -43,9 +62,16 @@
       "bilateral": false,
       "color": "#66bb6a",
       "bones": [],
-      "bounds": { "z_min": 1.06, "z_max": 1.25, "radius": 0.20, "weight_radius": 0.20 },
+      "bounds": {
+        "z_min": 1.06,
+        "z_max": 1.25,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
       "rules": {},
-      "hides_body_regions": ["lower_torso"],
+      "hides_body_regions": [
+        "lower_torso"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/ShellV1/shell_v1_lower_torso.glb"
@@ -58,9 +84,16 @@
       "bilateral": false,
       "color": "#66bb6a",
       "bones": [],
-      "bounds": { "z_min": 1.30, "z_max": 1.50, "radius": 0.20, "weight_radius": 0.20 },
+      "bounds": {
+        "z_min": 1.3,
+        "z_max": 1.5,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
       "rules": {},
-      "hides_body_regions": ["arm_upper"],
+      "hides_body_regions": [
+        "arm_upper"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/ShellV1/shell_v1_arm_upper.glb"
@@ -73,9 +106,16 @@
       "bilateral": false,
       "color": "#66bb6a",
       "bones": [],
-      "bounds": { "z_min": 1.30, "z_max": 1.50, "radius": 0.20, "weight_radius": 0.20 },
+      "bounds": {
+        "z_min": 1.3,
+        "z_max": 1.5,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
       "rules": {},
-      "hides_body_regions": ["arm_lower"],
+      "hides_body_regions": [
+        "arm_lower"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/ShellV1/shell_v1_arm_lower.glb"
@@ -88,9 +128,16 @@
       "bilateral": false,
       "color": "#66bb6a",
       "bones": [],
-      "bounds": { "z_min": 1.30, "z_max": 1.50, "radius": 0.20, "weight_radius": 0.20 },
+      "bounds": {
+        "z_min": 1.3,
+        "z_max": 1.5,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
       "rules": {},
-      "hides_body_regions": ["hands"],
+      "hides_body_regions": [
+        "hands"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/ShellV1/shell_v1_hands.glb"
@@ -103,9 +150,16 @@
       "bilateral": false,
       "color": "#66bb6a",
       "bones": [],
-      "bounds": { "z_min": 0.79, "z_max": 1.07, "radius": 0.15, "weight_radius": 0.15 },
+      "bounds": {
+        "z_min": 0.79,
+        "z_max": 1.07,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
       "rules": {},
-      "hides_body_regions": ["leg_upper"],
+      "hides_body_regions": [
+        "leg_upper"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/ShellV1/shell_v1_leg_upper.glb"
@@ -118,9 +172,16 @@
       "bilateral": false,
       "color": "#66bb6a",
       "bones": [],
-      "bounds": { "z_min": 0.57, "z_max": 0.80, "radius": 0.13, "weight_radius": 0.13 },
+      "bounds": {
+        "z_min": 0.57,
+        "z_max": 0.8,
+        "radius": 0.13,
+        "weight_radius": 0.13
+      },
       "rules": {},
-      "hides_body_regions": ["leg_thigh"],
+      "hides_body_regions": [
+        "leg_thigh"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/ShellV1/shell_v1_leg_thigh.glb"
@@ -133,9 +194,16 @@
       "bilateral": false,
       "color": "#66bb6a",
       "bones": [],
-      "bounds": { "z_min": 0.43, "z_max": 0.58, "radius": 0.12, "weight_radius": 0.12 },
+      "bounds": {
+        "z_min": 0.43,
+        "z_max": 0.58,
+        "radius": 0.12,
+        "weight_radius": 0.12
+      },
       "rules": {},
-      "hides_body_regions": ["leg_knee"],
+      "hides_body_regions": [
+        "leg_knee"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/ShellV1/shell_v1_leg_knee.glb"
@@ -148,9 +216,16 @@
       "bilateral": false,
       "color": "#66bb6a",
       "bones": [],
-      "bounds": { "z_min": 0.27, "z_max": 0.44, "radius": 0.12, "weight_radius": 0.12 },
+      "bounds": {
+        "z_min": 0.27,
+        "z_max": 0.44,
+        "radius": 0.12,
+        "weight_radius": 0.12
+      },
       "rules": {},
-      "hides_body_regions": ["leg_shin"],
+      "hides_body_regions": [
+        "leg_shin"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/ShellV1/shell_v1_leg_shin.glb"
@@ -163,9 +238,16 @@
       "bilateral": false,
       "color": "#66bb6a",
       "bones": [],
-      "bounds": { "z_min": 0.10, "z_max": 0.28, "radius": 0.12, "weight_radius": 0.12 },
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 0.28,
+        "radius": 0.12,
+        "weight_radius": 0.12
+      },
       "rules": {},
-      "hides_body_regions": ["leg_ankle"],
+      "hides_body_regions": [
+        "leg_ankle"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/ShellV1/shell_v1_leg_ankle.glb"
@@ -178,12 +260,295 @@
       "bilateral": false,
       "color": "#66bb6a",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 0.11, "radius": 0.12, "weight_radius": 0.12 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.11,
+        "radius": 0.12,
+        "weight_radius": 0.12
+      },
       "rules": {},
-      "hides_body_regions": ["foot"],
+      "hides_body_regions": [
+        "foot"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/ShellV1/shell_v1_foot.glb"
+    },
+    {
+      "id": "skin_white_head",
+      "name": "Head",
+      "category": "skin_textures_white",
+      "collection": "skin_textures_white",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f5f0e8",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.48,
+        "z_max": 1.85,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "head"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/SkinTextures/White/shell_v1_head.glb"
+    },
+    {
+      "id": "skin_white_upper_torso",
+      "name": "Upper Torso",
+      "category": "skin_textures_white",
+      "collection": "skin_textures_white",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f5f0e8",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.24,
+        "z_max": 1.49,
+        "radius": 0.22,
+        "weight_radius": 0.22
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/SkinTextures/White/shell_v1_upper_torso.glb"
+    },
+    {
+      "id": "skin_white_lower_torso",
+      "name": "Lower Torso",
+      "category": "skin_textures_white",
+      "collection": "skin_textures_white",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f5f0e8",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.06,
+        "z_max": 1.25,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "lower_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/SkinTextures/White/shell_v1_lower_torso.glb"
+    },
+    {
+      "id": "skin_white_arm_upper",
+      "name": "Arm Upper",
+      "category": "skin_textures_white",
+      "collection": "skin_textures_white",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f5f0e8",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.3,
+        "z_max": 1.5,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "arm_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/SkinTextures/White/shell_v1_arm_upper.glb"
+    },
+    {
+      "id": "skin_white_arm_lower",
+      "name": "Arm Lower",
+      "category": "skin_textures_white",
+      "collection": "skin_textures_white",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f5f0e8",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.3,
+        "z_max": 1.5,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "arm_lower"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/SkinTextures/White/shell_v1_arm_lower.glb"
+    },
+    {
+      "id": "skin_white_hands",
+      "name": "Hands",
+      "category": "skin_textures_white",
+      "collection": "skin_textures_white",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f5f0e8",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.3,
+        "z_max": 1.5,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/SkinTextures/White/shell_v1_hands.glb"
+    },
+    {
+      "id": "skin_white_leg_upper",
+      "name": "Leg Upper",
+      "category": "skin_textures_white",
+      "collection": "skin_textures_white",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f5f0e8",
+      "bones": [],
+      "bounds": {
+        "z_min": 0.79,
+        "z_max": 1.07,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/SkinTextures/White/shell_v1_leg_upper.glb"
+    },
+    {
+      "id": "skin_white_leg_thigh",
+      "name": "Leg Thigh",
+      "category": "skin_textures_white",
+      "collection": "skin_textures_white",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f5f0e8",
+      "bones": [],
+      "bounds": {
+        "z_min": 0.57,
+        "z_max": 0.8,
+        "radius": 0.13,
+        "weight_radius": 0.13
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_thigh"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/SkinTextures/White/shell_v1_leg_thigh.glb"
+    },
+    {
+      "id": "skin_white_leg_knee",
+      "name": "Leg Knee",
+      "category": "skin_textures_white",
+      "collection": "skin_textures_white",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f5f0e8",
+      "bones": [],
+      "bounds": {
+        "z_min": 0.43,
+        "z_max": 0.58,
+        "radius": 0.12,
+        "weight_radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_knee"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/SkinTextures/White/shell_v1_leg_knee.glb"
+    },
+    {
+      "id": "skin_white_leg_shin",
+      "name": "Leg Shin",
+      "category": "skin_textures_white",
+      "collection": "skin_textures_white",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f5f0e8",
+      "bones": [],
+      "bounds": {
+        "z_min": 0.27,
+        "z_max": 0.44,
+        "radius": 0.12,
+        "weight_radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/SkinTextures/White/shell_v1_leg_shin.glb"
+    },
+    {
+      "id": "skin_white_leg_ankle",
+      "name": "Leg Ankle",
+      "category": "skin_textures_white",
+      "collection": "skin_textures_white",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f5f0e8",
+      "bones": [],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 0.28,
+        "radius": 0.12,
+        "weight_radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/SkinTextures/White/shell_v1_leg_ankle.glb"
+    },
+    {
+      "id": "skin_white_foot",
+      "name": "Foot",
+      "category": "skin_textures_white",
+      "collection": "skin_textures_white",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f5f0e8",
+      "bones": [],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.11,
+        "radius": 0.12,
+        "weight_radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/SkinTextures/White/shell_v1_foot.glb"
     },
     {
       "id": "skin_tone_dark_brown_v2",
@@ -193,7 +558,12 @@
       "bilateral": false,
       "color": "#8d5524",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_dark_brown.glb",
       "mesh_type": "skin_color",
@@ -207,7 +577,12 @@
       "bilateral": false,
       "color": "#c68642",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_medium_brown.glb",
       "mesh_type": "skin_color",
@@ -221,7 +596,12 @@
       "bilateral": false,
       "color": "#e0ac69",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_light_brown.glb",
       "mesh_type": "skin_color",
@@ -235,7 +615,12 @@
       "bilateral": false,
       "color": "#f1c27d",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_warm_beige.glb",
       "mesh_type": "skin_color",
@@ -249,7 +634,12 @@
       "bilateral": false,
       "color": "#ffdbac",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_fair.glb",
       "mesh_type": "skin_color",
@@ -263,7 +653,12 @@
       "bilateral": false,
       "color": "#714c43",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_deep_brown.glb",
       "mesh_type": "skin_color",
@@ -277,7 +672,12 @@
       "bilateral": false,
       "color": "#4b3331",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_espresso.glb",
       "mesh_type": "skin_color",
@@ -291,7 +691,12 @@
       "bilateral": false,
       "color": "#000000",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_black.glb",
       "mesh_type": "skin_color",
@@ -305,7 +710,12 @@
       "bilateral": false,
       "color": "#FFFFFF",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_white.glb",
       "mesh_type": "skin_color",
@@ -319,7 +729,12 @@
       "bilateral": false,
       "color": "#FF0000",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_red.glb",
       "mesh_type": "skin_color",
@@ -333,7 +748,12 @@
       "bilateral": false,
       "color": "#FF7F00",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_orange.glb",
       "mesh_type": "skin_color",
@@ -347,7 +767,12 @@
       "bilateral": false,
       "color": "#FFFF00",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_yellow.glb",
       "mesh_type": "skin_color",
@@ -361,7 +786,12 @@
       "bilateral": false,
       "color": "#00FF00",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_green.glb",
       "mesh_type": "skin_color",
@@ -375,7 +805,12 @@
       "bilateral": false,
       "color": "#0000FF",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_blue.glb",
       "mesh_type": "skin_color",
@@ -389,7 +824,12 @@
       "bilateral": false,
       "color": "#4B0082",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_indigo.glb",
       "mesh_type": "skin_color",
@@ -403,7 +843,12 @@
       "bilateral": false,
       "color": "#8B00FF",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_violet.glb",
       "mesh_type": "skin_color",
@@ -417,7 +862,12 @@
       "bilateral": false,
       "color": "#008080",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_teal.glb",
       "mesh_type": "skin_color",
@@ -431,7 +881,12 @@
       "bilateral": false,
       "color": "#FF69B4",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_pink.glb",
       "mesh_type": "skin_color",
@@ -445,7 +900,12 @@
       "bilateral": false,
       "color": "#FF7F50",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_coral.glb",
       "mesh_type": "skin_color",
@@ -459,7 +919,12 @@
       "bilateral": false,
       "color": "#FF00FF",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_magenta.glb",
       "mesh_type": "skin_color",
@@ -473,7 +938,12 @@
       "bilateral": false,
       "color": "#00FFFF",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_cyan.glb",
       "mesh_type": "skin_color",
@@ -487,7 +957,12 @@
       "bilateral": false,
       "color": "#E6E6FA",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_lavender.glb",
       "mesh_type": "skin_color",
@@ -501,7 +976,12 @@
       "bilateral": false,
       "color": "#FFD700",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_gold.glb",
       "mesh_type": "skin_color",
@@ -515,7 +995,12 @@
       "bilateral": false,
       "color": "#C0C0C0",
       "bones": [],
-      "bounds": { "z_min": -0.02, "z_max": 1.9, "radius": 0.25, "weight_radius": 0.35 },
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 1.9,
+        "radius": 0.25,
+        "weight_radius": 0.35
+      },
       "rules": {},
       "url": "/models/skins/skin_tone_silver.glb",
       "mesh_type": "skin_color",
@@ -529,20 +1014,147 @@
       "bilateral": false,
       "color": "#9c27b0",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 },
-        { "name": "mixamorigLeftUpLeg", "weight": 0.9 },
-        { "name": "mixamorigRightUpLeg", "weight": 0.9 },
-        { "name": "mixamorigLeftLeg", "weight": 0.8 },
-        { "name": "mixamorigRightLeg", "weight": 0.8 },
-        { "name": "mixamorigLeftFoot", "weight": 0.3 },
-        { "name": "mixamorigRightFoot", "weight": 0.3 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 0.3
+        }
       ],
-      "bounds": { "z_min": 0.10, "z_max": 1.07, "radius": 0.25, "weight_radius": 0.25 },
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.07,
+        "radius": 0.25,
+        "weight_radius": 0.25
+      },
       "rules": {},
-      "hides_body_regions": ["leg_upper", "leg_thigh", "leg_knee", "leg_shin"],
+      "hides_body_regions": [
+        "leg_upper",
+        "leg_thigh",
+        "leg_knee",
+        "leg_shin"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/Robes/robe_v1.glb"
+    },
+    {
+      "id": "robe_v2",
+      "name": "Robe V2",
+      "category": "robes",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#7b1fa2",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        }
+      ],
+      "bounds": {
+        "z_min": 0.28,
+        "z_max": 1.07,
+        "radius": 0.34,
+        "weight_radius": 0.34
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper",
+        "leg_thigh",
+        "leg_knee"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Robes/robe_v2.glb"
+    },
+    {
+      "id": "robe_test",
+      "name": "Robe Test",
+      "category": "robes",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#00897b",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.07,
+        "radius": 0.25,
+        "weight_radius": 0.25
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Robes/RobeTestWeighted.glb"
     },
     {
       "id": "skirt_v1",
@@ -552,16 +1164,1140 @@
       "bilateral": false,
       "color": "#e91e63",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 },
-        { "name": "mixamorigLeftUpLeg", "weight": 0.9 },
-        { "name": "mixamorigRightUpLeg", "weight": 0.9 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        }
       ],
-      "bounds": { "z_min": 0.796, "z_max": 1.07, "radius": 0.20, "weight_radius": 0.20 },
+      "bounds": {
+        "z_min": 0.796,
+        "z_max": 1.07,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
       "rules": {},
-      "hides_body_regions": ["leg_upper"],
+      "hides_body_regions": [
+        "leg_upper"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/Skirts/skirt_v1.glb"
+    },
+    {
+      "id": "skirt_v2",
+      "name": "Skirt V2",
+      "category": "skirts",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#c2185b",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        }
+      ],
+      "bounds": {
+        "z_min": 0.746,
+        "z_max": 1.07,
+        "radius": 0.24,
+        "weight_radius": 0.24
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Skirts/skirt_v2.glb"
+    },
+    {
+      "id": "iron_armor_lowerbody",
+      "name": "Iron Plateskirt",
+      "category": "iron_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#9ca3af",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        }
+      ],
+      "bounds": {
+        "z_min": 0.746,
+        "z_max": 1.07,
+        "radius": 0.24,
+        "weight_radius": 0.24
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Lowerbody/IronPlateskirtWeighted.glb"
+    },
+    {
+      "id": "steel_armor_lowerbody",
+      "name": "Steel Plateskirt",
+      "category": "steel_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#64748b",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        }
+      ],
+      "bounds": {
+        "z_min": 0.746,
+        "z_max": 1.07,
+        "radius": 0.24,
+        "weight_radius": 0.24
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Lowerbody/SteelPlateskirtWeighted.glb"
+    },
+    {
+      "id": "gold_armor_lowerbody",
+      "name": "Gold Plateskirt",
+      "category": "gold_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f59e0b",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        }
+      ],
+      "bounds": {
+        "z_min": 0.746,
+        "z_max": 1.07,
+        "radius": 0.24,
+        "weight_radius": 0.24
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Lowerbody/GoldPlateskirtWeighted.glb"
+    },
+    {
+      "id": "titanium_armor_lowerbody",
+      "name": "Titanium Plateskirt",
+      "category": "titanium_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#cbd5e1",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        }
+      ],
+      "bounds": {
+        "z_min": 0.746,
+        "z_max": 1.07,
+        "radius": 0.24,
+        "weight_radius": 0.24
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Lowerbody/TitaniumPlateskirtWeighted.glb"
+    },
+    {
+      "id": "tungsten_armor_lowerbody",
+      "name": "Tungsten Plateskirt",
+      "category": "tungsten_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#475569",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        }
+      ],
+      "bounds": {
+        "z_min": 0.746,
+        "z_max": 1.07,
+        "radius": 0.24,
+        "weight_radius": 0.24
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Lowerbody/TungstenPlateskirtWeighted.glb"
+    },
+    {
+      "id": "luminous_armor_lowerbody",
+      "name": "Luminous Plateskirt",
+      "category": "luminous_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#22d3ee",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        }
+      ],
+      "bounds": {
+        "z_min": 0.746,
+        "z_max": 1.07,
+        "radius": 0.24,
+        "weight_radius": 0.24
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Lowerbody/LuminousPlateskirtWeighted.glb"
+    },
+    {
+      "id": "iron_armor_upperbody",
+      "name": "Iron Platebody",
+      "category": "iron_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#9ca3af",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/IronPlatebodyWeighted.glb"
+    },
+    {
+      "id": "iron_armor_gloves",
+      "name": "Iron Gauntlets",
+      "category": "iron_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#9ca3af",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/IronGlovesWeighted.glb"
+    },
+    {
+      "id": "iron_armor_boots",
+      "name": "Iron Plate Boots",
+      "category": "iron_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#9ca3af",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.436,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/IronBootsWeighted.glb"
+    },
+    {
+      "id": "steel_armor_upperbody",
+      "name": "Steel Platebody",
+      "category": "steel_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#64748b",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/SteelPlatebodyWeighted.glb"
+    },
+    {
+      "id": "steel_armor_gloves",
+      "name": "Steel Gauntlets",
+      "category": "steel_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#64748b",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/SteelGlovesWeighted.glb"
+    },
+    {
+      "id": "steel_armor_boots",
+      "name": "Steel Plate Boots",
+      "category": "steel_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#64748b",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.436,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/SteelBootsWeighted.glb"
+    },
+    {
+      "id": "gold_armor_upperbody",
+      "name": "Gold Platebody",
+      "category": "gold_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f59e0b",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/GoldPlatebodyWeighted.glb"
+    },
+    {
+      "id": "gold_armor_gloves",
+      "name": "Gold Gauntlets",
+      "category": "gold_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f59e0b",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/GoldGlovesWeighted.glb"
+    },
+    {
+      "id": "gold_armor_boots",
+      "name": "Gold Plate Boots",
+      "category": "gold_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f59e0b",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.436,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/GoldBootsWeighted.glb"
+    },
+    {
+      "id": "titanium_armor_upperbody",
+      "name": "Titanium Platebody",
+      "category": "titanium_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#cbd5e1",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/TitaniumPlatebodyWeighted.glb"
+    },
+    {
+      "id": "titanium_armor_gloves",
+      "name": "Titanium Gauntlets",
+      "category": "titanium_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#cbd5e1",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/TitaniumGlovesWeighted.glb"
+    },
+    {
+      "id": "titanium_armor_boots",
+      "name": "Titanium Plate Boots",
+      "category": "titanium_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#cbd5e1",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.436,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/TitaniumBootsWeighted.glb"
+    },
+    {
+      "id": "tungsten_armor_upperbody",
+      "name": "Tungsten Platebody",
+      "category": "tungsten_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#475569",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/TungstenPlatebodyWeighted.glb"
+    },
+    {
+      "id": "tungsten_armor_gloves",
+      "name": "Tungsten Gauntlets",
+      "category": "tungsten_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#475569",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/TungstenGlovesWeighted.glb"
+    },
+    {
+      "id": "tungsten_armor_boots",
+      "name": "Tungsten Plate Boots",
+      "category": "tungsten_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#475569",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.436,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/TungstenBootsWeighted.glb"
+    },
+    {
+      "id": "luminous_armor_upperbody",
+      "name": "Luminous Platebody",
+      "category": "luminous_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#22d3ee",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/LuminousPlatebodyWeighted.glb"
+    },
+    {
+      "id": "luminous_armor_gloves",
+      "name": "Luminous Gauntlets",
+      "category": "luminous_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#22d3ee",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/LuminousGlovesWeighted.glb"
+    },
+    {
+      "id": "luminous_armor_boots",
+      "name": "Luminous Plate Boots",
+      "category": "luminous_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#22d3ee",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.436,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/LuminousBootsWeighted.glb"
+    },
+    {
+      "id": "leather_magic_armor_lowerbody",
+      "name": "Leather Magic: Robe",
+      "category": "leather_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#a16207",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.07,
+        "radius": 0.25,
+        "weight_radius": 0.25
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper",
+        "leg_thigh",
+        "leg_knee"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Robes/LeatherMageLowerbodyWeighted.glb"
     },
     {
       "id": "upperbody_v1",
@@ -571,18 +2307,51 @@
       "bilateral": false,
       "color": "#ff5722",
       "bones": [
-        { "name": "mixamorigSpine", "weight": 1.0 },
-        { "name": "mixamorigSpine1", "weight": 1.0 },
-        { "name": "mixamorigSpine2", "weight": 1.0 },
-        { "name": "mixamorigHips", "weight": 0.8 },
-        { "name": "mixamorigLeftShoulder", "weight": 0.7 },
-        { "name": "mixamorigRightShoulder", "weight": 0.7 },
-        { "name": "mixamorigLeftArm", "weight": 0.5 },
-        { "name": "mixamorigRightArm", "weight": 0.5 }
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.5
+        }
       ],
-      "bounds": { "z_min": 1.066, "z_max": 1.488, "radius": 0.31, "weight_radius": 0.31 },
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.31,
+        "weight_radius": 0.31
+      },
       "rules": {},
-      "hides_body_regions": ["arm_upper", "upper_torso", "lower_torso"],
+      "hides_body_regions": [
+        "arm_upper",
+        "upper_torso",
+        "lower_torso"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/Upperbody/upperbody_weighted.glb"
@@ -595,20 +2364,60 @@
       "bilateral": false,
       "color": "#ff5722",
       "bones": [
-        { "name": "mixamorigSpine", "weight": 1.0 },
-        { "name": "mixamorigSpine1", "weight": 1.0 },
-        { "name": "mixamorigSpine2", "weight": 1.0 },
-        { "name": "mixamorigHips", "weight": 0.8 },
-        { "name": "mixamorigLeftShoulder", "weight": 0.7 },
-        { "name": "mixamorigRightShoulder", "weight": 0.7 },
-        { "name": "mixamorigLeftArm", "weight": 0.6 },
-        { "name": "mixamorigRightArm", "weight": 0.6 },
-        { "name": "mixamorigLeftForeArm", "weight": 0.5 },
-        { "name": "mixamorigRightForeArm", "weight": 0.5 }
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
       ],
-      "bounds": { "z_min": 1.066, "z_max": 1.488, "radius": 0.70, "weight_radius": 0.70 },
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
       "rules": {},
-      "hides_body_regions": ["arm_upper", "arm_lower", "upper_torso", "lower_torso"],
+      "hides_body_regions": [
+        "arm_upper",
+        "arm_lower",
+        "upper_torso",
+        "lower_torso"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/Upperbody/test_upperbody_weighted.glb"
@@ -621,9 +2430,18 @@
       "bilateral": false,
       "color": "#8b5cf6",
       "bones": [],
-      "bounds": { "z_min": 1.066, "z_max": 1.488, "radius": 0.31, "weight_radius": 0.31 },
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.31,
+        "weight_radius": 0.31
+      },
       "rules": {},
-      "hides_body_regions": ["arm_upper", "upper_torso", "lower_torso"],
+      "hides_body_regions": [
+        "arm_upper",
+        "upper_torso",
+        "lower_torso"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/TexturedShellsV2/upperbody_textured_v2.glb"
@@ -636,9 +2454,16 @@
       "bilateral": false,
       "color": "#8b5cf6",
       "bones": [],
-      "bounds": { "z_min": 0.572, "z_max": 1.066, "radius": 0.20, "weight_radius": 0.20 },
+      "bounds": {
+        "z_min": 0.572,
+        "z_max": 1.066,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
       "rules": {},
-      "hides_body_regions": ["leg_upper"],
+      "hides_body_regions": [
+        "leg_upper"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/TexturedShellsV2/shorts_textured_v2.glb"
@@ -651,9 +2476,16 @@
       "bilateral": false,
       "color": "#8b5cf6",
       "bones": [],
-      "bounds": { "z_min": 1.351, "z_max": 1.451, "radius": 0.85, "weight_radius": 0.85 },
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
       "rules": {},
-      "hides_body_regions": ["hands"],
+      "hides_body_regions": [
+        "hands"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/TexturedShellsV2/gloves_textured_v2.glb"
@@ -666,9 +2498,17 @@
       "bilateral": false,
       "color": "#8b5cf6",
       "bones": [],
-      "bounds": { "z_min": 0.0, "z_max": 0.436, "radius": 0.15, "weight_radius": 0.15 },
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.436,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
       "rules": {},
-      "hides_body_regions": ["foot", "leg_ankle"],
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/TexturedShellsV2/boots_textured_v2.glb"
@@ -681,11 +2521,32 @@
       "bilateral": false,
       "color": "#2e7d32",
       "bones": [
-        { "name": "mixamorigHead", "weight": 1.0 }
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
       ],
-      "bounds": { "z_min": 1.735, "z_max": 1.854, "radius": 0.20, "weight_radius": 0.20 },
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
       "rules": {},
       "hides_body_regions": [],
+      "default_transform": {
+        "position": [
+          0.23,
+          0.21,
+          -0.87
+        ],
+        "rotation": [
+          4.0,
+          -5.0,
+          180.0
+        ],
+        "scale": 1.4
+      },
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/Hats/GreenRangedHatWeighted.glb"
@@ -698,20 +2559,60 @@
       "bilateral": false,
       "color": "#2e7d32",
       "bones": [
-        { "name": "mixamorigSpine", "weight": 1.0 },
-        { "name": "mixamorigSpine1", "weight": 1.0 },
-        { "name": "mixamorigSpine2", "weight": 1.0 },
-        { "name": "mixamorigHips", "weight": 0.8 },
-        { "name": "mixamorigLeftShoulder", "weight": 0.7 },
-        { "name": "mixamorigRightShoulder", "weight": 0.7 },
-        { "name": "mixamorigLeftArm", "weight": 0.6 },
-        { "name": "mixamorigRightArm", "weight": 0.6 },
-        { "name": "mixamorigLeftForeArm", "weight": 0.5 },
-        { "name": "mixamorigRightForeArm", "weight": 0.5 }
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
       ],
-      "bounds": { "z_min": 1.066, "z_max": 1.488, "radius": 0.70, "weight_radius": 0.70 },
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
       "rules": {},
-      "hides_body_regions": ["upper_torso", "lower_torso", "arm_upper", "arm_lower"],
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper",
+        "arm_lower"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/Upperbody/GreenRangedUpperbodyWeighted.glb"
@@ -724,9 +2625,16 @@
       "bilateral": false,
       "color": "#2e7d32",
       "bones": [],
-      "bounds": { "z_min": 1.351, "z_max": 1.451, "radius": 0.85, "weight_radius": 0.85 },
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
       "rules": {},
-      "hides_body_regions": ["hands"],
+      "hides_body_regions": [
+        "hands"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/Gloves/GreenRangedGlovesWeighted.glb"
@@ -739,9 +2647,16 @@
       "bilateral": false,
       "color": "#c62828",
       "bones": [],
-      "bounds": { "z_min": 1.351, "z_max": 1.451, "radius": 0.85, "weight_radius": 0.85 },
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
       "rules": {},
-      "hides_body_regions": ["hands"],
+      "hides_body_regions": [
+        "hands"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/Gloves/RedRangedGlovesWeighted.glb"
@@ -754,9 +2669,16 @@
       "bilateral": false,
       "color": "#7b1fa2",
       "bones": [],
-      "bounds": { "z_min": 1.351, "z_max": 1.451, "radius": 0.85, "weight_radius": 0.85 },
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
       "rules": {},
-      "hides_body_regions": ["hands"],
+      "hides_body_regions": [
+        "hands"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/Gloves/PurpleRangedGlovesWeighted.glb"
@@ -769,9 +2691,16 @@
       "bilateral": false,
       "color": "#212121",
       "bones": [],
-      "bounds": { "z_min": 1.351, "z_max": 1.451, "radius": 0.85, "weight_radius": 0.85 },
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
       "rules": {},
-      "hides_body_regions": ["hands"],
+      "hides_body_regions": [
+        "hands"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/Gloves/BlackRangedGlovesWeighted.glb"
@@ -784,9 +2713,16 @@
       "bilateral": false,
       "color": "#1565c0",
       "bones": [],
-      "bounds": { "z_min": 1.351, "z_max": 1.451, "radius": 0.85, "weight_radius": 0.85 },
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
       "rules": {},
-      "hides_body_regions": ["hands"],
+      "hides_body_regions": [
+        "hands"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/Gloves/BlueRangedGlovesWeighted.glb"
@@ -799,7 +2735,12 @@
       "bilateral": false,
       "color": "#f59e0b",
       "bones": [],
-      "bounds": { "z_min": 1.351, "z_max": 1.451, "radius": 0.85, "weight_radius": 0.85 },
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
       "rules": {},
       "mesh_type": "external",
       "mesh_params": {},
@@ -813,17 +2754,49 @@
       "bilateral": false,
       "color": "#2e7d32",
       "bones": [
-        { "name": "mixamorigHips", "weight": 1.0 },
-        { "name": "mixamorigLeftUpLeg", "weight": 0.9 },
-        { "name": "mixamorigRightUpLeg", "weight": 0.9 },
-        { "name": "mixamorigLeftLeg", "weight": 0.8 },
-        { "name": "mixamorigRightLeg", "weight": 0.8 },
-        { "name": "mixamorigLeftFoot", "weight": 0.3 },
-        { "name": "mixamorigRightFoot", "weight": 0.3 }
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 0.3
+        }
       ],
-      "bounds": { "z_min": 0.10, "z_max": 1.066, "radius": 0.20, "weight_radius": 0.20 },
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.066,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
       "rules": {},
-      "hides_body_regions": ["leg_upper", "leg_thigh", "leg_knee", "leg_shin", "leg_ankle"],
+      "hides_body_regions": [
+        "leg_upper",
+        "leg_thigh",
+        "leg_knee",
+        "leg_shin",
+        "leg_ankle"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/Lowerbody/GreenRangedLowerbodyWeighted.glb"
@@ -836,19 +2809,3836 @@
       "bilateral": false,
       "color": "#2e7d32",
       "bones": [
-        { "name": "mixamorigLeftFoot", "weight": 1.0 },
-        { "name": "mixamorigRightFoot", "weight": 1.0 },
-        { "name": "mixamorigLeftToeBase", "weight": 1.0 },
-        { "name": "mixamorigRightToeBase", "weight": 1.0 },
-        { "name": "mixamorigLeftLeg", "weight": 0.3 },
-        { "name": "mixamorigRightLeg", "weight": 0.3 }
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
       ],
-      "bounds": { "z_min": 0.0, "z_max": 0.436, "radius": 0.15, "weight_radius": 0.15 },
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.436,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
       "rules": {},
-      "hides_body_regions": ["foot", "leg_ankle"],
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
       "mesh_type": "external",
       "mesh_params": {},
       "url": "/equipment/Female/Boots/GreenRangedBootsWeighted.glb"
+    },
+    {
+      "id": "leather_ranged_hat",
+      "name": "Leather Ranged: Hat",
+      "category": "leather_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#8b4513",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "default_transform": {
+        "position": [
+          0.23,
+          0.21,
+          -0.87
+        ],
+        "rotation": [
+          4.0,
+          -5.0,
+          180.0
+        ],
+        "scale": 1.4
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/LeatherRangedHatWeighted.glb"
+    },
+    {
+      "id": "leather_ranged_upperbody",
+      "name": "Leather Ranged: Tunic",
+      "category": "leather_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#8b4513",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper",
+        "arm_lower"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/LeatherRangedUpperbodyWeighted.glb"
+    },
+    {
+      "id": "leather_ranged_gloves",
+      "name": "Leather Ranged: Gloves",
+      "category": "leather_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#8b4513",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/LeatherRangedGlovesWeighted.glb"
+    },
+    {
+      "id": "leather_ranged_lowerbody",
+      "name": "Leather Ranged: Leggings",
+      "category": "leather_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#8b4513",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.066,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper",
+        "leg_thigh",
+        "leg_knee",
+        "leg_shin",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Lowerbody/LeatherRangedLowerbodyWeighted.glb"
+    },
+    {
+      "id": "leather_ranged_boots",
+      "name": "Leather Ranged: Boots",
+      "category": "leather_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#8b4513",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.27,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/LeatherRangedBootsWeighted.glb"
+    },
+    {
+      "id": "red_ranged_hat",
+      "name": "Red Ranged: Hat",
+      "category": "red_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#c62828",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.838,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "default_transform": {
+        "position": [
+          0.13,
+          -0.21,
+          -0.84
+        ],
+        "rotation": [
+          -5.0,
+          -3.0,
+          180.0
+        ],
+        "scale": 1.4
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/RedRangedHatWeighted.glb"
+    },
+    {
+      "id": "red_ranged_upperbody",
+      "name": "Red Ranged: Tunic",
+      "category": "red_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#c62828",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper",
+        "arm_lower"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/RedRangedUpperbodyWeighted.glb"
+    },
+    {
+      "id": "red_ranged_lowerbody",
+      "name": "Red Ranged: Leggings",
+      "category": "red_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#c62828",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.066,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper",
+        "leg_thigh",
+        "leg_knee",
+        "leg_shin",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Lowerbody/RedRangedLowerbodyWeighted.glb"
+    },
+    {
+      "id": "red_ranged_boots",
+      "name": "Red Ranged: Boots",
+      "category": "red_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#c62828",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.27,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/RedRangedBootsWeighted.glb"
+    },
+    {
+      "id": "purple_ranged_hat",
+      "name": "Purple Ranged: Hat",
+      "category": "purple_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#7b1fa2",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "default_transform": {
+        "position": [
+          0.13,
+          -0.21,
+          -0.84
+        ],
+        "rotation": [
+          -5.0,
+          -3.0,
+          180.0
+        ],
+        "scale": 1.4
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/PurpleRangedHatWeighted.glb"
+    },
+    {
+      "id": "purple_ranged_upperbody",
+      "name": "Purple Ranged: Tunic",
+      "category": "purple_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#7b1fa2",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper",
+        "arm_lower"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/PurpleRangedUpperbodyWeighted.glb"
+    },
+    {
+      "id": "purple_ranged_lowerbody",
+      "name": "Purple Ranged: Leggings",
+      "category": "purple_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#7b1fa2",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.066,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper",
+        "leg_thigh",
+        "leg_knee",
+        "leg_shin",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Lowerbody/PurpleRangedLowerbodyWeighted.glb"
+    },
+    {
+      "id": "purple_ranged_boots",
+      "name": "Purple Ranged: Boots",
+      "category": "purple_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#7b1fa2",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.27,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/PurpleRangedBootsWeighted.glb"
+    },
+    {
+      "id": "black_ranged_hat",
+      "name": "Black Ranged: Hat",
+      "category": "black_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#212121",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "default_transform": {
+        "position": [
+          0.13,
+          -0.21,
+          -0.84
+        ],
+        "rotation": [
+          -5.0,
+          -3.0,
+          180.0
+        ],
+        "scale": 1.4
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/BlackRangedHatWeighted.glb"
+    },
+    {
+      "id": "black_ranged_upperbody",
+      "name": "Black Ranged: Tunic",
+      "category": "black_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#212121",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper",
+        "arm_lower"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/BlackRangedUpperbodyWeighted.glb"
+    },
+    {
+      "id": "black_ranged_lowerbody",
+      "name": "Black Ranged: Leggings",
+      "category": "black_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#212121",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.066,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper",
+        "leg_thigh",
+        "leg_knee",
+        "leg_shin",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Lowerbody/BlackRangedLowerbodyWeighted.glb"
+    },
+    {
+      "id": "black_ranged_boots",
+      "name": "Black Ranged: Boots",
+      "category": "black_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#212121",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.27,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/BlackRangedBootsWeighted.glb"
+    },
+    {
+      "id": "blue_ranged_hat",
+      "name": "Blue Ranged: Hat",
+      "category": "blue_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#1565c0",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.846,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "default_transform": {
+        "position": [
+          0.13,
+          -0.21,
+          -0.84
+        ],
+        "rotation": [
+          -5.0,
+          -3.0,
+          180.0
+        ],
+        "scale": 1.4
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/BlueRangedHatWeighted.glb"
+    },
+    {
+      "id": "blue_ranged_upperbody",
+      "name": "Blue Ranged: Tunic",
+      "category": "blue_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#1565c0",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper",
+        "arm_lower"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/BlueRangedUpperbodyWeighted.glb"
+    },
+    {
+      "id": "blue_ranged_lowerbody",
+      "name": "Blue Ranged: Leggings",
+      "category": "blue_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#1565c0",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.066,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper",
+        "leg_thigh",
+        "leg_knee",
+        "leg_shin",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Lowerbody/BlueRangedLowerbodyWeighted.glb"
+    },
+    {
+      "id": "blue_ranged_boots",
+      "name": "Blue Ranged: Boots",
+      "category": "blue_ranged_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#1565c0",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.27,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/BlueRangedBootsWeighted.glb"
+    },
+    {
+      "id": "leather_magic_armor_hat",
+      "name": "Leather Magic: Hat",
+      "category": "leather_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#a16207",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "default_transform": {
+        "position": [
+          -0.23,
+          0.2,
+          -0.82
+        ],
+        "rotation": [
+          4.0,
+          5.0,
+          90.0
+        ],
+        "scale": 1.4
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/LeatherMageHatWeighted.glb"
+    },
+    {
+      "id": "leather_magic_armor_upperbody",
+      "name": "Leather Magic: Top",
+      "category": "leather_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#a16207",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper",
+        "arm_lower"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/LeatherMageTopWeighted.glb"
+    },
+    {
+      "id": "leather_magic_armor_gloves",
+      "name": "Leather Magic: Gloves",
+      "category": "leather_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#a16207",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/LeatherMageGlovesWeighted.glb"
+    },
+    {
+      "id": "leather_magic_armor_boots",
+      "name": "Leather Magic: Boots",
+      "category": "leather_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#a16207",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.436,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/LeatherMageBootsWeighted.glb"
+    },
+    {
+      "id": "green_magic_armor_hat",
+      "name": "Green Magic: Hat",
+      "category": "green_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#15803d",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "default_transform": {
+        "position": [
+          0.01,
+          -0.33,
+          -0.82
+        ],
+        "rotation": [
+          -8.0,
+          0.0,
+          90.0
+        ],
+        "scale": 1.4
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/GreenMageHatWeighted.glb"
+    },
+    {
+      "id": "green_magic_armor_upperbody",
+      "name": "Green Magic: Top",
+      "category": "green_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#15803d",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper",
+        "arm_lower"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/GreenMageTopWeighted.glb"
+    },
+    {
+      "id": "green_magic_armor_gloves",
+      "name": "Green Magic: Gloves",
+      "category": "green_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#15803d",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/GreenMageGlovesWeighted.glb"
+    },
+    {
+      "id": "green_magic_armor_lowerbody",
+      "name": "Green Magic: Lowerbody",
+      "category": "green_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#15803d",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.07,
+        "radius": 0.25,
+        "weight_radius": 0.25
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper",
+        "leg_thigh",
+        "leg_knee"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Robes/GreenMageLowerbodyWeighted.glb"
+    },
+    {
+      "id": "green_magic_armor_boots",
+      "name": "Green Magic: Boots",
+      "category": "green_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#15803d",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.436,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/GreenMageBootsWeighted.glb"
+    },
+    {
+      "id": "blue_magic_armor_hat",
+      "name": "Blue Magic: Hat",
+      "category": "blue_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#1d4ed8",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "default_transform": {
+        "position": [
+          0.01,
+          -0.12,
+          -0.84
+        ],
+        "rotation": [
+          -3.0,
+          -0.2,
+          90.0
+        ],
+        "scale": 1.4
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/BlueMageHatWeighted.glb"
+    },
+    {
+      "id": "blue_magic_armor_upperbody",
+      "name": "Blue Magic: Top",
+      "category": "blue_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#1d4ed8",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper",
+        "arm_lower"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/BlueMageTopWeighted.glb"
+    },
+    {
+      "id": "blue_magic_armor_gloves",
+      "name": "Blue Magic: Gloves",
+      "category": "blue_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#1d4ed8",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/BlueMageGlovesWeighted.glb"
+    },
+    {
+      "id": "blue_magic_armor_lowerbody",
+      "name": "Blue Magic: Lowerbody",
+      "category": "blue_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#1d4ed8",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.07,
+        "radius": 0.25,
+        "weight_radius": 0.25
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper",
+        "leg_thigh",
+        "leg_knee"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Robes/BlueMageLowerbodyWeighted.glb"
+    },
+    {
+      "id": "blue_magic_armor_boots",
+      "name": "Blue Magic: Boots",
+      "category": "blue_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#1d4ed8",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.436,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/BlueMageBootsWeighted.glb"
+    },
+    {
+      "id": "red_magic_armor_hat",
+      "name": "Red Magic: Hat",
+      "category": "red_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#b91c1c",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "default_transform": {
+        "position": [
+          0.01,
+          -0.03,
+          -0.83
+        ],
+        "rotation": [
+          -1.0,
+          0.0,
+          90.0
+        ],
+        "scale": 1.4
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/RedMageHatWeighted.glb"
+    },
+    {
+      "id": "red_magic_armor_upperbody",
+      "name": "Red Magic: Top",
+      "category": "red_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#b91c1c",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper",
+        "arm_lower"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/RedMageTopWeighted.glb"
+    },
+    {
+      "id": "red_magic_armor_gloves",
+      "name": "Red Magic: Gloves",
+      "category": "red_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#b91c1c",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/RedMageGlovesWeighted.glb"
+    },
+    {
+      "id": "red_magic_armor_lowerbody",
+      "name": "Red Magic: Lowerbody",
+      "category": "red_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#b91c1c",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.07,
+        "radius": 0.25,
+        "weight_radius": 0.25
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper",
+        "leg_thigh",
+        "leg_knee"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Robes/RedMageLowerbodyWeighted.glb"
+    },
+    {
+      "id": "red_magic_armor_boots",
+      "name": "Red Magic: Boots",
+      "category": "red_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#b91c1c",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.436,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/RedMageBootsWeighted.glb"
+    },
+    {
+      "id": "black_magic_armor_hat",
+      "name": "Black Magic: Hat",
+      "category": "black_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#171717",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "default_transform": {
+        "position": [
+          0.01,
+          -0.67,
+          -0.82
+        ],
+        "rotation": [
+          -15.0,
+          -0.3,
+          90.0
+        ],
+        "scale": 1.4
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/BlackMageHatWeighted.glb"
+    },
+    {
+      "id": "black_magic_armor_upperbody",
+      "name": "Black Magic: Top",
+      "category": "black_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#171717",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper",
+        "arm_lower"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/BlackMageTopWeighted.glb"
+    },
+    {
+      "id": "black_magic_armor_gloves",
+      "name": "Black Magic: Gloves",
+      "category": "black_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#171717",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/BlackMageGlovesWeighted.glb"
+    },
+    {
+      "id": "black_magic_armor_lowerbody",
+      "name": "Black Magic: Lowerbody",
+      "category": "black_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#171717",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.07,
+        "radius": 0.25,
+        "weight_radius": 0.25
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper",
+        "leg_thigh",
+        "leg_knee"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Robes/BlackMageLowerbodyWeighted.glb"
+    },
+    {
+      "id": "black_magic_armor_boots",
+      "name": "Black Magic: Boots",
+      "category": "black_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#171717",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.436,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/BlackMageBootsWeighted.glb"
+    },
+    {
+      "id": "purple_magic_armor_hat",
+      "name": "Purple Magic: Hat",
+      "category": "purple_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#7e22ce",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "default_transform": {
+        "position": [
+          0.01,
+          0.19,
+          -0.82
+        ],
+        "rotation": [
+          4.0,
+          0.0,
+          90.0
+        ],
+        "scale": 1.4
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/PurpleMageHatWeighted.glb"
+    },
+    {
+      "id": "purple_magic_armor_upperbody",
+      "name": "Purple Magic: Top",
+      "category": "purple_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#7e22ce",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper",
+        "arm_lower"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/PurpleMageTopWeighted.glb"
+    },
+    {
+      "id": "purple_magic_armor_gloves",
+      "name": "Purple Magic: Gloves",
+      "category": "purple_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#7e22ce",
+      "bones": [],
+      "bounds": {
+        "z_min": 1.351,
+        "z_max": 1.451,
+        "radius": 0.85,
+        "weight_radius": 0.85
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Gloves/PurpleMageGlovesWeighted.glb"
+    },
+    {
+      "id": "purple_magic_armor_lowerbody",
+      "name": "Purple Magic: Lowerbody",
+      "category": "purple_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#7e22ce",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.07,
+        "radius": 0.25,
+        "weight_radius": 0.25
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper",
+        "leg_thigh",
+        "leg_knee"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Robes/PurpleMageLowerbodyWeighted.glb"
+    },
+    {
+      "id": "purple_magic_armor_boots",
+      "name": "Purple Magic: Boots",
+      "category": "purple_magic_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#7e22ce",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.436,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/PurpleMageBootsWeighted.glb"
+    },
+    {
+      "id": "iron_armor_head",
+      "name": "Iron Helmet",
+      "category": "iron_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#9ca3af",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "head"
+      ],
+      "default_transform": {
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/IronHelmetWeighted.glb"
+    },
+    {
+      "id": "steel_armor_head",
+      "name": "Steel Helmet",
+      "category": "steel_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#64748b",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "head"
+      ],
+      "default_transform": {
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/SteelHelmetWeighted.glb"
+    },
+    {
+      "id": "gold_armor_head",
+      "name": "Gold Helmet",
+      "category": "gold_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#f59e0b",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "head"
+      ],
+      "default_transform": {
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/GoldHelmetWeighted.glb"
+    },
+    {
+      "id": "titanium_armor_head",
+      "name": "Titanium Helmet",
+      "category": "titanium_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#cbd5e1",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "head"
+      ],
+      "default_transform": {
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/TitaniumHelmetWeighted.glb"
+    },
+    {
+      "id": "tungsten_armor_head",
+      "name": "Tungsten Helmet",
+      "category": "tungsten_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#475569",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "head"
+      ],
+      "default_transform": {
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/TungstenHelmetWeighted.glb"
+    },
+    {
+      "id": "luminous_armor_head",
+      "name": "Luminous Helmet",
+      "category": "luminous_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#22d3ee",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "head"
+      ],
+      "default_transform": {
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      },
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hats/LuminousHelmetWeighted.glb"
+    },
+    {
+      "id": "default_armor_upperbody",
+      "name": "Default: Upperbody",
+      "category": "default_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#a8a29e",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 0.5
+        }
+      ],
+      "bounds": {
+        "z_min": 1.066,
+        "z_max": 1.488,
+        "radius": 0.7,
+        "weight_radius": 0.7
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "upper_torso",
+        "lower_torso",
+        "arm_upper"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Upperbody/DefaultUpperbodyFemaleWeighted.glb"
+    },
+    {
+      "id": "default_armor_lowerbody",
+      "name": "Default: Lowerbody",
+      "category": "default_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#a8a29e",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 0.9
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.066,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "leg_upper",
+        "leg_thigh",
+        "leg_knee",
+        "leg_shin",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Lowerbody/DefaultLowerbodyFemaleWeighted.glb"
+    },
+    {
+      "id": "default_armor_boots",
+      "name": "Default: Boots",
+      "category": "default_armor",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#a8a29e",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.3
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.3
+        }
+      ],
+      "bounds": {
+        "z_min": 0.0,
+        "z_max": 0.436,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot",
+        "leg_ankle"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Boots/DefaultBootsFemaleWeighted.glb"
+    },
+    {
+      "id": "brown_eyes",
+      "name": "Brown Eyes",
+      "category": "eyes",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#8B5E3C",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.6,
+        "z_max": 1.68,
+        "radius": 0.08,
+        "weight_radius": 0.08
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Eyes/BrownEyesWeighted.glb",
+      "collection": "face_accessories",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0,
+        "eyeSeparation": -0.005,
+        "eyeRotationL": [
+          5.0,
+          0.0,
+          -7.0
+        ],
+        "eyeRotationR": [
+          6.0,
+          0.0,
+          12.0
+        ]
+      }
+    },
+    {
+      "id": "blue_eyes",
+      "name": "Blue Eyes",
+      "category": "eyes",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#3B82F6",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.6,
+        "z_max": 1.68,
+        "radius": 0.08,
+        "weight_radius": 0.08
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Eyes/BlueEyesWeighted.glb",
+      "collection": "face_accessories",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0,
+        "eyeSeparation": -0.005,
+        "eyeRotationL": [
+          5.0,
+          0.0,
+          -7.0
+        ],
+        "eyeRotationR": [
+          6.0,
+          0.0,
+          12.0
+        ]
+      }
+    },
+    {
+      "id": "green_eyes",
+      "name": "Green Eyes",
+      "category": "eyes",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#22C55E",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.6,
+        "z_max": 1.68,
+        "radius": 0.08,
+        "weight_radius": 0.08
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Eyes/GreenEyesWeighted.glb",
+      "collection": "face_accessories",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0,
+        "eyeSeparation": -0.005,
+        "eyeRotationL": [
+          5.0,
+          0.0,
+          -7.0
+        ],
+        "eyeRotationR": [
+          6.0,
+          0.0,
+          12.0
+        ]
+      }
+    },
+    {
+      "id": "amber_eyes",
+      "name": "Amber Eyes",
+      "category": "eyes",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#F59E0B",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.6,
+        "z_max": 1.68,
+        "radius": 0.08,
+        "weight_radius": 0.08
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Eyes/AmberEyesWeighted.glb",
+      "collection": "face_accessories",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0,
+        "eyeSeparation": -0.005,
+        "eyeRotationL": [
+          5.0,
+          0.0,
+          -7.0
+        ],
+        "eyeRotationR": [
+          6.0,
+          0.0,
+          12.0
+        ]
+      }
+    },
+    {
+      "id": "violet_eyes",
+      "name": "Violet Eyes",
+      "category": "eyes",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#A855F7",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.6,
+        "z_max": 1.68,
+        "radius": 0.08,
+        "weight_radius": 0.08
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Eyes/VioletEyesWeighted.glb",
+      "collection": "face_accessories",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0,
+        "eyeSeparation": -0.005,
+        "eyeRotationL": [
+          5.0,
+          0.0,
+          -7.0
+        ],
+        "eyeRotationR": [
+          6.0,
+          0.0,
+          12.0
+        ]
+      }
+    },
+    {
+      "id": "dark_eyebrows",
+      "name": "Dark Eyebrows",
+      "category": "eyebrows",
+      "collection": "face_accessories",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#3F2A1D",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5,
+        "z_max": 1.75,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Eyebrows/DarkEyebrowsWeighted.glb",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      }
+    },
+    {
+      "id": "soft_eyebrows",
+      "name": "Soft Eyebrows",
+      "category": "eyebrows",
+      "collection": "face_accessories",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#8B6914",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5,
+        "z_max": 1.75,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Eyebrows/SoftEyebrowsWeighted.glb",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      }
+    },
+    {
+      "id": "arched_eyebrows",
+      "name": "Arched Eyebrows",
+      "category": "eyebrows",
+      "collection": "face_accessories",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#1A120B",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5,
+        "z_max": 1.75,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Eyebrows/ArchedEyebrowsWeighted.glb",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      }
+    },
+    {
+      "id": "natural_eyelashes",
+      "name": "Natural Eyelashes",
+      "category": "eyelashes",
+      "collection": "face_accessories",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#1C1917",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5,
+        "z_max": 1.75,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Eyelashes/NaturalEyelashesWeighted.glb",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      }
+    },
+    {
+      "id": "long_eyelashes",
+      "name": "Long Eyelashes",
+      "category": "eyelashes",
+      "collection": "face_accessories",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#0C0A09",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5,
+        "z_max": 1.75,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Eyelashes/LongEyelashesWeighted.glb",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      }
+    },
+    {
+      "id": "button_nose",
+      "name": "Button Nose",
+      "category": "nose",
+      "collection": "face_accessories",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#E8B4A0",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5,
+        "z_max": 1.75,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Nose/ButtonNoseWeighted.glb",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      }
+    },
+    {
+      "id": "straight_nose",
+      "name": "Straight Nose",
+      "category": "nose",
+      "collection": "face_accessories",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#E0A890",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5,
+        "z_max": 1.75,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Nose/StraightNoseWeighted.glb",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      }
+    },
+    {
+      "id": "soft_nose",
+      "name": "Soft Nose",
+      "category": "nose",
+      "collection": "face_accessories",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#EFC4B0",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5,
+        "z_max": 1.75,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Nose/SoftNoseWeighted.glb",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      }
+    },
+    {
+      "id": "neutral_mouth",
+      "name": "Neutral Mouth",
+      "category": "mouth",
+      "collection": "face_accessories",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#C7616B",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5,
+        "z_max": 1.75,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Mouth/NeutralMouthWeighted.glb",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      }
+    },
+    {
+      "id": "soft_smile_mouth",
+      "name": "Soft Smile Mouth",
+      "category": "mouth",
+      "collection": "face_accessories",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#D1667A",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5,
+        "z_max": 1.75,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Mouth/SoftSmileMouthWeighted.glb",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      }
+    },
+    {
+      "id": "full_lips_mouth",
+      "name": "Full Lips Mouth",
+      "category": "mouth",
+      "collection": "face_accessories",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#B8475C",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5,
+        "z_max": 1.75,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Mouth/FullLipsMouthWeighted.glb",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      }
+    },
+    {
+      "id": "round_ears",
+      "name": "Round Ears",
+      "category": "ears",
+      "collection": "face_accessories",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#E6B39E",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5,
+        "z_max": 1.75,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Ears/RoundEarsWeighted.glb",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      }
+    },
+    {
+      "id": "pointed_ears",
+      "name": "Pointed Ears",
+      "category": "ears",
+      "collection": "face_accessories",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#E0AD99",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5,
+        "z_max": 1.75,
+        "radius": 0.15,
+        "weight_radius": 0.15
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Ears/PointedEarsWeighted.glb",
+      "default_transform": {
+        "position": [
+          0.0,
+          0.068,
+          -0.024
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      }
+    },
+    {
+      "id": "boghop",
+      "name": "Boghop",
+      "category": "alpha_pass",
+      "collection": "alpha_pass",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#eab308",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/AlphaPass/Boghop.glb"
+    },
+    {
+      "id": "inventioners",
+      "name": "Inventioners",
+      "category": "alpha_pass",
+      "collection": "alpha_pass",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#eab308",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/AlphaPass/Inventioners.glb"
+    },
+    {
+      "id": "shardspire",
+      "name": "Shardspire",
+      "category": "alpha_pass",
+      "collection": "alpha_pass",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#eab308",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/AlphaPass/Shardspire.glb"
+    },
+    {
+      "id": "wildplume",
+      "name": "Wildplume",
+      "category": "alpha_pass",
+      "collection": "alpha_pass",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#eab308",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/AlphaPass/Wildplume.glb"
+    },
+    {
+      "id": "wayfinder",
+      "name": "Wayfinder",
+      "category": "alpha_pass",
+      "collection": "alpha_pass",
+      "gender": "female_v2",
+      "bilateral": false,
+      "color": "#eab308",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/AlphaPass/Wayfinder.glb"
+    },
+    {
+      "id": "hair_medium_v1",
+      "name": "Medium Hair V1",
+      "category": "hair",
+      "collection": "hair",
+      "gender": "female_v3",
+      "bilateral": false,
+      "color": "#a16207",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.45,
+        "z_max": 1.76,
+        "radius": 0.14,
+        "weight_radius": 0.14
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hair/HairMediumV1.glb"
+    },
+    {
+      "id": "hair_long_braid_v1",
+      "name": "Long Braid V1",
+      "category": "hair",
+      "collection": "hair",
+      "gender": "female_v3",
+      "bilateral": false,
+      "color": "#a16207",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.32,
+        "z_max": 1.78,
+        "radius": 0.16,
+        "weight_radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hair/HairLongBraidV1.glb"
+    },
+    {
+      "id": "hair_ponytail_v1",
+      "name": "Ponytail V1",
+      "category": "hair",
+      "collection": "hair",
+      "gender": "female_v3",
+      "bilateral": false,
+      "color": "#92400e",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.44,
+        "z_max": 1.80,
+        "radius": 0.18,
+        "weight_radius": 0.18
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hair/HairPonytailV1.glb"
+    },
+    {
+      "id": "hair_medium_v1_textured",
+      "name": "Medium Hair V1 Textured",
+      "category": "textured_hair",
+      "collection": "textured_hair",
+      "gender": "female_v3",
+      "bilateral": false,
+      "color": "#d97706",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.45,
+        "z_max": 1.76,
+        "radius": 0.14,
+        "weight_radius": 0.14
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hair/HairMediumV1_Textured.glb"
+    },
+    {
+      "id": "hair_long_braid_v1_textured_blonde",
+      "name": "Long Braid V1 Textured Blonde",
+      "category": "textured_hair",
+      "collection": "textured_hair",
+      "gender": "female_v3",
+      "bilateral": false,
+      "color": "#f5d78e",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.32,
+        "z_max": 1.78,
+        "radius": 0.16,
+        "weight_radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Female/Hair/HairLongBraidV1_TexturedBlonde.glb"
     }
   ]
 }

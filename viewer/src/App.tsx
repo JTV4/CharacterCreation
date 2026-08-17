@@ -1,13 +1,16 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { useCharacterModel } from "./hooks/useCharacterModel";
 import { useTransformShortcuts } from "./hooks/useTransformShortcuts";
 import type { AnimSpec, AnimManifest } from "./types/animation";
 import type { AnimationPlayerState } from "./hooks/useAnimationPlayer";
-import type { CharacterModel } from "./types";
+import type { BoneRestTransform, CharacterModel } from "./types";
 import { animSpecToClip } from "./utils/animSpecToClip";
 import type { EquipmentSpec, EquipmentState, EquipTransform, EquipmentSlotType, SlotTextures } from "./types/equipment";
+import { normalizeEquipTransform } from "./types/equipment";
 import { SLOT_TYPE_CONFIGS } from "./types/equipment";
+import { NPC_GENDERS, NPCS, NPC_NAMES, NPC_VARIANTS } from "./types";
 import type { BoneTransformOverride, ModelGender, GlbBoneInfo } from "./types";
 import Scene from "./components/Scene";
 import ViewportErrorBoundary from "./components/ViewportErrorBoundary";
@@ -23,10 +26,13 @@ import ToolAttachment from "./components/ToolAttachment";
 import PoseEditor from "./components/PoseEditor";
 import type { PoseKeyframe, PoseAnimationConfig } from "./components/PoseEditor";
 import SlotBoundsVisualizer from "./components/SlotBoundsVisualizer";
-import { TOOLS, DEFAULT_TOOL_TRANSFORM, DEFAULT_TOOL_ATTACH_BONE } from "./types/tools";
+import { TOOLS, DEFAULT_TOOL_TRANSFORM, DEFAULT_TOOL_ATTACH_BONE, isSharedBucketTool, isSharedWateringCanTool } from "./types/tools";
 import type { ToolTransform, GizmoMode } from "./types/tools";
 import SkinTransferModal from "./components/SkinTransferModal";
 import type { SkinTransferRequest } from "./components/SkinTransferModal";
+import BuildingViewer from "./components/BuildingViewer";
+
+type ViewMode = "character" | "buildings";
 
 function triggerDownload(href: string, filename: string) {
   const a = document.createElement("a");
@@ -64,6 +70,49 @@ function cloneBoneHierarchy(root: THREE.Object3D): THREE.Object3D {
   return scene;
 }
 
+// Dedicated GLTFLoader for the Export panel's "bake NPC + animations"
+// flow.  Kept separate from the viewer's main loader so that toggling
+// downloads doesn't interact with the active character or its mixer.
+const exportGltfLoader = new GLTFLoader();
+
+// Fixed list of NPC clips to embed in every baked NPC GLB.  Any clip
+// added here is fetched, composed against the NPC's rest pose, and
+// embedded in the exported GLB.
+const NPC_EMBEDDED_CLIPS: ReadonlyArray<{ id: string; file: string }> = [
+  { id: "NPCIdle", file: "NPCIdle.anim.json" },
+  { id: "NPCWalk", file: "NPCWalk.anim.json" },
+];
+
+function isNpcCharacter(model: string): boolean {
+  // NPC manifest entries point at `../NPCs/<Variant>/<File>.glb` to
+  // hop out of `/models/` and into `/NPCs/`.  Player rig entries are
+  // bare filenames like `BaseFemale.glb`.
+  return model.startsWith("../NPCs/");
+}
+
+// Lookup from manifest characterId -> friendly displayName for NPC
+// slots that have been promoted to named characters via NPC_OVERRIDES
+// (Slate, Marina, Willow, Milly, Ruben, Hunter, Hopper, Blaise).
+// Built once at module load; the export panel uses it to label rows
+// with the friendly name and tag the variant context underneath.
+const NPC_DISPLAY_INFO_BY_CHAR_ID = new Map(
+  NPCS.filter((n) => n.displayName).map((n) => [
+    n.characterId,
+    { displayName: n.displayName!, variantLabel: n.variant.label },
+  ]),
+);
+
+// Resolve the on-disk download filename for an NPC export.  Promoted
+// slots are saved as `<DisplayName>.glb` (e.g. `Slate.glb`); other
+// slots keep their source filename basename.
+function npcDownloadFilename(
+  char: AnimManifest["characters"][number],
+): string {
+  const info = NPC_DISPLAY_INFO_BY_CHAR_ID.get(char.id);
+  if (info) return `${info.displayName}.glb`;
+  return char.model.split("/").pop() ?? `${char.id}.glb`;
+}
+
 function ExportPanel({
   characters,
   animations,
@@ -75,6 +124,7 @@ function ExportPanel({
 }) {
   const [open, setOpen] = useState(false);
   const [exportingAnim, setExportingAnim] = useState<string | null>(null);
+  const [exportingChar, setExportingChar] = useState<string | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -117,6 +167,70 @@ function ExportPanel({
     }
   }, [characterModel]);
 
+  // Bake NPCIdle + NPCWalk against an NPC's own rest pose and download
+  // a self-contained GLB with both clips embedded.  Uses delta-mode
+  // composition (rest * delta -> absolute) so the exported clips look
+  // correct on this specific NPC even though they live in source as
+  // a single shared spec.  Each download is independent of the
+  // currently-loaded viewer character.
+  const handleDownloadNpcWithAnims = useCallback(
+    async (char: AnimManifest["characters"][number]) => {
+      setExportingChar(char.id);
+      try {
+        const url = `/models/${char.model}`;
+
+        const gltf = await new Promise<{ scene: THREE.Group }>((resolve, reject) => {
+          exportGltfLoader.load(url, resolve, undefined, reject);
+        });
+        const scene = gltf.scene;
+
+        const boneRestPose = new Map<string, BoneRestTransform>();
+        scene.traverse((child) => {
+          if ((child as THREE.Bone).isBone) {
+            boneRestPose.set(child.name, {
+              position: child.position.clone(),
+              quaternion: child.quaternion.clone(),
+            });
+          }
+        });
+
+        const specs = await Promise.all(
+          NPC_EMBEDDED_CLIPS.map(async ({ file }) => {
+            const res = await fetch(`/animations/${file}`);
+            if (!res.ok) throw new Error(`HTTP ${res.status} for ${file}`);
+            return (await res.json()) as AnimSpec;
+          }),
+        );
+        const clips = specs.map((spec) => animSpecToClip(spec, boneRestPose));
+
+        const { GLTFExporter } = await import("three/examples/jsm/exporters/GLTFExporter.js");
+        const exporter = new GLTFExporter();
+        const glb = await exporter.parseAsync(scene, {
+          binary: true,
+          animations: clips,
+        });
+
+        // Promoted NPCs (Slate, Marina, Willow, ...) download as
+        // `<DisplayName>.glb` so the file the user gets matches the
+        // friendly name shown in the UI.  Unpromoted slots fall back to
+        // the source GLB filename.
+        const downloadName = npcDownloadFilename(char);
+        const blob = new Blob([glb as ArrayBuffer], { type: "model/gltf-binary" });
+        const blobUrl = URL.createObjectURL(blob);
+        triggerDownload(blobUrl, downloadName);
+        URL.revokeObjectURL(blobUrl);
+      } catch (err) {
+        console.error(`Failed to export ${char.id} with animations:`, err);
+      } finally {
+        setExportingChar(null);
+      }
+    },
+    [],
+  );
+
+  const playerChars = characters.filter((c) => !isNpcCharacter(c.model));
+  const npcChars = characters.filter((c) => isNpcCharacter(c.model));
+
   return (
     <div className="export-dropdown" ref={ref}>
       <button className="export-btn" onClick={() => setOpen((o) => !o)}>
@@ -124,11 +238,11 @@ function ExportPanel({
       </button>
       {open && (
         <div className="export-panel">
-          <div className="export-panel-header">Character Models</div>
+          <div className="export-panel-header">Player Rigs</div>
           <div className="export-panel-subhint">Mesh + Skeleton (pair with default idle animation)</div>
           <div className="export-panel-divider" />
           <div className="export-panel-list">
-            {characters.map((char) => (
+            {playerChars.map((char) => (
               <div key={char.id} className="export-panel-row export-panel-export-row">
                 <span className="export-panel-label">{char.id}</span>
                 <button
@@ -139,6 +253,36 @@ function ExportPanel({
                 </button>
               </div>
             ))}
+          </div>
+          <div className="export-panel-divider" />
+          <div className="export-panel-header">NPCs (with embedded animations)</div>
+          <div className="export-panel-subhint">
+            Mesh + Skeleton + {NPC_EMBEDDED_CLIPS.map((c) => c.id).join(" + ")} baked against this NPC&rsquo;s rest pose
+          </div>
+          <div className="export-panel-divider" />
+          <div className="export-panel-list">
+            {npcChars.map((char) => {
+              const downloadName = npcDownloadFilename(char);
+              const isBaking = exportingChar === char.id;
+              const info = NPC_DISPLAY_INFO_BY_CHAR_ID.get(char.id);
+              const labelText = info ? info.displayName : char.id;
+              const labelTitle = info
+                ? `${info.displayName} \u2014 ${info.variantLabel} (${char.id})`
+                : char.id;
+              return (
+                <div key={char.id} className="export-panel-row export-panel-export-row">
+                  <span className="export-panel-label" title={labelTitle}>{labelText}</span>
+                  <button
+                    className="export-panel-dl"
+                    disabled={isBaking}
+                    onClick={() => handleDownloadNpcWithAnims(char)}
+                    title={`Bake ${NPC_EMBEDDED_CLIPS.map((c) => c.id).join(" + ")} into ${downloadName} and download`}
+                  >
+                    {isBaking ? "Baking..." : downloadName}
+                  </button>
+                </div>
+              );
+            })}
           </div>
           <div className="export-panel-divider" />
           <div className="export-panel-header">Animations</div>
@@ -204,9 +348,29 @@ const BODY_PART_NAMES = new Set([
   "base_body_foot",
 ]);
 
+/** Segmented Mixamo bases that support per-region hide + Shell V1 equipment. */
+const SEGMENTED_GENDERS = new Set<ModelGender>(["female_v2", "female_v3", "male_v2"]);
+
+/**
+ * Equipment gender gate. Female V3 shares Female V2's skeleton and region
+ * layout, so it accepts `gender: "female_v2"` slots.
+ */
+function slotMatchesGender(
+  slotGender: string | undefined,
+  active: ModelGender,
+): boolean {
+  if (!slotGender) return true;
+  if (slotGender === active) return true;
+  if (active === "female_v3" && slotGender === "female_v2") return true;
+  return false;
+}
+
 export default function App() {
+  const [viewMode, setViewMode] = useState<ViewMode>("character");
+
   const [activeGender, setActiveGender] = useState<ModelGender>("female");
   const { model: characterModel, loading, error } = useCharacterModel(activeGender);
+  const isNPC = NPC_GENDERS.has(activeGender);
 
   const [selectedBone, setSelectedBone] = useState<string | null>(null);
   const [showMesh, setShowMesh] = useState(true);
@@ -305,8 +469,27 @@ export default function App() {
 
   const handleToggleSlot = useCallback((slotId: string, enabled: boolean) => {
     if (BODY_SLOT_IDS.has(slotId)) return;
-    setEquipState((prev) => ({ ...prev, [slotId]: enabled }));
-  }, []);
+    setEquipState((prev) => {
+      const next = { ...prev, [slotId]: enabled };
+      // Face feature types are mutually exclusive within each category
+      // (eyes, brows, lashes, nose, mouth, ears).
+      const FACE_EXCLUSIVE = new Set([
+        "eyes", "eyebrows", "eyelashes", "nose", "mouth", "ears",
+      ]);
+      if (enabled && equipSpec) {
+        const toggled = equipSpec.slots.find((s) => s.id === slotId);
+        const cat = toggled?.category;
+        if (cat && FACE_EXCLUSIVE.has(cat)) {
+          for (const slot of equipSpec.slots) {
+            if (slot.category === cat && slot.id !== slotId) {
+              next[slot.id] = false;
+            }
+          }
+        }
+      }
+      return next;
+    });
+  }, [equipSpec]);
 
   const handleImportEquipment = useCallback(
     (slotType: EquipmentSlotType, name: string, url: string) => {
@@ -349,7 +532,13 @@ export default function App() {
   const [equipTransforms, setEquipTransforms] = useState<Record<string, EquipTransform>>(() => {
     try {
       const saved = localStorage.getItem("equipTransforms");
-      return saved ? JSON.parse(saved) : {};
+      if (!saved) return {};
+      const parsed = JSON.parse(saved) as Record<string, EquipTransform>;
+      const normalized: Record<string, EquipTransform> = {};
+      for (const [id, t] of Object.entries(parsed)) {
+        normalized[id] = normalizeEquipTransform(t);
+      }
+      return normalized;
     } catch {
       return {};
     }
@@ -378,9 +567,11 @@ export default function App() {
   }, []);
 
   const handleExportWeightedSlot = useCallback((slotId: string) => {
-    const transform = equipTransforms[slotId];
+    const slotDef = equipSpec?.slots.find((s) => s.id === slotId);
+    const raw = equipTransforms[slotId] ?? slotDef?.default_transform;
+    const transform = raw ? normalizeEquipTransform(raw) : undefined;
     exportSlotAsGlb(slotId, `${slotId}_weighted.glb`, transform);
-  }, [equipTransforms]);
+  }, [equipTransforms, equipSpec]);
 
   const handleSetSlotTexture = useCallback((slotId: string, dataUrl: string | null) => {
     setSlotTextures((prev) => {
@@ -422,7 +613,15 @@ export default function App() {
     () => TOOLS.find((t) => t.id === selectedToolId) ?? null,
     [selectedToolId],
   );
-  const [toolTransforms, setToolTransforms] = useState<Record<string, ToolTransform>>({});
+  const [toolTransforms, setToolTransforms] = useState<Record<string, ToolTransform>>(() => {
+    try {
+      const saved = localStorage.getItem("toolTransforms");
+      if (!saved) return {};
+      return JSON.parse(saved) as Record<string, ToolTransform>;
+    } catch {
+      return {};
+    }
+  });
   const [toolGizmoMode, setToolGizmoMode] = useState<GizmoMode>("translate");
   const [toolDetached, setToolDetached] = useState(false);
 
@@ -433,26 +632,58 @@ export default function App() {
   }, []);
 
   const selectedToolTransform = useMemo(
-    () =>
-      selectedToolId
-        ? toolTransforms[selectedToolId] ?? getToolDefault(selectedToolId)
-        : DEFAULT_TOOL_TRANSFORM,
+    () => {
+      if (!selectedToolId) return DEFAULT_TOOL_TRANSFORM;
+      if (isSharedBucketTool(selectedToolId)) {
+        return (
+          toolTransforms.empty_bucket ??
+          toolTransforms[selectedToolId] ??
+          getToolDefault("empty_bucket")
+        );
+      }
+      if (isSharedWateringCanTool(selectedToolId)) {
+        return (
+          toolTransforms.empty_tin_watering_can ??
+          toolTransforms[selectedToolId] ??
+          getToolDefault("empty_tin_watering_can")
+        );
+      }
+      return toolTransforms[selectedToolId] ?? getToolDefault(selectedToolId);
+    },
     [selectedToolId, toolTransforms, getToolDefault],
   );
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("toolTransforms", JSON.stringify(toolTransforms));
+    } catch {
+      // ignore storage errors
+    }
+  }, [toolTransforms]);
 
   const handleToolTransformChange = useCallback(
     (t: ToolTransform) => {
       if (!selectedToolId) return;
-      setToolTransforms((prev) => ({ ...prev, [selectedToolId]: t }));
+      const key = isSharedBucketTool(selectedToolId)
+        ? "empty_bucket"
+        : isSharedWateringCanTool(selectedToolId)
+          ? "empty_tin_watering_can"
+          : selectedToolId;
+      setToolTransforms((prev) => ({ ...prev, [key]: t }));
     },
     [selectedToolId],
   );
 
   const handleResetToolTransform = useCallback(() => {
     if (!selectedToolId) return;
+    const key = isSharedBucketTool(selectedToolId)
+      ? "empty_bucket"
+      : isSharedWateringCanTool(selectedToolId)
+        ? "empty_tin_watering_can"
+        : selectedToolId;
     setToolTransforms((prev) => ({
       ...prev,
-      [selectedToolId]: { ...getToolDefault(selectedToolId) },
+      [key]: { ...getToolDefault(selectedToolId) },
     }));
   }, [selectedToolId, getToolDefault]);
 
@@ -515,9 +746,9 @@ export default function App() {
     });
   }, []);
 
-  // Auto-hide body parts covered by equipped items (Female V2 only)
+  // Auto-hide body parts covered by equipped items (segmented V2/V3 bases)
   const autoHiddenBodyParts = useMemo<Set<string>>(() => {
-    if (activeGender !== "female_v2" && activeGender !== "male_v2") return new Set();
+    if (!SEGMENTED_GENDERS.has(activeGender)) return new Set();
     if (!equipSpec) return new Set();
     const hidden = new Set<string>();
     for (const slot of equipSpec.slots) {
@@ -552,6 +783,63 @@ export default function App() {
       })
       .catch(() => setManifest([]));
   }, []);
+
+  // Map ModelGender → character-id used in the animation manifest's
+  // `for_character` binding (e.g. `npc_finn` → "FinnFemale").  Player
+  // rigs don't have a character-id binding right now, so they map to
+  // null and any non-`for_character` animation in their category passes.
+  const activeCharacterId = useMemo(() => {
+    const npc = NPCS.find((n) => n.id === activeGender);
+    return npc?.characterId ?? null;
+  }, [activeGender]);
+
+  // Animations available for the currently-active character.  Filtering
+  // happens in two passes:
+  //   1. Category gate — NPC-tagged entries only show while an NPC is
+  //      active; everything else shows for the player rigs (Female/
+  //      Male/V2 series).  Animations targeting Mixamo bones can't drive
+  //      the NPC rig and vice versa, so mixing them just creates dead
+  //      options in the picker.
+  //   2. Character gate — per-character animations (those with a
+  //      `for_character` field, e.g. `FinnWalk`) are hidden unless the
+  //      active character matches.  This lets each NPC have a walk tuned
+  //      to its own Hips rest height while still sharing the
+  //      character-agnostic NPCIdle.
+  const visibleAnimations = useMemo(
+    () =>
+      manifest.filter((a) => {
+        if (isNPC ? a.category !== "npc" : a.category === "npc") return false;
+        if (a.for_character && a.for_character !== activeCharacterId) return false;
+        return true;
+      }),
+    [manifest, isNPC, activeCharacterId],
+  );
+
+  // When the active character changes, drop the active clip ONLY if
+  // we cross the rig boundary (player <-> NPC).  In that case the
+  // spec targets bones that don't exist on the new rig and would
+  // produce a silent no-op or a deformed pose.
+  //
+  // NPC <-> NPC swaps no longer reset: both NPCIdle and NPCWalk are
+  // delta-mode clips against the shared Meshy skeleton, so they apply
+  // cleanly to every NPC in the roster.  The animation player rebinds
+  // the active spec to the new skeleton (see useAnimationPlayer), so
+  // the user can flip between NPCs while the idle/walk keeps running.
+  const prevGenderRef = useRef(activeGender);
+  useEffect(() => {
+    if (prevGenderRef.current === activeGender) return;
+    const prevWasNPC = NPC_GENDERS.has(prevGenderRef.current);
+    const nowIsNPC = NPC_GENDERS.has(activeGender);
+    prevGenderRef.current = activeGender;
+
+    const crossesRigBoundary = prevWasNPC !== nowIsNPC;
+    if (crossesRigBoundary) {
+      setAnimSpec(null);
+      setBoneOverrides(new Map());
+      playerRef.current?.setAnimation(null);
+      playerRef.current?.stop();
+    }
+  }, [activeGender]);
 
   const handleSelectAnimation = useCallback(
     (id: string) => {
@@ -599,20 +887,52 @@ export default function App() {
   }, [selectedEquipSlot, equipSpec]);
 
   const selectedEquipTransform = useMemo(
-    () => selectedEquipSlot
-      ? equipTransforms[selectedEquipSlot] ?? { position: [0, 0, 0] as [number, number, number], rotation: [0, 0, 0] as [number, number, number], scale: 1 }
-      : { position: [0, 0, 0] as [number, number, number], rotation: [0, 0, 0] as [number, number, number], scale: 1 },
-    [selectedEquipSlot, equipTransforms],
+    () => {
+      const identity = normalizeEquipTransform({
+        position: [0, 0, 0],
+        rotation: [0, 0, 0],
+        scale: [1, 1, 1],
+      });
+      if (!selectedEquipSlot) return identity;
+      const raw =
+        equipTransforms[selectedEquipSlot]
+        ?? selectedEquipSlotInfo?.default_transform
+        ?? identity;
+      return normalizeEquipTransform(raw);
+    },
+    [selectedEquipSlot, selectedEquipSlotInfo, equipTransforms],
   );
 
-  if (loading) {
+  // Buildings mode owns its own layout (sidebar + viewport + no right
+  // panel).  We return early so the character-mode hooks that require a
+  // loaded model don't gate rendering.  The character model keeps
+  // streaming in the background via `useCharacterModel`, so flipping
+  // back to Character mode is instant on subsequent switches.
+  if (viewMode === "buildings") {
+    return <BuildingViewer onExitToCharacter={() => setViewMode("character")} />;
+  }
+
+  // First-time mount: nothing rendered yet, so we hard-block on the
+  // initial GLB load.  Subsequent gender swaps don't take this branch
+  // because `useCharacterModel` keeps the previous model in `model`
+  // until the next one finishes loading — that preserves Canvas state
+  // (camera, mixer, etc.) across swaps.
+  if (loading && !characterModel) {
     return <div className="loading-screen">Loading character model...</div>;
   }
 
-  if (error || !characterModel) {
+  if (error && !characterModel) {
     return (
       <div className="error-screen">
-        Failed to load character model: {error ?? "Unknown error"}
+        Failed to load character model: {error}
+      </div>
+    );
+  }
+
+  if (!characterModel) {
+    return (
+      <div className="error-screen">
+        Failed to load character model: Unknown error
       </div>
     );
   }
@@ -648,11 +968,25 @@ export default function App() {
                 Female V2
               </button>
               <button
+                className={`model-toggle-btn ${activeGender === "female_v3" ? "active" : ""}`}
+                onClick={() => setActiveGender("female_v3")}
+                title="Female V3 — White-skinned modular base (same regions as V2, baked skin texture)"
+              >
+                Female V3
+              </button>
+              <button
                 className={`model-toggle-btn ${activeGender === "male_v2" ? "active" : ""}`}
                 onClick={() => setActiveGender("male_v2")}
                 title="Male V2 — segmented body (morphed from female, same skeleton)"
               >
                 Male V2
+              </button>
+              <button
+                className={`model-toggle-btn ${activeGender === "grind_male" ? "active" : ""}`}
+                onClick={() => setActiveGender("grind_male")}
+                title="GrindMale — original male mesh designed from scratch for GrindScape"
+              >
+                GrindMale
               </button>
             </div>
             <div className="model-selector">
@@ -669,15 +1003,18 @@ export default function App() {
                 Bones
               </button>
             </div>
-            <div className="model-selector">
-              <button
-                className={`model-toggle-btn ${showSlotBounds ? "active" : ""}`}
-                onClick={() => setShowSlotBounds((v) => !v)}
-                title="Show equipment slot bounding volumes"
-              >
-                Slot Bounds
-              </button>
-            </div>
+            {!isNPC && (
+              <div className="model-selector">
+                <button
+                  className={`model-toggle-btn ${showSlotBounds ? "active" : ""}`}
+                  onClick={() => setShowSlotBounds((v) => !v)}
+                  title="Show equipment slot bounding volumes"
+                >
+                  Slot Bounds
+                </button>
+              </div>
+            )}
+            {!isNPC && (
             <div className="body-parts-dropdown">
               {(() => {
                 const totalHidden = new Set([...hiddenBodyParts, ...autoHiddenBodyParts]).size;
@@ -691,7 +1028,7 @@ export default function App() {
                 <div className="body-parts-menu-inner">
                   <div className="body-parts-menu-title">
                     Visibility
-                    {activeGender === "female_v2" && autoHiddenBodyParts.size > 0 && (
+                    {SEGMENTED_GENDERS.has(activeGender) && autoHiddenBodyParts.size > 0 && (
                       <span className="body-parts-auto-label"> (auto)</span>
                     )}
                   </div>
@@ -729,6 +1066,7 @@ export default function App() {
                 </div>
               </div>
             </div>
+            )}
             <span>
               {boneList.length} bones
               {(animState.activeAnimId ?? "T-pose") && (
@@ -740,7 +1078,77 @@ export default function App() {
               )}
             </span>
           </div>
-          <ExportPanel characters={characters} animations={manifest} characterModel={characterModel} />
+          <div className="top-right-cluster">
+            <button
+              className="model-toggle-btn buildings-mode-btn"
+              onClick={() => setViewMode("buildings")}
+              title="Switch to the Buildings viewer (construction stages)"
+            >
+              Buildings &rarr;
+            </button>
+            <ExportPanel characters={characters} animations={manifest} characterModel={characterModel} />
+            <div
+              className="npc-dropdown"
+              title="NPCs use a separate Meshy-generated rig (no Mixamo prefix, no fingers). Each name comes in 4 skin/sex variants; equipment, body-part hiding, and Female/Male animations don't apply."
+            >
+              <button
+                className={`model-toggle-btn npc-trigger${isNPC ? " active" : ""}`}
+              >
+                {(() => {
+                  const active = NPCS.find((n) => n.id === activeGender);
+                  if (!active) return `NPCs (${NPCS.length}) \u25BE`;
+                  return active.displayName
+                    ? `NPC: ${active.displayName}`
+                    : `NPC: ${active.name} \u00B7 ${active.variant.abbrev}`;
+                })()}
+              </button>
+              <div className="npc-menu npc-menu-grid">
+                <div className="npc-menu-inner">
+                  <div className="npc-menu-title">
+                    NPCs &mdash; {NPC_NAMES.length} names &times; {NPC_VARIANTS.length} variants
+                  </div>
+                  <div className="npc-grid-header">
+                    <span />
+                    {NPC_VARIANTS.map((variant) => (
+                      <span
+                        key={variant.key}
+                        className="npc-grid-h"
+                        title={variant.label}
+                      >
+                        {variant.abbrev}
+                      </span>
+                    ))}
+                  </div>
+                  {NPC_NAMES.map((name) => (
+                    <div key={name} className="npc-grid-row">
+                      <span className="npc-grid-name">{name}</span>
+                      {NPC_VARIANTS.map((variant) => {
+                        const npc = NPCS.find(
+                          (n) => n.name === name && n.variant.key === variant.key,
+                        );
+                        if (!npc) return <span key={variant.key} />;
+                        const active = activeGender === npc.id;
+                        return (
+                          <button
+                            key={variant.key}
+                            className={`npc-chip${active ? " active" : ""}`}
+                            onClick={() => setActiveGender(npc.id)}
+                            title={
+                              npc.displayName
+                                ? `${npc.displayName} (${name} \u00B7 ${variant.label})`
+                                : `${name} (${variant.label})`
+                            }
+                          >
+                            {variant.abbrev}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
           <ViewportErrorBoundary>
             <Scene
               characterModel={characterModel}
@@ -758,7 +1166,7 @@ export default function App() {
               basePose={basePose}
               showMesh={showMesh}
             />
-            {equipSpec && (
+            {equipSpec && !isNPC && (
               <EquipmentMeshRenderer
                 slotIds={equipSlotIds}
                 slots={equipSpec.slots}
@@ -776,10 +1184,10 @@ export default function App() {
                 onSkinTransferDone={handleSkinTransferDone}
               />
             )}
-            {showSlotBounds && equipSpec && (
+            {showSlotBounds && equipSpec && !isNPC && (
               <SlotBoundsVisualizer
                 slots={equipSpec.slots.filter(
-                  (s) => !BODY_SLOT_IDS.has(s.id) && (!s.gender || s.gender === activeGender),
+                  (s) => !BODY_SLOT_IDS.has(s.id) && slotMatchesGender(s.gender, activeGender),
                 )}
               />
             )}
@@ -814,7 +1222,7 @@ export default function App() {
           )}
         </div>
         <AnimationControls
-          animations={manifest}
+          animations={visibleAnimations}
           activeAnimId={animState.activeAnimId ?? "tpose"}
           isPlaying={animState.isPlaying}
           currentTime={animState.currentTime}
@@ -866,10 +1274,10 @@ export default function App() {
           onLoadOverrides={handleLoadOverrides}
           onClearOverrides={handleClearOverrides}
         />
-        {!poseMode && equipSpec && (
+        {!poseMode && equipSpec && !isNPC && (
           <EquipmentPanel
             slots={equipSpec.slots.filter(
-              (s) => !BODY_SLOT_IDS.has(s.id) && (!s.gender || s.gender === activeGender),
+              (s) => !BODY_SLOT_IDS.has(s.id) && slotMatchesGender(s.gender, activeGender),
             )}
             equipState={equipState}
             onToggleSlot={handleToggleSlot}
@@ -902,7 +1310,7 @@ export default function App() {
           <SkinTransferModal
             targetSlotId={skinTransferTarget}
             slots={equipSpec.slots.filter(
-              (s) => !BODY_SLOT_IDS.has(s.id) && (!s.gender || s.gender === activeGender),
+              (s) => !BODY_SLOT_IDS.has(s.id) && slotMatchesGender(s.gender, activeGender),
             )}
             equipState={equipState}
             onTransfer={handleSkinTransfer}

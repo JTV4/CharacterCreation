@@ -1,0 +1,154 @@
+{
+  "source": "Building7Whole.glb",
+  "structureName": "Manufacturing Animation",
+  "coordinateSystem": "Z-up",
+  "pieces": [
+    {
+      "id": "BA_Floor_01",
+      "category": "Floor",
+      "staggerIndex": 0,
+      "spawnOffset": [
+        -0.55,
+        -0.0015,
+        2.8
+      ],
+      "spawnYawDeg": -0.1,
+      "durationSec": 0.45
+    },
+    {
+      "id": "BA_Wall_02",
+      "category": "Wall",
+      "staggerIndex": 1,
+      "spawnOffset": [
+        -0.55,
+        -0.0003,
+        2.8
+      ],
+      "spawnYawDeg": -0.02,
+      "durationSec": 0.45
+    },
+    {
+      "id": "BA_Wall_01",
+      "category": "Wall",
+      "staggerIndex": 2,
+      "spawnOffset": [
+        -0.55,
+        -0.0008,
+        2.8
+      ],
+      "spawnYawDeg": -0.06,
+      "durationSec": 0.45
+    },
+    {
+      "id": "BA_Trim_01",
+      "category": "Trim",
+      "staggerIndex": 3,
+      "spawnOffset": [
+        -0.55,
+        0.0008,
+        2.8
+      ],
+      "spawnYawDeg": 0.05,
+      "durationSec": 0.45
+    },
+    {
+      "id": "BA_Roof_03",
+      "category": "Roof",
+      "staggerIndex": 4,
+      "spawnOffset": [
+        -0.55,
+        0.0,
+        2.8
+      ],
+      "spawnYawDeg": 0.0,
+      "durationSec": 0.45
+    },
+    {
+      "id": "BA_Roof_01",
+      "category": "Roof",
+      "staggerIndex": 5,
+      "spawnOffset": [
+        -0.55,
+        0.0,
+        2.8
+      ],
+      "spawnYawDeg": 0.0,
+      "durationSec": 0.45
+    },
+    {
+      "id": "BA_Roof_02",
+      "category": "Roof",
+      "staggerIndex": 6,
+      "spawnOffset": [
+        -0.55,
+        0.0,
+        2.8
+      ],
+      "spawnYawDeg": 0.0,
+      "durationSec": 0.45
+    }
+  ],
+  "stages": {
+    "foundation": [
+      "BA_Floor_01"
+    ],
+    "walls_a": [
+      "BA_Floor_01",
+      "BA_Wall_02"
+    ],
+    "walls_b": [
+      "BA_Floor_01",
+      "BA_Wall_02"
+    ],
+    "walls_c": [
+      "BA_Floor_01",
+      "BA_Wall_02"
+    ],
+    "walls_d": [
+      "BA_Floor_01",
+      "BA_Wall_02"
+    ],
+    "gable": [
+      "BA_Floor_01",
+      "BA_Wall_02",
+      "BA_Wall_01"
+    ],
+    "framing": [
+      "BA_Floor_01",
+      "BA_Wall_02",
+      "BA_Wall_01",
+      "BA_Trim_01"
+    ],
+    "eaves": [
+      "BA_Floor_01",
+      "BA_Wall_02",
+      "BA_Wall_01",
+      "BA_Trim_01"
+    ],
+    "complete": [
+      "BA_Floor_01",
+      "BA_Wall_02",
+      "BA_Wall_01",
+      "BA_Trim_01",
+      "BA_Roof_03",
+      "BA_Roof_01",
+      "BA_Roof_02"
+    ]
+  },
+  "stageOrder": [
+    "foundation",
+    "walls_a",
+    "walls_b",
+    "walls_c",
+    "walls_d",
+    "gable",
+    "framing",
+    "eaves",
+    "complete"
+  ],
+  "tween": {
+    "staggerSec": 0.07,
+    "ease": "easeOutCubic",
+    "startScale": 0.92
+  }
+}

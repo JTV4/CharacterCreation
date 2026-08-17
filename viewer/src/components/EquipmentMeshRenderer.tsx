@@ -14,7 +14,7 @@ import type {
 import type { GizmoMode } from "../types/tools";
 import type { CharacterModel } from "../types";
 import type { AnimationPlayerState } from "../hooks/useAnimationPlayer";
-import { SLOT_COLORS } from "../types/equipment";
+import { SLOT_COLORS, normalizeEquipTransform } from "../types/equipment";
 
 interface EquipmentMeshRendererProps {
   slotIds: string[];
@@ -55,14 +55,35 @@ const FINGERTIP_EXTEND = 0.022;
 //   Layer 3 = Gloves (overlap upperbody at arm transitions)
 //   Layer 4 = Accessories (amulet, ring)
 const SLOT_RENDER_ORDER: Record<string, number> = {
-  lower_body: 1, shell_lower_body: 1, shell_lower_body_test_v1: 1, custom_lower_body_f: 1, meshy_crimson_lower_body_f: 1, red_lower_body_f: 1, green_dragon_legs_f: 1, green_ranged_lowerbody: 1,
+  lower_body: 1, shell_lower_body: 1, shell_lower_body_test_v1: 1, custom_lower_body_f: 1, meshy_crimson_lower_body_f: 1, red_lower_body_f: 1, green_dragon_legs_f: 1, green_ranged_lowerbody: 1, leather_ranged_lowerbody: 1, red_ranged_lowerbody: 1, purple_ranged_lowerbody: 1, black_ranged_lowerbody: 1, blue_ranged_lowerbody: 1,
+  iron_armor_lowerbody: 1, steel_armor_lowerbody: 1, gold_armor_lowerbody: 1, titanium_armor_lowerbody: 1, tungsten_armor_lowerbody: 1, luminous_armor_lowerbody: 1,
+  leather_magic_armor_lowerbody: 1, green_magic_armor_lowerbody: 1, blue_magic_armor_lowerbody: 1, red_magic_armor_lowerbody: 1, black_magic_armor_lowerbody: 1, purple_magic_armor_lowerbody: 1,
+  default_armor_lowerbody: 1,
   crimson_wizard_robe_bottom: 1,
-  upper_body: 2, shell_upper_body: 2, shell_upper_body_test_v1: 2, custom_upper_body_f: 2, custom_upper_body_f_textured: 2, custom_upper_body_f_crimson_meshy: 2, meshy_crimson_upperbody_f: 2, green_dragon_top_f: 2, green_ranged_upperbody: 2,
-  boots: 2, shell_boots: 2, shell_boots_test_v1: 2, custom_boots_f: 2, meshy_crimson_boots_f: 2, green_dragon_boots_f: 2, green_ranged_boots: 2,
+  upper_body: 2, shell_upper_body: 2, shell_upper_body_test_v1: 2, custom_upper_body_f: 2, custom_upper_body_f_textured: 2, custom_upper_body_f_crimson_meshy: 2, meshy_crimson_upperbody_f: 2, green_dragon_top_f: 2, green_ranged_upperbody: 2, leather_ranged_upperbody: 2, red_ranged_upperbody: 2, purple_ranged_upperbody: 2, black_ranged_upperbody: 2, blue_ranged_upperbody: 2,
+  iron_armor_upperbody: 2, steel_armor_upperbody: 2, gold_armor_upperbody: 2, titanium_armor_upperbody: 2, tungsten_armor_upperbody: 2, luminous_armor_upperbody: 2,
+  leather_magic_armor_upperbody: 2, green_magic_armor_upperbody: 2, blue_magic_armor_upperbody: 2, red_magic_armor_upperbody: 2, black_magic_armor_upperbody: 2, purple_magic_armor_upperbody: 2,
+  default_armor_upperbody: 2,
+  boots: 2, shell_boots: 2, shell_boots_test_v1: 2, custom_boots_f: 2, meshy_crimson_boots_f: 2, green_dragon_boots_f: 2, green_ranged_boots: 2, leather_ranged_boots: 2, red_ranged_boots: 2, purple_ranged_boots: 2, black_ranged_boots: 2, blue_ranged_boots: 2,
+  iron_armor_boots: 2, steel_armor_boots: 2, gold_armor_boots: 2, titanium_armor_boots: 2, tungsten_armor_boots: 2, luminous_armor_boots: 2,
+  leather_magic_armor_boots: 2, green_magic_armor_boots: 2, blue_magic_armor_boots: 2, red_magic_armor_boots: 2, black_magic_armor_boots: 2, purple_magic_armor_boots: 2,
+  default_armor_boots: 2,
   crimson_wizard_robe: 2, crimson_upperbody_f: 2, crimson_upperbody_meshy_v2: 2, crimson_wizard_boots: 2,
-  head: 2, shell_head: 2, shell_head_test_v1: 2, custom_head_f: 2, meshy_crimson_head_f: 2, meshy_crimson_wizard_hat_f: 2, crimson_wizard_hat: 2, green_dragon_wizard_hat_f: 2, green_ranged_hat: 2,
-  gloves: 3, shell_gloves: 3, shell_gloves_test_v1: 3, custom_gloves_f: 3, meshy_crimson_gloves_f: 3, crimson_wizard_gloves: 3, green_dragon_gloves_f: 3, green_ranged_gloves: 3, red_ranged_gloves: 3, purple_ranged_gloves: 3, black_ranged_gloves: 3, blue_ranged_gloves: 3,
+  head: 2, shell_head: 2, shell_head_test_v1: 2, custom_head_f: 2, meshy_crimson_head_f: 2, meshy_crimson_wizard_hat_f: 2, crimson_wizard_hat: 2, green_dragon_wizard_hat_f: 2, green_ranged_hat: 2, leather_ranged_hat: 2, red_ranged_hat: 2, purple_ranged_hat: 2, black_ranged_hat: 2, blue_ranged_hat: 2,
+  leather_magic_armor_hat: 2, green_magic_armor_hat: 2, blue_magic_armor_hat: 2, red_magic_armor_hat: 2, black_magic_armor_hat: 2, purple_magic_armor_hat: 2,
+  boghop: 2, inventioners: 2, shardspire: 2, wildplume: 2, wayfinder: 2,
+  iron_armor_head: 2, steel_armor_head: 2, gold_armor_head: 2, titanium_armor_head: 2, tungsten_armor_head: 2, luminous_armor_head: 2,
+  gloves: 3, shell_gloves: 3, shell_gloves_test_v1: 3, custom_gloves_f: 3, meshy_crimson_gloves_f: 3, crimson_wizard_gloves: 3, green_dragon_gloves_f: 3, green_ranged_gloves: 3, red_ranged_gloves: 3, purple_ranged_gloves: 3, black_ranged_gloves: 3, blue_ranged_gloves: 3, leather_ranged_gloves: 3,
+  iron_armor_gloves: 3, steel_armor_gloves: 3, gold_armor_gloves: 3, titanium_armor_gloves: 3, tungsten_armor_gloves: 3, luminous_armor_gloves: 3,
+  leather_magic_armor_gloves: 3, green_magic_armor_gloves: 3, blue_magic_armor_gloves: 3, red_magic_armor_gloves: 3, black_magic_armor_gloves: 3, purple_magic_armor_gloves: 3,
   amulet: 4, ring: 4,
+  // Removable face overlays — draw above the head/face
+  brown_eyes: 4, blue_eyes: 4, green_eyes: 4, amber_eyes: 4, violet_eyes: 4,
+  dark_eyebrows: 4, soft_eyebrows: 4, arched_eyebrows: 4,
+  natural_eyelashes: 4, long_eyelashes: 4,
+  button_nose: 4, straight_nose: 4, soft_nose: 4,
+  neutral_mouth: 4, soft_smile_mouth: 4, full_lips_mouth: 4,
+  round_ears: 4, pointed_ears: 4,
 };
 
 // Polygon offset per render-order layer. More negative = pushed closer to camera = wins at overlap.
@@ -75,13 +96,27 @@ const LAYER_POLYGON_OFFSET: Record<number, number> = {
 
 // All equipment writes stencil=1 so the base body mesh skips those pixels.
 const STENCIL_WRITE_SLOTS = new Set([
-  "lower_body", "shell_lower_body", "shell_lower_body_test_v1", "custom_lower_body_f", "meshy_crimson_lower_body_f", "red_lower_body_f", "green_dragon_legs_f", "green_ranged_lowerbody",
+  "lower_body", "shell_lower_body", "shell_lower_body_test_v1", "custom_lower_body_f", "meshy_crimson_lower_body_f", "red_lower_body_f", "green_dragon_legs_f", "green_ranged_lowerbody", "leather_ranged_lowerbody", "red_ranged_lowerbody", "purple_ranged_lowerbody", "black_ranged_lowerbody", "blue_ranged_lowerbody",
+  "iron_armor_lowerbody", "steel_armor_lowerbody", "gold_armor_lowerbody", "titanium_armor_lowerbody", "tungsten_armor_lowerbody", "luminous_armor_lowerbody",
+  "leather_magic_armor_lowerbody", "green_magic_armor_lowerbody", "blue_magic_armor_lowerbody", "red_magic_armor_lowerbody", "black_magic_armor_lowerbody", "purple_magic_armor_lowerbody",
+  "default_armor_lowerbody",
   "crimson_wizard_robe_bottom",
-  "upper_body", "shell_upper_body", "shell_upper_body_test_v1", "custom_upper_body_f", "custom_upper_body_f_textured", "custom_upper_body_f_crimson_meshy", "meshy_crimson_upperbody_f", "green_dragon_top_f", "green_ranged_upperbody",
-  "boots", "shell_boots", "shell_boots_test_v1", "custom_boots_f", "meshy_crimson_boots_f", "green_dragon_boots_f", "green_ranged_boots",
+  "upper_body", "shell_upper_body", "shell_upper_body_test_v1", "custom_upper_body_f", "custom_upper_body_f_textured", "custom_upper_body_f_crimson_meshy", "meshy_crimson_upperbody_f", "green_dragon_top_f", "green_ranged_upperbody", "leather_ranged_upperbody", "red_ranged_upperbody", "purple_ranged_upperbody", "black_ranged_upperbody", "blue_ranged_upperbody",
+  "iron_armor_upperbody", "steel_armor_upperbody", "gold_armor_upperbody", "titanium_armor_upperbody", "tungsten_armor_upperbody", "luminous_armor_upperbody",
+  "leather_magic_armor_upperbody", "green_magic_armor_upperbody", "blue_magic_armor_upperbody", "red_magic_armor_upperbody", "black_magic_armor_upperbody", "purple_magic_armor_upperbody",
+  "default_armor_upperbody",
+  "boots", "shell_boots", "shell_boots_test_v1", "custom_boots_f", "meshy_crimson_boots_f", "green_dragon_boots_f", "green_ranged_boots", "leather_ranged_boots", "red_ranged_boots", "purple_ranged_boots", "black_ranged_boots", "blue_ranged_boots",
+  "iron_armor_boots", "steel_armor_boots", "gold_armor_boots", "titanium_armor_boots", "tungsten_armor_boots", "luminous_armor_boots",
+  "leather_magic_armor_boots", "green_magic_armor_boots", "blue_magic_armor_boots", "red_magic_armor_boots", "black_magic_armor_boots", "purple_magic_armor_boots",
+  "default_armor_boots",
   "crimson_wizard_robe", "crimson_upperbody_f", "crimson_upperbody_meshy_v2", "crimson_wizard_boots",
-  "head", "shell_head", "shell_head_test_v1", "custom_head_f", "meshy_crimson_head_f", "meshy_crimson_wizard_hat_f", "crimson_wizard_hat", "green_dragon_wizard_hat_f", "green_ranged_hat",
-  "gloves", "shell_gloves", "shell_gloves_test_v1", "custom_gloves_f", "meshy_crimson_gloves_f", "crimson_wizard_gloves", "green_dragon_gloves_f", "green_ranged_gloves", "red_ranged_gloves", "purple_ranged_gloves", "black_ranged_gloves", "blue_ranged_gloves",
+  "head", "shell_head", "shell_head_test_v1", "custom_head_f", "meshy_crimson_head_f", "meshy_crimson_wizard_hat_f", "crimson_wizard_hat", "green_dragon_wizard_hat_f", "green_ranged_hat", "leather_ranged_hat", "red_ranged_hat", "purple_ranged_hat", "black_ranged_hat", "blue_ranged_hat",
+  "leather_magic_armor_hat", "green_magic_armor_hat", "blue_magic_armor_hat", "red_magic_armor_hat", "black_magic_armor_hat", "purple_magic_armor_hat",
+  "boghop", "inventioners", "shardspire", "wildplume", "wayfinder",
+  "iron_armor_head", "steel_armor_head", "gold_armor_head", "titanium_armor_head", "tungsten_armor_head", "luminous_armor_head",
+  "gloves", "shell_gloves", "shell_gloves_test_v1", "custom_gloves_f", "meshy_crimson_gloves_f", "crimson_wizard_gloves", "green_dragon_gloves_f", "green_ranged_gloves", "red_ranged_gloves", "purple_ranged_gloves", "black_ranged_gloves", "blue_ranged_gloves", "leather_ranged_gloves",
+  "iron_armor_gloves", "steel_armor_gloves", "gold_armor_gloves", "titanium_armor_gloves", "tungsten_armor_gloves", "luminous_armor_gloves",
+  "leather_magic_armor_gloves", "green_magic_armor_gloves", "blue_magic_armor_gloves", "red_magic_armor_gloves", "black_magic_armor_gloves", "purple_magic_armor_gloves",
 ]);
 
 interface LoadedSlot {
@@ -89,6 +124,8 @@ interface LoadedSlot {
   skinnedMeshes: THREE.SkinnedMesh[];
   needsAutoSkin?: boolean;
   originalMaterials?: Map<THREE.Mesh, THREE.Material>;
+  /** Geometry-space center of mass (post load correction). */
+  centroid?: THREE.Vector3;
 }
 
 const loader = new GLTFLoader();
@@ -151,7 +188,7 @@ export function exportSlotAsGlb(
   slotId: string,
   fileName?: string,
   /** Optional equipTransform for the slot — position, rotation, and scale are all baked into geometry. */
-  equipTransform?: { position: [number, number, number]; rotation: [number, number, number]; scale: number },
+  equipTransform?: EquipTransform,
 ): void {
   const loaded = slotCache.get(slotId);
   if (!loaded || loaded.skinnedMeshes.length === 0) {
@@ -177,14 +214,36 @@ export function exportSlotAsGlb(
   const _DEG2RAD = Math.PI / 180;
   const M_zup = new THREE.Matrix4(); // identity when no transform set
   if (equipTransform) {
-    const { position, rotation, scale } = equipTransform;
-    M_zup.compose(
-      new THREE.Vector3(...position),
-      new THREE.Quaternion().setFromEuler(
-        new THREE.Euler(rotation[0] * _DEG2RAD, rotation[1] * _DEG2RAD, rotation[2] * _DEG2RAD),
-      ),
-      new THREE.Vector3(scale, scale, scale),
+    const { position, rotation, scale } = normalizeEquipTransform(equipTransform);
+    const centroid = loaded.centroid ?? computeMeshCentroid(loaded.skinnedMeshes);
+    const euler = new THREE.Euler(
+      rotation[0] * _DEG2RAD,
+      rotation[1] * _DEG2RAD,
+      rotation[2] * _DEG2RAD,
     );
+    const quat = new THREE.Quaternion().setFromEuler(euler);
+    const useCom = equipTransform.pivot !== "origin";
+    if (useCom) {
+      // T(P+C) · R · S · T(-C) — same CoM pivot as the live viewer
+      M_zup.compose(
+        new THREE.Vector3(
+          position[0] + centroid.x,
+          position[1] + centroid.y,
+          position[2] + centroid.z,
+        ),
+        quat,
+        new THREE.Vector3(scale[0], scale[1], scale[2]),
+      );
+      M_zup.multiply(
+        new THREE.Matrix4().makeTranslation(-centroid.x, -centroid.y, -centroid.z),
+      );
+    } else {
+      M_zup.compose(
+        new THREE.Vector3(...position),
+        quat,
+        new THREE.Vector3(scale[0], scale[1], scale[2]),
+      );
+    }
   }
   const geoClone = sm.geometry.clone();
   geoClone.applyMatrix4(M_zup); // bake position + rotation + scale in Z-up
@@ -1071,6 +1130,149 @@ function bindSlotSkeleton(
 const DEG2RAD = Math.PI / 180;
 const RAD2DEG = 180 / Math.PI;
 
+/** Vertex-average centroid in current geometry space (largest skinned mesh). */
+function computeMeshCentroid(skinnedMeshes: THREE.SkinnedMesh[]): THREE.Vector3 {
+  let best: THREE.SkinnedMesh | null = null;
+  let bestCount = 0;
+  for (const sm of skinnedMeshes) {
+    const pos = sm.geometry.getAttribute("position") as THREE.BufferAttribute | undefined;
+    if (!pos || pos.count < 8) continue;
+    if (pos.count > bestCount) {
+      best = sm;
+      bestCount = pos.count;
+    }
+  }
+  const out = new THREE.Vector3();
+  if (!best) return out;
+  const pos = best.geometry.getAttribute("position") as THREE.BufferAttribute;
+  const base = (best.geometry.userData.basePos as Float32Array | undefined) ?? null;
+  let sx = 0, sy = 0, sz = 0;
+  for (let i = 0; i < pos.count; i++) {
+    const i3 = i * 3;
+    if (base) {
+      sx += base[i3];
+      sy += base[i3 + 1];
+      sz += base[i3 + 2];
+    } else {
+      sx += pos.getX(i);
+      sy += pos.getY(i);
+      sz += pos.getZ(i);
+    }
+  }
+  out.set(sx / pos.count, sy / pos.count, sz / pos.count);
+  return out;
+}
+
+/**
+ * Build bind-matrix TRS.
+ * CoM pivot: T(P+C) · R · S · T(-C)  — rotate/scale around mesh center of mass.
+ * Origin pivot (legacy): T(P) · R · S.
+ */
+function composeEquipBindMatrix(
+  out: THREE.Matrix4,
+  transform: EquipTransform,
+  centroid: THREE.Vector3 | undefined,
+  negC: THREE.Matrix4,
+  euler: THREE.Euler,
+  quat: THREE.Quaternion,
+  pos: THREE.Vector3,
+  scl: THREE.Vector3,
+): void {
+  const useCom = transform.pivot !== "origin" && centroid != null;
+  euler.set(
+    transform.rotation[0] * DEG2RAD,
+    transform.rotation[1] * DEG2RAD,
+    transform.rotation[2] * DEG2RAD,
+  );
+  quat.setFromEuler(euler);
+  scl.set(transform.scale[0], transform.scale[1], transform.scale[2]);
+  if (useCom) {
+    pos.set(
+      transform.position[0] + centroid.x,
+      transform.position[1] + centroid.y,
+      transform.position[2] + centroid.z,
+    );
+    out.compose(pos, quat, scl);
+    negC.makeTranslation(-centroid.x, -centroid.y, -centroid.z);
+    out.multiply(negC);
+  } else {
+    pos.set(...transform.position);
+    out.compose(pos, quat, scl);
+  }
+}
+
+/** Convert a legacy origin-pivot transform to an equivalent CoM-pivot transform. */
+function migrateOriginPivotToCom(
+  transform: EquipTransform,
+  centroid: THREE.Vector3,
+): EquipTransform {
+  if (transform.pivot === "com") return transform;
+  const euler = new THREE.Euler(
+    transform.rotation[0] * DEG2RAD,
+    transform.rotation[1] * DEG2RAD,
+    transform.rotation[2] * DEG2RAD,
+  );
+  const quat = new THREE.Quaternion().setFromEuler(euler);
+  const scaledC = new THREE.Vector3(
+    centroid.x * transform.scale[0],
+    centroid.y * transform.scale[1],
+    centroid.z * transform.scale[2],
+  );
+  scaledC.applyQuaternion(quat);
+  return {
+    ...transform,
+    position: [
+      +(transform.position[0] - centroid.x + scaledC.x).toFixed(4),
+      +(transform.position[1] - centroid.y + scaledC.y).toFixed(4),
+      +(transform.position[2] - centroid.z + scaledC.z).toFixed(4),
+    ],
+    pivot: "com",
+  };
+}
+
+function findDominantBoneIndex(sm: THREE.SkinnedMesh): number {
+  const bones = sm.skeleton?.bones;
+  if (!bones?.length) return 0;
+  const headIdx = bones.findIndex((b) => /head/i.test(b.name));
+  if (headIdx >= 0) return headIdx;
+  // Prefer bone with greatest total skin weight.
+  const sw = sm.geometry.getAttribute("skinWeight") as THREE.BufferAttribute | undefined;
+  const si = sm.geometry.getAttribute("skinIndex") as THREE.BufferAttribute | undefined;
+  if (!sw || !si) return 0;
+  const totals = new Float64Array(bones.length);
+  const siArr = si.array as ArrayLike<number>;
+  const swArr = sw.array as ArrayLike<number>;
+  for (let i = 0; i < sw.count; i++) {
+    const o = i * 4;
+    for (let k = 0; k < 4; k++) {
+      const idx = siArr[o + k];
+      const w = swArr[o + k];
+      if (idx >= 0 && idx < bones.length) totals[idx] += w;
+    }
+  }
+  let best = 0;
+  for (let i = 1; i < totals.length; i++) {
+    if (totals[i] > totals[best]) best = i;
+  }
+  return best;
+}
+
+/** World-space location of the mesh CoM after skinning + bindMatrix. */
+function skinnedCentroidWorld(
+  sm: THREE.SkinnedMesh,
+  localC: THREE.Vector3,
+  bindMatrix: THREE.Matrix4,
+  out: THREE.Vector3,
+): THREE.Vector3 {
+  const idx = findDominantBoneIndex(sm);
+  const bone = sm.skeleton.bones[idx];
+  const boneInverse = sm.skeleton.boneInverses[idx];
+  out.copy(localC).applyMatrix4(bindMatrix).applyMatrix4(boneInverse);
+  bone.updateMatrixWorld(true);
+  out.applyMatrix4(bone.matrixWorld);
+  return out;
+}
+
 function EquipmentSlotWrapper({
   slotId,
   slot,
@@ -1090,84 +1292,179 @@ function EquipmentSlotWrapper({
 }) {
   const isDraggingRef = useRef(false);
   const tcRef = useRef<any>(null);
-  const [sceneObj, setSceneObj] = useState<THREE.Object3D | null>(null);
-
-  useEffect(() => {
-    setSceneObj(slot.scene);
-  }, [slot.scene]);
+  const gizmoProxy = useMemo(() => new THREE.Object3D(), []);
+  const [gizmoReady, setGizmoReady] = useState(false);
+  const worldComOffsetRef = useRef(new THREE.Vector3());
+  const migratedRef = useRef(false);
 
   const _offsetMatrix = useMemo(() => new THREE.Matrix4(), []);
+  const _negC = useMemo(() => new THREE.Matrix4(), []);
   const _euler = useMemo(() => new THREE.Euler(), []);
   const _quat = useMemo(() => new THREE.Quaternion(), []);
   const _pos = useMemo(() => new THREE.Vector3(), []);
   const _scl = useMemo(() => new THREE.Vector3(), []);
+  const _worldCom = useMemo(() => new THREE.Vector3(), []);
 
-  useFrame(() => {
-    if (isDraggingRef.current) return;
+  // Ensure centroid is cached on the loaded slot.
+  useEffect(() => {
+    if (!slot.skinnedMeshes.length) return;
+    if (!slot.centroid) {
+      slot.centroid = computeMeshCentroid(slot.skinnedMeshes);
+    }
+    setGizmoReady(true);
+  }, [slot, slot.skinnedMeshes]);
 
-    const scene = slot.scene;
+  // One-time migrate legacy origin-pivot transforms → CoM pivot (same visuals).
+  useEffect(() => {
+    if (migratedRef.current) return;
+    if (!slot.centroid) return;
+    migratedRef.current = true;
+    if (transform.pivot === "com") return;
+    onTransformChange(migrateOriginPivotToCom(transform, slot.centroid));
+  }, [slot.centroid, transform, onTransformChange]);
 
-    scene.position.set(...transform.position);
-    scene.rotation.set(
-      transform.rotation[0] * DEG2RAD,
-      transform.rotation[1] * DEG2RAD,
-      transform.rotation[2] * DEG2RAD,
+  // Bilateral pair spacing (+ per-eye socket rotations for eyes only).
+  useEffect(() => {
+    const isEyes = /_eyes$/.test(slotId);
+    const isBilateralFace =
+      isEyes ||
+      /_eyebrows$/.test(slotId) ||
+      /_eyelashes$/.test(slotId) ||
+      /_ears$/.test(slotId);
+    if (!isBilateralFace) return;
+
+    const sep = transform.eyeSeparation ?? 0;
+    const rotL = isEyes ? (transform.eyeRotationL ?? [0, 0, 0]) : [0, 0, 0];
+    const rotR = isEyes ? (transform.eyeRotationR ?? [0, 0, 0]) : [0, 0, 0];
+    const qL = new THREE.Quaternion().setFromEuler(
+      new THREE.Euler(rotL[0] * DEG2RAD, rotL[1] * DEG2RAD, rotL[2] * DEG2RAD, "XYZ"),
     );
-    scene.scale.setScalar(transform.scale);
-
-    _euler.set(
-      transform.rotation[0] * DEG2RAD,
-      transform.rotation[1] * DEG2RAD,
-      transform.rotation[2] * DEG2RAD,
+    const qR = new THREE.Quaternion().setFromEuler(
+      new THREE.Euler(rotR[0] * DEG2RAD, rotR[1] * DEG2RAD, rotR[2] * DEG2RAD, "XYZ"),
     );
-    _quat.setFromEuler(_euler);
-    _pos.set(...transform.position);
-    _scl.set(transform.scale, transform.scale, transform.scale);
-    _offsetMatrix.compose(_pos, _quat, _scl);
+    const tmp = new THREE.Vector3();
+    const applySideRot = isEyes;
 
     for (const sm of slot.skinnedMeshes) {
-      sm.bindMatrix.copy(_offsetMatrix);
-      sm.bindMatrixInverse.copy(_offsetMatrix).invert();
-    }
-  });
+      const pos = sm.geometry.getAttribute("position") as THREE.BufferAttribute | undefined;
+      if (!pos) continue;
+      if (!sm.geometry.userData.basePos) {
+        sm.geometry.userData.basePos = new Float32Array(pos.array as ArrayLike<number>);
+      }
+      const base = sm.geometry.userData.basePos as Float32Array;
+      const arr = pos.array as Float32Array;
 
-  const readTransform = useCallback(() => {
-    const scene = slot.scene;
+      let lSumX = 0, lSumY = 0, lSumZ = 0, lCount = 0;
+      let rSumX = 0, rSumY = 0, rSumZ = 0, rCount = 0;
+      for (let i = 0; i < pos.count; i++) {
+        const i3 = i * 3;
+        const bx = base[i3];
+        if (bx < -1e-5) {
+          lSumX += bx; lSumY += base[i3 + 1]; lSumZ += base[i3 + 2]; lCount++;
+        } else if (bx > 1e-5) {
+          rSumX += bx; rSumY += base[i3 + 1]; rSumZ += base[i3 + 2]; rCount++;
+        }
+      }
+      const cL = new THREE.Vector3(
+        lCount ? lSumX / lCount : -0.035,
+        lCount ? lSumY / lCount : 0,
+        lCount ? lSumZ / lCount : 0,
+      );
+      const cR = new THREE.Vector3(
+        rCount ? rSumX / rCount : 0.035,
+        rCount ? rSumY / rCount : 0,
+        rCount ? rSumZ / rCount : 0,
+      );
+
+      for (let i = 0; i < pos.count; i++) {
+        const i3 = i * 3;
+        const bx = base[i3];
+        const by = base[i3 + 1];
+        const bz = base[i3 + 2];
+        const isLeft = bx < -1e-5;
+        const isRight = bx > 1e-5;
+        const sideSep = Math.abs(bx) < 1e-5 ? 0 : Math.sign(bx) * sep;
+
+        if (applySideRot && (isLeft || isRight)) {
+          const center = isLeft ? cL : cR;
+          const quat = isLeft ? qL : qR;
+          tmp.set(bx - center.x, by - center.y, bz - center.z);
+          tmp.applyQuaternion(quat);
+          arr[i3] = center.x + tmp.x + sideSep;
+          arr[i3 + 1] = center.y + tmp.y;
+          arr[i3 + 2] = center.z + tmp.z;
+        } else {
+          arr[i3] = bx + sideSep;
+          arr[i3 + 1] = by;
+          arr[i3 + 2] = bz;
+        }
+      }
+      pos.needsUpdate = true;
+      sm.geometry.computeBoundingSphere();
+      sm.geometry.computeBoundingBox();
+    }
+    // Pair deform changes mass slightly — refresh centroid from deformed verts.
+    slot.centroid = computeMeshCentroid(slot.skinnedMeshes);
+  }, [
+    slotId,
+    slot,
+    slot.skinnedMeshes,
+    transform.eyeSeparation,
+    transform.eyeRotationL,
+    transform.eyeRotationR,
+  ]);
+
+  const applyBindFromTransform = useCallback(
+    (t: EquipTransform) => {
+      composeEquipBindMatrix(
+        _offsetMatrix, t, slot.centroid, _negC, _euler, _quat, _pos, _scl,
+      );
+      for (const sm of slot.skinnedMeshes) {
+        sm.bindMatrix.copy(_offsetMatrix);
+        sm.bindMatrixInverse.copy(_offsetMatrix).invert();
+      }
+    },
+    [slot, _offsetMatrix, _negC, _euler, _quat, _pos, _scl],
+  );
+
+  const readTransformFromGizmo = useCallback(() => {
+    const proxy = gizmoProxy;
+    // World CoM ≈ P + frozenOffset  ⇒  P = worldPos - offset
+    const px = proxy.position.x - worldComOffsetRef.current.x;
+    const py = proxy.position.y - worldComOffsetRef.current.y;
+    const pz = proxy.position.z - worldComOffsetRef.current.z;
     onTransformChange({
-      position: [
-        +scene.position.x.toFixed(4),
-        +scene.position.y.toFixed(4),
-        +scene.position.z.toFixed(4),
-      ],
+      ...transform,
+      position: [+px.toFixed(4), +py.toFixed(4), +pz.toFixed(4)],
       rotation: [
-        +(scene.rotation.x * RAD2DEG).toFixed(2),
-        +(scene.rotation.y * RAD2DEG).toFixed(2),
-        +(scene.rotation.z * RAD2DEG).toFixed(2),
+        +(proxy.rotation.x * RAD2DEG).toFixed(2),
+        +(proxy.rotation.y * RAD2DEG).toFixed(2),
+        +(proxy.rotation.z * RAD2DEG).toFixed(2),
       ],
-      scale: +scene.scale.x.toFixed(4),
+      scale: [
+        +proxy.scale.x.toFixed(4),
+        +proxy.scale.y.toFixed(4),
+        +proxy.scale.z.toFixed(4),
+      ],
+      pivot: "com",
     });
-  }, [slot.scene, onTransformChange]);
+  }, [gizmoProxy, onTransformChange, transform]);
 
   const handleDraggingChanged = useCallback(
     (e: THREE.Event & { value: boolean }) => {
       isDraggingRef.current = e.value;
-      if (!e.value) {
-        const scene = slot.scene;
-        _euler.copy(scene.rotation);
-        _quat.setFromEuler(_euler);
-        _pos.copy(scene.position);
-        _scl.copy(scene.scale);
-        _offsetMatrix.compose(_pos, _quat, _scl);
-
-        for (const sm of slot.skinnedMeshes) {
-          sm.bindMatrix.copy(_offsetMatrix);
-          sm.bindMatrixInverse.copy(_offsetMatrix).invert();
-        }
-
-        readTransform();
+      if (e.value) {
+        // Freeze worldCoM - P so translates stay stable while dragging.
+        worldComOffsetRef.current.set(
+          gizmoProxy.position.x - transform.position[0],
+          gizmoProxy.position.y - transform.position[1],
+          gizmoProxy.position.z - transform.position[2],
+        );
+      } else {
+        readTransformFromGizmo();
       }
     },
-    [slot, readTransform, _euler, _quat, _pos, _scl, _offsetMatrix],
+    [gizmoProxy, transform.position, readTransformFromGizmo],
   );
 
   useEffect(() => {
@@ -1175,7 +1472,62 @@ function EquipmentSlotWrapper({
     if (!tc) return;
     tc.addEventListener("dragging-changed", handleDraggingChanged);
     return () => tc.removeEventListener("dragging-changed", handleDraggingChanged);
-  }, [sceneObj, handleDraggingChanged]);
+  }, [gizmoReady, isSelected, handleDraggingChanged]);
+
+  useFrame(() => {
+    if (isDraggingRef.current) {
+      // Live-update bind matrix from gizmo proxy while dragging.
+      const proxy = gizmoProxy;
+      const live: EquipTransform = {
+        ...transform,
+        position: [
+          proxy.position.x - worldComOffsetRef.current.x,
+          proxy.position.y - worldComOffsetRef.current.y,
+          proxy.position.z - worldComOffsetRef.current.z,
+        ],
+        rotation: [
+          proxy.rotation.x * RAD2DEG,
+          proxy.rotation.y * RAD2DEG,
+          proxy.rotation.z * RAD2DEG,
+        ],
+        scale: [
+          proxy.scale.x,
+          proxy.scale.y,
+          proxy.scale.z,
+        ],
+        pivot: "com",
+      };
+      applyBindFromTransform(live);
+      return;
+    }
+
+    applyBindFromTransform(transform);
+
+    // Keep gizmo at the skinned center of mass; rotation/scale mirror EquipTransform.
+    const sm = slot.skinnedMeshes[0];
+    if (sm?.skeleton && slot.centroid) {
+      skinnedCentroidWorld(sm, slot.centroid, _offsetMatrix, _worldCom);
+      gizmoProxy.position.copy(_worldCom);
+      worldComOffsetRef.current.set(
+        _worldCom.x - transform.position[0],
+        _worldCom.y - transform.position[1],
+        _worldCom.z - transform.position[2],
+      );
+    } else {
+      gizmoProxy.position.set(...transform.position);
+      worldComOffsetRef.current.set(0, 0, 0);
+    }
+    gizmoProxy.rotation.set(
+      transform.rotation[0] * DEG2RAD,
+      transform.rotation[1] * DEG2RAD,
+      transform.rotation[2] * DEG2RAD,
+    );
+    gizmoProxy.scale.set(
+      transform.scale[0],
+      transform.scale[1],
+      transform.scale[2],
+    );
+  });
 
   const handleClick = useCallback(
     (e: ThreeEvent<MouseEvent>) => {
@@ -1199,24 +1551,16 @@ function EquipmentSlotWrapper({
       >
         <primitive object={slot.scene} />
       </group>
-      {isSelected && sceneObj && (
+      <primitive object={gizmoProxy} />
+      {isSelected && gizmoReady && (
         <TransformControls
           ref={tcRef}
-          object={sceneObj}
+          object={gizmoProxy}
           mode={gizmoMode}
           size={0.5}
           onChange={() => {
             if (isDraggingRef.current) {
-              const scene = slot.scene;
-              _euler.copy(scene.rotation);
-              _quat.setFromEuler(_euler);
-              _pos.copy(scene.position);
-              _scl.copy(scene.scale);
-              _offsetMatrix.compose(_pos, _quat, _scl);
-              for (const sm of slot.skinnedMeshes) {
-                sm.bindMatrix.copy(_offsetMatrix);
-                sm.bindMatrixInverse.copy(_offsetMatrix).invert();
-              }
+              readTransformFromGizmo();
             }
           }}
         />
@@ -1478,7 +1822,7 @@ export default function EquipmentMeshRenderer({
             }
           }
 
-          if (slotId.startsWith("green_ranged")) {
+          if (slotId.startsWith("green_ranged") || slotId.endsWith("_armor_gloves")) {
             console.log(`[EquipDbg] ${slotId}: skinnedMeshes=${skinnedMeshes.length}, needsAutoSkin=${needsAutoSkin}, isExternal=${isExternal}`);
             scene.traverse((child) => {
               if ((child as THREE.Mesh).isMesh) {
@@ -1498,11 +1842,14 @@ export default function EquipmentMeshRenderer({
                     v.set(pos.getX(i), pos.getY(i), pos.getZ(i));
                     box.expandByPoint(v);
                   }
-                  console.log(`[EquipDbg]   bounds: min=(${box.min.x.toFixed(1)},${box.min.y.toFixed(1)},${box.min.z.toFixed(1)}) max=(${box.max.x.toFixed(1)},${box.max.y.toFixed(1)},${box.max.z.toFixed(1)})`);
+                  console.log(`[EquipDbg]   bounds: min=(${box.min.x.toFixed(3)},${box.min.y.toFixed(3)},${box.min.z.toFixed(3)}) max=(${box.max.x.toFixed(3)},${box.max.y.toFixed(3)},${box.max.z.toFixed(3)})`);
                 }
                 if (isSkinned) {
                   const sk = (m as THREE.SkinnedMesh).skeleton;
                   console.log(`[EquipDbg]   skeleton: bones=${sk?.bones.length} inverses=${sk?.boneInverses.length}`);
+                  // Sample first 5 bone names so we can compare to the character's bone-name format.
+                  const boneNames = sk?.bones.slice(0, 5).map(b => b.name).join(", ");
+                  console.log(`[EquipDbg]   bone names (first 5): ${boneNames}`);
                 }
               }
             });
@@ -1942,7 +2289,7 @@ export default function EquipmentMeshRenderer({
 
         if (slot.skinnedMeshes.length > 0) {
           bindSlotSkeleton(slot, animBones, charBoneInverseMap, slotId);
-          if (slotId.startsWith("green_ranged")) {
+          if (slotId.startsWith("green_ranged") || slotId.endsWith("_armor_gloves")) {
             for (const sm of slot.skinnedMeshes) {
               console.log(`[EquipDbg] ${slotId} after bind: bones=${sm.skeleton?.bones.length}, visible=${sm.visible}, bindMatrix=[${sm.bindMatrix.elements.slice(0,4).map((v: number) => v.toFixed(3))}...]`);
               const sw = sm.geometry.getAttribute("skinWeight") as THREE.BufferAttribute;
@@ -1954,6 +2301,28 @@ export default function EquipmentMeshRenderer({
                 }
                 console.log(`[EquipDbg]   skinWeight: ${sw.count} verts, ${zeroCount} zero-weight`);
               }
+              // Check how many bones in the skin map back to the character's animBones vs stay detached.
+              const sk = sm.skeleton;
+              if (sk) {
+                let matched = 0, unmatched = 0;
+                const sampleUnmatched: string[] = [];
+                for (const b of sk.bones) {
+                  const remapped = (BONE_NAME_REMAP as any)[b.name] ?? b.name;
+                  if (animBones.has(remapped)) {
+                    matched++;
+                  } else {
+                    unmatched++;
+                    if (sampleUnmatched.length < 5) sampleUnmatched.push(`${b.name} -> ${remapped}`);
+                  }
+                }
+                console.log(`[EquipDbg]   skeleton rebind: ${matched} bones matched character, ${unmatched} NOT matched`);
+                if (unmatched > 0) console.log(`[EquipDbg]   unmatched samples: ${sampleUnmatched.join(" | ")}`);
+                // Verify a sample mesh vert at rest gives an expected world transform via this skeleton.
+                const v0 = new THREE.Vector3(sm.geometry.getAttribute("position").getX(0),
+                                              sm.geometry.getAttribute("position").getY(0),
+                                              sm.geometry.getAttribute("position").getZ(0));
+                console.log(`[EquipDbg]   first vert (rest-pose, local): (${v0.x.toFixed(3)}, ${v0.y.toFixed(3)}, ${v0.z.toFixed(3)})`);
+              }
             }
           }
         }
@@ -1964,8 +2333,16 @@ export default function EquipmentMeshRenderer({
     }
   });
 
-  const defaultTransform = useMemo<EquipTransform>(
-    () => ({ position: [0, 0, 0], rotation: [0, 0, 0], scale: 1 }),
+  const identityTransform = useMemo<EquipTransform>(
+    () => ({
+      position: [0, 0, 0],
+      rotation: [0, 0, 0],
+      scale: [1, 1, 1],
+      eyeSeparation: 0,
+      eyeRotationL: [0, 0, 0],
+      eyeRotationR: [0, 0, 0],
+      pivot: "com",
+    }),
     [],
   );
 
@@ -1976,6 +2353,10 @@ export default function EquipmentMeshRenderer({
         if (skinTextureSlotIds.has(id)) return null;
         const slot = slotCache.get(id) ?? loadedSlots.get(id);
         if (!slot) return null;
+        const slotDef = slotMap.get(id);
+        const fallback = normalizeEquipTransform(
+          slotDef?.default_transform ?? identityTransform,
+        );
         return (
           <EquipmentSlotWrapper
             key={id}
@@ -1983,7 +2364,7 @@ export default function EquipmentMeshRenderer({
             slot={slot}
             isSelected={selectedSlot === id}
             onSelect={() => onSelectSlot(id)}
-            transform={equipTransforms[id] ?? defaultTransform}
+            transform={normalizeEquipTransform(equipTransforms[id] ?? fallback)}
             gizmoMode={equipGizmoMode}
             onTransformChange={(t) => onEquipTransformChange(id, t)}
           />

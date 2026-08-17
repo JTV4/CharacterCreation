@@ -1,5 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import type { ToolDefinition, ToolTransform, GizmoMode } from "../types/tools";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type {
+  ToolCategory,
+  ToolCategoryInfo,
+  ToolDefinition,
+  ToolTransform,
+  GizmoMode,
+} from "../types/tools";
+import { TOOL_CATEGORIES } from "../types/tools";
 
 interface ToolPanelProps {
   tools: ToolDefinition[];
@@ -223,6 +230,62 @@ export default function ToolPanel({
 
   const activeTool = tools.find((t) => t.id === selectedToolId) ?? null;
 
+  const categoryGroups = useMemo(() => {
+    const map = new Map<ToolCategory, ToolDefinition[]>();
+    for (const tool of tools) {
+      const key: ToolCategory = tool.category ?? "other";
+      let list = map.get(key);
+      if (!list) {
+        list = [];
+        map.set(key, list);
+      }
+      list.push(tool);
+    }
+    const ordered: { info: ToolCategoryInfo; items: ToolDefinition[] }[] = [];
+    for (const info of TOOL_CATEGORIES) {
+      const items = map.get(info.key);
+      if (items && items.length > 0) {
+        ordered.push({ info, items });
+        map.delete(info.key);
+      }
+    }
+    for (const [key, items] of map) {
+      if (items.length > 0) {
+        ordered.push({
+          info: {
+            key,
+            label: key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+            color: "#6b7280",
+          },
+          items,
+        });
+      }
+    }
+    return ordered;
+  }, [tools]);
+
+  const [collapsed, setCollapsed] = useState<Set<ToolCategory>>(() => new Set());
+
+  const toggleCollapse = useCallback((key: ToolCategory) => {
+    setCollapsed((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  }, []);
+
+  const selectedCategory = activeTool?.category ?? null;
+  useEffect(() => {
+    if (!selectedCategory) return;
+    setCollapsed((prev) => {
+      if (!prev.has(selectedCategory)) return prev;
+      const next = new Set(prev);
+      next.delete(selectedCategory);
+      return next;
+    });
+  }, [selectedCategory]);
+
   const [copied, setCopied] = useState(false);
   const handleCopyTransform = useCallback(() => {
     const lines = [
@@ -259,34 +322,71 @@ export default function ToolPanel({
         )}
       </div>
       <div className="tool-list">
-        {tools.map((tool) => {
-          const active = selectedToolId === tool.id;
+        {categoryGroups.map(({ info, items }) => {
+          const isOpen = !collapsed.has(info.key);
           return (
-            <div key={tool.id} className="tool-row">
-              <button
-                className={`tool-item ${active ? "active" : ""}`}
-                onClick={() => onSelectTool(active ? null : tool.id)}
+            <div className="tool-category-group" key={info.key}>
+              <div
+                className="tool-category-header"
+                onClick={() => toggleCollapse(info.key)}
               >
                 <span
-                  className="tool-dot"
-                  style={{
-                    background: active ? tool.color : "var(--bg-tertiary)",
-                  }}
+                  className="tool-category-dot"
+                  style={{ background: info.color }}
                 />
-                <span className="tool-name">{tool.name}</span>
-                {active && (
-                  <span className="tool-equipped-badge">Equipped</span>
-                )}
-              </button>
-              <a
-                className="tool-dl-btn"
-                href={tool.url}
-                download={`${tool.id}.glb`}
-                onClick={(e) => e.stopPropagation()}
-                title={`Download ${tool.name} GLB`}
-              >
-                GLB
-              </a>
+                <span className="tool-category-label">{info.label}</span>
+                <span className="tool-category-count">({items.length})</span>
+                <span
+                  className={`tool-category-chevron ${isOpen ? "open" : ""}`}
+                >
+                  &#9654;
+                </span>
+              </div>
+              {isOpen &&
+                items.map((tool) => {
+                  const active = selectedToolId === tool.id;
+                  return (
+                    <div key={tool.id} className="tool-row">
+                      <button
+                        type="button"
+                        className={`tool-item ${active ? "active" : ""}`}
+                        onClick={() => onSelectTool(active ? null : tool.id)}
+                        title={active ? `Unequip ${tool.name}` : `Equip ${tool.name}`}
+                      >
+                        {tool.thumbnailUrl ? (
+                          <img
+                            className="tool-thumb"
+                            src={tool.thumbnailUrl}
+                            alt=""
+                            draggable={false}
+                          />
+                        ) : (
+                          <span
+                            className="tool-dot"
+                            style={{
+                              background: active
+                                ? tool.color
+                                : "var(--bg-tertiary)",
+                            }}
+                          />
+                        )}
+                        <span className="tool-name">{tool.name}</span>
+                        {active && (
+                          <span className="tool-equipped-badge">Equipped</span>
+                        )}
+                      </button>
+                      <a
+                        className="tool-dl-btn"
+                        href={tool.url}
+                        download={`${tool.id}.glb`}
+                        onClick={(e) => e.stopPropagation()}
+                        title={`Download ${tool.name} GLB`}
+                      >
+                        GLB
+                      </a>
+                    </div>
+                  );
+                })}
             </div>
           );
         })}

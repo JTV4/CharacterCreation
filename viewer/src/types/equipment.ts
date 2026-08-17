@@ -42,6 +42,15 @@ export interface EquipmentSlot {
   rules: SlotRules;
   /** Body regions to hide when this slot is equipped. */
   hides_body_regions?: BodyRegion[];
+  /**
+   * Optional baked-in transform that the viewer applies as the default when
+   * the user has no runtime override for this slot. Use this to persist
+   * gizmo-tuned position/rotation/scale (e.g. a hat that needs +Z/-Y nudging
+   * to sit on the head correctly) without re-baking the GLB itself.
+   */
+  default_transform?: Omit<EquipTransform, "scale"> & {
+    scale?: number | [number, number, number];
+  };
   /** Optional URL to load mesh from (e.g. Cloudinary). If absent, loads from /equipment/{id}.glb */
   url?: string;
   mesh_type: string;
@@ -77,13 +86,58 @@ export interface SlotTextures {
 export interface EquipTransform {
   position: [number, number, number];
   rotation: [number, number, number];
-  scale: number;
+  /** Per-axis scale [x, y, z]. Legacy numeric scale is normalized on load. */
+  scale: [number, number, number];
+  /**
+   * Extra half-gap (meters) added between left/right halves of a bilateral
+   * face accessory (eyes, eyebrows, eyelashes, ears).
+   * 0 = authored spacing; positive = wider; negative = closer.
+   */
+  eyeSeparation?: number;
+  /**
+   * Per-eye local rotation in degrees [x, y, z], applied around each
+   * eye's own center. Only used by `category: "eyes"` slots.
+   */
+  eyeRotationL?: [number, number, number];
+  eyeRotationR?: [number, number, number];
+  /**
+   * Rotation/scale pivot convention.
+   * - "origin" (legacy): TRS around geometry/armature origin
+   * - "com": TRS around the mesh center of mass (default for new edits)
+   */
+  pivot?: "origin" | "com";
+}
+
+/** Accept legacy uniform `scale: number` from JSON / localStorage. */
+export type EquipScaleInput = number | [number, number, number];
+
+export function normalizeEquipScale(scale: EquipScaleInput | undefined): [number, number, number] {
+  if (scale == null) return [1, 1, 1];
+  if (typeof scale === "number") return [scale, scale, scale];
+  if (Array.isArray(scale) && scale.length >= 3) {
+    return [scale[0], scale[1], scale[2]];
+  }
+  return [1, 1, 1];
+}
+
+/** Normalize a transform that may still carry a legacy numeric scale. */
+export function normalizeEquipTransform(
+  t: Omit<EquipTransform, "scale"> & { scale?: EquipScaleInput },
+): EquipTransform {
+  return {
+    ...t,
+    scale: normalizeEquipScale(t.scale),
+  };
 }
 
 export const DEFAULT_EQUIP_TRANSFORM: EquipTransform = {
   position: [0, 0, 0],
   rotation: [0, 0, 0],
-  scale: 1,
+  scale: [1, 1, 1],
+  eyeSeparation: 0,
+  eyeRotationL: [0, 0, 0],
+  eyeRotationR: [0, 0, 0],
+  pivot: "com",
 };
 
 export const EQUIPMENT_SLOT_TYPES = [

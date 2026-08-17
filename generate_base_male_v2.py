@@ -18,6 +18,7 @@ Run:
       --python generate_base_male_v2.py
 """
 
+import math
 import os
 import bpy
 import bmesh
@@ -33,30 +34,39 @@ OUT = os.path.abspath("viewer/public/models/BaseMaleV2.glb")
 #   y_scale_back:  depth scaling for back-facing vertices
 MORPH_PROFILES = [
     # female_z  male_z   x_scl  y_front y_back
-    (-0.10,     -0.10,   1.12,  1.12,   1.12),   # below ground (safety)
-    ( 0.00,      0.00,   1.12,  1.12,   1.12),   # feet
-    ( 0.10,      0.11,   1.10,  1.10,   1.10),   # ankle
-    ( 0.27,      0.30,   1.12,  1.12,   1.12),   # mid shin
-    ( 0.436,     0.48,   1.10,  1.10,   1.10),   # below knee
-    ( 0.572,     0.62,   1.08,  1.08,   1.08),   # above knee
-    ( 0.796,     0.86,   1.06,  1.06,   1.06),   # mid thigh
-    ( 1.066,     1.14,   0.82,  0.96,   1.00),   # hip (narrower for V-taper)
-    ( 1.15,      1.23,   0.88,  0.96,   1.02),   # above hip
-    ( 1.24,      1.33,   1.08,  0.88,   1.06),   # waist (wider, straighter)
-    ( 1.36,      1.46,   1.25,  0.68,   1.02),   # chest (broad, flatten front)
-    ( 1.486,     1.58,   1.35,  0.72,   1.04),   # shoulders (broad)
-    ( 1.52,      1.60,   1.28,  1.12,   1.12),   # neck base (trapezius)
-    ( 1.55,      1.62,   1.22,  1.18,   1.18),   # neck (thick, minimal Z stretch)
-    ( 1.65,      1.71,   1.10,  1.05,   1.05),   # jaw
-    ( 1.85,      1.90,   1.03,  1.03,   1.03),   # top of head (barely taller)
+    (-0.10,     -0.10,   1.14,  1.14,   1.14),   # below ground (safety)
+    ( 0.00,      0.00,   1.14,  1.14,   1.14),   # feet
+    ( 0.10,      0.11,   1.12,  1.12,   1.12),   # ankle
+    ( 0.27,      0.30,   1.14,  1.14,   1.14),   # mid shin
+    ( 0.436,     0.48,   1.12,  1.12,   1.12),   # below knee
+    ( 0.572,     0.62,   1.10,  1.10,   1.10),   # above knee
+    ( 0.796,     0.86,   1.04,  1.06,   1.08),   # mid thigh
+    ( 1.066,     1.14,   0.70,  0.86,   0.94),   # hip (narrow V-taper)
+    ( 1.15,      1.23,   0.92,  0.88,   1.02),   # above hip (fill hourglass)
+    ( 1.24,      1.33,   1.28,  0.80,   1.12),   # waist (thick / blocky)
+    ( 1.30,      1.40,   1.30,  0.32,   1.08),   # underbust → flat pec
+    ( 1.36,      1.46,   1.36,  0.28,   1.10),   # chest (broad + flattened)
+    ( 1.42,      1.52,   1.40,  0.40,   1.10),   # upper pec / collarbone
+    ( 1.486,     1.58,   1.45,  0.65,   1.12),   # shoulders (broad)
+    ( 1.52,      1.61,   1.32,  1.10,   1.14),   # neck base (trapezius)
+    ( 1.55,      1.63,   1.26,  1.16,   1.18),   # neck (thick)
+    ( 1.65,      1.72,   1.12,  1.08,   1.08),   # jaw (slightly broader)
+    ( 1.85,      1.92,   1.04,  1.04,   1.04),   # top of head
     ( 2.50,      2.55,   1.00,  1.00,   1.00),   # above head (safety)
 ]
 
-ARM_THICKEN    = 1.25
+ARM_THICKEN    = 1.32
 ARM_CENTER_Z   = 1.40
 ARM_BLEND_LOW  = 0.10
 ARM_BLEND_HIGH = 0.40
-Y_BLEND_WIDTH  = 0.05
+Y_BLEND_WIDTH  = 0.04
+
+# Absolute max front chest depth (meters) after morph — kills residual breast volume.
+# Applied as a second pass in male-Z space so remapped verts are fully covered.
+CHEST_FLAT_Z0      = 1.28   # male-Z start of pec region
+CHEST_FLAT_Z1      = 1.56   # male-Z end of pec region
+CHEST_MAX_FRONT_Y  = 0.038  # male pec protrusion cap (~flat chest)
+CHEST_LATERAL_FALL = 0.28   # wide lateral falloff across the ribcage
 
 # ── Bone classifications ─────────────────────────────────────────────────────
 ARM_UPPER_BONES = {
@@ -157,6 +167,33 @@ def morph_body(wp):
     new_y = wp.y * sy
 
     return Vector((new_x, new_y, new_z))
+
+
+def flatten_chest(wp, arm_w):
+    """Second-pass pec flatten in male world space. Skips pure arm verts."""
+    if arm_w > 0.70:
+        return wp
+    if not (CHEST_FLAT_Z0 <= wp.z <= CHEST_FLAT_Z1):
+        return wp
+    if (wp.y * FRONT_SIGN) <= 0.0:
+        return wp
+
+    t = (wp.z - CHEST_FLAT_Z0) / (CHEST_FLAT_Z1 - CHEST_FLAT_Z0)
+    strength = clamp(math.sin(t * math.pi) * 1.25, 0.0, 1.0)
+    # Full strength across the sternum; ease only near the shoulder caps
+    lat = 1.0 if abs(wp.x) < 0.16 else clamp(
+        1.0 - ((abs(wp.x) - 0.16) / (CHEST_LATERAL_FALL - 0.16)) ** 2, 0.0, 1.0
+    )
+    arm_soft = 1.0 if arm_w < 0.25 else clamp(1.0 - (arm_w - 0.25) / 0.45, 0.0, 1.0)
+    w = strength * lat * arm_soft
+    if w <= 0.0:
+        return wp
+
+    max_y = CHEST_MAX_FRONT_Y * FRONT_SIGN
+    if abs(wp.y) > abs(max_y):
+        new_y = wp.y * (1.0 - w) + max_y * w
+        return Vector((wp.x, new_y, wp.z))
+    return wp
 
 
 def morph_arm(wp, sh_offset):
@@ -300,19 +337,57 @@ for v in src_mesh.data.vertices:
     arm_p  = morph_arm(wp, shoulder_offset)
 
     new_wp = body_p * (1.0 - arm_t) + arm_p * arm_t
+    new_wp = flatten_chest(new_wp, aw)
     v.co = mat_inv @ new_wp
 
 src_mesh.data.update()
 
-# Verify morph extents
+# Smooth residual breast crease topology on the front chest
+print("Smoothing front-chest topology...")
+bpy.ops.object.select_all(action="DESELECT")
+src_mesh.select_set(True)
+bpy.context.view_layer.objects.active = src_mesh
+bpy.ops.object.mode_set(mode="EDIT")
+bpy.ops.mesh.select_all(action="DESELECT")
+bpy.ops.object.mode_set(mode="OBJECT")
+
+for v in src_mesh.data.vertices:
+    wp = mat_world @ v.co
+    if (CHEST_FLAT_Z0 <= wp.z <= CHEST_FLAT_Z1
+            and (wp.y * FRONT_SIGN) > 0.0
+            and abs(wp.x) < 0.22
+            and all_arm_w[v.index] < 0.45):
+        v.select = True
+
+bpy.ops.object.mode_set(mode="EDIT")
+for _ in range(4):
+    bpy.ops.mesh.vertices_smooth(factor=0.65)
+bpy.ops.object.mode_set(mode="OBJECT")
+src_mesh.data.update()
+
+# Re-apply pec depth cap after smooth (smooth can push verts forward again)
+for v in src_mesh.data.vertices:
+    wp = mat_world @ v.co
+    flat = flatten_chest(wp, all_arm_w[v.index])
+    if flat != wp:
+        v.co = mat_inv @ flat
+src_mesh.data.update()
+
+# Verify morph extents + chest depth
 verts_world = [mat_world @ v.co for v in src_mesh.data.vertices]
 z_min_v = min(v.z for v in verts_world)
 z_max_v = max(v.z for v in verts_world)
 x_min_v = min(v.x for v in verts_world)
 x_max_v = max(v.x for v in verts_world)
+chest_ys = [
+    v.y for v, aw in zip(verts_world, (all_arm_w[i] for i in range(len(verts_world))))
+    if CHEST_FLAT_Z0 <= v.z <= CHEST_FLAT_Z1 and aw < 0.2 and abs(v.x) < 0.15
+]
 print(f"Morphed {len(src_mesh.data.vertices)} vertices")
 print(f"  Height: {z_min_v:.3f} to {z_max_v:.3f}  (span={z_max_v - z_min_v:.3f})")
 print(f"  Width:  {x_min_v:.3f} to {x_max_v:.3f}  (span={x_max_v - x_min_v:.3f})")
+if chest_ys:
+    print(f"  Chest Y (center torso): {min(chest_ys):.4f} .. {max(chest_ys):.4f}")
 
 
 # ══════════════════════════════════════════════════════════════════════════════

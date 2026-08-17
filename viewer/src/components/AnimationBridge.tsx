@@ -96,5 +96,13 @@ export default function AnimationBridge({
 
   if (!characterModel) return null;
 
-  return <primitive object={characterModel.scene} />;
+  // Force a fresh primitive node when the underlying scene swaps.
+  // R3F binds a `<primitive>` to its initial THREE object and does
+  // not transparently replace it when the `object` prop changes,
+  // which would leave the previous character's mesh + skeleton in
+  // the scene graph alongside the new one.  Keying on the scene's
+  // uuid forces a clean unmount/mount on each model load.
+  return (
+    <primitive key={characterModel.scene.uuid} object={characterModel.scene} />
+  );
 }

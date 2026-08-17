@@ -9,16 +9,39 @@ import {
   type BoneRestTransform,
   type BoneCategory,
   type Side,
+  NPCS,
 } from "../types";
 
 const loader = new GLTFLoader();
 
-const MODEL_URLS: Record<ModelGender, string> = {
+// Player rigs map to a fixed set of files under /models/.  NPCs are
+// resolved via the `NPCS` roster (see ../types/index.ts), which keeps
+// the URL lookup in lockstep with the dropdown and manifest entries —
+// adding a new NPC name or variant only requires touching that one
+// file, not this one.
+const PLAYER_MODEL_URLS = {
   female: "/models/BaseFemale.glb",
   male: "/models/BaseMale.glb",
   female_v2: "/models/BaseFemaleV2.glb",
+  female_v3: "/models/BaseFemaleV3.glb",
   male_v2: "/models/BaseMaleV2.glb",
-};
+  grind_male: "/models/GrindMale.glb",
+} as const;
+
+type PlayerGender = keyof typeof PLAYER_MODEL_URLS;
+
+function isPlayerGender(g: ModelGender): g is PlayerGender {
+  return g in PLAYER_MODEL_URLS;
+}
+
+function modelUrlFor(gender: ModelGender): string {
+  if (isPlayerGender(gender)) {
+    return PLAYER_MODEL_URLS[gender];
+  }
+  const npc = NPCS.find((n) => n.id === gender);
+  if (!npc) throw new Error(`No model URL registered for gender: ${gender}`);
+  return `/NPCs/${npc.file}`;
+}
 
 function categorizeBone(name: string): BoneCategory {
   const n = name.toLowerCase();
@@ -163,9 +186,14 @@ export function useCharacterModel(gender: ModelGender): {
     let cancelled = false;
     setLoading(true);
     setError(null);
-    setModel(null);
+    // NB: we deliberately do NOT clear `model` here.  Keeping the
+    // previously-loaded character mounted while the next one streams
+    // in lets the consumer (App.tsx + Scene) keep the Canvas mounted,
+    // which preserves the camera/orbit position and the active
+    // animation across model swaps.  The new model atomically replaces
+    // the previous one once the GLB finishes parsing.
 
-    const url = MODEL_URLS[gender];
+    const url = modelUrlFor(gender);
 
     loader.load(
       url,

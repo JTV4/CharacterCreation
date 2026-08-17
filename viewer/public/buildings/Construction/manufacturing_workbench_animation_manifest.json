@@ -1,0 +1,196 @@
+{
+  "source": "ManufacturingWorkbench.glb",
+  "structureName": "Manufacturing Workbench",
+  "coordinateSystem": "Z-up",
+  "pieces": [
+    {
+      "id": "BA_Floor_01",
+      "category": "Floor",
+      "staggerIndex": 0,
+      "spawnOffset": [
+        -0.0955,
+        0.1982,
+        1.15
+      ],
+      "spawnYawDeg": 2.2,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Floor_02",
+      "category": "Floor",
+      "staggerIndex": 1,
+      "spawnOffset": [
+        0.1128,
+        0.1889,
+        1.15
+      ],
+      "spawnYawDeg": 9.96,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_01",
+      "category": "Wall",
+      "staggerIndex": 2,
+      "spawnOffset": [
+        0.2131,
+        0.0546,
+        1.15
+      ],
+      "spawnYawDeg": 0.32,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_02",
+      "category": "Wall",
+      "staggerIndex": 3,
+      "spawnOffset": [
+        0.1977,
+        0.0965,
+        1.15
+      ],
+      "spawnYawDeg": -9.87,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_03",
+      "category": "Wall",
+      "staggerIndex": 4,
+      "spawnOffset": [
+        -0.1441,
+        -0.1663,
+        1.15
+      ],
+      "spawnYawDeg": -2.82,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Wall_04",
+      "category": "Wall",
+      "staggerIndex": 5,
+      "spawnOffset": [
+        -0.1576,
+        0.1535,
+        1.15
+      ],
+      "spawnYawDeg": 9.16,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Trim_01",
+      "category": "Trim",
+      "staggerIndex": 6,
+      "spawnOffset": [
+        -0.0581,
+        0.2122,
+        1.15
+      ],
+      "spawnYawDeg": 5.14,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Trim_02",
+      "category": "Trim",
+      "staggerIndex": 7,
+      "spawnOffset": [
+        -0.0618,
+        0.2111,
+        1.15
+      ],
+      "spawnYawDeg": -7.86,
+      "durationSec": 0.4
+    },
+    {
+      "id": "BA_Roof_01",
+      "category": "Roof",
+      "staggerIndex": 8,
+      "spawnOffset": [
+        -0.0721,
+        0.2079,
+        1.15
+      ],
+      "spawnYawDeg": -7.13,
+      "durationSec": 0.4
+    }
+  ],
+  "stages": {
+    "foundation": [
+      "BA_Floor_01"
+    ],
+    "walls_a": [
+      "BA_Floor_01",
+      "BA_Floor_02"
+    ],
+    "walls_b": [
+      "BA_Floor_01",
+      "BA_Floor_02",
+      "BA_Wall_01"
+    ],
+    "walls_c": [
+      "BA_Floor_01",
+      "BA_Floor_02",
+      "BA_Wall_01",
+      "BA_Wall_02"
+    ],
+    "walls_d": [
+      "BA_Floor_01",
+      "BA_Floor_02",
+      "BA_Wall_01",
+      "BA_Wall_02",
+      "BA_Wall_03"
+    ],
+    "gable": [
+      "BA_Floor_01",
+      "BA_Floor_02",
+      "BA_Wall_01",
+      "BA_Wall_02",
+      "BA_Wall_03",
+      "BA_Wall_04"
+    ],
+    "framing": [
+      "BA_Floor_01",
+      "BA_Floor_02",
+      "BA_Wall_01",
+      "BA_Wall_02",
+      "BA_Wall_03",
+      "BA_Wall_04",
+      "BA_Trim_01"
+    ],
+    "eaves": [
+      "BA_Floor_01",
+      "BA_Floor_02",
+      "BA_Wall_01",
+      "BA_Wall_02",
+      "BA_Wall_03",
+      "BA_Wall_04",
+      "BA_Trim_01",
+      "BA_Trim_02"
+    ],
+    "complete": [
+      "BA_Floor_01",
+      "BA_Floor_02",
+      "BA_Wall_01",
+      "BA_Wall_02",
+      "BA_Wall_03",
+      "BA_Wall_04",
+      "BA_Trim_01",
+      "BA_Trim_02",
+      "BA_Roof_01"
+    ]
+  },
+  "stageOrder": [
+    "foundation",
+    "walls_a",
+    "walls_b",
+    "walls_c",
+    "walls_d",
+    "gable",
+    "framing",
+    "eaves",
+    "complete"
+  ],
+  "tween": {
+    "staggerSec": 0.06,
+    "ease": "easeOutCubic",
+    "startScale": 0.92
+  }
+}

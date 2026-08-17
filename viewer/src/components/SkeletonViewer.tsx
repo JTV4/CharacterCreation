@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useFrame, ThreeEvent } from "@react-three/fiber";
 import * as THREE from "three";
 import type { GlbBoneInfo, BoneCategory, CharacterModel } from "../types";
@@ -94,7 +94,12 @@ function OctahedralBones({
     );
   }, [characterModel]);
 
-  const [geometry] = useState(() => {
+  // Geometry must be rebuilt whenever the bone list changes — buffer
+  // size is baked in at allocation time.  A previous version used
+  // useState(() => ...) which only ran on first mount; swapping to a
+  // model with fewer bones left ghost triangles for the now-unused
+  // tail slots, which read as leftover bones from the previous model.
+  const geometry = useMemo(() => {
     const numBones = bonesWithParents.length;
     const vertsPerBone = 6;
     const geom = new THREE.BufferGeometry();
@@ -119,7 +124,10 @@ function OctahedralBones({
     }
     geom.setIndex(indices);
     return geom;
-  });
+  }, [bonesWithParents]);
+
+  // Dispose previous geometry when a new one replaces it.
+  useEffect(() => () => geometry.dispose(), [geometry]);
 
   const materialRef = useRef<THREE.MeshLambertMaterial>(null);
 
@@ -236,7 +244,9 @@ function BoneEdges({
     );
   }, [characterModel]);
 
-  const [geometry] = useState(() => {
+  // See OctahedralBones — geometry size is tied to bone count, must
+  // be rebuilt on model swap.
+  const geometry = useMemo(() => {
     const numBones = bonesWithParents.length;
     const edgesPerBone = 12;
     const geom = new THREE.BufferGeometry();
@@ -246,7 +256,9 @@ function BoneEdges({
     geom.setAttribute("color", new THREE.BufferAttribute(colors, 3));
     geom.setDrawRange(0, 0);
     return geom;
-  });
+  }, [bonesWithParents]);
+
+  useEffect(() => () => geometry.dispose(), [geometry]);
 
   useFrame(() => {
     const posAttr = geometry.getAttribute("position") as THREE.BufferAttribute;

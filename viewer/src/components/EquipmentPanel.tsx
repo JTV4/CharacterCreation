@@ -27,6 +27,10 @@ interface CollectionInfo {
 const COLLECTION_ORDER: CollectionInfo[] = [
   { key: "base",                 label: "Base Meshes",          color: "#e8b4a0" },
   { key: "skin",                 label: "Skin Colors",          color: "#f0c8a0" },
+  { key: "skin_textures_white",  label: "White",                color: "#f5f0e8" },
+  { key: "face_accessories",     label: "Face Accessories",     color: "#60a5fa" },
+  { key: "hair",                 label: "Hair",                 color: "#a16207" },
+  { key: "textured_hair",        label: "Textured Hair",        color: "#d97706" },
   { key: "primitives",           label: "Primitives",           color: "#94a3b8" },
   { key: "crimson_wizard",       label: "Crimson Wizard",       color: "#b91c1c" },
   { key: "green_dragon_wizard",  label: "Green Dragon Wizard",  color: "#16a34a" },
@@ -42,6 +46,21 @@ const COLLECTION_ORDER: CollectionInfo[] = [
   { key: "black_ranged",         label: "Black Ranged Armor",   color: "#212121" },
   { key: "red_ranged",           label: "Red Ranged Armor",     color: "#c62828" },
   { key: "blue_ranged",          label: "Blue Ranged Armor",    color: "#1565c0" },
+  { key: "leather_ranged",       label: "Leather Armor",        color: "#8b4513" },
+  { key: "iron_armor",           label: "Iron Armor",           color: "#9ca3af" },
+  { key: "steel_armor",          label: "Steel Armor",          color: "#64748b" },
+  { key: "gold_armor",           label: "Gold Armor",           color: "#f59e0b" },
+  { key: "titanium_armor",       label: "Titanium Armor",       color: "#cbd5e1" },
+  { key: "tungsten_armor",       label: "Tungsten Armor",       color: "#475569" },
+  { key: "luminous_armor",       label: "Luminous Armor",       color: "#22d3ee" },
+  { key: "leather_magic_armor",  label: "Leather Magic Armor",  color: "#a16207" },
+  { key: "green_magic_armor",    label: "Green Magic Armor",    color: "#15803d" },
+  { key: "blue_magic_armor",     label: "Blue Magic Armor",     color: "#1d4ed8" },
+  { key: "red_magic_armor",      label: "Red Magic Armor",      color: "#b91c1c" },
+  { key: "black_magic_armor",    label: "Black Magic Armor",    color: "#171717" },
+  { key: "purple_magic_armor",   label: "Purple Magic Armor",   color: "#7e22ce" },
+  { key: "default_armor",        label: "Default Armor",        color: "#a8a29e" },
+  { key: "alpha_pass",           label: "Alpha Pass",           color: "#eab308" },
   { key: "meshy_input",          label: "Meshy Input (pre-texture)", color: "#f59e0b" },
   { key: "test",                 label: "Test",                 color: "#a78bfa" },
   { key: "custom",               label: "Custom",               color: "#f59e0b" },
@@ -54,6 +73,19 @@ function deriveCollection(slot: EquipmentSlot): string {
   if (slot.source === "imported") return "imported";
   if (slot.category === "meshes") return "base";
   if (slot.category === "skin_textures") return "skin";
+  if (slot.category === "skin_textures_white") return "skin_textures_white";
+  if (
+    slot.category === "eyes" ||
+    slot.category === "eyebrows" ||
+    slot.category === "eyelashes" ||
+    slot.category === "nose" ||
+    slot.category === "mouth" ||
+    slot.category === "ears"
+  ) {
+    return "face_accessories";
+  }
+  if (slot.category === "hair") return "hair";
+  if (slot.category === "textured_hair") return "textured_hair";
   if (slot.category === "robes") return "robes";
   if (slot.category === "skirts") return "skirts";
   if (slot.category === "upperbody_armor") return "upperbody_armor";
@@ -63,6 +95,21 @@ function deriveCollection(slot: EquipmentSlot): string {
   if (slot.category === "black_ranged_armor") return "black_ranged";
   if (slot.category === "red_ranged_armor") return "red_ranged";
   if (slot.category === "blue_ranged_armor") return "blue_ranged";
+  if (slot.category === "leather_ranged_armor") return "leather_ranged";
+  if (slot.category === "iron_armor") return "iron_armor";
+  if (slot.category === "steel_armor") return "steel_armor";
+  if (slot.category === "gold_armor") return "gold_armor";
+  if (slot.category === "titanium_armor") return "titanium_armor";
+  if (slot.category === "tungsten_armor") return "tungsten_armor";
+  if (slot.category === "luminous_armor") return "luminous_armor";
+  if (slot.category === "leather_magic_armor") return "leather_magic_armor";
+  if (slot.category === "green_magic_armor") return "green_magic_armor";
+  if (slot.category === "blue_magic_armor") return "blue_magic_armor";
+  if (slot.category === "red_magic_armor") return "red_magic_armor";
+  if (slot.category === "black_magic_armor") return "black_magic_armor";
+  if (slot.category === "purple_magic_armor") return "purple_magic_armor";
+  if (slot.category === "default_armor") return "default_armor";
+  if (slot.category === "alpha_pass") return "alpha_pass";
   if (slot.category === "meshy_input") return "meshy_input";
 
   const id = slot.id;

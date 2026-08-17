@@ -184,12 +184,20 @@ for j in range(NUM_RINGS):
         tight_r = body_r + INFLATE
         raw_radii.append(tight_r * conform + circ_r * (1.0 - conform))
 
-    # Clamp: no radius dips below MIN_RING_RATIO of the ring's max
+    # Fade the "skirt-shaping" effects (uniformity clamp, ring smoothing)
+    # OUT as we approach the top of the robe.  At the waist (t == 1) the
+    # robe must conform exactly to body + INFLATE per sector so it lines up
+    # with `shell_v1_leg_upper` at the same Y.  Lower down (t → 0) the
+    # full clamp and smoothing kick in to give a clean flared skirt shape.
+    shape_strength = 1.0 - t
+
     ring_max = max(raw_radii)
-    ring_floor = ring_max * MIN_RING_RATIO
+    ring_floor = ring_max * MIN_RING_RATIO * shape_strength
     raw_radii = [max(r, ring_floor) for r in raw_radii]
 
-    radii = smooth_ring(raw_radii, passes=6)
+    smoothed = smooth_ring(raw_radii, passes=6)
+    radii = [smoothed[i] * shape_strength + raw_radii[i] * (1.0 - shape_strength)
+             for i in range(NUM_SEGS)]
 
     # Oval stretch factor: 1.0 at top, OVAL_X at bottom (X-axis = side-to-side)
     oval = 1.0 + (OVAL_X - 1.0) * (1.0 - t)
@@ -214,19 +222,10 @@ for j in range(NUM_RINGS - 1):
             verts_by_ring[j + 1][i],
         ])
 
-# Cap the bottom ring (j=0) with a center vertex and triangle fan
-bot_ring = verts_by_ring[0]
-bot_center = bm.verts.new((0, BOT_Y, 0))
-for i in range(NUM_SEGS):
-    i_next = (i + 1) % NUM_SEGS
-    bm.faces.new([bot_center, bot_ring[i_next], bot_ring[i]])
-
-# Cap the top ring (j=last) with a center vertex and triangle fan
-top_ring = verts_by_ring[-1]
-top_center = bm.verts.new((0, TOP_Y, 0))
-for i in range(NUM_SEGS):
-    i_next = (i + 1) % NUM_SEGS
-    bm.faces.new([top_center, top_ring[i], top_ring[i_next]])
+# NOTE: Both ring ends are intentionally LEFT OPEN (no triangle-fan caps).
+# The robe behaves like the leg shells / leggings - a hollow tube the
+# character's hips and legs pass through.  The viewer renders the wall as
+# DoubleSide so the inside surface is visible when looking up into the robe.
 
 bm.normal_update()
 

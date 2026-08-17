@@ -1,0 +1,489 @@
+Blender 4.1.1 (hash e1743a0317bc built 2024-04-16 00:06:22)
+Read prefs: "/Users/stephenvillavaso/Library/Application Support/Blender/4.1/config/userpref.blend"
+Read blend: "/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/GrindScape_Male_Assembled_Modular.blend"
+Fra:1 Mem:49.53M (Peak 50.34M) | Time:00:00.07 | Syncing Body_Head
+Fra:1 Mem:50.09M (Peak 50.34M) | Time:00:00.08 | Syncing Armature
+Fra:1 Mem:50.09M (Peak 50.34M) | Time:00:00.08 | Syncing Body_Upperbody
+Fra:1 Mem:50.63M (Peak 50.63M) | Time:00:00.08 | Syncing Body_Hand_L
+Fra:1 Mem:51.00M (Peak 51.00M) | Time:00:00.09 | Syncing Body_Hand_R
+Fra:1 Mem:51.37M (Peak 51.37M) | Time:00:00.09 | Syncing Body_Lowerbody
+Fra:1 Mem:52.02M (Peak 52.02M) | Time:00:00.09 | Syncing Body_Foot_L
+Fra:1 Mem:52.37M (Peak 52.37M) | Time:00:00.09 | Syncing Body_Foot_R
+Fra:1 Mem:52.73M (Peak 52.73M) | Time:00:00.09 | Syncing Area
+Fra:1 Mem:52.73M (Peak 52.73M) | Time:00:00.09 | Syncing Area.001
+Fra:1 Mem:52.73M (Peak 52.73M) | Time:00:00.09 | Syncing Area.002
+Fra:1 Mem:52.73M (Peak 52.73M) | Time:00:00.09 | Syncing QA_Camera
+Fra:1 Mem:52.73M (Peak 52.73M) | Time:00:00.09 | Rendering 1 / 48 samples
+Fra:1 Mem:52.37M (Peak 52.73M) | Time:00:00.11 | Rendering 26 / 48 samples
+Fra:1 Mem:52.74M (Peak 52.74M) | Time:00:00.12 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/assembled_front.png'
+Time: 00:00.34 (Saving: 00:00.12)
+
+Fra:1 Mem:50.78M (Peak 50.78M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.25M (Peak 51.25M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.26M (Peak 51.26M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.76M (Peak 51.76M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:52.09M (Peak 52.09M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:52.42M (Peak 52.42M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:53.00M (Peak 53.00M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:53.33M (Peak 53.33M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:53.65M (Peak 53.65M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.65M (Peak 53.65M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.65M (Peak 53.65M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.65M (Peak 53.65M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.64M (Peak 53.65M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.44M (Peak 53.65M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.75M (Peak 53.65M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/assembled_back.png'
+Time: 00:00.16 (Saving: 00:00.07)
+
+Fra:1 Mem:50.78M (Peak 50.78M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.26M (Peak 51.26M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.27M (Peak 51.27M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.77M (Peak 51.77M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:52.10M (Peak 52.10M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:52.43M (Peak 52.43M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:53.01M (Peak 53.01M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:53.34M (Peak 53.34M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:53.65M (Peak 53.65M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.65M (Peak 53.65M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.65M (Peak 53.65M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.65M (Peak 53.65M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.65M (Peak 53.65M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.44M (Peak 53.65M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.76M (Peak 53.65M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/assembled_side.png'
+Time: 00:00.14 (Saving: 00:00.07)
+
+Fra:1 Mem:50.79M (Peak 50.79M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.27M (Peak 51.27M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.27M (Peak 51.27M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.77M (Peak 51.77M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:52.10M (Peak 52.10M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:52.43M (Peak 52.43M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:53.01M (Peak 53.01M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:53.34M (Peak 53.34M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:53.66M (Peak 53.66M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.66M (Peak 53.66M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.66M (Peak 53.66M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.66M (Peak 53.66M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.66M (Peak 53.66M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.44M (Peak 53.66M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.76M (Peak 53.66M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/assembled_three_quarter.png'
+Time: 00:00.16 (Saving: 00:00.07)
+
+Fra:1 Mem:50.94M (Peak 50.94M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.42M (Peak 51.42M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.43M (Peak 51.43M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.93M (Peak 51.93M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:52.26M (Peak 52.26M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:52.59M (Peak 52.59M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:53.17M (Peak 53.17M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:53.50M (Peak 53.50M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.81M (Peak 53.82M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.60M (Peak 53.82M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.91M (Peak 53.82M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/closeup_neck.png'
+Time: 00:00.16 (Saving: 00:00.07)
+
+Fra:1 Mem:50.94M (Peak 50.94M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.42M (Peak 51.42M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.43M (Peak 51.43M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.93M (Peak 51.93M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:52.26M (Peak 52.26M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:52.59M (Peak 52.59M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:53.17M (Peak 53.17M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:53.50M (Peak 53.50M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.81M (Peak 53.82M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.60M (Peak 53.82M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.91M (Peak 53.82M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/closeup_waist.png'
+Time: 00:00.17 (Saving: 00:00.08)
+
+Fra:1 Mem:50.94M (Peak 50.94M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.42M (Peak 51.42M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.43M (Peak 51.43M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.93M (Peak 51.93M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:52.26M (Peak 52.26M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:52.59M (Peak 52.59M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:53.17M (Peak 53.17M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:53.50M (Peak 53.50M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.81M (Peak 53.82M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.60M (Peak 53.82M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.91M (Peak 53.82M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/closeup_wrist.png'
+Time: 00:00.17 (Saving: 00:00.07)
+
+Fra:1 Mem:50.94M (Peak 50.94M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.42M (Peak 51.42M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.43M (Peak 51.43M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.93M (Peak 51.93M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:52.26M (Peak 52.26M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:52.59M (Peak 52.59M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:53.17M (Peak 53.17M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:53.50M (Peak 53.50M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.81M (Peak 53.82M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.60M (Peak 53.82M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.91M (Peak 53.82M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/closeup_ankle.png'
+Time: 00:00.15 (Saving: 00:00.07)
+
+Fra:1 Mem:50.76M (Peak 50.76M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.26M (Peak 51.26M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.26M (Peak 51.26M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:51.59M (Peak 51.59M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:51.92M (Peak 51.92M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:52.50M (Peak 52.50M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:52.83M (Peak 52.83M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:53.15M (Peak 53.15M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.15M (Peak 53.15M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.15M (Peak 53.15M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.15M (Peak 53.15M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.15M (Peak 53.15M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.11M (Peak 53.15M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.42M (Peak 53.15M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/hide_Body_Head.png'
+Time: 00:00.16 (Saving: 00:00.07)
+
+Fra:1 Mem:50.74M (Peak 50.74M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.22M (Peak 51.22M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.23M (Peak 51.23M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:51.56M (Peak 51.56M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:51.89M (Peak 51.89M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:52.47M (Peak 52.47M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:52.79M (Peak 52.79M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:53.11M (Peak 53.11M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.11M (Peak 53.11M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.11M (Peak 53.11M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.11M (Peak 53.11M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.11M (Peak 53.11M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.08M (Peak 53.11M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.39M (Peak 53.11M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/hide_Body_Upperbody.png'
+Time: 00:00.14 (Saving: 00:00.07)
+
+Fra:1 Mem:50.77M (Peak 50.77M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.25M (Peak 51.25M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.25M (Peak 51.25M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.75M (Peak 51.75M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:52.08M (Peak 52.08M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:52.66M (Peak 52.66M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:52.99M (Peak 52.99M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:53.31M (Peak 53.31M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.31M (Peak 53.31M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.31M (Peak 53.31M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.31M (Peak 53.31M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.31M (Peak 53.31M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.19M (Peak 53.31M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.50M (Peak 53.31M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/hide_Body_Hand_L.png'
+Time: 00:00.15 (Saving: 00:00.07)
+
+Fra:1 Mem:50.76M (Peak 50.76M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.24M (Peak 51.24M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.24M (Peak 51.24M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.75M (Peak 51.75M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:52.07M (Peak 52.07M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:52.66M (Peak 52.66M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:52.98M (Peak 52.98M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:53.30M (Peak 53.30M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.30M (Peak 53.30M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.30M (Peak 53.30M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.30M (Peak 53.30M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.30M (Peak 53.30M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.18M (Peak 53.30M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.49M (Peak 53.30M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/hide_Body_Hand_R.png'
+Time: 00:00.15 (Saving: 00:00.07)
+
+Fra:1 Mem:50.63M (Peak 50.63M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.11M (Peak 51.11M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.12M (Peak 51.12M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.62M (Peak 51.62M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:51.95M (Peak 51.95M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:52.28M (Peak 52.28M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:52.61M (Peak 52.61M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:52.93M (Peak 52.93M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:52.93M (Peak 52.93M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:52.93M (Peak 52.93M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:52.93M (Peak 52.93M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:52.92M (Peak 52.93M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:51.89M (Peak 52.93M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.20M (Peak 52.93M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/hide_Body_Lowerbody.png'
+Time: 00:00.14 (Saving: 00:00.07)
+
+Fra:1 Mem:50.74M (Peak 50.74M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.22M (Peak 51.22M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.23M (Peak 51.23M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.73M (Peak 51.73M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:52.06M (Peak 52.06M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:52.39M (Peak 52.39M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:52.97M (Peak 52.97M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:53.29M (Peak 53.29M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.29M (Peak 53.29M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.29M (Peak 53.29M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.29M (Peak 53.29M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.28M (Peak 53.29M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.16M (Peak 53.29M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.48M (Peak 53.29M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/hide_Body_Foot_L.png'
+Time: 00:00.15 (Saving: 00:00.07)
+
+Fra:1 Mem:50.74M (Peak 50.74M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.22M (Peak 51.22M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.23M (Peak 51.23M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.73M (Peak 51.73M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:52.06M (Peak 52.06M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:52.39M (Peak 52.39M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:52.97M (Peak 52.97M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:53.29M (Peak 53.29M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.29M (Peak 53.29M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.29M (Peak 53.29M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.29M (Peak 53.29M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.29M (Peak 53.29M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.17M (Peak 53.29M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.48M (Peak 53.29M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/hide_Body_Foot_R.png'
+Time: 00:00.15 (Saving: 00:00.07)
+
+Fra:1 Mem:50.88M (Peak 50.88M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.36M (Peak 51.36M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.36M (Peak 51.36M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.87M (Peak 51.87M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:52.20M (Peak 52.20M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:52.53M (Peak 52.53M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:53.11M (Peak 53.11M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:53.43M (Peak 53.43M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.54M (Peak 53.75M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.85M (Peak 53.75M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/pose_arms_raised.png'
+Time: 00:00.15 (Saving: 00:00.07)
+
+Fra:1 Mem:50.88M (Peak 50.88M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.36M (Peak 51.36M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.36M (Peak 51.36M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.87M (Peak 51.87M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:52.20M (Peak 52.20M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:52.53M (Peak 52.53M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:53.11M (Peak 53.11M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:53.43M (Peak 53.43M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.54M (Peak 53.75M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.85M (Peak 53.75M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/pose_walk.png'
+Time: 00:00.15 (Saving: 00:00.07)
+
+Fra:1 Mem:50.88M (Peak 50.88M) | Time:00:00.00 | Syncing Body_Head
+Fra:1 Mem:51.36M (Peak 51.36M) | Time:00:00.00 | Syncing Armature
+Fra:1 Mem:51.36M (Peak 51.36M) | Time:00:00.00 | Syncing Body_Upperbody
+Fra:1 Mem:51.87M (Peak 51.87M) | Time:00:00.00 | Syncing Body_Hand_L
+Fra:1 Mem:52.20M (Peak 52.20M) | Time:00:00.00 | Syncing Body_Hand_R
+Fra:1 Mem:52.53M (Peak 52.53M) | Time:00:00.00 | Syncing Body_Lowerbody
+Fra:1 Mem:53.11M (Peak 53.11M) | Time:00:00.00 | Syncing Body_Foot_L
+Fra:1 Mem:53.43M (Peak 53.43M) | Time:00:00.00 | Syncing Body_Foot_R
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.00 | Syncing Area
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.00 | Syncing Area.001
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.00 | Syncing Area.002
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.00 | Syncing QA_Camera
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.00 | Rendering 1 / 48 samples
+Fra:1 Mem:52.54M (Peak 53.75M) | Time:00:00.01 | Rendering 26 / 48 samples
+Fra:1 Mem:52.85M (Peak 53.75M) | Time:00:00.01 | Rendering 48 / 48 samples
+Saved: '/Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/pose_crouch.png'
+Time: 00:00.16 (Saving: 00:00.07)
+
+Opening /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/GrindScape_Male_Assembled_Modular.blend
+Info: Removed 7 vertice(s)
+Info: Removed 0 vertice(s)
+Info: Removed 0 vertice(s)
+Info: Removed 0 vertice(s)
+Info: Removed 0 vertice(s)
+Info: Removed 4 vertice(s)
+Info: Removed 0 vertice(s)
+Pre-repair height=1.814
+Joint centers:
+  neck: c=(-0.005, 0.107, 1.552) axis=(0.0, 0.0, 1.0)
+  waist: c=(0.0, 0.017, 0.996) axis=(0.0, 0.0, 1.0)
+  wrist_L: c=(0.357, -0.058, 0.952) axis=(0.738, -0.269, -0.619)
+  wrist_R: c=(-0.357, -0.062, 0.949) axis=(-0.733, -0.272, -0.624)
+  ankle_L: c=(0.156, 0.099, 0.104) axis=(0.0, 0.0, 1.0)
+  ankle_R: c=(-0.167, 0.081, 0.11) axis=(0.0, 0.0, 1.0)
+
+=== Repair neck: Body_Head <-> Body_Upperbody ===
+  hard-snapped to mid=(-0.0, 0.108, 1.552)
+    opened 80 cap faces on Body_Head
+Info: Removed 0 vertice(s)
+    opened 8 cap faces on Body_Upperbody
+Info: Removed 0 vertice(s)
+Info: Removed 12 vertice(s)
+  union verts=1721 voxel=0.01
+  union height=0.789
+Info: Removed 5450 vertice(s)
+  remeshed height=0.764 verts=13776
+  projected verts a=297 b=148
+Info: Removed 2 vertice(s)
+Info: Removed 0 vertice(s)
+  post-joint local span Z=0.866
+  done neck
+  character height now=1.799
+
+=== Repair waist: Body_Upperbody <-> Body_Lowerbody ===
+  hard-snapped to mid=(-0.003, 0.027, 1.004)
+Info: Removed 0 vertice(s)
+Info: Removed 0 vertice(s)
+Info: Removed 11 vertice(s)
+  union verts=2428 voxel=0.012
+  union height=1.418
+Info: Removed 4246 vertice(s)
+  remeshed height=1.375 verts=7460
+  projected verts a=150 b=164
+Info: Removed 0 vertice(s)
+Info: Removed 0 vertice(s)
+  post-joint local span Z=1.418
+  done waist
+  character height now=1.799
+
+=== Repair wrist_L: Body_Upperbody <-> Body_Hand_L ===
+  hard-snapped to mid=(0.346, -0.039, 0.969)
+Info: Removed 7 vertice(s)
+  union verts=2089 voxel=0.008
+  union height=0.664
+Info: Removed 6171 vertice(s)
+  remeshed height=0.651 verts=23121
+  projected verts a=56 b=148
+Info: Removed 0 vertice(s)
+Info: Removed 0 vertice(s)
+  post-joint local span Z=0.664
+  done wrist_L
+  character height now=1.799
+
+=== Repair wrist_R: Body_Upperbody <-> Body_Hand_R ===
+  hard-snapped to mid=(-0.326, -0.045, 0.96)
+Info: Removed 3 vertice(s)
+  union verts=2070 voxel=0.008
+  union height=0.666
+Info: Removed 5889 vertice(s)
+  remeshed height=0.646 verts=22805
+  projected verts a=55 b=163
+Info: Removed 0 vertice(s)
+Info: Removed 0 vertice(s)
+  post-joint local span Z=0.666
+  done wrist_R
+  character height now=1.799
+
+=== Repair ankle_L: Body_Lowerbody <-> Body_Foot_L ===
+  hard-snapped to mid=(0.154, 0.102, 0.11)
+Info: Removed 0 vertice(s)
+Info: Removed 0 vertice(s)
+Info: Removed 4 vertice(s)
+  union verts=2084 voxel=0.008
+  union height=0.987
+Info: Removed 1149 vertice(s)
+  remeshed height=0.960 verts=2583
+  projected verts a=39 b=176
+Info: Removed 0 vertice(s)
+Info: Removed 0 vertice(s)
+  post-joint local span Z=0.987
+  done ankle_L
+  character height now=1.799
+
+=== Repair ankle_R: Body_Lowerbody <-> Body_Foot_R ===
+  hard-snapped to mid=(-0.167, 0.092, 0.124)
+Info: Removed 0 vertice(s)
+    opened 19 cap faces on Body_Foot_R
+Info: Removed 0 vertice(s)
+Info: Removed 9 vertice(s)
+  union verts=2114 voxel=0.008
+  union height=0.950
+Info: Removed 1258 vertice(s)
+  remeshed height=0.920 verts=2718
+  projected verts a=57 b=202
+Info: Removed 0 vertice(s)
+Info: Removed 0 vertice(s)
+  post-joint local span Z=0.950
+  done ankle_R
+  character height now=1.777
+
+=== Rebind armature ===
+  rebound Body_Head groups=65
+  rebound Body_Upperbody groups=65
+  rebound Body_Hand_L groups=65
+  rebound Body_Hand_R groups=65
+  rebound Body_Lowerbody groups=65
+  rebound Body_Foot_L groups=65
+  rebound Body_Foot_R groups=65
+=== Render QA ===
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/assembled_front.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/assembled_back.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/assembled_side.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/assembled_three_quarter.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/closeup_neck.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/closeup_waist.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/closeup_wrist.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/closeup_ankle.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/hide_Body_Head.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/hide_Body_Upperbody.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/hide_Body_Hand_L.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/hide_Body_Hand_R.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/hide_Body_Lowerbody.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/hide_Body_Foot_L.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/hide_Body_Foot_R.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/pose_arms_raised.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/pose_walk.png
+Rendered /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/screenshots/pose_crouch.png
+=== Save / export ===
+Info: Saved "GrindScape_Male_Assembled_Modular.blend"
+11:48:06 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+11:48:06 | INFO: Starting glTF 2.0 export
+11:48:06 | INFO: Extracting primitive: Body_Foot_L
+11:48:06 | INFO: Primitives created: 1
+11:48:06 | INFO: Extracting primitive: Body_Foot_R
+11:48:06 | INFO: Primitives created: 1
+11:48:06 | INFO: Extracting primitive: Body_Hand_L
+11:48:06 | INFO: Primitives created: 1
+11:48:06 | INFO: Extracting primitive: Body_Hand_R
+11:48:06 | INFO: Primitives created: 1
+11:48:06 | INFO: Extracting primitive: Body_Head
+11:48:06 | INFO: Primitives created: 1
+11:48:06 | INFO: Extracting primitive: Body_Lowerbody
+11:48:06 | INFO: Primitives created: 2
+11:48:06 | INFO: Extracting primitive: Body_Upperbody
+11:48:06 | INFO: Primitives created: 1
+11:48:06 | INFO: Finished glTF 2.0 export in 0.04089975357055664 s
+
+Exported /Users/stephenvillavaso/Documents/GitHub/CharacterCreation/assembled_male/GrindScape_Male_Assembled_Modular.glb
+=== Validate ===
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.05s
+
+Seam-repair re-import: parts=['Body_Foot_L', 'Body_Foot_R', 'Body_Hand_L', 'Body_Hand_R', 'Body_Head', 'Body_Lowerbody', 'Body_Upperbody'] bones=65 RESULT=PASS
+
+DONE
+
+Blender quit

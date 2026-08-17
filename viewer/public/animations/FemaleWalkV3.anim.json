@@ -1,0 +1,2062 @@
+{
+  "meta": {
+    "name": "FemaleWalkV3",
+    "id": "FemaleWalkV3",
+    "duration": 1.35,
+    "fps": 30,
+    "loop": true,
+    "_comment": "Relaxed stroll based on FemaleWalkV2. Slower cycle, shorter stride, softer bounce, smaller arm swing. Same contralateral limb phase and authored start-knee pose."
+  },
+  "tracks": [
+    {
+      "bone": "mixamorigHips",
+      "property": "position",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0,
+            -0.00165,
+            0.0
+          ]
+        },
+        {
+          "time": 0.2025,
+          "value": [
+            0.00165,
+            -0.0033,
+            0.0
+          ]
+        },
+        {
+          "time": 0.3375,
+          "value": [
+            0.00275,
+            0.00165,
+            0.0
+          ]
+        },
+        {
+          "time": 0.54,
+          "value": [
+            0.0011,
+            -0.0011,
+            0.0
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            0.0,
+            -0.00165,
+            0.0
+          ]
+        },
+        {
+          "time": 0.8775,
+          "value": [
+            -0.00165,
+            -0.0033,
+            0.0
+          ]
+        },
+        {
+          "time": 1.0125,
+          "value": [
+            -0.00275,
+            0.00165,
+            0.0
+          ]
+        },
+        {
+          "time": 1.215,
+          "value": [
+            -0.0011,
+            -0.0011,
+            0.0
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.0,
+            -0.00165,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigHips",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.00314,
+            0.01885,
+            -0.01257,
+            0.99974
+          ]
+        },
+        {
+          "time": 0.3375,
+          "value": [
+            -0.00157,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            0.00314,
+            -0.01885,
+            0.01257,
+            0.99974
+          ]
+        },
+        {
+          "time": 1.0125,
+          "value": [
+            -0.00157,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.00314,
+            0.01885,
+            -0.01257,
+            0.99974
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigSpine",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.00943,
+            -0.01256,
+            0.00629,
+            0.99986
+          ]
+        },
+        {
+          "time": 0.3375,
+          "value": [
+            0.01571,
+            0.0,
+            0.0,
+            0.99988
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            0.00943,
+            0.01256,
+            -0.00629,
+            0.99986
+          ]
+        },
+        {
+          "time": 1.0125,
+          "value": [
+            0.01571,
+            0.0,
+            0.0,
+            0.99988
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.00943,
+            -0.01256,
+            0.00629,
+            0.99986
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigSpine1",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.04397,
+            0.0,
+            0.0,
+            0.99903
+          ]
+        },
+        {
+          "time": 0.3375,
+          "value": [
+            0.01885,
+            0.0,
+            0.0,
+            0.99982
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            0.04397,
+            0.0,
+            0.0,
+            0.99903
+          ]
+        },
+        {
+          "time": 1.0125,
+          "value": [
+            0.01885,
+            0.0,
+            0.0,
+            0.99982
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.04397,
+            0.0,
+            0.0,
+            0.99903
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigSpine1",
+      "property": "position",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "time": 0.3375,
+          "value": [
+            0.0,
+            0.00155,
+            0.00078
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "time": 1.0125,
+          "value": [
+            0.0,
+            0.00155,
+            0.00078
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigSpine2",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.00629,
+            -0.00943,
+            0.00629,
+            0.99992
+          ]
+        },
+        {
+          "time": 0.3375,
+          "value": [
+            0.00943,
+            0.0,
+            0.0,
+            0.99996
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            0.00629,
+            0.00943,
+            -0.00629,
+            0.99992
+          ]
+        },
+        {
+          "time": 1.0125,
+          "value": [
+            0.00943,
+            0.0,
+            0.0,
+            0.99996
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.00629,
+            -0.00943,
+            0.00629,
+            0.99992
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigSpine2",
+      "property": "position",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "time": 0.3375,
+          "value": [
+            0.0,
+            0.00155,
+            0.00078
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "time": 1.0125,
+          "value": [
+            0.0,
+            0.00155,
+            0.00078
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigNeck",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            -0.00314,
+            0.01256,
+            0.0,
+            0.99992
+          ]
+        },
+        {
+          "time": 0.3375,
+          "value": [
+            -0.00629,
+            0.0,
+            0.0,
+            0.99998
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            -0.00314,
+            -0.01256,
+            0.0,
+            0.99992
+          ]
+        },
+        {
+          "time": 1.0125,
+          "value": [
+            -0.00629,
+            0.0,
+            0.0,
+            0.99998
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            -0.00314,
+            0.01256,
+            0.0,
+            0.99992
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigHead",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.00314,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 0.3375,
+          "value": [
+            -0.00157,
+            0.00126,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            0.00314,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 1.0125,
+          "value": [
+            -0.00157,
+            -0.00126,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.00314,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftShoulder",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            -0.02618,
+            0,
+            0,
+            0.99966
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            -0.02618,
+            0,
+            0,
+            0.99966
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftShoulder",
+      "property": "position",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0,
+            -0.00078,
+            0.0
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.0,
+            -0.00078,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightShoulder",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            -0.02618,
+            0,
+            0,
+            0.99966
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            -0.02618,
+            0,
+            0,
+            0.99966
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightShoulder",
+      "property": "position",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0,
+            -0.00078,
+            0.0
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.0,
+            -0.00078,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightUpLeg",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.14919,
+            0.0,
+            0.0,
+            0.98881
+          ]
+        },
+        {
+          "time": 0.3375,
+          "value": [
+            -0.03403,
+            0.0,
+            0.0,
+            0.99942
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            -0.18275,
+            0.0,
+            0.0,
+            0.98316
+          ]
+        },
+        {
+          "time": 1.0125,
+          "value": [
+            0.04083,
+            0.0,
+            0.0,
+            0.99917
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.14919,
+            0.0,
+            0.0,
+            0.98881
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftUpLeg",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            -0.18275,
+            0.0,
+            0.0,
+            0.98316
+          ]
+        },
+        {
+          "time": 0.3375,
+          "value": [
+            0.04083,
+            0.0,
+            0.0,
+            0.99917
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            0.14919,
+            0.0,
+            0.0,
+            0.98881
+          ]
+        },
+        {
+          "time": 1.0125,
+          "value": [
+            -0.03403,
+            0.0,
+            0.0,
+            0.99942
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            -0.18275,
+            0.0,
+            0.0,
+            0.98316
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightLeg",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0349,
+            0.0,
+            0.0,
+            0.99939
+          ]
+        },
+        {
+          "time": 0.162,
+          "value": [
+            -0.14971,
+            0,
+            0,
+            0.98873
+          ]
+        },
+        {
+          "time": 0.405,
+          "value": [
+            -0.03006,
+            0,
+            0,
+            0.99955
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            -0.08007,
+            0,
+            0,
+            0.99679
+          ]
+        },
+        {
+          "time": 0.8775,
+          "value": [
+            -0.3435,
+            0,
+            0,
+            0.93915
+          ]
+        },
+        {
+          "time": 1.1475,
+          "value": [
+            -0.10002,
+            0,
+            0,
+            0.99499
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.0349,
+            0.0,
+            0.0,
+            0.99939
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftLeg",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            -0.08007,
+            0,
+            0,
+            0.99679
+          ]
+        },
+        {
+          "time": 0.2025,
+          "value": [
+            -0.3435,
+            0,
+            0,
+            0.93915
+          ]
+        },
+        {
+          "time": 0.4725,
+          "value": [
+            -0.10002,
+            0,
+            0,
+            0.99499
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            0.0349,
+            0.0,
+            0.0,
+            0.99939
+          ]
+        },
+        {
+          "time": 0.837,
+          "value": [
+            -0.14971,
+            0,
+            0,
+            0.98873
+          ]
+        },
+        {
+          "time": 1.08,
+          "value": [
+            -0.03006,
+            0,
+            0,
+            0.99955
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            -0.08007,
+            0,
+            0,
+            0.99679
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightFoot",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.07376,
+            0.0,
+            0.0,
+            0.99728
+          ]
+        },
+        {
+          "time": 0.162,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 0.54,
+          "value": [
+            -0.08848,
+            0.0,
+            0.0,
+            0.99608
+          ]
+        },
+        {
+          "time": 0.7425,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 1.08,
+          "value": [
+            0.03691,
+            0.0,
+            0.0,
+            0.99932
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.07376,
+            0.0,
+            0.0,
+            0.99728
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftFoot",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            -0.08848,
+            0.0,
+            0.0,
+            0.99608
+          ]
+        },
+        {
+          "time": 0.0675,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 0.405,
+          "value": [
+            0.03691,
+            0.0,
+            0.0,
+            0.99932
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            0.07376,
+            0.0,
+            0.0,
+            0.99728
+          ]
+        },
+        {
+          "time": 0.837,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 1.215,
+          "value": [
+            -0.08848,
+            0.0,
+            0.0,
+            0.99608
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            -0.08848,
+            0.0,
+            0.0,
+            0.99608
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightToeBase",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 0.4725,
+          "value": [
+            0.07376,
+            0.0,
+            0.0,
+            0.99728
+          ]
+        },
+        {
+          "time": 0.7425,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftToeBase",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.07376,
+            0.0,
+            0.0,
+            0.99728
+          ]
+        },
+        {
+          "time": 0.0675,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 1.1475,
+          "value": [
+            0.07376,
+            0.0,
+            0.0,
+            0.99728
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.07376,
+            0.0,
+            0.0,
+            0.99728
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.58094,
+            -0.08942,
+            0.12307,
+            0.7996
+          ]
+        },
+        {
+          "time": 0.3375,
+          "value": [
+            0.58779,
+            0.0,
+            0.0,
+            0.80902
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            0.58094,
+            0.08942,
+            -0.12307,
+            0.7996
+          ]
+        },
+        {
+          "time": 1.0125,
+          "value": [
+            0.58779,
+            0.0,
+            0.0,
+            0.80902
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.58094,
+            -0.08942,
+            0.12307,
+            0.7996
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.58094,
+            -0.08942,
+            0.12307,
+            0.7996
+          ]
+        },
+        {
+          "time": 0.3375,
+          "value": [
+            0.58779,
+            0.0,
+            0.0,
+            0.80902
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            0.58094,
+            0.08942,
+            -0.12307,
+            0.7996
+          ]
+        },
+        {
+          "time": 1.0125,
+          "value": [
+            0.58779,
+            0.0,
+            0.0,
+            0.80902
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.58094,
+            -0.08942,
+            0.12307,
+            0.7996
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHand",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHand",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHandThumb1",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.08716,
+            0,
+            0,
+            0.99619
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.08716,
+            0,
+            0,
+            0.99619
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHandThumb2",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.13053,
+            0,
+            0,
+            0.99144
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.13053,
+            0,
+            0,
+            0.99144
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHandThumb3",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.08716,
+            0,
+            0,
+            0.99619
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.08716,
+            0,
+            0,
+            0.99619
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHandIndex1",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.15643,
+            0,
+            0,
+            0.98769
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.15643,
+            0,
+            0,
+            0.98769
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHandIndex2",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.24192,
+            0,
+            0,
+            0.9703
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.24192,
+            0,
+            0,
+            0.9703
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHandIndex3",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.15643,
+            0,
+            0,
+            0.98769
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.15643,
+            0,
+            0,
+            0.98769
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHandMiddle1",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.17365,
+            0,
+            0,
+            0.98481
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.17365,
+            0,
+            0,
+            0.98481
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHandMiddle2",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.25882,
+            0,
+            0,
+            0.96593
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.25882,
+            0,
+            0,
+            0.96593
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHandMiddle3",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.17365,
+            0,
+            0,
+            0.98481
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.17365,
+            0,
+            0,
+            0.98481
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHandRing1",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.19081,
+            0,
+            0,
+            0.98163
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.19081,
+            0,
+            0,
+            0.98163
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHandRing2",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.28402,
+            0,
+            0,
+            0.95882
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.28402,
+            0,
+            0,
+            0.95882
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHandRing3",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.19081,
+            0,
+            0,
+            0.98163
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.19081,
+            0,
+            0,
+            0.98163
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHandPinky1",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.21644,
+            0,
+            0,
+            0.9763
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.21644,
+            0,
+            0,
+            0.9763
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHandPinky2",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.30071,
+            0,
+            0,
+            0.95372
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.30071,
+            0,
+            0,
+            0.95372
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftHandPinky3",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.21644,
+            0,
+            0,
+            0.9763
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.21644,
+            0,
+            0,
+            0.9763
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHandThumb1",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.08716,
+            0,
+            0,
+            0.99619
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.08716,
+            0,
+            0,
+            0.99619
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHandThumb2",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.13053,
+            0,
+            0,
+            0.99144
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.13053,
+            0,
+            0,
+            0.99144
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHandThumb3",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.08716,
+            0,
+            0,
+            0.99619
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.08716,
+            0,
+            0,
+            0.99619
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHandIndex1",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.15643,
+            0,
+            0,
+            0.98769
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.15643,
+            0,
+            0,
+            0.98769
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHandIndex2",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.24192,
+            0,
+            0,
+            0.9703
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.24192,
+            0,
+            0,
+            0.9703
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHandIndex3",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.15643,
+            0,
+            0,
+            0.98769
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.15643,
+            0,
+            0,
+            0.98769
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHandMiddle1",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.17365,
+            0,
+            0,
+            0.98481
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.17365,
+            0,
+            0,
+            0.98481
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHandMiddle2",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.25882,
+            0,
+            0,
+            0.96593
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.25882,
+            0,
+            0,
+            0.96593
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHandMiddle3",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.17365,
+            0,
+            0,
+            0.98481
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.17365,
+            0,
+            0,
+            0.98481
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHandRing1",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.19081,
+            0,
+            0,
+            0.98163
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.19081,
+            0,
+            0,
+            0.98163
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHandRing2",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.28402,
+            0,
+            0,
+            0.95882
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.28402,
+            0,
+            0,
+            0.95882
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHandRing3",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.19081,
+            0,
+            0,
+            0.98163
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.19081,
+            0,
+            0,
+            0.98163
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHandPinky1",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.21644,
+            0,
+            0,
+            0.9763
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.21644,
+            0,
+            0,
+            0.9763
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHandPinky2",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.30071,
+            0,
+            0,
+            0.95372
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.30071,
+            0,
+            0,
+            0.95372
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightHandPinky3",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.21644,
+            0,
+            0,
+            0.9763
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.21644,
+            0,
+            0,
+            0.9763
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigLeftForeArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0,
+            0.0,
+            0.24192,
+            0.9703
+          ]
+        },
+        {
+          "time": 0.3375,
+          "value": [
+            0.0,
+            0.0,
+            0.12187,
+            0.99255
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 1.0125,
+          "value": [
+            0.0,
+            0.0,
+            0.12187,
+            0.99255
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.0,
+            0.0,
+            0.24192,
+            0.9703
+          ]
+        }
+      ]
+    },
+    {
+      "bone": "mixamorigRightForeArm",
+      "property": "rotation",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "time": 0.0,
+          "value": [
+            0.0,
+            0.0,
+            -0.0,
+            1.0
+          ]
+        },
+        {
+          "time": 0.3375,
+          "value": [
+            0.0,
+            0.0,
+            -0.12187,
+            0.99255
+          ]
+        },
+        {
+          "time": 0.675,
+          "value": [
+            0.0,
+            0.0,
+            -0.24192,
+            0.9703
+          ]
+        },
+        {
+          "time": 1.0125,
+          "value": [
+            0.0,
+            0.0,
+            -0.12187,
+            0.99255
+          ]
+        },
+        {
+          "time": 1.35,
+          "value": [
+            0.0,
+            0.0,
+            -0.0,
+            1.0
+          ]
+        }
+      ]
+    }
+  ]
+}

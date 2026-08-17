@@ -1,0 +1,106 @@
+[
+  {
+    "id": "dark_eyebrows",
+    "name": "Dark Eyebrows",
+    "category": "eyebrows",
+    "collection": "face_accessories",
+    "color": "#3F2A1D",
+    "url": "/equipment/Female/Eyebrows/DarkEyebrowsWeighted.glb"
+  },
+  {
+    "id": "soft_eyebrows",
+    "name": "Soft Eyebrows",
+    "category": "eyebrows",
+    "collection": "face_accessories",
+    "color": "#8B6914",
+    "url": "/equipment/Female/Eyebrows/SoftEyebrowsWeighted.glb"
+  },
+  {
+    "id": "arched_eyebrows",
+    "name": "Arched Eyebrows",
+    "category": "eyebrows",
+    "collection": "face_accessories",
+    "color": "#1A120B",
+    "url": "/equipment/Female/Eyebrows/ArchedEyebrowsWeighted.glb"
+  },
+  {
+    "id": "natural_eyelashes",
+    "name": "Natural Eyelashes",
+    "category": "eyelashes",
+    "collection": "face_accessories",
+    "color": "#1C1917",
+    "url": "/equipment/Female/Eyelashes/NaturalEyelashesWeighted.glb"
+  },
+  {
+    "id": "long_eyelashes",
+    "name": "Long Eyelashes",
+    "category": "eyelashes",
+    "collection": "face_accessories",
+    "color": "#0C0A09",
+    "url": "/equipment/Female/Eyelashes/LongEyelashesWeighted.glb"
+  },
+  {
+    "id": "button_nose",
+    "name": "Button Nose",
+    "category": "nose",
+    "collection": "face_accessories",
+    "color": "#E8B4A0",
+    "url": "/equipment/Female/Nose/ButtonNoseWeighted.glb"
+  },
+  {
+    "id": "straight_nose",
+    "name": "Straight Nose",
+    "category": "nose",
+    "collection": "face_accessories",
+    "color": "#E0A890",
+    "url": "/equipment/Female/Nose/StraightNoseWeighted.glb"
+  },
+  {
+    "id": "soft_nose",
+    "name": "Soft Nose",
+    "category": "nose",
+    "collection": "face_accessories",
+    "color": "#EFC4B0",
+    "url": "/equipment/Female/Nose/SoftNoseWeighted.glb"
+  },
+  {
+    "id": "neutral_mouth",
+    "name": "Neutral Mouth",
+    "category": "mouth",
+    "collection": "face_accessories",
+    "color": "#C7616B",
+    "url": "/equipment/Female/Mouth/NeutralMouthWeighted.glb"
+  },
+  {
+    "id": "soft_smile_mouth",
+    "name": "Soft Smile Mouth",
+    "category": "mouth",
+    "collection": "face_accessories",
+    "color": "#D1667A",
+    "url": "/equipment/Female/Mouth/SoftSmileMouthWeighted.glb"
+  },
+  {
+    "id": "full_lips_mouth",
+    "name": "Full Lips Mouth",
+    "category": "mouth",
+    "collection": "face_accessories",
+    "color": "#B8475C",
+    "url": "/equipment/Female/Mouth/FullLipsMouthWeighted.glb"
+  },
+  {
+    "id": "round_ears",
+    "name": "Round Ears",
+    "category": "ears",
+    "collection": "face_accessories",
+    "color": "#E6B39E",
+    "url": "/equipment/Female/Ears/RoundEarsWeighted.glb"
+  },
+  {
+    "id": "pointed_ears",
+    "name": "Pointed Ears",
+    "category": "ears",
+    "collection": "face_accessories",
+    "color": "#E0AD99",
+    "url": "/equipment/Female/Ears/PointedEarsWeighted.glb"
+  }
+]

@@ -5,3 +5,7 @@ viewer/node_modules/
 *.pyc
 __pycache__/
 .cursor/
+
+# Local secrets (Cloudinary etc.)
+.env
+.env.local
