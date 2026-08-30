@@ -18,6 +18,16 @@ export interface BuildingStage {
       /** Key into building_animation_manifest.json `stages`. */
       stageKey: string;
     };
+  /**
+   * Click-to-ignite fire spread + collapse preview. Used to prototype
+   * lighting a fire on the building floor and burning the structure down.
+   */
+  burnDown?: boolean;
+  /**
+   * Farm-bird roast preview: catch flame in place, slump, and cook
+   * to roasted chicken. Game supplies the ground fire.
+   */
+  roast?: boolean;
 }
 
 export interface BuildingDefinition {
@@ -1757,6 +1767,64 @@ const EXTRA_STRUCTURES: BuildingDefinition[] = [
       manifestFile: `building${n}_animation_manifest.json`,
     }),
   })),
+  ...([
+    {
+      id: "bank_burn_down",
+      structureName: "Bank Burn Down",
+      componentName: "PioneeringBankBurnDown",
+      file: "Building2Animation_Modular.glb",
+      noun: "bank",
+    },
+    {
+      id: "manufacturing_burn_down",
+      structureName: "Manufacturing Burn Down",
+      componentName: "PioneeringManufacturingBurnDown",
+      file: "Building7Animation_Modular.glb",
+      noun: "manufacturing building",
+    },
+    {
+      id: "forge_burn_down",
+      structureName: "Forge Burn Down",
+      componentName: "PioneeringForgeBurnDown",
+      file: "Building5Animation_Modular.glb",
+      noun: "forge",
+    },
+    {
+      id: "chronocrafting_burn_down",
+      structureName: "Chronocrafting Burn Down",
+      componentName: "PioneeringChronocraftingBurnDown",
+      file: "Building8Animation_Modular.glb",
+      noun: "chronocrafting building",
+    },
+    {
+      id: "cooking_burn_down",
+      structureName: "Cooking Burn Down",
+      componentName: "PioneeringCookingBurnDown",
+      file: "Building1Animation_Modular.glb",
+      noun: "cooking building",
+    },
+    {
+      id: "merchant_burn_down",
+      structureName: "Merchant Burn Down",
+      componentName: "PioneeringMerchantBurnDown",
+      file: "Building4Animation_Modular.glb",
+      noun: "merchant building",
+    },
+  ] as const).map(({ id, structureName, componentName, file, noun }) => ({
+    id,
+    label: "Medieval Building",
+    structureName,
+    componentName,
+    stages: [
+      {
+        id: `${id}_play`,
+        label: "Burn Down",
+        description: `Click the floor to start a fire — it spreads across the ${noun} and burns it down`,
+        url: `/buildings/Construction/${file}`,
+        burnDown: true,
+      },
+    ],
+  })),
   {
     // SheepFence_nkdpvz — perimeter walk from west of gate → around → gate last.
     id: "sheep_fence_animation",
@@ -1917,8 +1985,124 @@ const EXTRA_STRUCTURES: BuildingDefinition[] = [
     ],
   },
   {
+    // Grindscape reference animals — rest pose faces +Z (same as hen / rooster
+    // after Y-up export). Use these to check dragon / bird facing.
+    id: "farm_cows",
+    label: "Farm Animal",
+    structureName: "Cows",
+    componentName: "PioneeringCows",
+    stages: [
+      {
+        id: "farm_cow_f",
+        label: "Cow (female)",
+        description:
+          "Grindscape CowF — idle / idle_1–4 / walk loop, attack1, die. Faces +Z.",
+        url: "/buildings/CowF.glb",
+      },
+      {
+        id: "farm_cow_m",
+        label: "Cow (male)",
+        description:
+          "Grindscape CowM — idle / idle_1–5 / walk loop, attack1, die. Faces +Z.",
+        url: "/buildings/CowM.glb",
+      },
+    ],
+  },
+  {
+    id: "farm_sheep",
+    label: "Farm Animal",
+    structureName: "Sheep",
+    componentName: "PioneeringSheep",
+    stages: [
+      {
+        id: "farm_sheep",
+        label: "Sheep",
+        description:
+          "Grindscape sheep — idle / idle_1–4 / walk loop, attack1, die. Faces +Z.",
+        url: "/buildings/Sheep.glb",
+      },
+    ],
+  },
+  {
+    // Chromatic dragons from Cloudflare R2 (assets.grindscape.com).
+    // Clips authored in generate_green_dragon_firebreath.py.
+    id: "green_dragon",
+    label: "Creature",
+    structureName: "Green Dragon",
+    componentName: "PioneeringGreenDragon",
+    stages: [
+      {
+        id: "green_dragon",
+        label: "Green Dragon",
+        description:
+          "idle / walk / run (loop), attack1 fire-breath, attack2 melee bite, die",
+        url: "/buildings/GreenDragon.glb",
+      },
+    ],
+  },
+  {
+    id: "blue_dragon",
+    label: "Creature",
+    structureName: "Blue Dragon",
+    componentName: "PioneeringBlueDragon",
+    stages: [
+      {
+        id: "blue_dragon",
+        label: "Blue Dragon",
+        description:
+          "Same clips as Green Dragon — idle, walk, run, attack1, attack2, die",
+        url: "/buildings/BlueDragon.glb",
+      },
+    ],
+  },
+  {
+    id: "red_dragon",
+    label: "Creature",
+    structureName: "Red Dragon",
+    componentName: "PioneeringRedDragon",
+    stages: [
+      {
+        id: "red_dragon",
+        label: "Red Dragon",
+        description:
+          "Same clips as Green Dragon — idle, walk, run, attack1, attack2, die",
+        url: "/buildings/RedDragon.glb",
+      },
+    ],
+  },
+  {
+    id: "black_dragon",
+    label: "Creature",
+    structureName: "Black Dragon",
+    componentName: "PioneeringBlackDragon",
+    stages: [
+      {
+        id: "black_dragon",
+        label: "Black Dragon",
+        description:
+          "Same clips as Green Dragon — idle, walk, run, attack1, attack2, die",
+        url: "/buildings/BlackDragon.glb",
+      },
+    ],
+  },
+  {
+    id: "violet_dragon",
+    label: "Creature",
+    structureName: "Violet Dragon",
+    componentName: "PioneeringVioletDragon",
+    stages: [
+      {
+        id: "violet_dragon",
+        label: "Violet Dragon",
+        description:
+          "Same clips as Green Dragon — idle, walk, run, attack1, attack2, die",
+        url: "/buildings/VioletDragon.glb",
+      },
+    ],
+  },
+  {
     // Farm hen + rooster. Authored FarmCreatures meshes, rigged by
-    // generate_farm_chickens.py — bird armature + idle / walk / attack1 / die.
+    // generate_farm_chickens.py — bird armature + idle / walk / attack1 / attack2 / die.
     id: "farm_chickens",
     label: "Farm Animal",
     structureName: "Chickens",
@@ -1928,15 +2112,166 @@ const EXTRA_STRUCTURES: BuildingDefinition[] = [
         id: "farm_chicken",
         label: "Chicken",
         description:
-          "Authored hen — skinned bird rig, clips: idle (loop), walk (loop), attack1, die",
+          "Authored hen — clips: idle (loop), walk (loop), attack1 peck, attack2 jump-180 egg burst, die",
         url: "/buildings/Chicken.glb",
       },
       {
         id: "farm_rooster",
         label: "Rooster",
         description:
-          "Authored rooster — same clip set, prouder walk and a harder lunge",
+          "Authored rooster — idle, walk, attack1 peck, attack2 rump fire, attack3 mouth fire, die",
         url: "/buildings/Rooster.glb",
+      },
+      {
+        id: "farm_chicken_roast",
+        label: "Chicken — Roast",
+        description:
+          "Hen catches fire in place, slumps, and cooks into roasted chicken",
+        url: "/buildings/Chicken.glb",
+        roast: true,
+      },
+      {
+        id: "farm_rooster_roast",
+        label: "Rooster — Roast",
+        description:
+          "Rooster catches fire in place, slumps, and cooks into roasted chicken",
+        url: "/buildings/Rooster.glb",
+        roast: true,
+      },
+    ],
+  },
+  {
+    id: "wildlife",
+    label: "Creature",
+    structureName: "Wildlife",
+    componentName: "PioneeringWildlife",
+    stages: [
+      {
+        id: "wildlife_deer",
+        label: "Deer",
+        description: "Grindscape deer — wildlife, non-aggressive",
+        url: "/buildings/Deer.glb",
+      },
+      {
+        id: "wildlife_lizard",
+        label: "Lizard",
+        description: "Grindscape lizard",
+        url: "/buildings/Lizard.glb",
+      },
+      {
+        id: "wildlife_scorpion",
+        label: "Scorpion",
+        description: "Grindscape scorpion",
+        url: "/buildings/Scorpion.glb",
+      },
+      {
+        id: "wildlife_spider",
+        label: "Spider",
+        description: "Grindscape spider",
+        url: "/buildings/Spider.glb",
+      },
+      {
+        id: "wildlife_wolf",
+        label: "Wolf",
+        description: "Grindscape wolf",
+        url: "/buildings/Wolf.glb",
+      },
+    ],
+  },
+  {
+    id: "fantasy_creatures",
+    label: "Creature",
+    structureName: "Fantasy",
+    componentName: "PioneeringFantasyCreatures",
+    stages: [
+      {
+        id: "fantasy_phoenix",
+        label: "Phoenix",
+        description: "Grindscape phoenix",
+        url: "/buildings/Phoenix.glb",
+      },
+      {
+        id: "fantasy_ogre",
+        label: "Ogre",
+        description: "Grindscape ogre",
+        url: "/buildings/Ogre.glb",
+      },
+      {
+        id: "fantasy_goblin",
+        label: "Goblin",
+        description: "Grindscape goblin",
+        url: "/buildings/Goblin.glb",
+      },
+      {
+        id: "fantasy_unicorn",
+        label: "Unicorn",
+        description:
+          "Grindscape unicorn placeholder (currently the un-authored red dragon mesh)",
+        url: "/buildings/Unicorn.glb",
+      },
+    ],
+  },
+  {
+    id: "humanoid_creatures",
+    label: "Creature",
+    structureName: "Humanoids",
+    componentName: "PioneeringHumanoidCreatures",
+    stages: [
+      {
+        id: "humanoid_woman",
+        label: "Woman",
+        description: "Grindscape HumanF",
+        url: "/buildings/HumanF.glb",
+      },
+      {
+        id: "humanoid_man",
+        label: "Man",
+        description: "Grindscape HumanM",
+        url: "/buildings/HumanM.glb",
+      },
+      {
+        id: "humanoid_barbarian_f",
+        label: "Barbarian Woman",
+        description: "Grindscape BarbarianF",
+        url: "/buildings/BarbarianF.glb",
+      },
+      {
+        id: "humanoid_barbarian_m",
+        label: "Barbarian Man",
+        description: "Grindscape BarbarianM",
+        url: "/buildings/BarbarianM.glb",
+      },
+    ],
+  },
+  {
+    id: "undead_creatures",
+    label: "Creature",
+    structureName: "Undead",
+    componentName: "PioneeringUndeadCreatures",
+    stages: [
+      {
+        id: "undead_skeleton",
+        label: "Skeleton",
+        description: "Unarmed skeleton",
+        url: "/buildings/SkeletonNoWeapon.glb",
+      },
+      {
+        id: "undead_skeleton_warrior",
+        label: "Skeleton Warrior",
+        description: "Skeleton with sword",
+        url: "/buildings/SkeletonWithSword.glb",
+      },
+      {
+        id: "undead_skeleton_ranger",
+        label: "Skeleton Ranger",
+        description: "Skeleton with longbow",
+        url: "/buildings/SkeletonRanger.glb",
+      },
+      {
+        id: "undead_skeleton_mage",
+        label: "Skeleton Mage",
+        description: "Skeleton with staff",
+        url: "/buildings/SkeletonWithStaff.glb",
       },
     ],
   },
@@ -1947,5 +2282,30 @@ export const BUILDINGS: BuildingDefinition[] = [
   ...EXTRA_STRUCTURES,
 ];
 
+export type ViewerCatalogCategory = "buildings" | "workstations" | "creatures";
+
+export function catalogCategoryOf(
+  building: BuildingDefinition,
+): ViewerCatalogCategory {
+  if (building.label === "Workstations") return "workstations";
+  if (building.label === "Creature" || building.label === "Farm Animal") {
+    return "creatures";
+  }
+  return "buildings";
+}
+
+export function buildingsInCategory(
+  category: ViewerCatalogCategory,
+): BuildingDefinition[] {
+  return BUILDINGS.filter((b) => catalogCategoryOf(b) === category);
+}
+
+export function defaultStageIdForCategory(
+  category: ViewerCatalogCategory,
+): string {
+  return buildingsInCategory(category)[0]?.stages[0]?.id ?? "";
+}
+
 export const DEFAULT_BUILDING_STAGE_ID: string =
-  BUILDINGS[0]?.stages[0]?.id ?? "";
+  defaultStageIdForCategory("buildings");
+

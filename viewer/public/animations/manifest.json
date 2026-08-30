@@ -400,6 +400,11 @@
       "loop": true
     },
     {
+      "id": "FemaleBucketRun",
+      "file": "FemaleBucketRun.anim.json",
+      "loop": true
+    },
+    {
       "id": "FemaleForging",
       "file": "FemaleForging.anim.json",
       "loop": true

@@ -1032,10 +1032,35 @@ body,
   color: var(--text-primary);
 }
 
+.clip-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
 .clip-btn.active {
   background: rgba(74, 158, 255, 0.22);
   border-color: #4a9eff;
   color: var(--text-primary);
+}
+
+.clip-btn.fire {
+  border-color: #d4551a;
+  color: #ffb086;
+}
+
+.clip-btn.fire:hover,
+.clip-btn.fire.active {
+  background: rgba(255, 80, 20, 0.22);
+  border-color: #ff6a1a;
+  color: #ffe0d0;
+}
+
+.burn-status {
+  padding: 4px 10px;
+  color: #ffb086;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  align-self: center;
 }
 
 .axis-view-controls {
@@ -2493,6 +2518,83 @@ body,
   background: var(--accent);
   color: #fff;
   border-color: var(--accent);
+}
+
+/* ---- Category home ---- */
+
+.category-home {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  padding: 32px 24px;
+}
+
+.category-home-inner {
+  width: min(880px, 100%);
+}
+
+.category-home h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.category-home-sub {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 28px;
+}
+
+.category-home-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.category-home-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+  padding: 22px 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}
+
+.category-home-card:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.category-home-card-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.category-home-card-desc {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.category-home-card-count {
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 3px 8px;
+  border-radius: 999px;
 }
 
 .building-header-title {

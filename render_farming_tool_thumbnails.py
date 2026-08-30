@@ -3,7 +3,7 @@
 Render 64×64 (supersampled) transparent PNG thumbnails for farming vessels.
 
 Empty items are the raw GLB. Full items add a simple fill mesh so water /
-milk / compost read at icon size.
+milk / compost / sand read at icon size.
 
 Run:
     /Applications/Blender.app/Contents/MacOS/Blender --background \\
@@ -30,6 +30,7 @@ FRAME_MARGIN = 1.18
 
 BUCKET = FARM / "EmptyBucket.glb"
 CAN = FARM / "EmptyTinWateringCan.glb"
+SIFTER = FARM / "SandSifter.glb"
 
 # glTF Y-up → Blender Z-up: model (x, y, z) becomes (x, -z, y)
 def gltf_to_blender(x: float, y: float, z: float) -> Vector:
@@ -41,14 +42,17 @@ ITEMS = [
     {"id": "WaterBucket", "glb": BUCKET, "fill": "water"},
     {"id": "MilkBucket", "glb": BUCKET, "fill": "milk"},
     {"id": "CompostBucket", "glb": BUCKET, "fill": "compost"},
+    {"id": "SandBucket", "glb": BUCKET, "fill": "sand"},
     {"id": "EmptyTinWateringCan", "glb": CAN, "fill": None},
     {"id": "WaterTinWateringCan", "glb": CAN, "fill": "can_water"},
+    {"id": "SandSifter", "glb": SIFTER, "fill": None},
 ]
 
 FILL_COLOR = {
     "water": (0.18, 0.62, 0.88, 0.88),
     "milk": (0.95, 0.90, 0.78, 0.96),
     "compost": (0.16, 0.10, 0.05, 1.0),
+    "sand": (0.78, 0.64, 0.42, 1.0),
     "can_water": (0.18, 0.62, 0.88, 0.88),
 }
 
@@ -64,6 +68,19 @@ COMPOST_CLODS = [
     ((0.012, 0.03, 0.084), 0.018, (0.42, 0.30, 0.12, 1.0)),
     ((-0.006, 0.004, 0.094), 0.016, (0.24, 0.14, 0.06, 1.0)),
     ((0.02, -0.02, 0.088), 0.017, (0.18, 0.22, 0.08, 1.0)),
+]
+
+SAND_CLODS = [
+    ((0.0, 0.0, 0.058), 0.072, (0.78, 0.64, 0.42, 1.0)),
+    ((0.022, 0.016, 0.078), 0.028, (0.86, 0.72, 0.48, 1.0)),
+    ((-0.024, 0.018, 0.074), 0.026, (0.70, 0.56, 0.34, 1.0)),
+    ((0.01, -0.026, 0.076), 0.03, (0.82, 0.68, 0.44, 1.0)),
+    ((-0.018, -0.014, 0.082), 0.02, (0.90, 0.78, 0.55, 1.0)),
+    ((0.03, -0.01, 0.07), 0.022, (0.74, 0.58, 0.36, 1.0)),
+    ((-0.032, -0.008, 0.072), 0.024, (0.80, 0.66, 0.40, 1.0)),
+    ((0.012, 0.03, 0.084), 0.018, (0.88, 0.74, 0.50, 1.0)),
+    ((-0.006, 0.004, 0.094), 0.016, (0.68, 0.52, 0.32, 1.0)),
+    ((0.02, -0.02, 0.088), 0.017, (0.84, 0.70, 0.46, 1.0)),
 ]
 
 
@@ -127,9 +144,9 @@ def shade_flat(obj: bpy.types.Object) -> None:
 
 
 def add_fill(kind: str) -> None:
-    compost = kind == "compost"
+    compost = kind in ("compost", "sand")
     mat = make_fill_mat(f"fill_{kind}", FILL_COLOR[kind], compost=compost)
-    if kind in ("water", "milk", "compost"):
+    if kind in ("water", "milk", "compost", "sand"):
         # Bucket interior: body (0, -0.178, 0) glTF, radius 0.078, depth 0.118
         loc = gltf_to_blender(0.0, -0.178, 0.0)
         bpy.ops.mesh.primitive_cylinder_add(
@@ -148,9 +165,10 @@ def add_fill(kind: str) -> None:
             scene.view_settings.look = "None"
             for obj in scene.objects:
                 if obj.type == "LIGHT":
-                    obj.data.energy *= 0.55
+                    obj.data.energy *= 0.70 if kind == "sand" else 0.55
             shade_flat(cyl)
-            for i, (offset, radius, rgba) in enumerate(COMPOST_CLODS):
+            clods = SAND_CLODS if kind == "sand" else COMPOST_CLODS
+            for i, (offset, radius, rgba) in enumerate(clods):
                 clod_mat = make_fill_mat(f"clod_{i}", rgba, compost=True)
                 bpy.ops.mesh.primitive_ico_sphere_add(
                     subdivisions=1,

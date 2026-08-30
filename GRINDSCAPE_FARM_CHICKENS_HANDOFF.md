@@ -1,5 +1,7 @@
 # Grindscape Handoff — Farm Chicken & Rooster
 
+> **Superseded 2026-08-28.** Clip list here is stale (missing hen `attack2` and rooster `attack2` / `attack3`). Use [`GRINDSCAPE_CREATURES_HANDOFF.md`](./GRINDSCAPE_CREATURES_HANDOFF.md). Kept for history.
+
 **Source repo:** `CharacterCreation`  
 **Destination:** Grindscape game client  
 **Date:** 2026-08-17  

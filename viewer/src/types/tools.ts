@@ -67,6 +67,7 @@ export const SHARED_BUCKET_TOOL_IDS = [
   "water_bucket",
   "milk_bucket",
   "compost_bucket",
+  "sand_bucket",
 ] as const;
 
 export const BUCKET_GRIP_TRANSFORM: ToolTransform = {
@@ -78,6 +79,13 @@ export const BUCKET_GRIP_TRANSFORM: ToolTransform = {
 export const WATERING_CAN_GRIP_TRANSFORM: ToolTransform = {
   position: [0.04, 0.09, 0.02],
   rotation: [0, 0, 90],
+  scale: 1,
+};
+
+/** Leather-wrap origin; pan along tool −Z, sieve faces +Y after glTF export. */
+export const SAND_SIFTER_GRIP_TRANSFORM: ToolTransform = {
+  position: [0.04, 0.09, 0.02],
+  rotation: [-90, 0, 90],
   scale: 1,
 };
 
@@ -573,6 +581,15 @@ export const TOOLS: ToolDefinition[] = [
     thumbnailUrl: "/tools/farming/thumbs/CompostBucket_thumb.png",
   },
   {
+    id: "sand_bucket",
+    name: "Sand Bucket",
+    url: "/tools/farming/EmptyBucket.glb",
+    color: "#d4b483",
+    category: "farming",
+    defaultTransform: BUCKET_GRIP_TRANSFORM,
+    thumbnailUrl: "/tools/farming/thumbs/SandBucket_thumb.png",
+  },
+  {
     id: "empty_tin_watering_can",
     name: "Empty Watering Can",
     url: "/tools/farming/EmptyTinWateringCan.glb",
@@ -589,5 +606,14 @@ export const TOOLS: ToolDefinition[] = [
     category: "farming",
     defaultTransform: WATERING_CAN_GRIP_TRANSFORM,
     thumbnailUrl: "/tools/farming/thumbs/WaterTinWateringCan_thumb.png",
+  },
+  {
+    id: "sand_sifter",
+    name: "Sand Sifter",
+    url: "/tools/farming/SandSifter.glb",
+    color: "#a67c4a",
+    category: "farming",
+    defaultTransform: SAND_SIFTER_GRIP_TRANSFORM,
+    thumbnailUrl: "/tools/farming/thumbs/SandSifter_thumb.png",
   },
 ];

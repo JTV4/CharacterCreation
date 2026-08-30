@@ -1,15 +1,22 @@
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
-import { OrbitControls, Grid, Text, Environment } from "@react-three/drei";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { TrackballControls, Grid, Text, Environment } from "@react-three/drei";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
 import {
-  BUILDINGS,
-  DEFAULT_BUILDING_STAGE_ID,
   type BuildingDefinition,
   type BuildingStage,
 } from "../types/buildings";
+import { DragonFireBreath, dragonHasFireBreath, hideDragonFireMeshes } from "./DragonFireBreath";
+import { ChickenEggBurst, chickenHasEggBurst } from "./ChickenEggBurst";
+import { RoosterButtFire, roosterHasButtFire } from "./RoosterButtFire";
+import {
+  BuildingBurnDown,
+  type BurnDownCommands,
+  type BurnPhase,
+} from "./BuildingBurnDown";
+import { BirdRoast, type RoastCommands, type RoastPhase } from "./BirdRoast";
 
 // Optimized building stages (gltfpack -cc) require EXT_meshopt_compression.
 const buildingGltfLoader = new GLTFLoader();
@@ -77,6 +84,96 @@ const VIEW_OFFSETS: Record<string, [number, number, number]> = {
   "-Z": [0, -0.001, -1],
 };
 
+const BUILDING_TARGET: [number, number, number] = [0, 0, 0.75];
+const BUILDING_CAMERA: [number, number, number] = [4.5, 4.5, 3.0];
+
+/**
+ * Creatures are glTF Y-up. Grindscape cows / sheep / birds / dragons face
+ * +Z at rest. The viewer grid is Z-up, so we rotate +90° about X: +Z
+ * becomes −Y. Camera sits on −Y (in front of the face), looking +Y.
+ */
+const CREATURE_HEIGHT = 2.8;
+const CREATURE_TARGET: [number, number, number] = [0, 0, CREATURE_HEIGHT];
+const CREATURE_CAMERA: [number, number, number] = [0, -12, CREATURE_HEIGHT];
+const CREATURE_MODEL_ROTATION: [number, number, number] = [Math.PI / 2, 0, 0];
+/** After the X wrap, +Z-facing GLBs look toward −Y. */
+const CREATURE_FACE_SIGN = -1;
+
+function CameraSnap({
+  position,
+  target,
+}: {
+  position: [number, number, number];
+  target: [number, number, number];
+}) {
+  const { camera, controls } = useThree();
+  useLayoutEffect(() => {
+    camera.up.set(0, 0, 1);
+    camera.position.set(...position);
+    const c = controls as any;
+    if (c?.target) {
+      c.target.set(...target);
+      resetTrackballSpin(c);
+      c.update?.();
+    }
+  }, [camera, controls, position, target]);
+  return null;
+}
+
+function frameCreatureBox(
+  box: THREE.Box3,
+  faceSign: number,
+): {
+  camera: [number, number, number];
+  target: [number, number, number];
+} {
+  const center = box.getCenter(new THREE.Vector3());
+  const size = box.getSize(new THREE.Vector3());
+  const dist = Math.max(size.x, size.z, 0.25) * 1.55;
+  const height = Math.max(center.z, size.z * 0.4);
+  return {
+    camera: [center.x, center.y + faceSign * dist, height],
+    target: [center.x, center.y, height],
+  };
+}
+
+function frameBuildingBox(box: THREE.Box3): {
+  camera: [number, number, number];
+  target: [number, number, number];
+} {
+  const center = box.getCenter(new THREE.Vector3());
+  const size = box.getSize(new THREE.Vector3());
+  const dist = Math.max(size.x, size.y, size.z, 1) * 1.15;
+  const targetZ = center.z * 0.45;
+  return {
+    camera: [center.x + dist * 0.62, center.y + dist * 0.72, targetZ + size.z * 0.42],
+    target: [center.x, center.y, targetZ],
+  };
+}
+
+const BURN_PHASE_LABEL: Record<BurnPhase, string> = {
+  idle: "Click the floor to start a fire",
+  ignited: "Fire started on the floor",
+  spreading: "Fire spreading through the bank",
+  engulfed: "Building fully engulfed",
+  collapsing: "Structure collapsing",
+  rubble: "Burned down",
+};
+
+const ROAST_PHASE_LABEL: Record<RoastPhase, string> = {
+  idle: "Play Roast — bird catches fire and cooks",
+  roasting: "On fire — roasting",
+  cooked: "Cooked chicken",
+};
+
+function resetTrackballSpin(controls: any) {
+  if (!controls) return;
+  if (typeof controls._lastAngle === "number") controls._lastAngle = 0;
+  if (controls._moveCurr && controls._movePrev) {
+    controls._movePrev.copy(controls._moveCurr);
+  }
+}
+
 function CameraAnimator({
   pendingViewRef,
   controlsRef,
@@ -95,10 +192,14 @@ function CameraAnimator({
     const target = targetPos.current;
     const controls = controlsRef.current;
     if (!target || !controls) return;
+    resetTrackballSpin(controls);
     camera.position.lerp(target, 0.15);
+    camera.up.set(0, 0, 1);
     controls.update();
     if (camera.position.distanceTo(target) < 0.005) {
       camera.position.copy(target);
+      camera.up.set(0, 0, 1);
+      resetTrackballSpin(controls);
       controls.update();
       targetPos.current = null;
     }
@@ -114,10 +215,12 @@ function BuildingModel({
   url,
   clipName,
   onClips,
+  onScene,
 }: {
   url: string;
   clipName: string | null;
   onClips?: (names: string[]) => void;
+  onScene?: (scene: THREE.Group | null, loadedUrl: string) => void;
 }) {
   const [scene, setScene] = useState<THREE.Group | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -126,6 +229,8 @@ function BuildingModel({
   const actionRef = useRef<THREE.AnimationAction | null>(null);
   const onClipsRef = useRef(onClips);
   onClipsRef.current = onClips;
+  const onSceneRef = useRef(onScene);
+  onSceneRef.current = onScene;
 
   useEffect(() => {
     let cancelled = false;
@@ -138,13 +243,15 @@ function BuildingModel({
       url,
       (gltf) => {
         if (cancelled) return;
+        hideDragonFireMeshes(gltf.scene);
         setScene(gltf.scene);
+        onSceneRef.current?.(gltf.scene, url);
         const clips = gltf.animations ?? [];
         clipsRef.current = clips;
-        const order = ["idle", "walk", "attack1", "attack", "die"];
+        const order = ["idle", "walk", "run", "attack1", "attack2", "attack3", "die"];
         const names = [...clips.map((c) => c.name)].sort((a, b) => {
-          const ia = order.indexOf(a);
-          const ib = order.indexOf(b);
+          const ia = order.indexOf(a.toLowerCase());
+          const ib = order.indexOf(b.toLowerCase());
           return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
         });
         onClipsRef.current?.(names);
@@ -162,6 +269,7 @@ function BuildingModel({
     );
     return () => {
       cancelled = true;
+      onSceneRef.current?.(null, url);
       mixerRef.current?.stopAllAction();
       mixerRef.current = null;
     };
@@ -177,7 +285,7 @@ function BuildingModel({
     const clip = clips.find((c) => c.name === clipName) ?? clips[0];
     if (!clip) return;
     const action = mixer.clipAction(clip);
-    const loops = clipName === "idle" || clipName === "walk";
+    const loops = /^(idle(_\d+)?|walk|run|attack1|attack3)$/i.test(clipName);
     action.reset();
     action.loop = loops ? THREE.LoopRepeat : THREE.LoopOnce;
     action.clampWhenFinished = !loops;
@@ -204,7 +312,33 @@ function BuildingModel({
     );
   }
   if (!scene) return null;
-  return <primitive object={scene} />;
+  return (
+    <>
+      <primitive object={scene} />
+      {dragonHasFireBreath(scene) && (
+        <DragonFireBreath
+          scene={scene}
+          clipName={clipName}
+          actionRef={actionRef}
+          url={url}
+        />
+      )}
+      {chickenHasEggBurst(scene) && (
+        <ChickenEggBurst
+          scene={scene}
+          clipName={clipName}
+          actionRef={actionRef}
+        />
+      )}
+      {roosterHasButtFire(scene) && (
+        <RoosterButtFire
+          scene={scene}
+          clipName={clipName}
+          actionRef={actionRef}
+        />
+      )}
+    </>
+  );
 }
 
 /**
@@ -409,42 +543,85 @@ function AssemblyBuildingModel({
 }
 
 export interface BuildingViewerProps {
-  onExitToCharacter: () => void;
+  buildings: BuildingDefinition[];
+  title: string;
+  onHome: () => void;
 }
 
-export default function BuildingViewer({ onExitToCharacter }: BuildingViewerProps) {
-  const [selectedStageId, setSelectedStageId] = useState<string>(
-    DEFAULT_BUILDING_STAGE_ID,
-  );
+export default function BuildingViewer({
+  buildings,
+  title,
+  onHome,
+}: BuildingViewerProps) {
+  const defaultStageId = buildings[0]?.stages[0]?.id ?? "";
+  const [selectedStageId, setSelectedStageId] = useState<string>(defaultStageId);
 
   const controlsRef = useRef<any>(null);
   const pendingViewRef = useRef<[number, number, number] | null>(null);
 
   const { building, stage } = useMemo(() => {
-    for (const b of BUILDINGS) {
+    for (const b of buildings) {
       const s = b.stages.find((s) => s.id === selectedStageId);
       if (s) return { building: b, stage: s };
     }
-    const fallback = BUILDINGS[0];
+    const fallback = buildings[0];
     return { building: fallback, stage: fallback?.stages[0] };
-  }, [selectedStageId]);
+  }, [buildings, selectedStageId]);
 
   const [clipName, setClipName] = useState<string | null>(null);
   const [clipNames, setClipNames] = useState<string[]>([]);
+  const creatureRootRef = useRef<THREE.Group>(null);
+  const [creatureScene, setCreatureScene] = useState<{
+    scene: THREE.Group;
+    url: string;
+  } | null>(null);
+  const [creatureFrame, setCreatureFrame] = useState<{
+    camera: [number, number, number];
+    target: [number, number, number];
+  } | null>(null);
+  const burnCommands = useRef<BurnDownCommands | null>(null);
+  const [burnPhase, setBurnPhase] = useState<BurnPhase>("idle");
+  const [burnFrame, setBurnFrame] = useState<{
+    camera: [number, number, number];
+    target: [number, number, number];
+  } | null>(null);
+  const roastCommands = useRef<RoastCommands | null>(null);
+  const [roastPhase, setRoastPhase] = useState<RoastPhase>("idle");
 
   useEffect(() => {
     setClipName(null);
     setClipNames([]);
-  }, [stage?.url]);
+    setBurnPhase("idle");
+    setRoastPhase("idle");
+    if (!stage?.burnDown) setBurnFrame(null);
+  }, [stage?.url, stage?.burnDown]);
+
+  const handleBurnBounds = useCallback((box: THREE.Box3) => {
+    if (box.isEmpty()) return;
+    setBurnFrame(frameBuildingBox(box));
+  }, []);
+
+  const handleBurnPhase = useCallback((phase: BurnPhase) => {
+    setBurnPhase(phase);
+  }, []);
+
+  const handleRoastBounds = useCallback((box: THREE.Box3) => {
+    if (box.isEmpty()) return;
+    setCreatureFrame(frameCreatureBox(box, CREATURE_FACE_SIGN));
+  }, []);
+
+  const handleRoastPhase = useCallback((phase: RoastPhase) => {
+    setRoastPhase(phase);
+  }, []);
 
   const [collapsed, setCollapsed] = useState<Set<string>>(() => {
     // On first render collapse every building EXCEPT the one that
     // owns the initially-selected stage.  Keeps the sidebar tidy when
     // the list grows past a handful of buildings.
-    const active = BUILDINGS.find((b) =>
-      b.stages.some((s) => s.id === DEFAULT_BUILDING_STAGE_ID),
+    const active = buildings.find((b) =>
+      b.stages.some((s) => s.id === defaultStageId),
     );
-    return new Set(BUILDINGS.map((b) => b.id).filter((id) => id !== active?.id));
+    return new Set(buildings.map((b) => b.id).filter((id) => id !== active?.id));
   });
 
   const toggleCollapsed = useCallback((buildingId: string) => {
@@ -460,7 +637,7 @@ export default function BuildingViewer({ onExitToCharacter }: BuildingViewerProp
   // keyboard / URL / future deep-linking), make sure that group is
   // expanded so the selection is visible.
   useEffect(() => {
-    const owner = BUILDINGS.find((b) =>
+    const owner = buildings.find((b) =>
       b.stages.some((s) => s.id === selectedStageId),
     );
     if (!owner) return;
@@ -470,17 +647,55 @@ export default function BuildingViewer({ onExitToCharacter }: BuildingViewerProp
       next.delete(owner.id);
       return next;
     });
-  }, [selectedStageId]);
+  }, [buildings, selectedStageId]);
 
   const handleClips = useCallback((names: string[]) => {
     setClipNames(names);
     setClipName((prev) => {
       if (prev && names.includes(prev)) return prev;
-      if (names.includes("idle")) return "idle";
-      if (names.includes("walk")) return "walk";
-      return names[0] ?? null;
+      const pick = (want: string[]) =>
+        names.find((n) => want.includes(n.toLowerCase()));
+      return pick(["idle"]) ?? pick(["walk"]) ?? names[0] ?? null;
     });
   }, []);
+
+  const handleCreatureScene = useCallback(
+    (s: THREE.Group | null, loadedUrl: string) => {
+      if (!s) {
+        setCreatureScene((prev) => (prev?.url === loadedUrl ? null : prev));
+        return;
+      }
+      setCreatureScene({ scene: s, url: loadedUrl });
+    },
+    [],
+  );
+
+  const orbitTarget =
+    title === "Creatures"
+      ? (creatureFrame?.target ?? CREATURE_TARGET)
+      : (stage?.burnDown ? (burnFrame?.target ?? BUILDING_TARGET) : BUILDING_TARGET);
+  const cameraStart =
+    title === "Creatures"
+      ? (creatureFrame?.camera ?? CREATURE_CAMERA)
+      : (stage?.burnDown ? (burnFrame?.camera ?? BUILDING_CAMERA) : BUILDING_CAMERA);
+
+  useLayoutEffect(() => {
+    if (stage?.roast) return;
+    if (title !== "Creatures" || !creatureScene || creatureScene.url !== stage?.url) {
+      setCreatureFrame(null);
+      return;
+    }
+    const root = creatureRootRef.current;
+    if (!root) return;
+    let attached: THREE.Object3D | null = creatureScene.scene;
+    while (attached && attached !== root) attached = attached.parent;
+    if (attached !== root) return;
+    root.updateWorldMatrix(true, true);
+    const box = new THREE.Box3().setFromObject(root);
+    if (box.isEmpty()) return;
+    const center = box.getCenter(new THREE.Vector3());
+    setCreatureFrame(frameCreatureBox(box, CREATURE_FACE_SIGN));
+  }, [title, creatureScene, stage?.url, stage?.roast]);
 
   const handleSetView = useCallback((viewKey: string) => {
     const controls = controlsRef.current;
@@ -490,11 +705,13 @@ export default function BuildingViewer({ onExitToCharacter }: BuildingViewerProp
     const dist = cam.position.distanceTo(target);
     const offset = VIEW_OFFSETS[viewKey];
     if (!offset) return;
-    pendingViewRef.current = [
+    resetTrackballSpin(controls);
+    const desired: [number, number, number] = [
       target.x + offset[0] * dist,
       target.y + offset[1] * dist,
       target.z + offset[2] * dist,
     ];
+    pendingViewRef.current = desired;
   }, []);
 
   const handleDownload = useCallback(() => {
@@ -510,7 +727,8 @@ export default function BuildingViewer({ onExitToCharacter }: BuildingViewerProp
   if (!building || !stage) {
     return (
       <div className="error-screen">
-        No buildings configured — add one to <code>viewer/src/types/buildings.ts</code>.
+        No {title.toLowerCase()} configured — add one to{" "}
+        <code>viewer/src/types/buildings.ts</code>.
       </div>
     );
   }
@@ -518,7 +736,8 @@ export default function BuildingViewer({ onExitToCharacter }: BuildingViewerProp
   return (
     <div className="app-layout">
       <BuildingSidebar
-        buildings={BUILDINGS}
+        title={title}
+        buildings={buildings}
         selectedStageId={selectedStageId}
         onSelectStage={setSelectedStageId}
         collapsed={collapsed}
@@ -530,10 +749,10 @@ export default function BuildingViewer({ onExitToCharacter }: BuildingViewerProp
             <div className="model-selector">
               <button
                 className="model-toggle-btn"
-                onClick={onExitToCharacter}
-                title="Return to the character viewer"
+                onClick={onHome}
+                title="Return to category home"
               >
-                &larr; Characters
+                &larr; Home
               </button>
             </div>
             <span className="building-header-title">
@@ -554,7 +773,13 @@ export default function BuildingViewer({ onExitToCharacter }: BuildingViewerProp
           </div>
           <Canvas
             gl={{ stencil: true }}
-            camera={{ position: [4.5, 4.5, 3.0], fov: 45, near: 0.01, far: 100 }}
+            camera={{
+              position: cameraStart,
+              up: [0, 0, 1],
+              fov: 45,
+              near: 0.01,
+              far: 100,
+            }}
             style={{ width: "100%", height: "100%" }}
             onCreated={({ camera }) => {
               camera.up.set(0, 0, 1);
@@ -586,7 +811,23 @@ export default function BuildingViewer({ onExitToCharacter }: BuildingViewerProp
             <Text position={[0, 1.7, 0]} fontSize={0.12} color="#44ff44" anchorX="left">+Y</Text>
             <Text position={[0, 0, 1.7]} fontSize={0.12} color="#4488ff" anchorX="left">+Z</Text>
 
-            {stage.assembly ? (
+            {stage.burnDown ? (
+              <BuildingBurnDown
+                key={stage.url}
+                url={stage.url}
+                onBounds={handleBurnBounds}
+                onPhase={handleBurnPhase}
+                commandRef={burnCommands}
+              />
+            ) : stage.roast ? (
+              <BirdRoast
+                key={stage.url}
+                url={stage.url}
+                onBounds={handleRoastBounds}
+                onPhase={handleRoastPhase}
+                commandRef={roastCommands}
+              />
+            ) : stage.assembly ? (
               <AssemblyBuildingModel
                 key={stage.assembly.modularUrl}
                 modularUrl={stage.assembly.modularUrl}
@@ -594,22 +835,43 @@ export default function BuildingViewer({ onExitToCharacter }: BuildingViewerProp
                 stageKey={stage.assembly.stageKey}
               />
             ) : (
-              <BuildingModel
-                key={stage.url}
-                url={stage.url}
-                clipName={clipName}
-                onClips={handleClips}
-              />
+              <group
+                ref={creatureRootRef}
+                rotation={
+                  title === "Creatures" ? CREATURE_MODEL_ROTATION : [0, 0, 0]
+                }
+              >
+                <BuildingModel
+                  key={stage.url}
+                  url={stage.url}
+                  clipName={clipName}
+                  onClips={handleClips}
+                  onScene={title === "Creatures" ? handleCreatureScene : undefined}
+                />
+              </group>
             )}
 
-            <OrbitControls
+            {title === "Creatures" && creatureFrame && (
+              <CameraSnap
+                position={creatureFrame.camera}
+                target={creatureFrame.target}
+              />
+            )}
+            {stage.burnDown && burnFrame && (
+              <CameraSnap
+                position={burnFrame.camera}
+                target={burnFrame.target}
+              />
+            )}
+            <TrackballControls
               ref={controlsRef}
               makeDefault
-              target={[0, 0, 0.75]}
-              enableDamping
-              dampingFactor={0.1}
+              target={orbitTarget}
+              staticMoving={false}
+              dynamicDampingFactor={0.1}
+              rotateSpeed={5}
               minDistance={0.5}
-              maxDistance={30}
+              maxDistance={stage.burnDown ? 80 : 30}
             />
             <CameraAnimator
               pendingViewRef={pendingViewRef}
@@ -617,7 +879,49 @@ export default function BuildingViewer({ onExitToCharacter }: BuildingViewerProp
             />
           </Canvas>
 
-          {clipNames.length > 1 && (
+          {stage.roast && (
+            <div className="clip-controls">
+              <button
+                className={`clip-btn fire${roastPhase === "idle" ? " active" : ""}`}
+                onClick={() => roastCommands.current?.play()}
+                disabled={roastPhase !== "idle"}
+                title="Roast the bird in place"
+              >
+                Roast
+              </button>
+              <button
+                className="clip-btn"
+                onClick={() => roastCommands.current?.reset()}
+                disabled={roastPhase === "idle"}
+                title="Restore the bird"
+              >
+                Reset
+              </button>
+              <span className="burn-status">{ROAST_PHASE_LABEL[roastPhase]}</span>
+            </div>
+          )}
+          {stage.burnDown && (
+            <div className="clip-controls">
+              <button
+                className={`clip-btn fire${burnPhase === "idle" ? " active" : ""}`}
+                onClick={() => burnCommands.current?.igniteDefault()}
+                disabled={burnPhase !== "idle" || !burnFrame}
+                title="Start a fire at the center of the bank floor"
+              >
+                Light Fire
+              </button>
+              <button
+                className="clip-btn"
+                onClick={() => burnCommands.current?.reset()}
+                disabled={burnPhase === "idle"}
+                title="Restore the bank and clear the fire"
+              >
+                Reset
+              </button>
+              <span className="burn-status">{BURN_PHASE_LABEL[burnPhase]}</span>
+            </div>
+          )}
+          {clipNames.length > 1 && !stage.roast && (
             <div className="clip-controls">
               {clipNames.map((name) => (
                 <button
@@ -653,12 +957,14 @@ export default function BuildingViewer({ onExitToCharacter }: BuildingViewerProp
 // Left sidebar mirroring the character viewer's `.sidebar` shape so the
 // two viewers feel visually consistent when the user swaps modes.
 function BuildingSidebar({
+  title,
   buildings,
   selectedStageId,
   onSelectStage,
   collapsed,
   onToggleCollapsed,
 }: {
+  title: string;
   buildings: BuildingDefinition[];
   selectedStageId: string;
   onSelectStage: (id: string) => void;
@@ -668,7 +974,7 @@ function BuildingSidebar({
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <h2>Buildings</h2>
+        <h2>{title}</h2>
       </div>
       <div className="sidebar-body">
         {buildings.map((b) => (

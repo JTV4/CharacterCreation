@@ -31,8 +31,10 @@ import type { ToolTransform, GizmoMode } from "./types/tools";
 import SkinTransferModal from "./components/SkinTransferModal";
 import type { SkinTransferRequest } from "./components/SkinTransferModal";
 import BuildingViewer from "./components/BuildingViewer";
-
-type ViewMode = "character" | "buildings";
+import CategoryHome from "./components/CategoryHome";
+import { ROUTES, usePath } from "./routing";
+import { buildingsInCategory } from "./types/buildings";
+import type { ViewerCatalogCategory } from "./types/buildings";
 
 function triggerDownload(href: string, filename: string) {
   const a = document.createElement("a");
@@ -365,9 +367,7 @@ function slotMatchesGender(
   return false;
 }
 
-export default function App() {
-  const [viewMode, setViewMode] = useState<ViewMode>("character");
-
+function CharacterViewer({ onHome }: { onHome: () => void }) {
   const [activeGender, setActiveGender] = useState<ModelGender>("female");
   const { model: characterModel, loading, error } = useCharacterModel(activeGender);
   const isNPC = NPC_GENDERS.has(activeGender);
@@ -903,15 +903,6 @@ export default function App() {
     [selectedEquipSlot, selectedEquipSlotInfo, equipTransforms],
   );
 
-  // Buildings mode owns its own layout (sidebar + viewport + no right
-  // panel).  We return early so the character-mode hooks that require a
-  // loaded model don't gate rendering.  The character model keeps
-  // streaming in the background via `useCharacterModel`, so flipping
-  // back to Character mode is instant on subsequent switches.
-  if (viewMode === "buildings") {
-    return <BuildingViewer onExitToCharacter={() => setViewMode("character")} />;
-  }
-
   // First-time mount: nothing rendered yet, so we hard-block on the
   // initial GLB load.  Subsequent gender swaps don't take this branch
   // because `useCharacterModel` keeps the previous model in `model`
@@ -947,6 +938,15 @@ export default function App() {
       <div className="viewport-column">
         <div className="viewport">
           <div className="viewport-overlay">
+            <div className="model-selector">
+              <button
+                className="model-toggle-btn buildings-mode-btn"
+                onClick={onHome}
+                title="Return to category home"
+              >
+                &larr; Home
+              </button>
+            </div>
             <div className="model-selector">
               <button
                 className={`model-toggle-btn ${activeGender === "female" ? "active" : ""}`}
@@ -1079,13 +1079,6 @@ export default function App() {
             </span>
           </div>
           <div className="top-right-cluster">
-            <button
-              className="model-toggle-btn buildings-mode-btn"
-              onClick={() => setViewMode("buildings")}
-              title="Switch to the Buildings viewer (construction stages)"
-            >
-              Buildings &rarr;
-            </button>
             <ExportPanel characters={characters} animations={manifest} characterModel={characterModel} />
             <div
               className="npc-dropdown"
@@ -1322,3 +1315,39 @@ export default function App() {
     </div>
   );
 }
+
+const CATALOG_PAGES: Record<
+  string,
+  { title: string; category: ViewerCatalogCategory }
+> = {
+  [ROUTES.buildings]: { title: "Buildings", category: "buildings" },
+  [ROUTES.workstations]: { title: "Workstations", category: "workstations" },
+  [ROUTES.creatures]: { title: "Creatures", category: "creatures" },
+};
+
+export default function App() {
+  const { path, navigate } = usePath();
+
+  if (path === ROUTES.home) {
+    return <CategoryHome navigate={navigate} />;
+  }
+
+  if (path === ROUTES.avatar) {
+    return <CharacterViewer onHome={() => navigate(ROUTES.home)} />;
+  }
+
+  const catalog = CATALOG_PAGES[path];
+  if (catalog) {
+    return (
+      <BuildingViewer
+        key={catalog.category}
+        title={catalog.title}
+        buildings={buildingsInCategory(catalog.category)}
+        onHome={() => navigate(ROUTES.home)}
+      />
+    );
+  }
+
+  return <CategoryHome navigate={navigate} />;
+}
+

@@ -14,7 +14,7 @@ const POUR_WINDOWS: Record<string, { start: number; end: number; mode: PourMode 
   FemaleBucketPour: { start: 0.58, end: 1.55, mode: "dump" },
 };
 
-export type LiquidKind = "water" | "milk" | "compost";
+export type LiquidKind = "water" | "milk" | "compost" | "sand";
 
 export interface VesselLiquidConfig {
   body: THREE.Vector3;
@@ -77,6 +77,14 @@ export const VESSEL_LIQUID_BY_TOOL: Record<string, VesselLiquidConfig> = {
     maxSlosh: 0.03,
     splashScale: 1,
   },
+  sand_bucket: {
+    ...BUCKET_LIQUID,
+    body: BUCKET_LIQUID.body.clone(),
+    rim: BUCKET_LIQUID.rim.clone(),
+    kind: "sand",
+    maxSlosh: 0.03,
+    splashScale: 1,
+  },
 };
 
 const PALETTE = {
@@ -107,6 +115,15 @@ const PALETTE = {
     straw: new THREE.Color("#4a3420"),
     highlight: new THREE.Vector3(0, 0, 0),
   },
+  sand: {
+    surface: new THREE.Color("#d4b483"),
+    deep: new THREE.Color("#b8955c"),
+    drop: "#c4a46a",
+    emissive: "#000000",
+    foam: new THREE.Color("#e6d09a"),
+    straw: new THREE.Color("#cdb57a"),
+    highlight: new THREE.Vector3(0, 0, 0),
+  },
 } as const;
 
 const DIRT_COLORS = [
@@ -118,8 +135,18 @@ const DIRT_COLORS = [
   new THREE.Color("#3f2c18"),
 ];
 
-function dirtColor(seed: number, target: THREE.Color) {
-  target.copy(DIRT_COLORS[Math.floor(seed * DIRT_COLORS.length) % DIRT_COLORS.length]);
+const SAND_COLORS = [
+  new THREE.Color("#c4a46a"),
+  new THREE.Color("#d8bc82"),
+  new THREE.Color("#b8955c"),
+  new THREE.Color("#e6d09a"),
+  new THREE.Color("#a67c4a"),
+  new THREE.Color("#cdb57a"),
+];
+
+function chunkColor(kind: LiquidKind, seed: number, target: THREE.Color) {
+  const list = kind === "sand" ? SAND_COLORS : DIRT_COLORS;
+  target.copy(list[Math.floor(seed * list.length) % list.length]);
   return target;
 }
 
@@ -132,8 +159,10 @@ type CompostPack = {
 
 const COMPOST_LIFT = 0.078;
 
-function makeCompostPackLayout(radius: number, depth: number): CompostPack[] {
-  const hex = ["#2a1a10", "#3b2718", "#4a3420", "#301e10", "#24160c", "#3f2c18"];
+const COMPOST_PACK_HEX = ["#2a1a10", "#3b2718", "#4a3420", "#301e10", "#24160c", "#3f2c18"];
+const SAND_PACK_HEX = ["#c4a46a", "#d8bc82", "#b8955c", "#e6d09a", "#a67c4a", "#cdb57a"];
+
+function makeCompostPackLayout(radius: number, depth: number, hex: string[] = COMPOST_PACK_HEX): CompostPack[] {
   const packs: CompostPack[] = [];
   const lift = COMPOST_LIFT;
   const layers = [
@@ -166,24 +195,31 @@ function makeCompostPackLayout(radius: number, depth: number): CompostPack[] {
   return packs;
 }
 
-function makeDirtTexture() {
+function makeDirtTexture(kind: LiquidKind = "compost") {
   const size = 64;
   const canvas = document.createElement("canvas");
   canvas.width = size;
   canvas.height = size;
   const ctx = canvas.getContext("2d")!;
   const img = ctx.createImageData(size, size);
+  const sand = kind === "sand";
   for (let i = 0; i < size * size; i++) {
-    const n = 26 + ((i * 13) % 19) + ((i * 7) % 9);
+    const n = (sand ? 118 : 26) + ((i * 13) % 19) + ((i * 7) % 9);
     const j = i * 4;
-    img.data[j] = n + 16;
-    img.data[j + 1] = n + 6;
-    img.data[j + 2] = Math.max(8, n - 4);
+    img.data[j] = n + (sand ? 42 : 16);
+    img.data[j + 1] = n + (sand ? 22 : 6);
+    img.data[j + 2] = Math.max(8, n - (sand ? 18 : 4));
     img.data[j + 3] = 255;
   }
   ctx.putImageData(img, 0, 0);
   for (let k = 0; k < 280; k++) {
-    ctx.fillStyle = k % 4 === 0 ? "rgb(18,12,7)" : "rgb(62,44,28)";
+    ctx.fillStyle = sand
+      ? k % 4 === 0
+        ? "rgb(140,108,62)"
+        : "rgb(214,186,130)"
+      : k % 4 === 0
+        ? "rgb(18,12,7)"
+        : "rgb(62,44,28)";
     ctx.fillRect((k * 17) % size, (k * 29) % size, 1 + (k % 2), 1 + (k % 2));
   }
   const tex = new THREE.CanvasTexture(canvas);
@@ -244,7 +280,7 @@ interface Splat {
 function makeLiquidMaterial(kind: LiquidKind, surface: boolean) {
   const pal = PALETTE[kind];
   const milk = kind === "milk";
-  const compost = kind === "compost";
+  const compost = kind === "compost" || kind === "sand";
 
   if (compost) {
     return new THREE.MeshLambertMaterial({
@@ -345,7 +381,7 @@ export default function VesselLiquid({
   } = config;
   const pal = PALETTE[kind];
   const viscous = kind === "milk";
-  const chunky = kind === "compost";
+  const chunky = kind === "compost" || kind === "sand";
   const innerBottom = bottomRadius ?? radius;
 
   const groupRef = useRef<THREE.Group>(null);
@@ -353,10 +389,10 @@ export default function VesselLiquid({
   const volumeRef = useRef<THREE.Mesh>(null);
   const surfaceRef = useRef<THREE.Mesh>(null);
   const packsRef = useRef<THREE.Group>(null);
-  const dirtTex = useMemo(() => (chunky ? makeDirtTexture() : null), [chunky]);
+  const dirtTex = useMemo(() => (chunky ? makeDirtTexture(kind) : null), [chunky, kind]);
   const compostPacks = useMemo(
-    () => (chunky ? makeCompostPackLayout(radius, depth) : []),
-    [chunky, radius, depth],
+    () => (chunky ? makeCompostPackLayout(radius, depth, kind === "sand" ? SAND_PACK_HEX : COMPOST_PACK_HEX) : []),
+    [chunky, radius, depth, kind],
   );
   const surfaceMat = useMemo(() => {
     if (chunky && dirtTex) return makeCompostDirtMaterial(dirtTex, pal.surface);
@@ -792,7 +828,7 @@ export default function VesselLiquid({
         const a = d.seed * Math.PI * 2;
         _dummy.rotation.set(d.life * 3.1 + a, d.life * 2.2, a * 1.6);
         _dummy.scale.set(size * 1.3, size * 1.15, size * 1.25);
-        dirtColor(d.seed, _color);
+        chunkColor(kind, d.seed, _color);
       } else {
         _dummy.rotation.set(0, 0, 0);
         _dummy.scale.setScalar(size);
@@ -831,7 +867,7 @@ export default function VesselLiquid({
         const yaw = s.pos.x * 13.1 + s.pos.y * 8.7;
         _dummy.rotation.set(0.45, 0.2, yaw);
         _dummy.scale.set(size * 1.15, size * 0.85, size * 0.38);
-        dirtColor((Math.abs(s.pos.x * 7.1 + s.pos.y) % 1), _color);
+        chunkColor(kind, (Math.abs(s.pos.x * 7.1 + s.pos.y) % 1), _color);
       } else {
         _dummy.rotation.set(0, 0, 0);
         _dummy.scale.set(size, size, 1);

@@ -1,5 +1,5 @@
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
-import { OrbitControls, Grid, Text, Environment } from "@react-three/drei";
+import { TrackballControls, Grid, Text, Environment } from "@react-three/drei";
 import { useRef, useCallback } from "react";
 import * as THREE from "three";
 import SkeletonViewer from "./SkeletonViewer";
@@ -164,13 +164,14 @@ export default function Scene({
 
         {children}
 
-        <OrbitControls
+        <TrackballControls
           ref={controlsRef}
           makeDefault
           enabled={!transformMode}
           target={ORBIT_TARGET}
-          enableDamping
-          dampingFactor={0.1}
+          staticMoving={false}
+          dynamicDampingFactor={0.1}
+          rotateSpeed={5}
           minDistance={0.5}
           maxDistance={10}
         />
