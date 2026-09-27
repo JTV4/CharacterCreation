@@ -1,0 +1,940 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Fitted luminous armor with three-point helmets, angular shoulder guards and inset facets; repaired boot and skirt geometry.",
+    "coordinate_system": {
+      "up": "+Z",
+      "forward": "-Y",
+      "right": "+X",
+      "scale": "meters"
+    },
+    "rig": "mixamo",
+    "level": 1,
+    "source_bases": "appearance/v6/Models/Base{Male,Female}_Appearance.glb",
+    "default_lod": "LOD1",
+    "revision": 1,
+    "rest_pose_reference": "BaseFemaleV3",
+    "rest_pose_revision": "2026-09-26",
+    "material": "luminous",
+    "source_geometry": "titanium_rework",
+    "material_revision": "20260927-teal-r2"
+  },
+  "slots": [
+    {
+      "id": "luminous_rework_male_helmet",
+      "name": "Luminous Helmet (Male)",
+      "category": "equipment",
+      "collection": "luminous_rework",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#49b6ae",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.530457029790866,
+        "z_max": 1.8699996794077982,
+        "radius": 0.15500024836159665
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 376,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Luminous/Male/LOD2/Helmet.glb?v=luminous-teal-r2",
+          "LOD3": "/equipment/Rework/Luminous/Male/LOD3/Helmet.glb?v=luminous-teal-r2"
+        },
+        "material_revision": "20260927-teal-r2"
+      },
+      "url": "/equipment/Rework/Luminous/Male/Helmet.glb?v=luminous-teal-r2",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "luminous_rework_male_upperbody",
+      "name": "Luminous Upperbody (Male)",
+      "category": "equipment",
+      "collection": "luminous_rework",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#49b6ae",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.0567650897275647,
+        "z_max": 1.5617241244690538,
+        "radius": 0.6162345246424799
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 3272,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Luminous/Male/LOD2/Upperbody.glb?v=luminous-teal-r2",
+          "LOD3": "/equipment/Rework/Luminous/Male/LOD3/Upperbody.glb?v=luminous-teal-r2"
+        },
+        "material_revision": "20260927-teal-r2"
+      },
+      "url": "/equipment/Rework/Luminous/Male/Upperbody.glb?v=luminous-teal-r2",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "luminous_rework_male_gloves",
+      "name": "Luminous Gloves (Male)",
+      "category": "equipment",
+      "collection": "luminous_rework",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#49b6ae",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.3455474106175802,
+        "z_max": 1.4360838727595455,
+        "radius": 0.7572408772122392
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 1515,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Luminous/Male/LOD2/Gloves.glb?v=luminous-teal-r2",
+          "LOD3": "/equipment/Rework/Luminous/Male/LOD3/Gloves.glb?v=luminous-teal-r2"
+        },
+        "material_revision": "20260927-teal-r2"
+      },
+      "url": "/equipment/Rework/Luminous/Male/Gloves.glb?v=luminous-teal-r2",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "luminous_rework_male_lowerbody",
+      "name": "Luminous Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "luminous_rework",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#49b6ae",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.28944979028150514,
+        "z_max": 1.0914837241948474,
+        "radius": 0.18577639288541853
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 2191,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Luminous/Male/LOD2/Lowerbody.glb?v=luminous-teal-r2",
+          "LOD3": "/equipment/Rework/Luminous/Male/LOD3/Lowerbody.glb?v=luminous-teal-r2"
+        },
+        "material_revision": "20260927-teal-r2"
+      },
+      "url": "/equipment/Rework/Luminous/Male/Lowerbody.glb?v=luminous-teal-r2",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "luminous_rework_male_boots",
+      "name": "Luminous Boots (Male)",
+      "category": "equipment",
+      "collection": "luminous_rework",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#49b6ae",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.012526966419749997,
+        "z_max": 0.3493802424675134,
+        "radius": 0.19453785549023306
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 1620,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Luminous/Male/LOD2/Boots.glb?v=luminous-teal-r2",
+          "LOD3": "/equipment/Rework/Luminous/Male/LOD3/Boots.glb?v=luminous-teal-r2"
+        },
+        "material_revision": "20260927-teal-r2"
+      },
+      "url": "/equipment/Rework/Luminous/Male/Boots.glb?v=luminous-teal-r2",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "luminous_rework_female_helmet",
+      "name": "Luminous Helmet (Female)",
+      "category": "equipment",
+      "collection": "luminous_rework",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#49b6ae",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5249998801778883,
+        "z_max": 1.8599999754248666,
+        "radius": 0.15500032109886222
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 376,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Luminous/Female/LOD2/Helmet.glb?v=luminous-teal-r2",
+          "LOD3": "/equipment/Rework/Luminous/Female/LOD3/Helmet.glb?v=luminous-teal-r2"
+        },
+        "material_revision": "20260927-teal-r2"
+      },
+      "url": "/equipment/Rework/Luminous/Female/Helmet.glb?v=luminous-teal-r2",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "luminous_rework_female_upperbody",
+      "name": "Luminous Upperbody (Female)",
+      "category": "equipment",
+      "collection": "luminous_rework",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#49b6ae",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.1335125238296186,
+        "z_max": 1.568013632689597,
+        "radius": 0.5414361005006162
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 2735,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Luminous/Female/LOD2/Upperbody.glb?v=luminous-teal-r2",
+          "LOD3": "/equipment/Rework/Luminous/Female/LOD3/Upperbody.glb?v=luminous-teal-r2"
+        },
+        "material_revision": "20260927-teal-r2"
+      },
+      "url": "/equipment/Rework/Luminous/Female/Upperbody.glb?v=luminous-teal-r2",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "luminous_rework_female_gloves",
+      "name": "Luminous Gloves (Female)",
+      "category": "equipment",
+      "collection": "luminous_rework",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#49b6ae",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.3682947469008966,
+        "z_max": 1.4540544655306185,
+        "radius": 0.7028142713345898
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 1516,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Luminous/Female/LOD2/Gloves.glb?v=luminous-teal-r2",
+          "LOD3": "/equipment/Rework/Luminous/Female/LOD3/Gloves.glb?v=luminous-teal-r2"
+        },
+        "material_revision": "20260927-teal-r2"
+      },
+      "url": "/equipment/Rework/Luminous/Female/Gloves.glb?v=luminous-teal-r2",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "luminous_rework_female_lowerbody",
+      "name": "Luminous Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "luminous_rework",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#49b6ae",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.7779998744646841,
+        "z_max": 1.1516267211057363,
+        "radius": 0.2500000269989484
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 1254,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Luminous/Female/LOD2/Lowerbody.glb?v=luminous-teal-r2",
+          "LOD3": "/equipment/Rework/Luminous/Female/LOD3/Lowerbody.glb?v=luminous-teal-r2"
+        },
+        "material_revision": "20260927-teal-r2"
+      },
+      "url": "/equipment/Rework/Luminous/Female/Lowerbody.glb?v=luminous-teal-r2",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "luminous_rework_female_boots",
+      "name": "Luminous Boots (Female)",
+      "category": "equipment",
+      "collection": "luminous_rework",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#49b6ae",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.017521533914734235,
+        "z_max": 0.333496798490148,
+        "radius": 0.2057745474756954
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 1396,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Luminous/Female/LOD2/Boots.glb?v=luminous-teal-r2",
+          "LOD3": "/equipment/Rework/Luminous/Female/LOD3/Boots.glb?v=luminous-teal-r2"
+        },
+        "material_revision": "20260927-teal-r2"
+      },
+      "url": "/equipment/Rework/Luminous/Female/Boots.glb?v=luminous-teal-r2",
+      "hides_base_clothing": []
+    }
+  ]
+}

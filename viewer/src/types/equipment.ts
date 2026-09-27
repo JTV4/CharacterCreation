@@ -26,6 +26,34 @@ export const BODY_REGIONS = [
 
 export type BodyRegion = (typeof BODY_REGIONS)[number];
 
+export const WEAR_SLOTS = [
+  "helmet",
+  "amulet",
+  "cape",
+  "top",
+  "gloves",
+  "bottom",
+  "boots",
+] as const;
+
+export type WearSlot = (typeof WEAR_SLOTS)[number];
+
+export function isRangerSlotId(id: string): boolean {
+  return id.startsWith("ranger_");
+}
+
+/** Authored clothing and armor fitted to the current appearance/rework bind pose. */
+export function isReworkArmorSlotId(id: string): boolean {
+  if (/^seasonal_(halloween|thanksgiving|santa)_(male|female)_cape$/.test(id)) return true;
+  if (/^combat_(?:ranged|mage|melee)_[1-4]_(?:male|female)_(?:helmet|cape)$/.test(id)) return true;
+  return /^(?:starter_(?:homestead|dockhand|woodland|townsfolk|artisan|wayfarer)|ranged_(?:leather|green|blue|red|black|purple)|mage_(?:leather|green|blue|red|black|luminous)|iron_l1|steel_rework|gold_rework|titanium_rework|tungsten_rework|luminous_rework|pumpkin_rework|halloween_witch_rework|santa_rework|thanksgiving_rework)_(male|female)_(helmet|upperbody|gloves|lowerbody|boots)$/.test(id);
+}
+
+export function rangerPieceFromId(id: string): string | null {
+  const match = /^ranger_(?:male|female)_(hat|amulet|cape|upperbody|gloves|lowerbody|boots)$/.exec(id);
+  return match?.[1] ?? null;
+}
+
 export interface EquipmentSlot {
   id: string;
   name: string;
@@ -34,14 +62,20 @@ export interface EquipmentSlot {
   category?: string;
   color?: string;
   /** If set, this slot only appears when the matching gender model is active. */
-  gender?: "male" | "female";
+  gender?: string;
   /** Clothing line / set this slot belongs to (e.g. "crimson_wizard", "shell"). Derived automatically when absent. */
   collection?: string;
+  /** Exclusive wear category so e.g. ranger top and the rework shirt do not stack. */
+  wear_slot?: WearSlot;
   bones: SlotBone[];
   bounds: SlotBounds;
   rules: SlotRules;
-  /** Body regions to hide when this slot is equipped. */
-  hides_body_regions?: BodyRegion[];
+  /** Body regions or explicit mesh names to hide when this slot is equipped. */
+  hides_body_regions?: Array<BodyRegion | string>;
+  /** Temporarily hide the chosen hairstyle beneath a fitted hood. */
+  hides_hair?: boolean;
+  /** Hide only the black base garment faces beneath this wearable. */
+  hides_base_clothing?: Array<"bra" | "underwear">;
   /**
    * Optional baked-in transform that the viewer applies as the default when
    * the user has no runtime override for this slot. Use this to persist
@@ -51,6 +85,11 @@ export interface EquipmentSlot {
   default_transform?: Omit<EquipTransform, "scale"> & {
     scale?: number | [number, number, number];
   };
+  /**
+   * Per-bone local offsets applied only to this wearable (body stays put).
+   * Keys are Mixamo names without a colon (`mixamorigLeftForeArm`).
+   */
+  default_bone_offsets?: EquipBoneOffsetMap;
   /** Optional URL to load mesh from (e.g. Cloudinary). If absent, loads from /equipment/{id}.glb */
   url?: string;
   mesh_type: string;
@@ -128,6 +167,47 @@ export function normalizeEquipTransform(
     ...t,
     scale: normalizeEquipScale(t.scale),
   };
+}
+
+/** Local TRS added on top of the character bone for one wearable. */
+export interface EquipBoneOffset {
+  position: [number, number, number];
+  rotation: [number, number, number];
+  scale: [number, number, number];
+}
+
+/** boneName → offset */
+export type EquipBoneOffsetMap = Record<string, EquipBoneOffset>;
+
+/** slotId → bone offsets */
+export type EquipBoneOffsets = Record<string, EquipBoneOffsetMap>;
+
+export const IDENTITY_BONE_OFFSET: EquipBoneOffset = {
+  position: [0, 0, 0],
+  rotation: [0, 0, 0],
+  scale: [1, 1, 1],
+};
+
+export function normalizeBoneOffset(
+  t?: Partial<EquipBoneOffset> | null,
+): EquipBoneOffset {
+  return {
+    position: (t?.position as [number, number, number] | undefined) ?? [0, 0, 0],
+    rotation: (t?.rotation as [number, number, number] | undefined) ?? [0, 0, 0],
+    scale: normalizeEquipScale(t?.scale as EquipScaleInput | undefined),
+  };
+}
+
+export function isIdentityBoneOffset(t: EquipBoneOffset): boolean {
+  return (
+    t.position.every((v) => Math.abs(v) < 1e-6) &&
+    t.rotation.every((v) => Math.abs(v) < 1e-4) &&
+    t.scale.every((v) => Math.abs(v - 1) < 1e-6)
+  );
+}
+
+export function shortBoneLabel(name: string): string {
+  return name.replace(/^mixamorig:?/, "");
 }
 
 export const DEFAULT_EQUIP_TRANSFORM: EquipTransform = {
@@ -313,6 +393,21 @@ export const SLOT_COLORS: Record<string, string> = {
   shell_lower_body: "#f87171",
   shell_boots: "#fb923c",
   shell_upper_body_crimson: "#9f1239",
+  rework_male_shirt: "#c4b5a0",
+  ranger_male_hat: "#5c7a4a",
+  ranger_male_amulet: "#c4a35a",
+  ranger_male_cape: "#3d5c3a",
+  ranger_male_upperbody: "#6b8f4e",
+  ranger_male_gloves: "#8b6b3d",
+  ranger_male_lowerbody: "#4a5c38",
+  ranger_male_boots: "#5c4030",
+  ranger_female_hat: "#5c7a4a",
+  ranger_female_amulet: "#c4a35a",
+  ranger_female_cape: "#3d5c3a",
+  ranger_female_upperbody: "#6b8f4e",
+  ranger_female_gloves: "#8b6b3d",
+  ranger_female_lowerbody: "#4a5c38",
+  ranger_female_boots: "#5c4030",
   green_dragon_wizard_hat_f: "#166534",
   green_dragon_top_f: "#15803d",
   green_dragon_legs_f: "#16a34a",

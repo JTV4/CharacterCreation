@@ -1,0 +1,350 @@
+{
+  "Male": {
+    "Hat": {
+      "triangles": 846,
+      "vertices": 512,
+      "material_batches": 1,
+      "texture_images": 0,
+      "bones": [
+        "mixamorigHead"
+      ],
+      "bounds": [
+        [
+          -0.1860000044107437,
+          -0.17299999296665192,
+          1.7209999561309814
+        ],
+        [
+          0.1860000044107437,
+          0.20100000500679016,
+          1.934999942779541
+        ]
+      ]
+    },
+    "Upperbody": {
+      "triangles": 5057,
+      "vertices": 2700,
+      "material_batches": 1,
+      "texture_images": 0,
+      "bones": [
+        "mixamorigHead",
+        "mixamorigHips",
+        "mixamorigLeftArm",
+        "mixamorigLeftForeArm",
+        "mixamorigLeftHand",
+        "mixamorigLeftHandPinky1",
+        "mixamorigLeftHandThumb1",
+        "mixamorigLeftShoulder",
+        "mixamorigLeftUpLeg",
+        "mixamorigNeck",
+        "mixamorigRightArm",
+        "mixamorigRightForeArm",
+        "mixamorigRightHand",
+        "mixamorigRightHandThumb1",
+        "mixamorigRightShoulder",
+        "mixamorigRightUpLeg",
+        "mixamorigSpine",
+        "mixamorigSpine1",
+        "mixamorigSpine2"
+      ],
+      "bounds": [
+        [
+          -0.5793445706367493,
+          -0.1324560046195984,
+          1.0528068542480469
+        ],
+        [
+          0.5787692070007324,
+          0.16564498841762543,
+          1.5208206176757812
+        ]
+      ]
+    },
+    "Lowerbody": {
+      "triangles": 3142,
+      "vertices": 1616,
+      "material_batches": 1,
+      "texture_images": 0,
+      "bones": [
+        "mixamorigHips",
+        "mixamorigLeftFoot",
+        "mixamorigLeftLeg",
+        "mixamorigLeftToeBase",
+        "mixamorigLeftUpLeg",
+        "mixamorigRightFoot",
+        "mixamorigRightLeg",
+        "mixamorigRightToeBase",
+        "mixamorigRightUpLeg",
+        "mixamorigSpine",
+        "mixamorigSpine1"
+      ],
+      "bounds": [
+        [
+          -0.18344497680664062,
+          -0.10826006531715393,
+          0.11436925828456879
+        ],
+        [
+          0.18342041969299316,
+          0.15136291086673737,
+          1.0967862606048584
+        ]
+      ]
+    },
+    "Gloves": {
+      "triangles": 1404,
+      "vertices": 722,
+      "material_batches": 1,
+      "texture_images": 0,
+      "bones": [
+        "mixamorigLeftArm",
+        "mixamorigLeftForeArm",
+        "mixamorigLeftHand",
+        "mixamorigLeftHandIndex1",
+        "mixamorigLeftHandIndex2",
+        "mixamorigLeftHandIndex3",
+        "mixamorigLeftHandMiddle1",
+        "mixamorigLeftHandMiddle2",
+        "mixamorigLeftHandMiddle3",
+        "mixamorigLeftHandPinky1",
+        "mixamorigLeftHandPinky2",
+        "mixamorigLeftHandPinky3",
+        "mixamorigLeftHandRing1",
+        "mixamorigLeftHandRing2",
+        "mixamorigLeftHandRing3",
+        "mixamorigLeftHandThumb1",
+        "mixamorigLeftHandThumb2",
+        "mixamorigLeftHandThumb3",
+        "mixamorigRightArm",
+        "mixamorigRightForeArm",
+        "mixamorigRightHand",
+        "mixamorigRightHandIndex1",
+        "mixamorigRightHandIndex2",
+        "mixamorigRightHandIndex3",
+        "mixamorigRightHandMiddle1",
+        "mixamorigRightHandMiddle2",
+        "mixamorigRightHandMiddle3",
+        "mixamorigRightHandPinky1",
+        "mixamorigRightHandPinky2",
+        "mixamorigRightHandPinky3",
+        "mixamorigRightHandRing1",
+        "mixamorigRightHandRing2",
+        "mixamorigRightHandRing3",
+        "mixamorigRightHandThumb1",
+        "mixamorigRightHandThumb2",
+        "mixamorigRightHandThumb3"
+      ],
+      "bounds": [
+        [
+          -0.7557260990142822,
+          -0.10178954154253006,
+          1.3469657897949219
+        ],
+        [
+          0.7570791244506836,
+          0.054216623306274414,
+          1.4353033304214478
+        ]
+      ]
+    },
+    "Boots": {
+      "triangles": 6809,
+      "vertices": 3610,
+      "material_batches": 1,
+      "texture_images": 0,
+      "bones": [
+        "mixamorigLeftFoot",
+        "mixamorigLeftLeg",
+        "mixamorigLeftToeBase",
+        "mixamorigLeftUpLeg",
+        "mixamorigRightFoot",
+        "mixamorigRightLeg",
+        "mixamorigRightToeBase",
+        "mixamorigRightUpLeg"
+      ],
+      "bounds": [
+        [
+          -0.1792856901884079,
+          -0.2048773467540741,
+          -0.01899999938905239
+        ],
+        [
+          0.17973951995372772,
+          0.1278379112482071,
+          0.2841089069843292
+        ]
+      ]
+    }
+  },
+  "Female": {
+    "Hat": {
+      "triangles": 846,
+      "vertices": 512,
+      "material_batches": 1,
+      "texture_images": 0,
+      "bones": [
+        "mixamorigHead"
+      ],
+      "bounds": [
+        [
+          -0.1770000010728836,
+          -0.15600000321865082,
+          1.7109999656677246
+        ],
+        [
+          0.1770000010728836,
+          0.20399999618530273,
+          1.9249999523162842
+        ]
+      ]
+    },
+    "Upperbody": {
+      "triangles": 4125,
+      "vertices": 2237,
+      "material_batches": 1,
+      "texture_images": 0,
+      "bones": [
+        "mixamorigHead",
+        "mixamorigHips",
+        "mixamorigLeftArm",
+        "mixamorigLeftForeArm",
+        "mixamorigLeftHand",
+        "mixamorigLeftHandThumb1",
+        "mixamorigLeftShoulder",
+        "mixamorigLeftUpLeg",
+        "mixamorigNeck",
+        "mixamorigRightArm",
+        "mixamorigRightForeArm",
+        "mixamorigRightHand",
+        "mixamorigRightHandThumb1",
+        "mixamorigRightShoulder",
+        "mixamorigRightUpLeg",
+        "mixamorigSpine",
+        "mixamorigSpine1",
+        "mixamorigSpine2"
+      ],
+      "bounds": [
+        [
+          -0.5091121196746826,
+          -0.16303756833076477,
+          1.1128591299057007
+        ],
+        [
+          0.506864070892334,
+          0.11330965906381607,
+          1.517546534538269
+        ]
+      ]
+    },
+    "Lowerbody": {
+      "triangles": 5552,
+      "vertices": 2825,
+      "material_batches": 1,
+      "texture_images": 0,
+      "bones": [
+        "mixamorigHips",
+        "mixamorigLeftUpLeg",
+        "mixamorigRightUpLeg",
+        "mixamorigSpine",
+        "mixamorigSpine1",
+        "mixamorigSpine2"
+      ],
+      "bounds": [
+        [
+          -0.26193270087242126,
+          -0.19558262825012207,
+          0.8287551999092102
+        ],
+        [
+          0.2622259259223938,
+          0.17031727731227875,
+          1.1545681953430176
+        ]
+      ]
+    },
+    "Gloves": {
+      "triangles": 1181,
+      "vertices": 606,
+      "material_batches": 1,
+      "texture_images": 0,
+      "bones": [
+        "mixamorigLeftArm",
+        "mixamorigLeftForeArm",
+        "mixamorigLeftHand",
+        "mixamorigLeftHandIndex1",
+        "mixamorigLeftHandIndex2",
+        "mixamorigLeftHandIndex3",
+        "mixamorigLeftHandMiddle1",
+        "mixamorigLeftHandMiddle2",
+        "mixamorigLeftHandMiddle3",
+        "mixamorigLeftHandPinky1",
+        "mixamorigLeftHandPinky2",
+        "mixamorigLeftHandPinky3",
+        "mixamorigLeftHandRing1",
+        "mixamorigLeftHandRing2",
+        "mixamorigLeftHandRing3",
+        "mixamorigLeftHandThumb1",
+        "mixamorigLeftHandThumb2",
+        "mixamorigLeftHandThumb3",
+        "mixamorigRightArm",
+        "mixamorigRightForeArm",
+        "mixamorigRightHand",
+        "mixamorigRightHandIndex1",
+        "mixamorigRightHandIndex2",
+        "mixamorigRightHandIndex3",
+        "mixamorigRightHandMiddle1",
+        "mixamorigRightHandMiddle2",
+        "mixamorigRightHandMiddle3",
+        "mixamorigRightHandPinky1",
+        "mixamorigRightHandPinky2",
+        "mixamorigRightHandPinky3",
+        "mixamorigRightHandRing1",
+        "mixamorigRightHandRing2",
+        "mixamorigRightHandRing3",
+        "mixamorigRightHandThumb1",
+        "mixamorigRightHandThumb2",
+        "mixamorigRightHandThumb3"
+      ],
+      "bounds": [
+        [
+          -0.7008753418922424,
+          -0.11452090740203857,
+          1.369076132774353
+        ],
+        [
+          0.7023732662200928,
+          0.03718810901045799,
+          1.4470242261886597
+        ]
+      ]
+    },
+    "Boots": {
+      "triangles": 5542,
+      "vertices": 2942,
+      "material_batches": 1,
+      "texture_images": 0,
+      "bones": [
+        "mixamorigLeftFoot",
+        "mixamorigLeftLeg",
+        "mixamorigLeftToeBase",
+        "mixamorigLeftUpLeg",
+        "mixamorigRightFoot",
+        "mixamorigRightLeg",
+        "mixamorigRightToeBase",
+        "mixamorigRightUpLeg"
+      ],
+      "bounds": [
+        [
+          -0.17294719815254211,
+          -0.21228839457035065,
+          -0.01899999938905239
+        ],
+        [
+          0.17318511009216309,
+          0.09192671626806259,
+          0.2836148738861084
+        ]
+      ]
+    }
+  }
+}

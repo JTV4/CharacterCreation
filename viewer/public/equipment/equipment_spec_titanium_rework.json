@@ -1,0 +1,951 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Fitted titanium armor with ventilated visors, raised center crests, layered shoulder guards, and pointed hip and skirt plates. The boot height matches iron and steel. Aligned rig, body coverage, and three detail levels included.",
+    "coordinate_system": {
+      "up": "+Z",
+      "forward": "-Y",
+      "right": "+X",
+      "scale": "meters"
+    },
+    "rig": "mixamo",
+    "level": 1,
+    "source_bases": "appearance/v6/Models/Base{Male,Female}_Appearance.glb",
+    "default_lod": "LOD1",
+    "revision": 1,
+    "rest_pose_reference": "BaseFemaleV3",
+    "rest_pose_revision": "2026-09-26",
+    "material": "titanium",
+    "source_geometry": "iron_l1",
+    "repair_revision": "20260927-r3",
+    "material_revision": "20260927-red-r5"
+  },
+  "slots": [
+    {
+      "id": "titanium_rework_male_helmet",
+      "name": "Titanium Helmet (Male)",
+      "category": "equipment",
+      "collection": "titanium_rework",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#bb8178",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5304569054820314,
+        "z_max": 1.8729998163752195,
+        "radius": 0.1487102914751061
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 870,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Titanium/Male/LOD2/Helmet.glb?v=titanium-red-r5",
+          "LOD3": "/equipment/Rework/Titanium/Male/LOD3/Helmet.glb?v=titanium-red-r5"
+        },
+        "repair_revision": "20260927-r3",
+        "material_revision": "20260927-red-r5"
+      },
+      "url": "/equipment/Rework/Titanium/Male/Helmet.glb?v=titanium-red-r5",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "titanium_rework_male_upperbody",
+      "name": "Titanium Upperbody (Male)",
+      "category": "equipment",
+      "collection": "titanium_rework",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#bb8178",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.0567647320997235,
+        "z_max": 1.5500612440685562,
+        "radius": 0.6162338538751378
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 3204,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Titanium/Male/LOD2/Upperbody.glb?v=titanium-red-r5",
+          "LOD3": "/equipment/Rework/Titanium/Male/LOD3/Upperbody.glb?v=titanium-red-r5"
+        },
+        "repair_revision": "20260927-r3",
+        "material_revision": "20260927-red-r5"
+      },
+      "url": "/equipment/Rework/Titanium/Male/Upperbody.glb?v=titanium-red-r5",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "titanium_rework_male_gloves",
+      "name": "Titanium Gloves (Male)",
+      "category": "equipment",
+      "collection": "titanium_rework",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#bb8178",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.345546979016743,
+        "z_max": 1.436082859838189,
+        "radius": 0.7572398783977883
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 1515,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Titanium/Male/LOD2/Gloves.glb?v=titanium-red-r5",
+          "LOD3": "/equipment/Rework/Titanium/Male/LOD3/Gloves.glb?v=titanium-red-r5"
+        },
+        "repair_revision": "20260927-r3",
+        "material_revision": "20260927-red-r5"
+      },
+      "url": "/equipment/Rework/Titanium/Male/Gloves.glb?v=titanium-red-r5",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "titanium_rework_male_lowerbody",
+      "name": "Titanium Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "titanium_rework",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#bb8178",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.28944973762727133,
+        "z_max": 1.0914837240972777,
+        "radius": 0.1857764169418542
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 2183,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Titanium/Male/LOD2/Lowerbody.glb?v=titanium-red-r5",
+          "LOD3": "/equipment/Rework/Titanium/Male/LOD3/Lowerbody.glb?v=titanium-red-r5"
+        },
+        "repair_revision": "20260927-r3",
+        "material_revision": "20260927-red-r5"
+      },
+      "url": "/equipment/Rework/Titanium/Male/Lowerbody.glb?v=titanium-red-r5",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "titanium_rework_male_boots",
+      "name": "Titanium Boots (Male)",
+      "category": "equipment",
+      "collection": "titanium_rework",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#bb8178",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.012527417703173215,
+        "z_max": 0.3493800537190803,
+        "radius": 0.19453789806680938
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 1564,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Titanium/Male/LOD2/Boots.glb?v=titanium-red-r5",
+          "LOD3": "/equipment/Rework/Titanium/Male/LOD3/Boots.glb?v=titanium-red-r5"
+        },
+        "repair_revision": "20260927-r3",
+        "material_revision": "20260927-red-r5"
+      },
+      "url": "/equipment/Rework/Titanium/Male/Boots.glb?v=titanium-red-r5",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "titanium_rework_female_helmet",
+      "name": "Titanium Helmet (Female)",
+      "category": "equipment",
+      "collection": "titanium_rework",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#bb8178",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5283399817865704,
+        "z_max": 1.8629997027873,
+        "radius": 0.1471307480729587
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 862,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Titanium/Female/LOD2/Helmet.glb?v=titanium-red-r5",
+          "LOD3": "/equipment/Rework/Titanium/Female/LOD3/Helmet.glb?v=titanium-red-r5"
+        },
+        "repair_revision": "20260927-r3",
+        "material_revision": "20260927-red-r5"
+      },
+      "url": "/equipment/Rework/Titanium/Female/Helmet.glb?v=titanium-red-r5",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "titanium_rework_female_upperbody",
+      "name": "Titanium Upperbody (Female)",
+      "category": "equipment",
+      "collection": "titanium_rework",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#bb8178",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.133513124488773,
+        "z_max": 1.5546610490635042,
+        "radius": 0.5414361906299341
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 2801,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Titanium/Female/LOD2/Upperbody.glb?v=titanium-red-r5",
+          "LOD3": "/equipment/Rework/Titanium/Female/LOD3/Upperbody.glb?v=titanium-red-r5"
+        },
+        "repair_revision": "20260927-r3",
+        "material_revision": "20260927-red-r5"
+      },
+      "url": "/equipment/Rework/Titanium/Female/Upperbody.glb?v=titanium-red-r5",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "titanium_rework_female_gloves",
+      "name": "Titanium Gloves (Female)",
+      "category": "equipment",
+      "collection": "titanium_rework",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#bb8178",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.368295259017767,
+        "z_max": 1.4540553207313456,
+        "radius": 0.7028144291690169
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 1516,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Titanium/Female/LOD2/Gloves.glb?v=titanium-red-r5",
+          "LOD3": "/equipment/Rework/Titanium/Female/LOD3/Gloves.glb?v=titanium-red-r5"
+        },
+        "repair_revision": "20260927-r3",
+        "material_revision": "20260927-red-r5"
+      },
+      "url": "/equipment/Rework/Titanium/Female/Gloves.glb?v=titanium-red-r5",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "titanium_rework_female_lowerbody",
+      "name": "Titanium Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "titanium_rework",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#bb8178",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.7779998823609756,
+        "z_max": 1.1516267211057356,
+        "radius": 0.25000003648508135
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 1226,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Titanium/Female/LOD2/Lowerbody.glb?v=titanium-red-r5",
+          "LOD3": "/equipment/Rework/Titanium/Female/LOD3/Lowerbody.glb?v=titanium-red-r5"
+        },
+        "repair_revision": "20260927-r3",
+        "material_revision": "20260927-red-r5"
+      },
+      "url": "/equipment/Rework/Titanium/Female/Lowerbody.glb?v=titanium-red-r5",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "titanium_rework_female_boots",
+      "name": "Titanium Boots (Female)",
+      "category": "equipment",
+      "collection": "titanium_rework",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#bb8178",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.017521807245928542,
+        "z_max": 0.3334967350467513,
+        "radius": 0.2057748043922459
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 1340,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Titanium/Female/LOD2/Boots.glb?v=titanium-red-r5",
+          "LOD3": "/equipment/Rework/Titanium/Female/LOD3/Boots.glb?v=titanium-red-r5"
+        },
+        "repair_revision": "20260927-r3",
+        "material_revision": "20260927-red-r5"
+      },
+      "url": "/equipment/Rework/Titanium/Female/Boots.glb?v=titanium-red-r5",
+      "hides_base_clothing": []
+    }
+  ]
+}

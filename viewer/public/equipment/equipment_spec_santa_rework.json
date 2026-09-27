@@ -1,0 +1,864 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Santa outfit, five independently wearable pieces per current Rework body. Vertex-colour opaque palette; four skin influences. Santa body coverage utility required.",
+    "rig": "mixamo",
+    "rest_pose_reference": "Current appearance/v6 BaseMaleRework / BaseFemaleRework"
+  },
+  "slots": [
+    {
+      "id": "santa_rework_male_helmet",
+      "name": "Santa Hat (Male)",
+      "collection": "santa_rework",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#c01828",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.715000033378601,
+        "z_max": 1.959999680519104,
+        "radius": 0.19128704071044922
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1756,
+        "revision": 4
+      },
+      "url": "/equipment/Rework/Santa/Male/Hat.glb?v=20260927-santa-sole4"
+    },
+    {
+      "id": "santa_rework_male_upperbody",
+      "name": "Santa Upperbody (Male)",
+      "collection": "santa_rework",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#c01828",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.0400738716125488,
+        "z_max": 1.535762906074524,
+        "radius": 0.5927677750587463
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_santa_upperbody"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 6371,
+        "revision": 4
+      },
+      "url": "/equipment/Rework/Santa/Male/Upperbody.glb?v=20260927-santa-sole4",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "santa_rework_male_lowerbody",
+      "name": "Santa Lowerbody (Male)",
+      "collection": "santa_rework",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": false,
+      "color": "#c01828",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.11436925828456879,
+        "z_max": 1.0967862606048584,
+        "radius": 0.18344497680664062
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_santa_lowerbody"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 3142,
+        "revision": 4
+      },
+      "url": "/equipment/Rework/Santa/Male/Lowerbody.glb?v=20260927-santa-sole4",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "santa_rework_male_gloves",
+      "name": "Santa Gloves (Male)",
+      "collection": "santa_rework",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#c01828",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.3469657897949219,
+        "z_max": 1.4353033304214478,
+        "radius": 0.7570791244506836
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_santa_gloves"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1404,
+        "revision": 4
+      },
+      "url": "/equipment/Rework/Santa/Male/Gloves.glb?v=20260927-santa-sole4"
+    },
+    {
+      "id": "santa_rework_male_boots",
+      "name": "Santa Boots (Male)",
+      "collection": "santa_rework",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#c01828",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.01899999938905239,
+        "z_max": 0.45991000533103943,
+        "radius": 0.19354361295700073
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_santa_boots"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 6783,
+        "revision": 4
+      },
+      "url": "/equipment/Rework/Santa/Male/Boots.glb?v=20260927-santa-sole4"
+    },
+    {
+      "id": "santa_rework_female_helmet",
+      "name": "Santa Hat (Female)",
+      "collection": "santa_rework",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#c01828",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.7050000429153442,
+        "z_max": 1.9499996900558472,
+        "radius": 0.19128704071044922
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1756,
+        "revision": 4
+      },
+      "url": "/equipment/Rework/Santa/Female/Hat.glb?v=20260927-santa-sole4"
+    },
+    {
+      "id": "santa_rework_female_upperbody",
+      "name": "Santa Upperbody (Female)",
+      "collection": "santa_rework",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#c01828",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.1128591299057007,
+        "z_max": 1.528947353363037,
+        "radius": 0.5201573371887207
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_santa_upperbody"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 4653,
+        "revision": 4
+      },
+      "url": "/equipment/Rework/Santa/Female/Upperbody.glb?v=20260927-santa-sole4",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "santa_rework_female_lowerbody",
+      "name": "Santa Lowerbody (Female)",
+      "collection": "santa_rework",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": false,
+      "color": "#c01828",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.8103670477867126,
+        "z_max": 1.1545681953430176,
+        "radius": 0.277538925409317
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_santa_lowerbody"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5704,
+        "revision": 4
+      },
+      "url": "/equipment/Rework/Santa/Female/Lowerbody.glb?v=20260927-santa-sole4",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "santa_rework_female_gloves",
+      "name": "Santa Gloves (Female)",
+      "collection": "santa_rework",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#c01828",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.369076132774353,
+        "z_max": 1.4470242261886597,
+        "radius": 0.7023732662200928
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_santa_gloves"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1181,
+        "revision": 4
+      },
+      "url": "/equipment/Rework/Santa/Female/Gloves.glb?v=20260927-santa-sole4"
+    },
+    {
+      "id": "santa_rework_female_boots",
+      "name": "Santa Boots (Female)",
+      "collection": "santa_rework",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#c01828",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.01899999938905239,
+        "z_max": 0.45991000533103943,
+        "radius": 0.1989174634218216
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_santa_boots"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5276,
+        "revision": 4
+      },
+      "url": "/equipment/Rework/Santa/Female/Boots.glb?v=20260927-santa-sole4"
+    }
+  ]
+}

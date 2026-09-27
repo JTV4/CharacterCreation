@@ -1,0 +1,149 @@
+{
+  "validator": "Khronos glTF Validator",
+  "results": [
+    {
+      "file": "HalloweenOfferingShrine.glb",
+      "bytes": 1875964,
+      "triangles": 18195,
+      "primitives": 3,
+      "errors": 0,
+      "warnings": 0,
+      "extensions": [],
+      "anchors": [
+        {
+          "name": "OfferingPoint",
+          "translation": [
+            0,
+            1.5,
+            0.7799999713897705
+          ]
+        },
+        {
+          "name": "InteractionPoint",
+          "translation": [
+            0,
+            0,
+            2.200000047683716
+          ]
+        },
+        {
+          "name": "NameplatePoint",
+          "translation": [
+            0,
+            5.949999809265137,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "HalloweenOfferingShrine_LOD1.glb",
+      "bytes": 1133032,
+      "triangles": 8913,
+      "primitives": 3,
+      "errors": 0,
+      "warnings": 0,
+      "extensions": [],
+      "anchors": [
+        {
+          "name": "OfferingPoint",
+          "translation": [
+            0,
+            1.5,
+            0.7799999713897705
+          ]
+        },
+        {
+          "name": "InteractionPoint",
+          "translation": [
+            0,
+            0,
+            2.200000047683716
+          ]
+        },
+        {
+          "name": "NameplatePoint",
+          "translation": [
+            0,
+            5.949999809265137,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "HalloweenOfferingShrine_Web.glb",
+      "bytes": 719136,
+      "triangles": 18153,
+      "primitives": 3,
+      "errors": 0,
+      "warnings": 0,
+      "extensions": [
+        "KHR_mesh_quantization"
+      ],
+      "anchors": [
+        {
+          "name": "OfferingPoint",
+          "translation": [
+            0,
+            1.5,
+            0.779999971
+          ]
+        },
+        {
+          "name": "InteractionPoint",
+          "translation": [
+            0,
+            0,
+            2.20000005
+          ]
+        },
+        {
+          "name": "NameplatePoint",
+          "translation": [
+            0,
+            5.94999981,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "HalloweenOfferingShrine_LOD1_Web.glb",
+      "bytes": 445972,
+      "triangles": 8891,
+      "primitives": 3,
+      "errors": 0,
+      "warnings": 0,
+      "extensions": [
+        "KHR_mesh_quantization"
+      ],
+      "anchors": [
+        {
+          "name": "OfferingPoint",
+          "translation": [
+            0,
+            1.5,
+            0.779999971
+          ]
+        },
+        {
+          "name": "InteractionPoint",
+          "translation": [
+            0,
+            0,
+            2.20000005
+          ]
+        },
+        {
+          "name": "NameplatePoint",
+          "translation": [
+            0,
+            5.94999981,
+            0
+          ]
+        }
+      ]
+    }
+  ]
+}

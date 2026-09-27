@@ -77,7 +77,7 @@ function BoundsCylinder({
         color={color}
         anchorX="left"
         anchorY="bottom"
-        depthTest={false}
+        material-depthTest={false}
         renderOrder={999}
       >
         {slot.name}
@@ -88,7 +88,7 @@ function BoundsCylinder({
         color={color}
         anchorX="left"
         anchorY="top"
-        depthTest={false}
+        material-depthTest={false}
         renderOrder={999}
       >
         {`r=${radius}m  h=${height.toFixed(2)}m`}

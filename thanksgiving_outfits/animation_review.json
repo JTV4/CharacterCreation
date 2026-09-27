@@ -1,0 +1,129 @@
+{
+  "method": "30 local Female-named clips on both appearance/v6 rigs, 25 evenly spaced samples per clip plus rest. Linear skinning with up to four normalized influences. Body coverage matches the authored per-slot masks. BVH intersections include intentional neckline facings and garment boundary contact. Twelve front/back motion views per body reviewed, plus fishing and bucket-pour contact views.",
+  "results": {
+    "Male": {
+      "animation_clips": 30,
+      "samples_including_rest": 751,
+      "finite_deformation_all_samples": true,
+      "raw_body_overlap_maxima": {
+        "Hat": {
+          "body_triangles": 3,
+          "clip": "FemaleFishing",
+          "fraction": 0.08333333333333333
+        },
+        "Upperbody": {
+          "body_triangles": 85,
+          "clip": "FemaleFishing",
+          "fraction": 0.08333333333333333
+        },
+        "Lowerbody": {
+          "body_triangles": 0,
+          "clip": "REST",
+          "fraction": 0
+        },
+        "Gloves": {
+          "body_triangles": 8,
+          "clip": "FemaleRangedAttack",
+          "fraction": 0.2916666666666667
+        },
+        "Boots": {
+          "body_triangles": 0,
+          "clip": "REST",
+          "fraction": 0
+        }
+      }
+    },
+    "Female": {
+      "animation_clips": 30,
+      "samples_including_rest": 751,
+      "finite_deformation_all_samples": true,
+      "raw_body_overlap_maxima": {
+        "Hat": {
+          "body_triangles": 2,
+          "clip": "FemaleFishing",
+          "fraction": 0.08333333333333333
+        },
+        "Upperbody": {
+          "body_triangles": 122,
+          "clip": "FemaleFishing",
+          "fraction": 0.08333333333333333
+        },
+        "Lowerbody": {
+          "body_triangles": 14,
+          "clip": "FemaleRun",
+          "fraction": 0.5416666666666666
+        },
+        "Gloves": {
+          "body_triangles": 51,
+          "clip": "FemaleBucketPour",
+          "fraction": 0.5833333333333334
+        },
+        "Boots": {
+          "body_triangles": 0,
+          "clip": "REST",
+          "fraction": 0
+        }
+      }
+    }
+  },
+  "focused_checks": [
+    "Zero skull/hat triangle overlaps at rest on both bodies.",
+    "751 male lower-leg poses: zero unmasked calf/ankle-to-trouser and zero trouser-to-short-boot shaft intersections in the regions defined in pants_fit.json.",
+    "Barefoot and booted male rest, walk, run and kneel renders checked from front and rear.",
+    "Apron and skirt now share vertices and skin weights; collar and cuffs are integrated into the shirt surface.",
+    "Ten GLBs passed validation; CharacterCreation TypeScript/Vite production build passed with existing bundle warnings."
+  ],
+  "remaining_contacts": [
+    "Fishing at about 8% brings the hand into the hat; bucket-pour at about 58% brings the glove into the head. These are animation contact limits, not a claim of complete clipping-free playback.",
+    "Raw skirt/leg contact candidates remain near the inner hem during high-knee motion. Supplied motion previews show the visible result; the skirt uses skeletal deformation, not cloth simulation."
+  ],
+  "untested": [
+    "Arbitrary hairstyles: choose No hair for these fitted hats.",
+    "Every possible mixed-outfit combination and animation blend."
+  ],
+  "viewer": "Thanksgiving Outfit collection and all ten slots registered; production build verified. Rendered animation review uses the same authored rigs. Live browser equip interactions were unreliable in the automation viewport, so no live-playback certification is claimed.",
+  "sole_revision": {
+    "changes": [
+      "Raised the hidden toe/vamp underside above the outsole.",
+      "Lowered the tread to -0.019m and added sole support vertices for animated toe flex.",
+      "Used a common plantar skin-weight field through the lower foot layers."
+    ],
+    "checks": {
+      "Male": {
+        "samples": 751,
+        "sole_bottom_triangles": 896,
+        "test": "Bottom tread faces below -0.018m versus internal boot foot/toe surfaces and unmasked anatomical feet below 0.14m; all 30 clips at 25 samples plus rest. Sidewalls and the intentional upper/sole joining seam are outside this bottom-tread test.",
+        "worst_boot": {
+          "clip": "REST",
+          "fraction": 0,
+          "boot_upper_through_bottom_pairs": 0,
+          "unmasked_foot_through_bottom_pairs": 0
+        },
+        "worst_skin": {
+          "clip": "REST",
+          "fraction": 0,
+          "boot_upper_through_bottom_pairs": 0,
+          "unmasked_foot_through_bottom_pairs": 0
+        }
+      },
+      "Female": {
+        "samples": 751,
+        "sole_bottom_triangles": 608,
+        "test": "Bottom tread faces below -0.018m versus internal boot foot/toe surfaces and unmasked anatomical feet below 0.14m; all 30 clips at 25 samples plus rest. Sidewalls and the intentional upper/sole joining seam are outside this bottom-tread test.",
+        "worst_boot": {
+          "clip": "REST",
+          "fraction": 0,
+          "boot_upper_through_bottom_pairs": 0,
+          "unmasked_foot_through_bottom_pairs": 0
+        },
+        "worst_skin": {
+          "clip": "REST",
+          "fraction": 0,
+          "boot_upper_through_bottom_pairs": 0,
+          "unmasked_foot_through_bottom_pairs": 0
+        }
+      }
+    },
+    "scope": "Bottom-tread regression test with unmasked feet, plus underside WalkV3 review. Original full-outfit limitations remain; all non-boot GLBs are unchanged."
+  }
+}

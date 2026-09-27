@@ -1,0 +1,152 @@
+{
+  "checks": [
+    "GLB structure",
+    "nonempty meshes",
+    "triangle indices",
+    "finite coordinates",
+    "normalized skin weights",
+    "current rework bone names"
+  ],
+  "assets": [
+    {
+      "sex": "Male",
+      "piece": "Hat",
+      "triangles": 846,
+      "vertices": 800,
+      "skin_joints": 65,
+      "weight_sum_range": [
+        1.0,
+        1.0
+      ],
+      "bytes": 72640,
+      "sha256": "17ea4148424f4e2e0b3282f9339b193a98ba48fa7384a349ced401ab0e6b1de8",
+      "passed": true
+    },
+    {
+      "sex": "Male",
+      "piece": "Upperbody",
+      "triangles": 5057,
+      "vertices": 3494,
+      "skin_joints": 65,
+      "weight_sum_range": [
+        0.9999998807907104,
+        1.0000001102453098
+      ],
+      "bytes": 248800,
+      "sha256": "a3534153729fcd8631a9d79a668c8b7f3552e970aa9b042ee51f859169ba7f8c",
+      "passed": true
+    },
+    {
+      "sex": "Male",
+      "piece": "Lowerbody",
+      "triangles": 3142,
+      "vertices": 1616,
+      "skin_joints": 65,
+      "weight_sum_range": [
+        0.9999998984858394,
+        1.0000000884756446
+      ],
+      "bytes": 132124,
+      "sha256": "94527a6bb47e258eb0ab1f08a7d6f1f2d505bf092983161c35150d00e454cd3a",
+      "passed": true
+    },
+    {
+      "sex": "Male",
+      "piece": "Gloves",
+      "triangles": 1404,
+      "vertices": 722,
+      "skin_joints": 65,
+      "weight_sum_range": [
+        0.9999998915009201,
+        1.0000000819563866
+      ],
+      "bytes": 71616,
+      "sha256": "4fa6cbf19aa3a776f683c89a733ab4b74b6b710962f3845baadb7ad88a8998be",
+      "passed": true
+    },
+    {
+      "sex": "Male",
+      "piece": "Boots",
+      "triangles": 6809,
+      "vertices": 4355,
+      "skin_joints": 65,
+      "weight_sum_range": [
+        0.9999998988641892,
+        1.0000000934815034
+      ],
+      "bytes": 307520,
+      "sha256": "adaab00028b526060bce38b8f67e1563a5b8c05f244540bb8a04af3ad5f0624f",
+      "passed": true
+    },
+    {
+      "sex": "Female",
+      "piece": "Hat",
+      "triangles": 846,
+      "vertices": 800,
+      "skin_joints": 65,
+      "weight_sum_range": [
+        1.0,
+        1.0
+      ],
+      "bytes": 73036,
+      "sha256": "89789d68214e26be898c65e30a1092089d2f5e22cd50b0bd8b78412e65837751",
+      "passed": true
+    },
+    {
+      "sex": "Female",
+      "piece": "Upperbody",
+      "triangles": 4125,
+      "vertices": 2990,
+      "skin_joints": 65,
+      "weight_sum_range": [
+        0.99999990593642,
+        1.0000000894069672
+      ],
+      "bytes": 215380,
+      "sha256": "4e5e9d3083590c194dda057ae6af0dfd69859e385954976565077b828dce0c26",
+      "passed": true
+    },
+    {
+      "sex": "Female",
+      "piece": "Lowerbody",
+      "triangles": 5552,
+      "vertices": 3061,
+      "skin_joints": 65,
+      "weight_sum_range": [
+        0.9999999026185833,
+        1.0000000894069672
+      ],
+      "bytes": 227904,
+      "sha256": "83c8bbd916254e3e1393b337339e7bfe82a9bf3ddbec74c902ba069732f146db",
+      "passed": true
+    },
+    {
+      "sex": "Female",
+      "piece": "Gloves",
+      "triangles": 1181,
+      "vertices": 606,
+      "skin_joints": 65,
+      "weight_sum_range": [
+        0.9999998888233677,
+        1.0000000866129994
+      ],
+      "bytes": 64180,
+      "sha256": "1ef9d35263da759a5802b2341a28667ae6684c2f19aab39224cf36a47234df0b",
+      "passed": true
+    },
+    {
+      "sex": "Female",
+      "piece": "Boots",
+      "triangles": 5542,
+      "vertices": 3677,
+      "skin_joints": 65,
+      "weight_sum_range": [
+        0.9999999113497324,
+        1.0000000884756446
+      ],
+      "bytes": 262344,
+      "sha256": "7ee92038b893d75c47fbd88e3aa57cbba80227e738fb68081d222d1b46e7de4a",
+      "passed": true
+    }
+  ]
+}

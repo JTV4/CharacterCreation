@@ -1,0 +1,122 @@
+[
+  {
+    "file": "Female_bun.glb",
+    "triangles": 3910,
+    "vertices": 2028,
+    "bytes": 140340,
+    "meshes": 1,
+    "materials": 1,
+    "skinJoints": 1,
+    "textures": 0
+  },
+  {
+    "file": "Female_french_braid.glb",
+    "triangles": 6294,
+    "vertices": 3316,
+    "bytes": 226792,
+    "meshes": 1,
+    "materials": 1,
+    "skinJoints": 1,
+    "textures": 0
+  },
+  {
+    "file": "Female_long.glb",
+    "triangles": 3983,
+    "vertices": 2061,
+    "bytes": 142632,
+    "meshes": 1,
+    "materials": 1,
+    "skinJoints": 1,
+    "textures": 0
+  },
+  {
+    "file": "Female_ponytail.glb",
+    "triangles": 3636,
+    "vertices": 1905,
+    "bytes": 131820,
+    "meshes": 1,
+    "materials": 1,
+    "skinJoints": 1,
+    "textures": 0
+  },
+  {
+    "file": "Female_short.glb",
+    "triangles": 4003,
+    "vertices": 2082,
+    "bytes": 143928,
+    "meshes": 1,
+    "materials": 1,
+    "skinJoints": 1,
+    "textures": 0
+  },
+  {
+    "file": "Male_buzz_cut.glb",
+    "triangles": 1660,
+    "vertices": 859,
+    "bytes": 61240,
+    "meshes": 1,
+    "materials": 1,
+    "skinJoints": 1,
+    "textures": 0
+  },
+  {
+    "file": "Male_dreads.glb",
+    "triangles": 4339,
+    "vertices": 2248,
+    "bytes": 155108,
+    "meshes": 1,
+    "materials": 1,
+    "skinJoints": 1,
+    "textures": 0
+  },
+  {
+    "file": "Male_mohawk.glb",
+    "triangles": 1829,
+    "vertices": 965,
+    "bytes": 68184,
+    "meshes": 1,
+    "materials": 1,
+    "skinJoints": 1,
+    "textures": 0
+  },
+  {
+    "file": "Male_mullet.glb",
+    "triangles": 5227,
+    "vertices": 2710,
+    "bytes": 186308,
+    "meshes": 1,
+    "materials": 1,
+    "skinJoints": 1,
+    "textures": 0
+  },
+  {
+    "file": "Male_ponytail.glb",
+    "triangles": 3635,
+    "vertices": 1904,
+    "bytes": 131624,
+    "meshes": 1,
+    "materials": 1,
+    "skinJoints": 1,
+    "textures": 0
+  },
+  {
+    "file": "Male_shaggy.glb",
+    "triangles": 4616,
+    "vertices": 2401,
+    "bytes": 165332,
+    "meshes": 1,
+    "materials": 1,
+    "skinJoints": 1,
+    "textures": 0
+  },
+  {
+    "file": "Male_short.glb",
+    "triangles": 4003,
+    "vertices": 2082,
+    "bytes": 143792,
+    "meshes": 1,
+    "materials": 1,
+    "skinJoints": 1,
+    "textures": 0
+  }
+]

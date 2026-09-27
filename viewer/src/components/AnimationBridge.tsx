@@ -34,10 +34,28 @@ export default function AnimationBridge({
       if ((child as THREE.SkinnedMesh).isSkinnedMesh) {
         child.visible = showMesh;
         child.renderOrder = 10;
-        const mat = (child as THREE.SkinnedMesh).material as THREE.MeshStandardMaterial;
-        if (mat?.isMaterial) {
+        const mats = Array.isArray((child as THREE.SkinnedMesh).material)
+          ? ((child as THREE.SkinnedMesh).material as THREE.Material[])
+          : [(child as THREE.SkinnedMesh).material as THREE.Material];
+        const isReworkBody = /Base(Female|Male)Rework/i.test(child.name);
+        for (const raw of mats) {
+          const mat = raw as THREE.MeshStandardMaterial;
+          if (!mat?.isMaterial) continue;
           mat.stencilWrite = false;
-          mat.stencilTest = false;
+          if (isReworkBody) {
+            // Clothes draw first and write stencil=1; skip those pixels so
+            // remaining chest/neck skin does not z-fight through the tunic.
+            // Three.js enables stencil testing through stencilWrite. Keep
+            // all stencil operations as Keep so the body only tests it.
+            mat.stencilWrite = true;
+            mat.stencilFunc = THREE.NotEqualStencilFunc;
+            mat.stencilRef = 1;
+            mat.stencilFail = THREE.KeepStencilOp;
+            mat.stencilZFail = THREE.KeepStencilOp;
+            mat.stencilZPass = THREE.KeepStencilOp;
+          } else {
+            mat.stencilWrite = false;
+          }
           mat.needsUpdate = true;
         }
       }

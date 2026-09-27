@@ -1,0 +1,5288 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Six mage robe tiers for both aligned rework characters; featherless bent hats and celestial belts.",
+    "coordinate_system": {
+      "up": "+Z",
+      "forward": "-Y",
+      "right": "+X",
+      "scale": "meters"
+    },
+    "rig": "mixamo",
+    "rest_pose_reference": "BaseFemaleV3",
+    "default_lod": "LOD1",
+    "visual_tier_order": [
+      "Leather",
+      "Green",
+      "Blue",
+      "Red",
+      "Black",
+      "Luminous"
+    ],
+    "revision": "mage-v5-fit"
+  },
+  "slots": [
+    {
+      "id": "mage_leather_male_helmet",
+      "name": "Leather Mage Hat (Male)",
+      "category": "equipment",
+      "collection": "mage_leather",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#795338",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.67,
+        "z_max": 2.08,
+        "radius": 0.26
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "reference_level": 1,
+        "celestial_symbol": "Moon",
+        "default_lod": "LOD1",
+        "triangles": 1664,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Leather/Male/LOD2/Helmet.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Leather/Male/LOD3/Helmet.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Leather/Male/Helmet.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_leather_male_upperbody",
+      "name": "Leather Mage Upperbody (Male)",
+      "category": "equipment",
+      "collection": "mage_leather",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#795338",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "reference_level": 1,
+        "celestial_symbol": "Moon",
+        "default_lod": "LOD1",
+        "triangles": 4803,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Leather/Male/LOD2/Upperbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Leather/Male/LOD3/Upperbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Leather/Male/Upperbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_leather_male_gloves",
+      "name": "Leather Mage Gloves (Male)",
+      "category": "equipment",
+      "collection": "mage_leather",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#795338",
+      "bones": [
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "reference_level": 1,
+        "celestial_symbol": "Moon",
+        "default_lod": "LOD1",
+        "triangles": 798,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Leather/Male/LOD2/Gloves.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Leather/Male/LOD3/Gloves.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Leather/Male/Gloves.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_leather_male_lowerbody",
+      "name": "Leather Mage Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "mage_leather",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#795338",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.24,
+        "radius": 0.36
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "reference_level": 1,
+        "celestial_symbol": "Moon",
+        "default_lod": "LOD1",
+        "triangles": 6964,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Leather/Male/LOD2/Lowerbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Leather/Male/LOD3/Lowerbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Leather/Male/Lowerbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "mage_leather_male_boots",
+      "name": "Leather Mage Boots (Male)",
+      "category": "equipment",
+      "collection": "mage_leather",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#795338",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "reference_level": 1,
+        "celestial_symbol": "Moon",
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Leather/Male/LOD2/Boots.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Leather/Male/LOD3/Boots.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Leather/Male/Boots.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_leather_female_helmet",
+      "name": "Leather Mage Hat (Female)",
+      "category": "equipment",
+      "collection": "mage_leather",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#795338",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.67,
+        "z_max": 2.08,
+        "radius": 0.26
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "reference_level": 1,
+        "celestial_symbol": "Moon",
+        "default_lod": "LOD1",
+        "triangles": 1664,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Leather/Female/LOD2/Helmet.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Leather/Female/LOD3/Helmet.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Leather/Female/Helmet.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_leather_female_upperbody",
+      "name": "Leather Mage Upperbody (Female)",
+      "category": "equipment",
+      "collection": "mage_leather",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#795338",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso",
+        "fitted_shoulders"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "reference_level": 1,
+        "celestial_symbol": "Moon",
+        "default_lod": "LOD1",
+        "triangles": 6883,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Leather/Female/LOD2/Upperbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Leather/Female/LOD3/Upperbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Leather/Female/Upperbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "mage_leather_female_gloves",
+      "name": "Leather Mage Gloves (Female)",
+      "category": "equipment",
+      "collection": "mage_leather",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#795338",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "reference_level": 1,
+        "celestial_symbol": "Moon",
+        "default_lod": "LOD1",
+        "triangles": 731,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Leather/Female/LOD2/Gloves.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Leather/Female/LOD3/Gloves.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Leather/Female/Gloves.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_leather_female_lowerbody",
+      "name": "Leather Mage Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "mage_leather",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#795338",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.24,
+        "radius": 0.36
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "reference_level": 1,
+        "celestial_symbol": "Moon",
+        "default_lod": "LOD1",
+        "triangles": 6964,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Leather/Female/LOD2/Lowerbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Leather/Female/LOD3/Lowerbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Leather/Female/Lowerbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "mage_leather_female_boots",
+      "name": "Leather Mage Boots (Female)",
+      "category": "equipment",
+      "collection": "mage_leather",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#795338",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "reference_level": 1,
+        "celestial_symbol": "Moon",
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Leather/Female/LOD2/Boots.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Leather/Female/LOD3/Boots.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Leather/Female/Boots.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_green_male_helmet",
+      "name": "Green Mage Hat (Male)",
+      "category": "equipment",
+      "collection": "mage_green",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#396c46",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.67,
+        "z_max": 2.08,
+        "radius": 0.26
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "reference_level": 10,
+        "celestial_symbol": "Sun",
+        "default_lod": "LOD1",
+        "triangles": 1664,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Green/Male/LOD2/Helmet.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Green/Male/LOD3/Helmet.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Green/Male/Helmet.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_green_male_upperbody",
+      "name": "Green Mage Upperbody (Male)",
+      "category": "equipment",
+      "collection": "mage_green",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#396c46",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "reference_level": 10,
+        "celestial_symbol": "Sun",
+        "default_lod": "LOD1",
+        "triangles": 4803,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Green/Male/LOD2/Upperbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Green/Male/LOD3/Upperbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Green/Male/Upperbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_green_male_gloves",
+      "name": "Green Mage Gloves (Male)",
+      "category": "equipment",
+      "collection": "mage_green",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#396c46",
+      "bones": [
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "reference_level": 10,
+        "celestial_symbol": "Sun",
+        "default_lod": "LOD1",
+        "triangles": 798,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Green/Male/LOD2/Gloves.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Green/Male/LOD3/Gloves.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Green/Male/Gloves.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_green_male_lowerbody",
+      "name": "Green Mage Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "mage_green",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#396c46",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.24,
+        "radius": 0.36
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "reference_level": 10,
+        "celestial_symbol": "Sun",
+        "default_lod": "LOD1",
+        "triangles": 7120,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Green/Male/LOD2/Lowerbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Green/Male/LOD3/Lowerbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Green/Male/Lowerbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "mage_green_male_boots",
+      "name": "Green Mage Boots (Male)",
+      "category": "equipment",
+      "collection": "mage_green",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#396c46",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "reference_level": 10,
+        "celestial_symbol": "Sun",
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Green/Male/LOD2/Boots.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Green/Male/LOD3/Boots.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Green/Male/Boots.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_green_female_helmet",
+      "name": "Green Mage Hat (Female)",
+      "category": "equipment",
+      "collection": "mage_green",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#396c46",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.67,
+        "z_max": 2.08,
+        "radius": 0.26
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "reference_level": 10,
+        "celestial_symbol": "Sun",
+        "default_lod": "LOD1",
+        "triangles": 1664,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Green/Female/LOD2/Helmet.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Green/Female/LOD3/Helmet.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Green/Female/Helmet.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_green_female_upperbody",
+      "name": "Green Mage Upperbody (Female)",
+      "category": "equipment",
+      "collection": "mage_green",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#396c46",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso",
+        "fitted_shoulders"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "reference_level": 10,
+        "celestial_symbol": "Sun",
+        "default_lod": "LOD1",
+        "triangles": 6883,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Green/Female/LOD2/Upperbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Green/Female/LOD3/Upperbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Green/Female/Upperbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "mage_green_female_gloves",
+      "name": "Green Mage Gloves (Female)",
+      "category": "equipment",
+      "collection": "mage_green",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#396c46",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "reference_level": 10,
+        "celestial_symbol": "Sun",
+        "default_lod": "LOD1",
+        "triangles": 731,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Green/Female/LOD2/Gloves.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Green/Female/LOD3/Gloves.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Green/Female/Gloves.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_green_female_lowerbody",
+      "name": "Green Mage Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "mage_green",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#396c46",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.24,
+        "radius": 0.36
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "reference_level": 10,
+        "celestial_symbol": "Sun",
+        "default_lod": "LOD1",
+        "triangles": 7120,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Green/Female/LOD2/Lowerbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Green/Female/LOD3/Lowerbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Green/Female/Lowerbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "mage_green_female_boots",
+      "name": "Green Mage Boots (Female)",
+      "category": "equipment",
+      "collection": "mage_green",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#396c46",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "reference_level": 10,
+        "celestial_symbol": "Sun",
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Green/Female/LOD2/Boots.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Green/Female/LOD3/Boots.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Green/Female/Boots.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_blue_male_helmet",
+      "name": "Blue Mage Hat (Male)",
+      "category": "equipment",
+      "collection": "mage_blue",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#36548e",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.67,
+        "z_max": 2.08,
+        "radius": 0.26
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "reference_level": 20,
+        "celestial_symbol": "Star",
+        "default_lod": "LOD1",
+        "triangles": 1664,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Blue/Male/LOD2/Helmet.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Blue/Male/LOD3/Helmet.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Blue/Male/Helmet.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_blue_male_upperbody",
+      "name": "Blue Mage Upperbody (Male)",
+      "category": "equipment",
+      "collection": "mage_blue",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#36548e",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "reference_level": 20,
+        "celestial_symbol": "Star",
+        "default_lod": "LOD1",
+        "triangles": 4803,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Blue/Male/LOD2/Upperbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Blue/Male/LOD3/Upperbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Blue/Male/Upperbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_blue_male_gloves",
+      "name": "Blue Mage Gloves (Male)",
+      "category": "equipment",
+      "collection": "mage_blue",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#36548e",
+      "bones": [
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "reference_level": 20,
+        "celestial_symbol": "Star",
+        "default_lod": "LOD1",
+        "triangles": 798,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Blue/Male/LOD2/Gloves.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Blue/Male/LOD3/Gloves.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Blue/Male/Gloves.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_blue_male_lowerbody",
+      "name": "Blue Mage Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "mage_blue",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#36548e",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.24,
+        "radius": 0.36
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "reference_level": 20,
+        "celestial_symbol": "Star",
+        "default_lod": "LOD1",
+        "triangles": 6808,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Blue/Male/LOD2/Lowerbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Blue/Male/LOD3/Lowerbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Blue/Male/Lowerbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "mage_blue_male_boots",
+      "name": "Blue Mage Boots (Male)",
+      "category": "equipment",
+      "collection": "mage_blue",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#36548e",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "reference_level": 20,
+        "celestial_symbol": "Star",
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Blue/Male/LOD2/Boots.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Blue/Male/LOD3/Boots.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Blue/Male/Boots.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_blue_female_helmet",
+      "name": "Blue Mage Hat (Female)",
+      "category": "equipment",
+      "collection": "mage_blue",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#36548e",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.67,
+        "z_max": 2.08,
+        "radius": 0.26
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "reference_level": 20,
+        "celestial_symbol": "Star",
+        "default_lod": "LOD1",
+        "triangles": 1664,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Blue/Female/LOD2/Helmet.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Blue/Female/LOD3/Helmet.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Blue/Female/Helmet.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_blue_female_upperbody",
+      "name": "Blue Mage Upperbody (Female)",
+      "category": "equipment",
+      "collection": "mage_blue",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#36548e",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso",
+        "fitted_shoulders"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "reference_level": 20,
+        "celestial_symbol": "Star",
+        "default_lod": "LOD1",
+        "triangles": 6883,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Blue/Female/LOD2/Upperbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Blue/Female/LOD3/Upperbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Blue/Female/Upperbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "mage_blue_female_gloves",
+      "name": "Blue Mage Gloves (Female)",
+      "category": "equipment",
+      "collection": "mage_blue",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#36548e",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "reference_level": 20,
+        "celestial_symbol": "Star",
+        "default_lod": "LOD1",
+        "triangles": 731,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Blue/Female/LOD2/Gloves.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Blue/Female/LOD3/Gloves.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Blue/Female/Gloves.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_blue_female_lowerbody",
+      "name": "Blue Mage Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "mage_blue",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#36548e",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.24,
+        "radius": 0.36
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "reference_level": 20,
+        "celestial_symbol": "Star",
+        "default_lod": "LOD1",
+        "triangles": 6808,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Blue/Female/LOD2/Lowerbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Blue/Female/LOD3/Lowerbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Blue/Female/Lowerbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "mage_blue_female_boots",
+      "name": "Blue Mage Boots (Female)",
+      "category": "equipment",
+      "collection": "mage_blue",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#36548e",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "reference_level": 20,
+        "celestial_symbol": "Star",
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Blue/Female/LOD2/Boots.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Blue/Female/LOD3/Boots.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Blue/Female/Boots.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_red_male_helmet",
+      "name": "Red Mage Hat (Male)",
+      "category": "equipment",
+      "collection": "mage_red",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#94382d",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.67,
+        "z_max": 2.08,
+        "radius": 0.26
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "reference_level": 30,
+        "celestial_symbol": "Comet",
+        "default_lod": "LOD1",
+        "triangles": 1664,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Red/Male/LOD2/Helmet.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Red/Male/LOD3/Helmet.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Red/Male/Helmet.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_red_male_upperbody",
+      "name": "Red Mage Upperbody (Male)",
+      "category": "equipment",
+      "collection": "mage_red",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#94382d",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "reference_level": 30,
+        "celestial_symbol": "Comet",
+        "default_lod": "LOD1",
+        "triangles": 4803,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Red/Male/LOD2/Upperbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Red/Male/LOD3/Upperbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Red/Male/Upperbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_red_male_gloves",
+      "name": "Red Mage Gloves (Male)",
+      "category": "equipment",
+      "collection": "mage_red",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#94382d",
+      "bones": [
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "reference_level": 30,
+        "celestial_symbol": "Comet",
+        "default_lod": "LOD1",
+        "triangles": 798,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Red/Male/LOD2/Gloves.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Red/Male/LOD3/Gloves.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Red/Male/Gloves.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_red_male_lowerbody",
+      "name": "Red Mage Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "mage_red",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#94382d",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.24,
+        "radius": 0.36
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "reference_level": 30,
+        "celestial_symbol": "Comet",
+        "default_lod": "LOD1",
+        "triangles": 6824,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Red/Male/LOD2/Lowerbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Red/Male/LOD3/Lowerbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Red/Male/Lowerbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "mage_red_male_boots",
+      "name": "Red Mage Boots (Male)",
+      "category": "equipment",
+      "collection": "mage_red",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#94382d",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "reference_level": 30,
+        "celestial_symbol": "Comet",
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Red/Male/LOD2/Boots.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Red/Male/LOD3/Boots.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Red/Male/Boots.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_red_female_helmet",
+      "name": "Red Mage Hat (Female)",
+      "category": "equipment",
+      "collection": "mage_red",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#94382d",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.67,
+        "z_max": 2.08,
+        "radius": 0.26
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "reference_level": 30,
+        "celestial_symbol": "Comet",
+        "default_lod": "LOD1",
+        "triangles": 1664,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Red/Female/LOD2/Helmet.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Red/Female/LOD3/Helmet.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Red/Female/Helmet.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_red_female_upperbody",
+      "name": "Red Mage Upperbody (Female)",
+      "category": "equipment",
+      "collection": "mage_red",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#94382d",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso",
+        "fitted_shoulders"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "reference_level": 30,
+        "celestial_symbol": "Comet",
+        "default_lod": "LOD1",
+        "triangles": 6883,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Red/Female/LOD2/Upperbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Red/Female/LOD3/Upperbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Red/Female/Upperbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "mage_red_female_gloves",
+      "name": "Red Mage Gloves (Female)",
+      "category": "equipment",
+      "collection": "mage_red",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#94382d",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "reference_level": 30,
+        "celestial_symbol": "Comet",
+        "default_lod": "LOD1",
+        "triangles": 731,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Red/Female/LOD2/Gloves.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Red/Female/LOD3/Gloves.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Red/Female/Gloves.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_red_female_lowerbody",
+      "name": "Red Mage Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "mage_red",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#94382d",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.24,
+        "radius": 0.36
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "reference_level": 30,
+        "celestial_symbol": "Comet",
+        "default_lod": "LOD1",
+        "triangles": 6824,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Red/Female/LOD2/Lowerbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Red/Female/LOD3/Lowerbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Red/Female/Lowerbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "mage_red_female_boots",
+      "name": "Red Mage Boots (Female)",
+      "category": "equipment",
+      "collection": "mage_red",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#94382d",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "reference_level": 30,
+        "celestial_symbol": "Comet",
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Red/Female/LOD2/Boots.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Red/Female/LOD3/Boots.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Red/Female/Boots.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_black_male_helmet",
+      "name": "Black Mage Hat (Male)",
+      "category": "equipment",
+      "collection": "mage_black",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#303038",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.67,
+        "z_max": 2.08,
+        "radius": 0.26
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "reference_level": 40,
+        "celestial_symbol": "Black hole",
+        "default_lod": "LOD1",
+        "triangles": 1664,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Black/Male/LOD2/Helmet.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Black/Male/LOD3/Helmet.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Black/Male/Helmet.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_black_male_upperbody",
+      "name": "Black Mage Upperbody (Male)",
+      "category": "equipment",
+      "collection": "mage_black",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#303038",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "reference_level": 40,
+        "celestial_symbol": "Black hole",
+        "default_lod": "LOD1",
+        "triangles": 4803,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Black/Male/LOD2/Upperbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Black/Male/LOD3/Upperbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Black/Male/Upperbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_black_male_gloves",
+      "name": "Black Mage Gloves (Male)",
+      "category": "equipment",
+      "collection": "mage_black",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#303038",
+      "bones": [
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "reference_level": 40,
+        "celestial_symbol": "Black hole",
+        "default_lod": "LOD1",
+        "triangles": 798,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Black/Male/LOD2/Gloves.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Black/Male/LOD3/Gloves.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Black/Male/Gloves.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_black_male_lowerbody",
+      "name": "Black Mage Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "mage_black",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#303038",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.24,
+        "radius": 0.36
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "reference_level": 40,
+        "celestial_symbol": "Black hole",
+        "default_lod": "LOD1",
+        "triangles": 7280,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Black/Male/LOD2/Lowerbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Black/Male/LOD3/Lowerbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Black/Male/Lowerbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "mage_black_male_boots",
+      "name": "Black Mage Boots (Male)",
+      "category": "equipment",
+      "collection": "mage_black",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#303038",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "reference_level": 40,
+        "celestial_symbol": "Black hole",
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Black/Male/LOD2/Boots.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Black/Male/LOD3/Boots.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Black/Male/Boots.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_black_female_helmet",
+      "name": "Black Mage Hat (Female)",
+      "category": "equipment",
+      "collection": "mage_black",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#303038",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.67,
+        "z_max": 2.08,
+        "radius": 0.26
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "reference_level": 40,
+        "celestial_symbol": "Black hole",
+        "default_lod": "LOD1",
+        "triangles": 1664,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Black/Female/LOD2/Helmet.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Black/Female/LOD3/Helmet.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Black/Female/Helmet.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_black_female_upperbody",
+      "name": "Black Mage Upperbody (Female)",
+      "category": "equipment",
+      "collection": "mage_black",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#303038",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso",
+        "fitted_shoulders"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "reference_level": 40,
+        "celestial_symbol": "Black hole",
+        "default_lod": "LOD1",
+        "triangles": 6883,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Black/Female/LOD2/Upperbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Black/Female/LOD3/Upperbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Black/Female/Upperbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "mage_black_female_gloves",
+      "name": "Black Mage Gloves (Female)",
+      "category": "equipment",
+      "collection": "mage_black",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#303038",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "reference_level": 40,
+        "celestial_symbol": "Black hole",
+        "default_lod": "LOD1",
+        "triangles": 731,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Black/Female/LOD2/Gloves.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Black/Female/LOD3/Gloves.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Black/Female/Gloves.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_black_female_lowerbody",
+      "name": "Black Mage Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "mage_black",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#303038",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.24,
+        "radius": 0.36
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "reference_level": 40,
+        "celestial_symbol": "Black hole",
+        "default_lod": "LOD1",
+        "triangles": 7280,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Black/Female/LOD2/Lowerbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Black/Female/LOD3/Lowerbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Black/Female/Lowerbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "mage_black_female_boots",
+      "name": "Black Mage Boots (Female)",
+      "category": "equipment",
+      "collection": "mage_black",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#303038",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "reference_level": 40,
+        "celestial_symbol": "Black hole",
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Black/Female/LOD2/Boots.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Black/Female/LOD3/Boots.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Black/Female/Boots.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_luminous_male_helmet",
+      "name": "Luminous Mage Hat (Male)",
+      "category": "equipment",
+      "collection": "mage_luminous",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#7139aa",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.67,
+        "z_max": 2.08,
+        "radius": 0.26
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "reference_level": 50,
+        "celestial_symbol": "Nova",
+        "default_lod": "LOD1",
+        "triangles": 1664,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Luminous/Male/LOD2/Helmet.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Luminous/Male/LOD3/Helmet.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Luminous/Male/Helmet.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_luminous_male_upperbody",
+      "name": "Luminous Mage Upperbody (Male)",
+      "category": "equipment",
+      "collection": "mage_luminous",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#7139aa",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "reference_level": 50,
+        "celestial_symbol": "Nova",
+        "default_lod": "LOD1",
+        "triangles": 4803,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Luminous/Male/LOD2/Upperbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Luminous/Male/LOD3/Upperbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Luminous/Male/Upperbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_luminous_male_gloves",
+      "name": "Luminous Mage Gloves (Male)",
+      "category": "equipment",
+      "collection": "mage_luminous",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#7139aa",
+      "bones": [
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "reference_level": 50,
+        "celestial_symbol": "Nova",
+        "default_lod": "LOD1",
+        "triangles": 798,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Luminous/Male/LOD2/Gloves.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Luminous/Male/LOD3/Gloves.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Luminous/Male/Gloves.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_luminous_male_lowerbody",
+      "name": "Luminous Mage Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "mage_luminous",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#7139aa",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.24,
+        "radius": 0.36
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "reference_level": 50,
+        "celestial_symbol": "Nova",
+        "default_lod": "LOD1",
+        "triangles": 7072,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Luminous/Male/LOD2/Lowerbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Luminous/Male/LOD3/Lowerbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Luminous/Male/Lowerbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "mage_luminous_male_boots",
+      "name": "Luminous Mage Boots (Male)",
+      "category": "equipment",
+      "collection": "mage_luminous",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#7139aa",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "reference_level": 50,
+        "celestial_symbol": "Nova",
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Luminous/Male/LOD2/Boots.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Luminous/Male/LOD3/Boots.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Luminous/Male/Boots.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_luminous_female_helmet",
+      "name": "Luminous Mage Hat (Female)",
+      "category": "equipment",
+      "collection": "mage_luminous",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#7139aa",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.67,
+        "z_max": 2.08,
+        "radius": 0.26
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "reference_level": 50,
+        "celestial_symbol": "Nova",
+        "default_lod": "LOD1",
+        "triangles": 1664,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Luminous/Female/LOD2/Helmet.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Luminous/Female/LOD3/Helmet.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Luminous/Female/Helmet.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_luminous_female_upperbody",
+      "name": "Luminous Mage Upperbody (Female)",
+      "category": "equipment",
+      "collection": "mage_luminous",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#7139aa",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso",
+        "fitted_shoulders"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "reference_level": 50,
+        "celestial_symbol": "Nova",
+        "default_lod": "LOD1",
+        "triangles": 6883,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Luminous/Female/LOD2/Upperbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Luminous/Female/LOD3/Upperbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Luminous/Female/Upperbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "mage_luminous_female_gloves",
+      "name": "Luminous Mage Gloves (Female)",
+      "category": "equipment",
+      "collection": "mage_luminous",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#7139aa",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "reference_level": 50,
+        "celestial_symbol": "Nova",
+        "default_lod": "LOD1",
+        "triangles": 731,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Luminous/Female/LOD2/Gloves.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Luminous/Female/LOD3/Gloves.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Luminous/Female/Gloves.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "mage_luminous_female_lowerbody",
+      "name": "Luminous Mage Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "mage_luminous",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#7139aa",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1,
+        "z_max": 1.24,
+        "radius": 0.36
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "reference_level": 50,
+        "celestial_symbol": "Nova",
+        "default_lod": "LOD1",
+        "triangles": 7072,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Luminous/Female/LOD2/Lowerbody.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Luminous/Female/LOD3/Lowerbody.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Luminous/Female/Lowerbody.glb?v=mage-v5-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "mage_luminous_female_boots",
+      "name": "Luminous Mage Boots (Female)",
+      "category": "equipment",
+      "collection": "mage_luminous",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#7139aa",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "reference_level": 50,
+        "celestial_symbol": "Nova",
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Mage/Luminous/Female/LOD2/Boots.glb?v=mage-v5-fit",
+          "LOD3": "/equipment/Rework/Mage/Luminous/Female/LOD3/Boots.glb?v=mage-v5-fit"
+        }
+      },
+      "url": "/equipment/Rework/Mage/Luminous/Female/Boots.glb?v=mage-v5-fit",
+      "hides_base_clothing": []
+    }
+  ]
+}

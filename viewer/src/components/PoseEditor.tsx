@@ -1,4 +1,5 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import SectionCollapse from "./SectionCollapse";
 import * as THREE from "three";
 import type { BoneTransformOverride } from "../types";
 
@@ -253,10 +254,15 @@ export default function PoseEditor({
     return count;
   }, [boneOverrides]);
 
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (enabled) setOpen(true);
+  }, [enabled]);
+
   return (
     <div className="pose-editor">
       <div className="pose-editor-header">
-        <h2>Pose Editor</h2>
+        <SectionCollapse title="Pose Editor" open={open} onToggle={() => setOpen((v) => !v)} />
         <button
           className={`pose-toggle-btn ${enabled ? "active" : ""}`}
           onClick={onToggle}
@@ -265,7 +271,7 @@ export default function PoseEditor({
         </button>
       </div>
 
-      {enabled && (
+      {open && enabled && (
         <>
           <div className="pose-section">
             <div className="pose-section-title">Animation Settings</div>

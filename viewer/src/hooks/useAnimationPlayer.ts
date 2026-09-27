@@ -139,7 +139,7 @@ export function useAnimationPlayer(
       }
 
       const mixer = new THREE.AnimationMixer(skeletonRoot);
-      const clip = animSpecToClip(spec, boneRestPose);
+      const clip = animSpecToClip(spec, boneRestPose, 0.01 / (Math.abs(skeletonRoot.scale.x) || 1));
 
       clip.tracks.forEach((track) => {
         const dotIdx = track.name.indexOf(".");

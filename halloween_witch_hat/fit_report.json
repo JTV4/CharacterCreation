@@ -1,0 +1,88 @@
+{
+  "Male": {
+    "triangles": 2258,
+    "vertices": 1178,
+    "head_bone": "mixamorig:Head",
+    "head_weight": 1.0,
+    "body_intersecting_triangle_pairs": 0,
+    "bounds_blender_z_up": [
+      [
+        -0.3349905014038086,
+        -0.2287999987602234,
+        1.6621921062469482
+      ],
+      [
+        0.34122344851493835,
+        0.24719999730587006,
+        2.0207619667053223
+      ]
+    ],
+    "fit_scale_xyz": [
+      0.235,
+      0.28,
+      0.235
+    ],
+    "brim_center_z": 1.757,
+    "source_parts": [
+      "Ragged witch brim",
+      "Bent witch crown",
+      "Hat ochre band",
+      "Witch hat buckle",
+      "Witch hat buckle.001",
+      "Witch hat buckle.002",
+      "Witch hat buckle.003",
+      "Hanging lantern 4",
+      "Enclosed lantern ember core.005",
+      "Twisted pumpkin stem.005",
+      "Twisted suspension cord.004",
+      "Lantern loop.004"
+    ],
+    "crown_brim_seam_max_error_m": 0.0,
+    "gold_band_fabric_intersections": 0,
+    "gold_band_boundary_edges": 0,
+    "head_pose_max_error_m": 3.652494684411195e-07
+  },
+  "Female": {
+    "triangles": 2254,
+    "vertices": 1176,
+    "head_bone": "mixamorig:Head",
+    "head_weight": 1.0,
+    "body_intersecting_triangle_pairs": 0,
+    "bounds_blender_z_up": [
+      [
+        -0.32073554396629333,
+        -0.2101999968290329,
+        1.65122652053833
+      ],
+      [
+        0.326703280210495,
+        0.24879999458789825,
+        1.9945379495620728
+      ]
+    ],
+    "fit_scale_xyz": [
+      0.225,
+      0.27,
+      0.225
+    ],
+    "brim_center_z": 1.742,
+    "source_parts": [
+      "Ragged witch brim",
+      "Bent witch crown",
+      "Hat ochre band",
+      "Witch hat buckle",
+      "Witch hat buckle.001",
+      "Witch hat buckle.002",
+      "Witch hat buckle.003",
+      "Hanging lantern 4",
+      "Enclosed lantern ember core.005",
+      "Twisted pumpkin stem.005",
+      "Twisted suspension cord.004",
+      "Lantern loop.004"
+    ],
+    "crown_brim_seam_max_error_m": 0.0,
+    "gold_band_fabric_intersections": 0,
+    "gold_band_boundary_edges": 0,
+    "head_pose_max_error_m": 4.926969294954967e-07
+  }
+}

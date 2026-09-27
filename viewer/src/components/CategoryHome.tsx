@@ -33,10 +33,31 @@ export default function CategoryHome({
       count: buildingsInCategory("workstations").length,
     },
     {
+      path: ROUTES.resources,
+      title: "Resources",
+      description: "Ore rocks, logs, piles, fish, meat, and coins",
+      count: buildingsInCategory("resources").length,
+    },
+    {
       path: ROUTES.creatures,
       title: "Creatures",
       description: "Dragons, farm animals, and creature clips",
       count: buildingsInCategory("creatures").length,
+    },
+    {
+      path: ROUTES.npcs,
+      title: "NPCs",
+      description: "Named NPCs — clips and effects",
+      count: buildingsInCategory("npcs").length,
+    },
+    {
+      path: ROUTES.grindwilds,
+      title: "GrindWilds WIP Models",
+      description: "Village buildings, ships, props, layouts, and trees",
+      count: buildingsInCategory("grindwilds").reduce(
+        (total, building) => total + building.stages.length,
+        0,
+      ),
     },
   ];
 

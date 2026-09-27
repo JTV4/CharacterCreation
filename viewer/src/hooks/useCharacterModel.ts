@@ -26,6 +26,9 @@ const PLAYER_MODEL_URLS = {
   female_v3: "/models/BaseFemaleV3.glb",
   male_v2: "/models/BaseMaleV2.glb",
   grind_male: "/models/GrindMale.glb",
+  pioneer_male: "/models/PioneerMale.glb",
+  female_rework: "/appearance/v6/Models/BaseFemale_Appearance.glb?v=eyes-20260927",
+  male_rework: "/appearance/v6/Models/BaseMale_Appearance.glb?v=eyes-20260927",
 } as const;
 
 type PlayerGender = keyof typeof PLAYER_MODEL_URLS;
@@ -120,8 +123,9 @@ function buildBoneTree(boneList: GlbBoneInfo[]): GlbBoneNode[] {
   return roots;
 }
 
-function extractCharacterModel(gltf: { scene: THREE.Group }): CharacterModel {
+function extractCharacterModel(gltf: { scene: THREE.Group }, gender: ModelGender): CharacterModel {
   const scene = gltf.scene;
+  scene.userData.appearanceSex = gender === "female_rework" ? "Female" : gender === "male_rework" ? "Male" : null;
 
   scene.rotation.x = Math.PI / 2;
   const heightScale = 1.9 / 1.75;
@@ -136,6 +140,13 @@ function extractCharacterModel(gltf: { scene: THREE.Group }): CharacterModel {
   }
 
   scene.updateMatrixWorld(true);
+
+  // Match the viewer floor after loading either grounded or older centered rework assets.
+  if (gender === "female_rework" || gender === "male_rework") {
+    const box = new THREE.Box3().setFromObject(scene);
+    scene.position.z += -0.0001 - box.min.z;
+    scene.updateMatrixWorld(true);
+  }
 
   const boneRestPose = new Map<string, BoneRestTransform>();
   for (const bone of bones) {
@@ -200,7 +211,7 @@ export function useCharacterModel(gender: ModelGender): {
       (gltf) => {
         if (cancelled) return;
         try {
-          const charModel = extractCharacterModel(gltf);
+          const charModel = extractCharacterModel(gltf, gender);
           setModel(charModel);
         } catch (err) {
           setError(err instanceof Error ? err.message : String(err));

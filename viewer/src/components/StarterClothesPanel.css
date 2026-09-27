@@ -1,0 +1,11 @@
+.starter-clothes-panel { padding: 14px; border-bottom: 1px solid #303447; color: #e5e7ef; }
+.starter-clothes-panel summary { cursor: pointer; font-weight: 600; }
+.starter-clothes-panel p { color: #9fa6ba; font-size: 12px; line-height: 1.5; margin: 9px 0; }
+.starter-outfits { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 7px; margin: 12px 0; }
+.starter-outfits button { padding: 0 0 7px; overflow: hidden; border: 1px solid #3c4154; border-radius: 7px; background: #202332; color: #d8dce9; cursor: pointer; font: inherit; font-size: 11px; }
+.starter-outfits button:hover { border-color: #8198b5; background: #2b3043; }
+.starter-outfits button.selected { border-color: #62acff; box-shadow: 0 0 0 1px #62acff; background: #203c5b; color: white; }
+.starter-outfits img { display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; margin-bottom: 5px; }
+.starter-clothes-panel label { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 8px 0; font-size: 12px; }
+.starter-clothes-panel select { width: 65%; background: #202332; color: #e5e7ef; border: 1px solid #3c4154; border-radius: 4px; padding: 5px; }
+.starter-clothes-panel button:focus-visible, .starter-clothes-panel select:focus-visible { outline: 2px solid #a1cdff; outline-offset: 3px; }

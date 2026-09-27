@@ -1,0 +1,92 @@
+{
+  "revision": "face-options-bold-20260927",
+  "eyebrowStyles": [
+    {
+      "id": "none",
+      "label": "None"
+    },
+    {
+      "id": "natural",
+      "label": "Natural"
+    },
+    {
+      "id": "straight",
+      "label": "Straight"
+    },
+    {
+      "id": "arched",
+      "label": "Arched"
+    },
+    {
+      "id": "full",
+      "label": "Full"
+    },
+    {
+      "id": "bold",
+      "label": "Bold"
+    },
+    {
+      "id": "high_arch",
+      "label": "High Arch"
+    },
+    {
+      "id": "angular",
+      "label": "Angular"
+    },
+    {
+      "id": "bushy",
+      "label": "Bushy"
+    }
+  ],
+  "eyelashStyles": [
+    {
+      "id": "none",
+      "label": "None"
+    },
+    {
+      "id": "subtle",
+      "label": "Subtle"
+    },
+    {
+      "id": "defined",
+      "label": "Defined"
+    },
+    {
+      "id": "full",
+      "label": "Full"
+    },
+    {
+      "id": "swept",
+      "label": "Swept"
+    },
+    {
+      "id": "doll",
+      "label": "Doll"
+    },
+    {
+      "id": "spiky",
+      "label": "Spiky"
+    },
+    {
+      "id": "dramatic",
+      "label": "Dramatic"
+    }
+  ],
+  "defaults": {
+    "eyebrowStyle": "natural",
+    "eyelashStyle": "subtle"
+  },
+  "models": {
+    "Male": "Models/Face/Male_FaceOptions.glb",
+    "Female": "Models/Face/Female_FaceOptions.glb"
+  },
+  "meshNames": {
+    "eyebrows": "Brow_{style}",
+    "eyelashes": "Lash_{style}"
+  },
+  "colors": {
+    "GS_Brows": "match hair color",
+    "GS_Lashes": "soft black"
+  },
+  "instructions": "Render one Brow_ mesh and one Lash_ mesh. None hides every mesh of that kind. Bind the authored skeleton to the matching Rework rig. All vertices are weighted to mixamorig:Head."
+}

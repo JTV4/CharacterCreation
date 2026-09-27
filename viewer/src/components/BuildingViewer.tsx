@@ -1,5 +1,6 @@
-import { Canvas, useThree, useFrame } from "@react-three/fiber";
-import { TrackballControls, Grid, Text, Environment } from "@react-three/drei";
+import { Canvas, useThree, useFrame, type ThreeEvent } from "@react-three/fiber";
+import { TrackballControls, Grid, Text, Environment, TransformControls } from "@react-three/drei";
+import type { GizmoMode } from "../types/tools";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
@@ -88,9 +89,10 @@ const BUILDING_TARGET: [number, number, number] = [0, 0, 0.75];
 const BUILDING_CAMERA: [number, number, number] = [4.5, 4.5, 3.0];
 
 /**
- * Creatures are glTF Y-up. Grindscape cows / sheep / birds / dragons face
- * +Z at rest. The viewer grid is Z-up, so we rotate +90° about X: +Z
- * becomes −Y. Camera sits on −Y (in front of the face), looking +Y.
+ * Creatures and named NPCs are glTF Y-up. Grindscape cows / sheep / birds /
+ * dragons / Mixamo NPCs face +Z at rest. The viewer grid is Z-up, so we
+ * rotate +90° about X: +Z becomes −Y. Camera sits on −Y (in front of the
+ * face), looking +Y.
  */
 const CREATURE_HEIGHT = 2.8;
 const CREATURE_TARGET: [number, number, number] = [0, 0, CREATURE_HEIGHT];
@@ -99,24 +101,60 @@ const CREATURE_MODEL_ROTATION: [number, number, number] = [Math.PI / 2, 0, 0];
 /** After the X wrap, +Z-facing GLBs look toward −Y. */
 const CREATURE_FACE_SIGN = -1;
 
+function usesCharacterFraming(title: string): boolean {
+  return title === "Creatures" || title === "NPCs";
+}
+
+/** GrindWilds GLBs are Y-up and several are world-baked far from the origin. */
+function usesSceneFraming(title: string): boolean {
+  return title === "GrindWilds WIP Models";
+}
+
+function frameSceneBox(box: THREE.Box3): {
+  camera: [number, number, number];
+  target: [number, number, number];
+  far: number;
+} {
+  const center = box.getCenter(new THREE.Vector3());
+  const size = box.getSize(new THREE.Vector3());
+  const extent = Math.max(size.x, size.y, size.z, 0.4);
+  const dist = extent * 1.35;
+  return {
+    camera: [
+      center.x + dist * 0.55,
+      center.y - dist * 0.9,
+      center.z + extent * 0.28,
+    ],
+    target: [center.x, center.y, center.z],
+    far: Math.max(dist * 8, 200),
+  };
+}
+
 function CameraSnap({
   position,
   target,
+  far,
 }: {
   position: [number, number, number];
   target: [number, number, number];
+  far?: number;
 }) {
   const { camera, controls } = useThree();
   useLayoutEffect(() => {
     camera.up.set(0, 0, 1);
     camera.position.set(...position);
+    if (far && camera instanceof THREE.PerspectiveCamera) {
+      camera.far = far;
+      camera.near = Math.max(0.01, far / 8000);
+      camera.updateProjectionMatrix();
+    }
     const c = controls as any;
     if (c?.target) {
       c.target.set(...target);
       resetTrackballSpin(c);
       c.update?.();
     }
-  }, [camera, controls, position, target]);
+  }, [camera, controls, position, target, far]);
   return null;
 }
 
@@ -211,26 +249,119 @@ function CameraAnimator({
 // Load a GLB and mount its scene graph.  Kept as a small component so
 // GLB swaps are just a React key-change and Three tears down the old
 // scene automatically.
+const RAD2DEG = 180 / Math.PI;
+
+export interface WeaponLocalTransform {
+  name: string;
+  parent: string | null;
+  position: [number, number, number];
+  rotationDeg: [number, number, number];
+  quaternion: [number, number, number, number];
+  scale: [number, number, number];
+}
+
+function findCreatureWeapon(root: THREE.Object3D): THREE.Object3D | null {
+  let mesh: THREE.Object3D | null = null;
+  let named: THREE.Object3D | null = null;
+  root.traverse((o) => {
+    if (!/weapon/i.test(o.name)) return;
+    if (!named) named = o;
+    if (!mesh && (o as THREE.Mesh).isMesh) mesh = o;
+  });
+  return named ?? mesh;
+}
+
+function weaponRootFromHit(obj: THREE.Object3D): THREE.Object3D | null {
+  let cur: THREE.Object3D | null = obj;
+  let named: THREE.Object3D | null = null;
+  while (cur) {
+    if (/weapon/i.test(cur.name)) named = cur;
+    cur = cur.parent;
+  }
+  return named;
+}
+
+function readWeaponTransform(obj: THREE.Object3D): WeaponLocalTransform {
+  return {
+    name: obj.name,
+    parent: obj.parent?.name ?? null,
+    position: [
+      +obj.position.x.toFixed(4),
+      +obj.position.y.toFixed(4),
+      +obj.position.z.toFixed(4),
+    ],
+    rotationDeg: [
+      +(obj.rotation.x * RAD2DEG).toFixed(2),
+      +(obj.rotation.y * RAD2DEG).toFixed(2),
+      +(obj.rotation.z * RAD2DEG).toFixed(2),
+    ],
+    quaternion: [
+      +obj.quaternion.x.toFixed(4),
+      +obj.quaternion.y.toFixed(4),
+      +obj.quaternion.z.toFixed(4),
+      +obj.quaternion.w.toFixed(4),
+    ],
+    scale: [
+      +obj.scale.x.toFixed(4),
+      +obj.scale.y.toFixed(4),
+      +obj.scale.z.toFixed(4),
+    ],
+  };
+}
+
+function formatWeaponTransform(t: WeaponLocalTransform): string {
+  const v = (a: number[]) => `[${a.map((n) => n.toFixed(4)).join(", ")}]`;
+  const d = (a: number[]) => `[${a.map((n) => n.toFixed(2)).join(", ")}]`;
+  return [
+    `# ${t.name} (parent=${t.parent ?? "none"})`,
+    `position: ${v(t.position)}`,
+    `rotation_euler_deg_xyz: ${d(t.rotationDeg)}`,
+    `quaternion_xyzw: ${v(t.quaternion)}`,
+    `scale: ${v(t.scale)}`,
+  ].join("\n");
+}
+
 function BuildingModel({
   url,
   clipName,
   onClips,
   onScene,
+  weaponGizmoMode,
+  weaponSelected,
+  weaponResetNonce,
+  onWeaponSelected,
+  onWeaponTransform,
 }: {
   url: string;
   clipName: string | null;
   onClips?: (names: string[]) => void;
   onScene?: (scene: THREE.Group | null, loadedUrl: string) => void;
+  weaponGizmoMode: GizmoMode;
+  weaponSelected: boolean;
+  weaponResetNonce: number;
+  onWeaponSelected: (selected: boolean) => void;
+  onWeaponTransform: (t: WeaponLocalTransform | null) => void;
 }) {
   const [scene, setScene] = useState<THREE.Group | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [weaponObj, setWeaponObj] = useState<THREE.Object3D | null>(null);
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
   const clipsRef = useRef<THREE.AnimationClip[]>([]);
   const actionRef = useRef<THREE.AnimationAction | null>(null);
+  const weaponRestRef = useRef<{
+    position: THREE.Vector3;
+    quaternion: THREE.Quaternion;
+    scale: THREE.Vector3;
+  } | null>(null);
+  const gizmoDraggingRef = useRef(false);
   const onClipsRef = useRef(onClips);
   onClipsRef.current = onClips;
   const onSceneRef = useRef(onScene);
   onSceneRef.current = onScene;
+  const onWeaponTransformRef = useRef(onWeaponTransform);
+  onWeaponTransformRef.current = onWeaponTransform;
+  const onWeaponSelectedRef = useRef(onWeaponSelected);
+  onWeaponSelectedRef.current = onWeaponSelected;
 
   useEffect(() => {
     let cancelled = false;
@@ -239,6 +370,8 @@ function BuildingModel({
     mixerRef.current = null;
     clipsRef.current = [];
     actionRef.current = null;
+    weaponRestRef.current = null;
+    setWeaponObj(null);
     buildingGltfLoader.load(
       url,
       (gltf) => {
@@ -246,9 +379,34 @@ function BuildingModel({
         hideDragonFireMeshes(gltf.scene);
         setScene(gltf.scene);
         onSceneRef.current?.(gltf.scene, url);
+        const weapon = findCreatureWeapon(gltf.scene);
+        setWeaponObj(weapon);
+        if (weapon) {
+          weaponRestRef.current = {
+            position: weapon.position.clone(),
+            quaternion: weapon.quaternion.clone(),
+            scale: weapon.scale.clone(),
+          };
+          onWeaponTransformRef.current(readWeaponTransform(weapon));
+        } else {
+          weaponRestRef.current = null;
+          onWeaponTransformRef.current(null);
+          onWeaponSelectedRef.current(false);
+        }
         const clips = gltf.animations ?? [];
         clipsRef.current = clips;
-        const order = ["idle", "walk", "run", "attack1", "attack2", "attack3", "die"];
+        const order = [
+          "idle",
+          "increase1",
+          "increase2",
+          "increase3",
+          "walk",
+          "run",
+          "attack1",
+          "attack2",
+          "attack3",
+          "die",
+        ];
         const names = [...clips.map((c) => c.name)].sort((a, b) => {
           const ia = order.indexOf(a.toLowerCase());
           const ib = order.indexOf(b.toLowerCase());
@@ -270,6 +428,8 @@ function BuildingModel({
     return () => {
       cancelled = true;
       onSceneRef.current?.(null, url);
+      onWeaponTransformRef.current(null);
+      onWeaponSelectedRef.current(false);
       mixerRef.current?.stopAllAction();
       mixerRef.current = null;
     };
@@ -285,7 +445,7 @@ function BuildingModel({
     const clip = clips.find((c) => c.name === clipName) ?? clips[0];
     if (!clip) return;
     const action = mixer.clipAction(clip);
-    const loops = /^(idle(_\d+)?|walk|run|attack1|attack3)$/i.test(clipName);
+    const loops = /^(idle(_\d+)?|walk(ing)?|run|attack1|attack3)$/i.test(clipName);
     action.reset();
     action.loop = loops ? THREE.LoopRepeat : THREE.LoopOnce;
     action.clampWhenFinished = !loops;
@@ -293,8 +453,21 @@ function BuildingModel({
     actionRef.current = action;
   }, [clipName, scene]);
 
+  useEffect(() => {
+    if (weaponResetNonce === 0) return;
+    const weapon = weaponObj;
+    const rest = weaponRestRef.current;
+    if (!weapon || !rest) return;
+    weapon.position.copy(rest.position);
+    weapon.quaternion.copy(rest.quaternion);
+    weapon.scale.copy(rest.scale);
+    onWeaponTransformRef.current(readWeaponTransform(weapon));
+  }, [weaponResetNonce, weaponObj]);
+
   useFrame((_, delta) => {
-    mixerRef.current?.update(delta);
+    if (!gizmoDraggingRef.current) {
+      mixerRef.current?.update(delta);
+    }
   });
 
   if (error) {
@@ -312,9 +485,53 @@ function BuildingModel({
     );
   }
   if (!scene) return null;
+
+  const handleSceneClick = (e: ThreeEvent<MouseEvent>) => {
+    e.stopPropagation();
+    const hit = weaponRootFromHit(e.object);
+    if (hit) {
+      setWeaponObj(hit);
+      onWeaponSelected(true);
+      onWeaponTransform(readWeaponTransform(hit));
+      return;
+    }
+    onWeaponSelected(false);
+  };
+
+  const reportWeapon = () => {
+    if (!weaponObj) return;
+    onWeaponTransform(readWeaponTransform(weaponObj));
+  };
+
   return (
     <>
-      <primitive object={scene} />
+      <primitive
+        object={scene}
+        onClick={handleSceneClick}
+        onPointerOver={(e: ThreeEvent<PointerEvent>) => {
+          e.stopPropagation();
+          document.body.style.cursor = weaponRootFromHit(e.object) ? "pointer" : "grab";
+        }}
+        onPointerOut={() => {
+          document.body.style.cursor = "default";
+        }}
+      />
+      {weaponSelected && weaponObj && (
+        <TransformControls
+          object={weaponObj}
+          mode={weaponGizmoMode}
+          space="local"
+          size={0.55}
+          onMouseDown={() => {
+            gizmoDraggingRef.current = true;
+          }}
+          onMouseUp={() => {
+            gizmoDraggingRef.current = false;
+            reportWeapon();
+          }}
+          onObjectChange={reportWeapon}
+        />
+      )}
       {dragonHasFireBreath(scene) && (
         <DragonFireBreath
           scene={scene}
@@ -570,6 +787,11 @@ export default function BuildingViewer({
 
   const [clipName, setClipName] = useState<string | null>(null);
   const [clipNames, setClipNames] = useState<string[]>([]);
+  const [weaponGizmoMode, setWeaponGizmoMode] = useState<GizmoMode>("translate");
+  const [weaponSelected, setWeaponSelected] = useState(false);
+  const [weaponTransform, setWeaponTransform] = useState<WeaponLocalTransform | null>(null);
+  const [weaponResetNonce, setWeaponResetNonce] = useState(0);
+  const [weaponCopied, setWeaponCopied] = useState(false);
   const creatureRootRef = useRef<THREE.Group>(null);
   const [creatureScene, setCreatureScene] = useState<{
     scene: THREE.Group;
@@ -578,6 +800,7 @@ export default function BuildingViewer({
   const [creatureFrame, setCreatureFrame] = useState<{
     camera: [number, number, number];
     target: [number, number, number];
+    far?: number;
   } | null>(null);
   const burnCommands = useRef<BurnDownCommands | null>(null);
   const [burnPhase, setBurnPhase] = useState<BurnPhase>("idle");
@@ -593,6 +816,10 @@ export default function BuildingViewer({
     setClipNames([]);
     setBurnPhase("idle");
     setRoastPhase("idle");
+    setWeaponSelected(false);
+    setWeaponTransform(null);
+    setWeaponCopied(false);
+    setWeaponGizmoMode("translate");
     if (!stage?.burnDown) setBurnFrame(null);
   }, [stage?.url, stage?.burnDown]);
 
@@ -655,7 +882,7 @@ export default function BuildingViewer({
       if (prev && names.includes(prev)) return prev;
       const pick = (want: string[]) =>
         names.find((n) => want.includes(n.toLowerCase()));
-      return pick(["idle"]) ?? pick(["walk"]) ?? names[0] ?? null;
+      return pick(["idle"]) ?? pick(["walk", "walking"]) ?? names[0] ?? null;
     });
   }, []);
 
@@ -670,18 +897,21 @@ export default function BuildingViewer({
     [],
   );
 
+  const framedCharacter = usesCharacterFraming(title);
+  const framedScene = usesSceneFraming(title);
+  const autoFrame = framedCharacter || framedScene;
   const orbitTarget =
-    title === "Creatures"
-      ? (creatureFrame?.target ?? CREATURE_TARGET)
+    autoFrame
+      ? (creatureFrame?.target ?? (framedScene ? BUILDING_TARGET : CREATURE_TARGET))
       : (stage?.burnDown ? (burnFrame?.target ?? BUILDING_TARGET) : BUILDING_TARGET);
   const cameraStart =
-    title === "Creatures"
-      ? (creatureFrame?.camera ?? CREATURE_CAMERA)
+    autoFrame
+      ? (creatureFrame?.camera ?? (framedScene ? BUILDING_CAMERA : CREATURE_CAMERA))
       : (stage?.burnDown ? (burnFrame?.camera ?? BUILDING_CAMERA) : BUILDING_CAMERA);
 
   useLayoutEffect(() => {
     if (stage?.roast) return;
-    if (title !== "Creatures" || !creatureScene || creatureScene.url !== stage?.url) {
+    if (!autoFrame || !creatureScene || creatureScene.url !== stage?.url) {
       setCreatureFrame(null);
       return;
     }
@@ -693,9 +923,12 @@ export default function BuildingViewer({
     root.updateWorldMatrix(true, true);
     const box = new THREE.Box3().setFromObject(root);
     if (box.isEmpty()) return;
-    const center = box.getCenter(new THREE.Vector3());
-    setCreatureFrame(frameCreatureBox(box, CREATURE_FACE_SIGN));
-  }, [title, creatureScene, stage?.url, stage?.roast]);
+    setCreatureFrame(
+      framedScene
+        ? frameSceneBox(box)
+        : frameCreatureBox(box, CREATURE_FACE_SIGN),
+    );
+  }, [autoFrame, framedScene, creatureScene, stage?.url, stage?.roast]);
 
   const handleSetView = useCallback((viewKey: string) => {
     const controls = controlsRef.current;
@@ -723,6 +956,28 @@ export default function BuildingViewer({
     a.click();
     document.body.removeChild(a);
   }, [stage]);
+
+  const handleCopyWeapon = useCallback(() => {
+    if (!weaponTransform) return;
+    const text = formatWeaponTransform(weaponTransform);
+    void navigator.clipboard.writeText(text);
+    setWeaponCopied(true);
+    window.setTimeout(() => setWeaponCopied(false), 1600);
+  }, [weaponTransform]);
+
+  useEffect(() => {
+    if (!weaponTransform) return;
+    const onKey = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement | null)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
+      if (e.key === "t" || e.key === "T") setWeaponGizmoMode("translate");
+      if (e.key === "r" || e.key === "R") setWeaponGizmoMode("rotate");
+      if (e.key === "s" || e.key === "S") setWeaponGizmoMode("scale");
+      if (e.key === "Escape") setWeaponSelected(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [weaponTransform]);
 
   if (!building || !stage) {
     return (
@@ -781,6 +1036,7 @@ export default function BuildingViewer({
               far: 100,
             }}
             style={{ width: "100%", height: "100%" }}
+            onPointerMissed={() => setWeaponSelected(false)}
             onCreated={({ camera }) => {
               camera.up.set(0, 0, 1);
             }}
@@ -838,7 +1094,7 @@ export default function BuildingViewer({
               <group
                 ref={creatureRootRef}
                 rotation={
-                  title === "Creatures" ? CREATURE_MODEL_ROTATION : [0, 0, 0]
+                  autoFrame ? CREATURE_MODEL_ROTATION : [0, 0, 0]
                 }
               >
                 <BuildingModel
@@ -846,15 +1102,21 @@ export default function BuildingViewer({
                   url={stage.url}
                   clipName={clipName}
                   onClips={handleClips}
-                  onScene={title === "Creatures" ? handleCreatureScene : undefined}
+                  onScene={autoFrame ? handleCreatureScene : undefined}
+                  weaponGizmoMode={weaponGizmoMode}
+                  weaponSelected={weaponSelected}
+                  weaponResetNonce={weaponResetNonce}
+                  onWeaponSelected={setWeaponSelected}
+                  onWeaponTransform={setWeaponTransform}
                 />
               </group>
             )}
 
-            {title === "Creatures" && creatureFrame && (
+            {autoFrame && creatureFrame && (
               <CameraSnap
                 position={creatureFrame.camera}
                 target={creatureFrame.target}
+                far={creatureFrame.far}
               />
             )}
             {stage.burnDown && burnFrame && (
@@ -871,13 +1133,61 @@ export default function BuildingViewer({
               dynamicDampingFactor={0.1}
               rotateSpeed={5}
               minDistance={0.5}
-              maxDistance={stage.burnDown ? 80 : 30}
+              maxDistance={framedScene ? 2500 : stage.burnDown ? 80 : 30}
             />
             <CameraAnimator
               pendingViewRef={pendingViewRef}
               controlsRef={controlsRef}
             />
           </Canvas>
+
+          {weaponTransform && (
+            <div className="weapon-edit-panel">
+              <div className="weapon-edit-title">
+                {weaponSelected ? "Weapon gizmo" : "Weapon"}
+                <span className="weapon-edit-parent">
+                  {weaponTransform.name} · {weaponTransform.parent ?? "no parent"}
+                </span>
+              </div>
+              <p className="weapon-edit-hint">
+                {weaponSelected
+                  ? "Drag the gizmo. Local to the hand bone. T move · R rotate · S scale · Esc deselect."
+                  : "Click the club to show move/rotate handles."}
+              </p>
+              <div className="tool-gizmo-modes weapon-edit-modes">
+                {(["translate", "rotate", "scale"] as const).map((mode) => (
+                  <button
+                    key={mode}
+                    className={`tool-mode-btn ${weaponGizmoMode === mode ? "active" : ""}`}
+                    onClick={() => {
+                      setWeaponSelected(true);
+                      setWeaponGizmoMode(mode);
+                    }}
+                    title={mode}
+                  >
+                    {mode[0].toUpperCase()}
+                  </button>
+                ))}
+              </div>
+              <pre className="weapon-edit-mono">{formatWeaponTransform(weaponTransform)}</pre>
+              <div className="weapon-edit-actions">
+                <button
+                  className="override-copy-btn"
+                  onClick={handleCopyWeapon}
+                  title="Copy local transform"
+                >
+                  {weaponCopied ? "Copied" : "Copy"}
+                </button>
+                <button
+                  className="override-reset-btn"
+                  onClick={() => setWeaponResetNonce((n) => n + 1)}
+                  title="Restore exported transform"
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+          )}
 
           {stage.roast && (
             <div className="clip-controls">
@@ -921,7 +1231,7 @@ export default function BuildingViewer({
               <span className="burn-status">{BURN_PHASE_LABEL[burnPhase]}</span>
             </div>
           )}
-          {clipNames.length > 1 && !stage.roast && (
+          {clipNames.length > 0 && !stage.roast && (
             <div className="clip-controls">
               {clipNames.map((name) => (
                 <button

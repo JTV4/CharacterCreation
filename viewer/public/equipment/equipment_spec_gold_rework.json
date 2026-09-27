@@ -1,0 +1,932 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Fitted gold armor with closed crested helmets, angular shoulder guards, and pointed hip and skirt plates. The boot height matches iron and steel. Aligned rig, body coverage, and three detail levels included.",
+    "coordinate_system": {
+      "up": "+Z",
+      "forward": "-Y",
+      "right": "+X",
+      "scale": "meters"
+    },
+    "rig": "mixamo",
+    "level": 1,
+    "source_bases": "appearance/v6/Models/Base{Male,Female}_Appearance.glb",
+    "default_lod": "LOD1",
+    "revision": 5,
+    "rest_pose_reference": "BaseFemaleV3",
+    "rest_pose_revision": "2026-09-26",
+    "material": "gold",
+    "source_geometry": "iron_l1",
+    "repair_revision": "20260927-r3"
+  },
+  "slots": [
+    {
+      "id": "gold_rework_male_helmet",
+      "name": "Gold Helmet (Male)",
+      "category": "equipment",
+      "collection": "gold_rework",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#dfaf46",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5304567033979894,
+        "z_max": 1.8281968257910612,
+        "radius": 0.14871065908668643
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 5,
+        "default_lod": "LOD1",
+        "triangles": 354,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Gold/Male/LOD2/Helmet.glb?v=gold-20260926-fitted-r5",
+          "LOD3": "/equipment/Rework/Gold/Male/LOD3/Helmet.glb?v=gold-20260926-fitted-r5"
+        }
+      },
+      "url": "/equipment/Rework/Gold/Male/Helmet.glb?v=gold-20260926-fitted-r5",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "gold_rework_male_upperbody",
+      "name": "Gold Upperbody (Male)",
+      "category": "equipment",
+      "collection": "gold_rework",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#dfaf46",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.0567645928910006,
+        "z_max": 1.5500609766966114,
+        "radius": 0.616233422605914
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 5,
+        "default_lod": "LOD1",
+        "triangles": 3148,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Gold/Male/LOD2/Upperbody.glb?v=gold-20260926-fitted-r5",
+          "LOD3": "/equipment/Rework/Gold/Male/LOD3/Upperbody.glb?v=gold-20260926-fitted-r5"
+        }
+      },
+      "url": "/equipment/Rework/Gold/Male/Upperbody.glb?v=gold-20260926-fitted-r5",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "gold_rework_male_gloves",
+      "name": "Gold Gloves (Male)",
+      "category": "equipment",
+      "collection": "gold_rework",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#dfaf46",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.3455473474892865,
+        "z_max": 1.4360827052737546,
+        "radius": 0.7572396189631815
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 5,
+        "default_lod": "LOD1",
+        "triangles": 1515,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Gold/Male/LOD2/Gloves.glb?v=gold-20260926-fitted-r5",
+          "LOD3": "/equipment/Rework/Gold/Male/LOD3/Gloves.glb?v=gold-20260926-fitted-r5"
+        }
+      },
+      "url": "/equipment/Rework/Gold/Male/Gloves.glb?v=gold-20260926-fitted-r5",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "gold_rework_male_lowerbody",
+      "name": "Gold Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "gold_rework",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#dfaf46",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.2894494380368066,
+        "z_max": 1.0914832612640326,
+        "radius": 0.18577648042748324
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 5,
+        "default_lod": "LOD1",
+        "triangles": 2196,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Gold/Male/LOD2/Lowerbody.glb?v=gold-20260926-fitted-r5",
+          "LOD3": "/equipment/Rework/Gold/Male/LOD3/Lowerbody.glb?v=gold-20260926-fitted-r5"
+        }
+      },
+      "url": "/equipment/Rework/Gold/Male/Lowerbody.glb?v=gold-20260926-fitted-r5",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "gold_rework_male_boots",
+      "name": "Gold Boots (Male)",
+      "category": "equipment",
+      "collection": "gold_rework",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#dfaf46",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.0125273620324317,
+        "z_max": 0.34937991598744567,
+        "radius": 0.19453799037401692
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 5,
+        "default_lod": "LOD1",
+        "triangles": 1564,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Gold/Male/LOD2/Boots.glb?v=armor-seams-20260927-r3",
+          "LOD3": "/equipment/Rework/Gold/Male/LOD3/Boots.glb?v=armor-seams-20260927-r3"
+        },
+        "repair_revision": "20260927-r3"
+      },
+      "url": "/equipment/Rework/Gold/Male/Boots.glb?v=armor-seams-20260927-r3",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "gold_rework_female_helmet",
+      "name": "Gold Helmet (Female)",
+      "category": "equipment",
+      "collection": "gold_rework",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#dfaf46",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5283400850431457,
+        "z_max": 1.8179994398942314,
+        "radius": 0.1471310452015513
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 5,
+        "default_lod": "LOD1",
+        "triangles": 354,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Gold/Female/LOD2/Helmet.glb?v=gold-20260926-fitted-r5",
+          "LOD3": "/equipment/Rework/Gold/Female/LOD3/Helmet.glb?v=gold-20260926-fitted-r5"
+        }
+      },
+      "url": "/equipment/Rework/Gold/Female/Helmet.glb?v=gold-20260926-fitted-r5",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "gold_rework_female_upperbody",
+      "name": "Gold Upperbody (Female)",
+      "category": "equipment",
+      "collection": "gold_rework",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#dfaf46",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.1335133611334667,
+        "z_max": 1.5425963680553716,
+        "radius": 0.5414364384804266
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 5,
+        "default_lod": "LOD1",
+        "triangles": 2839,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Gold/Female/LOD2/Upperbody.glb?v=gold-20260926-fitted-r5",
+          "LOD3": "/equipment/Rework/Gold/Female/LOD3/Upperbody.glb?v=gold-20260926-fitted-r5"
+        }
+      },
+      "url": "/equipment/Rework/Gold/Female/Upperbody.glb?v=gold-20260926-fitted-r5",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "gold_rework_female_gloves",
+      "name": "Gold Gloves (Female)",
+      "category": "equipment",
+      "collection": "gold_rework",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#dfaf46",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.3682962539506462,
+        "z_max": 1.4540547777186,
+        "radius": 0.7028147989796671
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 5,
+        "default_lod": "LOD1",
+        "triangles": 1516,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Gold/Female/LOD2/Gloves.glb?v=gold-20260926-fitted-r5",
+          "LOD3": "/equipment/Rework/Gold/Female/LOD3/Gloves.glb?v=gold-20260926-fitted-r5"
+        }
+      },
+      "url": "/equipment/Rework/Gold/Female/Gloves.glb?v=gold-20260926-fitted-r5",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "gold_rework_female_lowerbody",
+      "name": "Gold Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "gold_rework",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#dfaf46",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.7777729234487607,
+        "z_max": 1.1586271745692625,
+        "radius": 0.22390568931981353
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 5,
+        "default_lod": "LOD1",
+        "triangles": 3674,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Gold/Female/LOD2/Lowerbody.glb?v=gold-20260926-fitted-r5",
+          "LOD3": "/equipment/Rework/Gold/Female/LOD3/Lowerbody.glb?v=gold-20260926-fitted-r5"
+        }
+      },
+      "url": "/equipment/Rework/Gold/Female/Lowerbody.glb?v=gold-20260926-fitted-r5",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "gold_rework_female_boots",
+      "name": "Gold Boots (Female)",
+      "category": "equipment",
+      "collection": "gold_rework",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#dfaf46",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.017521679791040055,
+        "z_max": 0.3334968178388125,
+        "radius": 0.20577497567145103
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 5,
+        "default_lod": "LOD1",
+        "triangles": 1340,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Gold/Female/LOD2/Boots.glb?v=armor-seams-20260927-r3",
+          "LOD3": "/equipment/Rework/Gold/Female/LOD3/Boots.glb?v=armor-seams-20260927-r3"
+        },
+        "repair_revision": "20260927-r3"
+      },
+      "url": "/equipment/Rework/Gold/Female/Boots.glb?v=armor-seams-20260927-r3",
+      "hides_base_clothing": []
+    }
+  ]
+}

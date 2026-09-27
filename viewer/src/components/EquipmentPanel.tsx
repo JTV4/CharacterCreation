@@ -1,11 +1,14 @@
-import { useCallback, useMemo, useState, useRef } from "react";
+import { useCallback, useEffect, useMemo, useState, useRef } from "react";
+import SectionCollapse from "./SectionCollapse";
 import type {
   EquipmentSlot,
   EquipmentState,
   EquipmentSlotType,
   EquipTransform,
+  EquipBoneOffsetMap,
   SlotTextures,
 } from "../types/equipment";
+import { pruneOffsetMap } from "../utils/equipBoneFit";
 import {
   SLOT_COLORS,
   EQUIPMENT_SLOT_TYPES,
@@ -25,6 +28,43 @@ interface CollectionInfo {
 }
 
 const COLLECTION_ORDER: CollectionInfo[] = [
+  {"key": "combat_ranged_1", "label": "Ranged \u00b7 Pathfinder", "color": "#8ea189"},
+  {"key": "combat_ranged_2", "label": "Ranged \u00b7 Greenwarden", "color": "#8ea189"},
+  {"key": "combat_ranged_3", "label": "Ranged \u00b7 Outrider", "color": "#8ea189"},
+  {"key": "combat_ranged_4", "label": "Ranged \u00b7 Wild Sovereign", "color": "#8ea189"},
+  {"key": "combat_mage_1", "label": "Mage \u00b7 Adept", "color": "#8ea189"},
+  {"key": "combat_mage_2", "label": "Mage \u00b7 Spellweaver", "color": "#8ea189"},
+  {"key": "combat_mage_3", "label": "Mage \u00b7 Moonkeeper", "color": "#8ea189"},
+  {"key": "combat_mage_4", "label": "Mage \u00b7 Archon", "color": "#8ea189"},
+  {"key": "combat_melee_1", "label": "Melee \u00b7 Vanguard", "color": "#8ea189"},
+  {"key": "combat_melee_2", "label": "Melee \u00b7 Sentinel", "color": "#8ea189"},
+  {"key": "combat_melee_3", "label": "Melee \u00b7 Campaigner", "color": "#8ea189"},
+  {"key": "combat_melee_4", "label": "Melee \u00b7 High Marshal", "color": "#8ea189"},
+  { key: "starter_clothes", label: "Starter Clothes", color: "#baa481" },
+  { key: "iron_l1",              label: "Iron Armor · Level 1",  color: "#747a80" },
+  { key: "steel_rework",         label: "Steel Armor · Rework", color: "#a2b8c4" },
+  { key: "gold_rework",          label: "Gold Armor · Rework",  color: "#dfaf46" },
+  { key: "titanium_rework",      label: "Titanium Armor · Rework", color: "#bb8178" },
+  { key: "tungsten_rework", label: "Tungsten Armor · Rework", color: "#7935b4" },
+  { key: "luminous_rework", label: "Luminous Armor · Rework", color: "#49b6ae" },
+  { key: "thanksgiving_rework", label: "Thanksgiving Outfit", color: "#b86728" },
+  { key: "santa_rework", label: "Santa Outfit", color: "#c01828" },
+  { key: "pumpkin_rework",       label: "Pumpkin Outfit",       color: "#ed822d" },
+  { key: "halloween_witch_rework", label: "Halloween Witch Hat", color: "#6e368f" },
+  { key: "rework",               label: "Rework Clothes",       color: "#c4b5a0" },
+  { key: "ranged_leather", label: "Leather Ranging Armor · Tier 1", color: "#895638" },
+  { key: "ranged_green", label: "Green Ranged Armor · Tier 2", color: "#467a43" },
+  { key: "ranged_blue", label: "Blue Ranged Armor · Tier 3", color: "#365fa3" },
+  { key: "ranged_red", label: "Red Ranged Armor · Tier 4", color: "#a43b32" },
+  { key: "ranged_black", label: "Black Ranged Armor · Tier 5", color: "#303139" },
+  { key: "ranged_purple", label: "Purple Ranged Armor · Tier 6", color: "#794c99" },
+  { key: "mage_leather", label: "Leather Mage · Level 1", color: "#795338" },
+  { key: "mage_green", label: "Green Mage · Level 10", color: "#396c46" },
+  { key: "mage_blue", label: "Blue Mage · Level 20", color: "#36548e" },
+  { key: "mage_red", label: "Red Mage · Level 30", color: "#94382d" },
+  { key: "mage_black", label: "Black Mage · Level 40", color: "#303038" },
+  { key: "mage_luminous", label: "Luminous Mage · Level 50", color: "#7139aa" },
+  { key: "ranger",               label: "Ranger Outfit",        color: "#6b8f4e" },
   { key: "base",                 label: "Base Meshes",          color: "#e8b4a0" },
   { key: "skin",                 label: "Skin Colors",          color: "#f0c8a0" },
   { key: "skin_textures_white",  label: "White",                color: "#f5f0e8" },
@@ -132,6 +172,7 @@ interface EquipmentPanelProps {
   onSelectSlot: (id: string | null) => void;
   onImportEquipment: (slotType: EquipmentSlotType, name: string, url: string) => void;
   equipTransforms: Record<string, EquipTransform>;
+  equipBoneOffsets?: Record<string, EquipBoneOffsetMap>;
   slotTextures: SlotTextures;
   onSetSlotTexture: (slotId: string, dataUrl: string | null) => void;
   onForceAutoSkin?: (slotId: string) => void;
@@ -166,7 +207,11 @@ function downloadAllEnabled(
   }
 }
 
-function buildSpecEntry(slot: EquipmentSlot, transform: EquipTransform | undefined): string {
+function buildSpecEntry(
+  slot: EquipmentSlot,
+  transform: EquipTransform | undefined,
+  boneOffsets?: EquipBoneOffsetMap,
+): string {
   const entry: Record<string, unknown> = {
     id: slot.id,
     name: slot.name,
@@ -181,7 +226,12 @@ function buildSpecEntry(slot: EquipmentSlot, transform: EquipTransform | undefin
   };
   if (slot.url) entry.url = slot.url;
   if (slot.gender) entry.gender = slot.gender;
+  if (slot.collection) entry.collection = slot.collection;
+  if (slot.wear_slot) entry.wear_slot = slot.wear_slot;
   if (transform) entry.transform = transform;
+  if (boneOffsets && Object.keys(boneOffsets).length > 0) {
+    entry.default_bone_offsets = pruneOffsetMap(boneOffsets);
+  }
   return JSON.stringify(entry, null, 2);
 }
 
@@ -319,6 +369,7 @@ export default function EquipmentPanel({
   onSelectSlot,
   onImportEquipment,
   equipTransforms,
+  equipBoneOffsets,
   slotTextures,
   onSetSlotTexture,
   onForceAutoSkin,
@@ -329,14 +380,24 @@ export default function EquipmentPanel({
   const [copiedSlot, setCopiedSlot] = useState<string | null>(null);
   const textureInputRef = useRef<HTMLInputElement>(null);
   const [textureTargetSlot, setTextureTargetSlot] = useState<string | null>(null);
-  const [collapsed, setCollapsed] = useState<Set<string>>(() => {
-    const all = new Set(COLLECTION_ORDER.map((c) => c.key));
-    all.delete("primitives");
-    return all;
-  });
+  const [sectionOpen, setSectionOpen] = useState(true);
+  const [expanded, setExpanded] = useState<Set<string>>(() => new Set());
+
+  useEffect(() => {
+    if (!selectedSlot) return;
+    const slot = slots.find((s) => s.id === selectedSlot);
+    if (!slot) return;
+    const key = deriveCollection(slot);
+    setExpanded((prev) => {
+      if (prev.has(key)) return prev;
+      const next = new Set(prev);
+      next.add(key);
+      return next;
+    });
+  }, [selectedSlot, slots]);
 
   const toggleCollapse = useCallback((key: string) => {
-    setCollapsed((prev) => {
+    setExpanded((prev) => {
       const next = new Set(prev);
       if (next.has(key)) next.delete(key);
       else next.add(key);
@@ -405,13 +466,13 @@ export default function EquipmentPanel({
   const handleCopySpec = useCallback(
     (slot: EquipmentSlot) => {
       const transform = equipTransforms[slot.id];
-      const json = buildSpecEntry(slot, transform);
+      const json = buildSpecEntry(slot, transform, equipBoneOffsets?.[slot.id]);
       navigator.clipboard.writeText(json).then(() => {
         setCopiedSlot(slot.id);
         setTimeout(() => setCopiedSlot(null), 2000);
       });
     },
-    [equipTransforms],
+    [equipTransforms, equipBoneOffsets],
   );
 
   const renderSlotRow = (slot: EquipmentSlot) => {
@@ -448,7 +509,11 @@ export default function EquipmentPanel({
             type="checkbox"
             checked={enabled && !blocked}
             disabled={blocked}
-            onChange={(e) => onToggleSlot(slot.id, e.target.checked)}
+            onChange={(e) => {
+              onToggleSlot(slot.id, e.target.checked);
+              if (e.target.checked) onSelectSlot(slot.id);
+              else if (isSelected) onSelectSlot(null);
+            }}
           />
           <span
             className="equip-dot"
@@ -547,7 +612,7 @@ export default function EquipmentPanel({
   return (
     <div className="info-panel equip-panel">
       <div className="equip-header">
-        <h2>Equipment</h2>
+        <SectionCollapse title="Equipment" open={sectionOpen} onToggle={() => setSectionOpen((v) => !v)} />
         {anyEnabled && (
           <button
             className="equip-export-all-btn"
@@ -559,6 +624,7 @@ export default function EquipmentPanel({
         )}
       </div>
 
+      {sectionOpen && <>
       <ImportSection onImport={onImportEquipment} />
 
       <input
@@ -589,7 +655,7 @@ export default function EquipmentPanel({
 
       <div className="equip-slots">
         {collectionGroups.map(({ info, items }) => {
-          const isOpen = !collapsed.has(info.key);
+          const isOpen = expanded.has(info.key);
           return (
             <div className="equip-collection-group" key={info.key}>
               <div
@@ -611,6 +677,7 @@ export default function EquipmentPanel({
           );
         })}
       </div>
+      </>}
     </div>
   );
 }

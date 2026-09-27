@@ -1,0 +1,13 @@
+.combat-capes-panel{padding:12px 0;border-bottom:1px solid #343747;color:#d9dce8;font-size:12px}
+.combat-capes-panel summary{font-weight:600;cursor:pointer}
+.combat-capes-panel p{color:#a3a9bb;font-size:11px;line-height:1.5;margin:10px 0}
+.cape-families{display:flex;gap:4px;margin:10px 0}
+.cape-families button,.cape-sets button{border:1px solid #383e50;background:#202532;color:#cbd0de;border-radius:5px;cursor:pointer}
+.cape-families button{flex:1;padding:5px 0;font-size:11px}
+.cape-families button[aria-pressed=true],.cape-sets button[aria-pressed=true]{border-color:#68a3ff;background:#263c5b;color:#fff}
+.cape-sets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.cape-sets button{padding:0;overflow:hidden;text-align:center}
+.cape-sets img{display:block;width:100%;height:130px;object-fit:cover;object-position:center}
+.cape-sets span{display:block;padding:6px 2px;font-size:10px}
+.combat-capes-panel label{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;font-size:11px}
+.combat-capes-panel select{background:#202532;color:#dde2ef;border:1px solid #383e50;border-radius:4px;padding:4px;min-width:0;width:72%}

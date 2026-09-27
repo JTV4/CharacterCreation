@@ -1,0 +1,38 @@
+[
+  {
+    "id": "homestead",
+    "name": "Homestead",
+    "color": "#bba280",
+    "footwear": "Ankle lace boots"
+  },
+  {
+    "id": "dockhand",
+    "name": "Dockhand",
+    "color": "#6e93a5",
+    "footwear": "Folded cuff boots"
+  },
+  {
+    "id": "woodland",
+    "name": "Woodland",
+    "color": "#78885a",
+    "footwear": "Wrapped tall boots"
+  },
+  {
+    "id": "townsfolk",
+    "name": "Townsfolk",
+    "color": "#8f637d",
+    "footwear": "Laced calf boots"
+  },
+  {
+    "id": "artisan",
+    "name": "Artisan",
+    "color": "#b8784f",
+    "footwear": "Buckle work boots"
+  },
+  {
+    "id": "wayfarer",
+    "name": "Wayfarer",
+    "color": "#548880",
+    "footwear": "Double strap boots"
+  }
+]

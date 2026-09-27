@@ -183,6 +183,12 @@ export default function Scene({
       </Canvas>
 
       <div className="axis-view-controls">
+        <button className="axis-view-btn" title="Focus face" onClick={()=>{
+          const controls=controlsRef.current;if(!controls||!characterModel)return;
+          const head=Array.from(characterModel.boneObjMap.values()).find(b=>/Head$/.test(b.name));if(!head)return;
+          const position=head.getWorldPosition(new THREE.Vector3());position.z+=.08;
+          controls.target.copy(position);controls.object.position.copy(position).add(new THREE.Vector3(0,.62,.02));controls.update();
+        }}>Face</button>
         {AXIS_VIEWS.map(({ key, label, colorClass }) => (
           <button
             key={key}

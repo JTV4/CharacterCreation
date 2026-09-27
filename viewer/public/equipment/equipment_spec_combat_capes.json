@@ -1,0 +1,1550 @@
+{
+  "meta": {
+    "version": "1.2",
+    "description": "Twelve combat capes and independent matching hoods for both rework characters.",
+    "coordinate_system": {
+      "up": "+Z",
+      "forward": "-Y",
+      "right": "+X",
+      "scale": "meters"
+    }
+  },
+  "slots": [
+    {
+      "id": "combat_ranged_1_male_cape",
+      "name": "Pathfinder Cape (Male)",
+      "collection": "combat_ranged_1",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#6e7c53",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.7195236682891846,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 6848,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/ranged_1/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_ranged_1_male_helmet",
+      "name": "Pathfinder Hood (Male)",
+      "collection": "combat_ranged_1",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#6e7c53",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8420000076293945,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1472,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/ranged_1/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_ranged_2_male_cape",
+      "name": "Greenwarden Cape (Male)",
+      "collection": "combat_ranged_2",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#667a4d",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.22949427366256714,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 8532,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/ranged_2/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_ranged_2_male_helmet",
+      "name": "Greenwarden Hood (Male)",
+      "collection": "combat_ranged_2",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#667a4d",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8420000076293945,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1560,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/ranged_2/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_ranged_3_male_cape",
+      "name": "Outrider Cape (Male)",
+      "collection": "combat_ranged_3",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#806850",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.319497674703598,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 7624,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/ranged_3/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_ranged_3_male_helmet",
+      "name": "Outrider Hood (Male)",
+      "collection": "combat_ranged_3",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#806850",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8420000076293945,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1560,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/ranged_3/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_ranged_4_male_cape",
+      "name": "Wild Sovereign Cape (Male)",
+      "collection": "combat_ranged_4",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#5f7451",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.17000000178813934,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 18872,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/ranged_4/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_ranged_4_male_helmet",
+      "name": "Wild Sovereign Hood (Male)",
+      "collection": "combat_ranged_4",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#5f7451",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8420000076293945,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1560,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/ranged_4/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_1_male_cape",
+      "name": "Adept Cape (Male)",
+      "collection": "combat_mage_1",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#5b5d8e",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.6595169901847839,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 7240,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/mage_1/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_1_male_helmet",
+      "name": "Adept Hood (Male)",
+      "collection": "combat_mage_1",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#5b5d8e",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8420000076293945,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1480,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/mage_1/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_2_male_cape",
+      "name": "Spellweaver Cape (Male)",
+      "collection": "combat_mage_2",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#44618e",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1898391991853714,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 13160,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/mage_2/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_2_male_helmet",
+      "name": "Spellweaver Hood (Male)",
+      "collection": "combat_mage_2",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#44618e",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8420000076293945,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1568,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/mage_2/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_3_male_cape",
+      "name": "Moonkeeper Cape (Male)",
+      "collection": "combat_mage_3",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#4e5368",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.17949269711971283,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 12868,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/mage_3/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_3_male_helmet",
+      "name": "Moonkeeper Hood (Male)",
+      "collection": "combat_mage_3",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#4e5368",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8420000076293945,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1568,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/mage_3/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_4_male_cape",
+      "name": "Archon Cape (Male)",
+      "collection": "combat_mage_4",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#4e6182",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1289999932050705,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 18464,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/mage_4/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_4_male_helmet",
+      "name": "Archon Hood (Male)",
+      "collection": "combat_mage_4",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#4e6182",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8420000076293945,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1568,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/mage_4/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_1_male_cape",
+      "name": "Vanguard Cape (Male)",
+      "collection": "combat_melee_1",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#8e3e39",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.8595404028892517,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 7240,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/melee_1/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_1_male_helmet",
+      "name": "Vanguard Hood (Male)",
+      "collection": "combat_melee_1",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#8e3e39",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8420000076293945,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1512,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/melee_1/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_2_male_cape",
+      "name": "Sentinel Cape (Male)",
+      "collection": "combat_melee_2",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#46506a",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.309497207403183,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 7232,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/melee_2/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_2_male_helmet",
+      "name": "Sentinel Hood (Male)",
+      "collection": "combat_melee_2",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#46506a",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8420000076293945,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1600,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/melee_2/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_3_male_cape",
+      "name": "Campaigner Cape (Male)",
+      "collection": "combat_melee_3",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#6b6854",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.31984370946884155,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 12752,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/melee_3/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_3_male_helmet",
+      "name": "Campaigner Hood (Male)",
+      "collection": "combat_melee_3",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#6b6854",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8420000076293945,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1600,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/melee_3/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_4_male_cape",
+      "name": "High Marshal Cape (Male)",
+      "collection": "combat_melee_4",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#8e3832",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.21949926018714905,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 18060,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/melee_4/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_4_male_helmet",
+      "name": "High Marshal Hood (Male)",
+      "collection": "combat_melee_4",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#8e3832",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8420000076293945,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1600,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Male/melee_4/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_ranged_1_female_cape",
+      "name": "Pathfinder Cape (Female)",
+      "collection": "combat_ranged_1",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#6e7c53",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.7193516492843628,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 6848,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/ranged_1/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_ranged_1_female_helmet",
+      "name": "Pathfinder Hood (Female)",
+      "collection": "combat_ranged_1",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#6e7c53",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8279999494552612,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1472,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/ranged_1/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_ranged_2_female_cape",
+      "name": "Greenwarden Cape (Female)",
+      "collection": "combat_ranged_2",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#667a4d",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.22932285070419312,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 8532,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/ranged_2/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_ranged_2_female_helmet",
+      "name": "Greenwarden Hood (Female)",
+      "collection": "combat_ranged_2",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#667a4d",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8279999494552612,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1560,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/ranged_2/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_ranged_3_female_cape",
+      "name": "Outrider Cape (Female)",
+      "collection": "combat_ranged_3",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#806850",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.3193261921405792,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 7624,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/ranged_3/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_ranged_3_female_helmet",
+      "name": "Outrider Hood (Female)",
+      "collection": "combat_ranged_3",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#806850",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8279999494552612,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1560,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/ranged_3/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_ranged_4_female_cape",
+      "name": "Wild Sovereign Cape (Female)",
+      "collection": "combat_ranged_4",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#5f7451",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.17000000178813934,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 18872,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/ranged_4/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_ranged_4_female_helmet",
+      "name": "Wild Sovereign Hood (Female)",
+      "collection": "combat_ranged_4",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#5f7451",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8279999494552612,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1560,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/ranged_4/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_1_female_cape",
+      "name": "Adept Cape (Female)",
+      "collection": "combat_mage_1",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#5b5d8e",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.6593452095985413,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 7240,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/mage_1/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_1_female_helmet",
+      "name": "Adept Hood (Female)",
+      "collection": "combat_mage_1",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#5b5d8e",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8279999494552612,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1480,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/mage_1/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_2_female_cape",
+      "name": "Spellweaver Cape (Female)",
+      "collection": "combat_mage_2",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#44618e",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.18967024981975555,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 13160,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/mage_2/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_2_female_helmet",
+      "name": "Spellweaver Hood (Female)",
+      "collection": "combat_mage_2",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#44618e",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8279999494552612,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1568,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/mage_2/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_3_female_cape",
+      "name": "Moonkeeper Cape (Female)",
+      "collection": "combat_mage_3",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#4e5368",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1793212890625,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 12868,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/mage_3/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_3_female_helmet",
+      "name": "Moonkeeper Hood (Female)",
+      "collection": "combat_mage_3",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#4e5368",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8279999494552612,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1568,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/mage_3/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_4_female_cape",
+      "name": "Archon Cape (Female)",
+      "collection": "combat_mage_4",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#4e6182",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.1289999932050705,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 18464,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/mage_4/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_mage_4_female_helmet",
+      "name": "Archon Hood (Female)",
+      "collection": "combat_mage_4",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#4e6182",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8279999494552612,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1568,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/mage_4/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_1_female_cape",
+      "name": "Vanguard Cape (Female)",
+      "collection": "combat_melee_1",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#8e3e39",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.8593681454658508,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 7240,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/melee_1/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_1_female_helmet",
+      "name": "Vanguard Hood (Female)",
+      "collection": "combat_melee_1",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#8e3e39",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8279999494552612,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1512,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/melee_1/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_2_female_cape",
+      "name": "Sentinel Cape (Female)",
+      "collection": "combat_melee_2",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#46506a",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.3093257248401642,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 7232,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/melee_2/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_2_female_helmet",
+      "name": "Sentinel Hood (Female)",
+      "collection": "combat_melee_2",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#46506a",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8279999494552612,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1600,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/melee_2/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_3_female_cape",
+      "name": "Campaigner Cape (Female)",
+      "collection": "combat_melee_3",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#6b6854",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.3196749985218048,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 12752,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/melee_3/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_3_female_helmet",
+      "name": "Campaigner Hood (Female)",
+      "collection": "combat_melee_3",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#6b6854",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8279999494552612,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1600,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/melee_3/Hood.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_4_female_cape",
+      "name": "High Marshal Cape (Female)",
+      "collection": "combat_melee_4",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#8e3832",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.21932785212993622,
+        "z_max": 1.4910000562667847,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 18060,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/melee_4/Cape.glb?v=20260927-flow3"
+    },
+    {
+      "id": "combat_melee_4_female_helmet",
+      "name": "High Marshal Hood (Female)",
+      "collection": "combat_melee_4",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#8e3832",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5124999284744263,
+        "z_max": 1.8279999494552612,
+        "radius": 0.4
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": true,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1600,
+        "revision": 3
+      },
+      "url": "/equipment/CombatCapes/Female/melee_4/Hood.glb?v=20260927-flow3"
+    }
+  ]
+}

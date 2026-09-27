@@ -1,0 +1,91 @@
+{
+  "name": "Harvest Warden",
+  "lod0_triangles": 18195,
+  "materials": 3,
+  "draw_calls": 3,
+  "textures": 0,
+  "runtime_lights": 0,
+  "lod1_triangles": 8913,
+  "dimensions_m": [
+    6.418,
+    3.455,
+    5.802
+  ],
+  "dimensions_axes": "Blender XYZ = width, depth, height",
+  "game_exports": [
+    {
+      "file": "HalloweenOfferingShrine_Web.glb",
+      "bytes": 719136,
+      "triangles": 18153,
+      "primitives": 3,
+      "errors": 0,
+      "warnings": 0,
+      "extensions": [
+        "KHR_mesh_quantization"
+      ],
+      "anchors": [
+        {
+          "name": "OfferingPoint",
+          "translation": [
+            0,
+            1.5,
+            0.779999971
+          ]
+        },
+        {
+          "name": "InteractionPoint",
+          "translation": [
+            0,
+            0,
+            2.20000005
+          ]
+        },
+        {
+          "name": "NameplatePoint",
+          "translation": [
+            0,
+            5.94999981,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "HalloweenOfferingShrine_LOD1_Web.glb",
+      "bytes": 445972,
+      "triangles": 8891,
+      "primitives": 3,
+      "errors": 0,
+      "warnings": 0,
+      "extensions": [
+        "KHR_mesh_quantization"
+      ],
+      "anchors": [
+        {
+          "name": "OfferingPoint",
+          "translation": [
+            0,
+            1.5,
+            0.779999971
+          ]
+        },
+        {
+          "name": "InteractionPoint",
+          "translation": [
+            0,
+            0,
+            2.20000005
+          ]
+        },
+        {
+          "name": "NameplatePoint",
+          "translation": [
+            0,
+            5.94999981,
+            0
+          ]
+        }
+      ]
+    }
+  ]
+}

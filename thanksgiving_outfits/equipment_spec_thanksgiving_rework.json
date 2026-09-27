@@ -1,0 +1,864 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Thanksgiving harvest outfits; five independently wearable pieces per Rework body, with short buckled boots. Vertex-colour opaque palette; four skin influences. Thanksgiving body coverage utility required.",
+    "rig": "mixamo",
+    "rest_pose_reference": "Current appearance/v6 BaseMaleRework / BaseFemaleRework"
+  },
+  "slots": [
+    {
+      "id": "thanksgiving_rework_male_helmet",
+      "name": "Thanksgiving Hat (Male)",
+      "collection": "thanksgiving_rework",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#b86728",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.7209999561309814,
+        "z_max": 1.934999942779541,
+        "radius": 0.1860000044107437
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 846,
+        "revision": 2
+      },
+      "url": "/equipment/Rework/Thanksgiving/Male/Hat.glb?v=20260927-thanksgiving-sole2"
+    },
+    {
+      "id": "thanksgiving_rework_male_upperbody",
+      "name": "Thanksgiving Upperbody (Male)",
+      "collection": "thanksgiving_rework",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#b86728",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.0528068542480469,
+        "z_max": 1.5208206176757812,
+        "radius": 0.5793445706367493
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_thanksgiving_upperbody"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5057,
+        "revision": 2
+      },
+      "url": "/equipment/Rework/Thanksgiving/Male/Upperbody.glb?v=20260927-thanksgiving-sole2",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "thanksgiving_rework_male_lowerbody",
+      "name": "Thanksgiving Lowerbody (Male)",
+      "collection": "thanksgiving_rework",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": false,
+      "color": "#b86728",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.11436925828456879,
+        "z_max": 1.0967862606048584,
+        "radius": 0.18344497680664062
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_thanksgiving_lowerbody"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 3142,
+        "revision": 2
+      },
+      "url": "/equipment/Rework/Thanksgiving/Male/Lowerbody.glb?v=20260927-thanksgiving-sole2",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "thanksgiving_rework_male_gloves",
+      "name": "Thanksgiving Gloves (Male)",
+      "collection": "thanksgiving_rework",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#b86728",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.3469657897949219,
+        "z_max": 1.4353033304214478,
+        "radius": 0.7570791244506836
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_thanksgiving_gloves"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1404,
+        "revision": 2
+      },
+      "url": "/equipment/Rework/Thanksgiving/Male/Gloves.glb?v=20260927-thanksgiving-sole2"
+    },
+    {
+      "id": "thanksgiving_rework_male_boots",
+      "name": "Thanksgiving Boots (Male)",
+      "collection": "thanksgiving_rework",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#b86728",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.01899999938905239,
+        "z_max": 0.2841089069843292,
+        "radius": 0.17973951995372772
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_thanksgiving_boots"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 6809,
+        "revision": 2
+      },
+      "url": "/equipment/Rework/Thanksgiving/Male/Boots.glb?v=20260927-thanksgiving-sole2"
+    },
+    {
+      "id": "thanksgiving_rework_female_helmet",
+      "name": "Thanksgiving Hat (Female)",
+      "collection": "thanksgiving_rework",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#b86728",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.7109999656677246,
+        "z_max": 1.9249999523162842,
+        "radius": 0.1770000010728836
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 846,
+        "revision": 2
+      },
+      "url": "/equipment/Rework/Thanksgiving/Female/Hat.glb?v=20260927-thanksgiving-sole2"
+    },
+    {
+      "id": "thanksgiving_rework_female_upperbody",
+      "name": "Thanksgiving Upperbody (Female)",
+      "collection": "thanksgiving_rework",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#b86728",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.1128591299057007,
+        "z_max": 1.517546534538269,
+        "radius": 0.5091121196746826
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_thanksgiving_upperbody"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 4125,
+        "revision": 2
+      },
+      "url": "/equipment/Rework/Thanksgiving/Female/Upperbody.glb?v=20260927-thanksgiving-sole2",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "thanksgiving_rework_female_lowerbody",
+      "name": "Thanksgiving Lowerbody (Female)",
+      "collection": "thanksgiving_rework",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": false,
+      "color": "#b86728",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.8287551999092102,
+        "z_max": 1.1545681953430176,
+        "radius": 0.2622259259223938
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_thanksgiving_lowerbody"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5552,
+        "revision": 2
+      },
+      "url": "/equipment/Rework/Thanksgiving/Female/Lowerbody.glb?v=20260927-thanksgiving-sole2",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "thanksgiving_rework_female_gloves",
+      "name": "Thanksgiving Gloves (Female)",
+      "collection": "thanksgiving_rework",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#b86728",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.369076132774353,
+        "z_max": 1.4470242261886597,
+        "radius": 0.7023732662200928
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_thanksgiving_gloves"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 1181,
+        "revision": 2
+      },
+      "url": "/equipment/Rework/Thanksgiving/Female/Gloves.glb?v=20260927-thanksgiving-sole2"
+    },
+    {
+      "id": "thanksgiving_rework_female_boots",
+      "name": "Thanksgiving Boots (Female)",
+      "collection": "thanksgiving_rework",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#b86728",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.01899999938905239,
+        "z_max": 0.2836148738861084,
+        "radius": 0.17318511009216309
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_thanksgiving_boots"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5542,
+        "revision": 2
+      },
+      "url": "/equipment/Rework/Thanksgiving/Female/Boots.glb?v=20260927-thanksgiving-sole2"
+    }
+  ]
+}

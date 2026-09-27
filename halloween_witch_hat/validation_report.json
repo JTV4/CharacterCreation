@@ -1,0 +1,40 @@
+[
+  {
+    "sex": "Male",
+    "bytes": 365020,
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 1,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [
+        {
+          "code": "NODE_SKINNED_MESH_NON_ROOT",
+          "message": "Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+          "severity": 1,
+          "pointer": "/nodes/65"
+        }
+      ],
+      "truncated": false
+    }
+  },
+  {
+    "sex": "Female",
+    "bytes": 368280,
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 1,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [
+        {
+          "code": "NODE_SKINNED_MESH_NON_ROOT",
+          "message": "Node with a skinned mesh is not root. Parent transforms will not affect a skinned mesh.",
+          "severity": 1,
+          "pointer": "/nodes/65"
+        }
+      ],
+      "truncated": false
+    }
+  }
+]

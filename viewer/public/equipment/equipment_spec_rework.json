@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Rework-base clothes. Separate Mixamo-skinned garments on the one-piece BaseMale/BaseFemaleRework bodies. Male shirt is the authored CharacterRework Upperbody tunic fitted to neck and wrists.",
+    "coordinate_system": {
+      "up": "+Z",
+      "forward": "+Y",
+      "right": "+X",
+      "scale": "meters"
+    },
+    "rig": "mixamo",
+    "garment_spec": "fit_rework_upperbody.py"
+  },
+  "slots": [
+    {
+      "id": "rework_male_shirt",
+      "name": "Rework Shirt (Male)",
+      "category": "equipment",
+      "collection": "rework",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#c4b5a0",
+      "bones": [
+        { "name": "mixamorigHips", "weight": 0.6 },
+        { "name": "mixamorigSpine", "weight": 1.0 },
+        { "name": "mixamorigSpine1", "weight": 1.0 },
+        { "name": "mixamorigSpine2", "weight": 1.0 },
+        { "name": "mixamorigLeftShoulder", "weight": 0.8 },
+        { "name": "mixamorigRightShoulder", "weight": 0.8 },
+        { "name": "mixamorigLeftArm", "weight": 1.0 },
+        { "name": "mixamorigRightArm", "weight": 1.0 },
+        { "name": "mixamorigLeftForeArm", "weight": 1.0 },
+        { "name": "mixamorigRightForeArm", "weight": 1.0 },
+        { "name": "mixamorigLeftHand", "weight": 0.1 },
+        { "name": "mixamorigRightHand", "weight": 0.1 },
+        { "name": "mixamorigNeck", "weight": 0.1 }
+      ],
+      "bounds": { "z_min": 1.01, "z_max": 1.62, "radius": 0.75 },
+      "rules": {},
+      "hides_body_regions": ["torso", "neck", "arms"],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/Rework/Male/shirt.glb",
+      "default_transform": {
+        "position": [0, 0, 0.9828],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1],
+        "pivot": "origin"
+      }
+    }
+  ]
+}

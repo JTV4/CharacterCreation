@@ -1,0 +1,344 @@
+{
+  "version": 11,
+  "skinTones": [
+    {
+      "id": "porcelain",
+      "label": "Porcelain",
+      "color": "#F2D6C8",
+      "texture": "Textures/Skin/porcelain.png"
+    },
+    {
+      "id": "fair_rose",
+      "label": "Fair Rose",
+      "color": "#E9C0B0",
+      "texture": "Textures/Skin/fair_rose.png"
+    },
+    {
+      "id": "fair_warm",
+      "label": "Fair Warm",
+      "color": "#E7BF9F",
+      "texture": "Textures/Skin/fair_warm.png"
+    },
+    {
+      "id": "light_beige",
+      "label": "Light Beige",
+      "color": "#D7AE90",
+      "texture": "Textures/Skin/light_beige.png"
+    },
+    {
+      "id": "warm_beige",
+      "label": "Warm Beige",
+      "color": "#C99C78",
+      "texture": "Textures/Skin/warm_beige.png"
+    },
+    {
+      "id": "olive_tan",
+      "label": "Olive Tan",
+      "color": "#B89772",
+      "texture": "Textures/Skin/olive_tan.png"
+    },
+    {
+      "id": "golden_tan",
+      "label": "Golden Tan",
+      "color": "#B4835F",
+      "texture": "Textures/Skin/golden_tan.png"
+    },
+    {
+      "id": "caramel",
+      "label": "Caramel",
+      "color": "#A5704E",
+      "texture": "Textures/Skin/caramel.png"
+    },
+    {
+      "id": "medium_brown",
+      "label": "Medium Brown",
+      "color": "#875A40",
+      "texture": "Textures/Skin/medium_brown.png"
+    },
+    {
+      "id": "rich_brown",
+      "label": "Rich Brown",
+      "color": "#70472F",
+      "texture": "Textures/Skin/rich_brown.png"
+    },
+    {
+      "id": "deep_brown",
+      "label": "Deep Brown",
+      "color": "#543629",
+      "texture": "Textures/Skin/deep_brown.png"
+    },
+    {
+      "id": "deep_umber",
+      "label": "Deep Umber",
+      "color": "#3B2923",
+      "texture": "Textures/Skin/deep_umber.png"
+    }
+  ],
+  "eyes": [
+    {
+      "id": "brown",
+      "label": "Brown",
+      "color": "#65412B",
+      "texture": "Textures/Eyes/brown.png"
+    },
+    {
+      "id": "hazel",
+      "label": "Hazel",
+      "color": "#858248",
+      "texture": "Textures/Eyes/hazel.png"
+    },
+    {
+      "id": "amber",
+      "label": "Amber",
+      "color": "#BE8538",
+      "texture": "Textures/Eyes/amber.png"
+    },
+    {
+      "id": "green",
+      "label": "Green",
+      "color": "#507C59",
+      "texture": "Textures/Eyes/green.png"
+    },
+    {
+      "id": "blue",
+      "label": "Blue",
+      "color": "#497EA3",
+      "texture": "Textures/Eyes/blue.png"
+    },
+    {
+      "id": "gray",
+      "label": "Gray",
+      "color": "#808D92",
+      "texture": "Textures/Eyes/gray.png"
+    }
+  ],
+  "changes": "Twelve fitted hairstyles; eight eyebrow and seven eyelash styles, including bold and exaggerated options for both Rework characters",
+  "hairStyles": {
+    "Female": [
+      "ponytail",
+      "bun",
+      "short",
+      "long",
+      "french_braid"
+    ],
+    "Male": [
+      "mullet",
+      "mohawk",
+      "buzz_cut",
+      "ponytail",
+      "short",
+      "shaggy",
+      "dreads"
+    ]
+  },
+  "hairColors": [
+    {
+      "id": "black",
+      "label": "Soft black",
+      "color": "#211B1A"
+    },
+    {
+      "id": "brown",
+      "label": "Dark brown",
+      "color": "#493024"
+    },
+    {
+      "id": "chestnut",
+      "label": "Chestnut",
+      "color": "#75472E"
+    },
+    {
+      "id": "auburn",
+      "label": "Auburn",
+      "color": "#8A4027"
+    },
+    {
+      "id": "blonde",
+      "label": "Golden blonde",
+      "color": "#BA9458"
+    },
+    {
+      "id": "ash",
+      "label": "Ash blonde",
+      "color": "#9A8970"
+    },
+    {
+      "id": "gray",
+      "label": "Silver gray",
+      "color": "#999D9F"
+    },
+    {
+      "id": "white",
+      "label": "White",
+      "color": "#D8D5CB"
+    }
+  ],
+  "eyebrowStyles": [
+    {
+      "id": "none",
+      "label": "None"
+    },
+    {
+      "id": "natural",
+      "label": "Natural"
+    },
+    {
+      "id": "straight",
+      "label": "Straight"
+    },
+    {
+      "id": "arched",
+      "label": "Arched"
+    },
+    {
+      "id": "full",
+      "label": "Full"
+    },
+    {
+      "id": "bold",
+      "label": "Bold"
+    },
+    {
+      "id": "high_arch",
+      "label": "High Arch"
+    },
+    {
+      "id": "angular",
+      "label": "Angular"
+    },
+    {
+      "id": "bushy",
+      "label": "Bushy"
+    }
+  ],
+  "eyelashStyles": [
+    {
+      "id": "none",
+      "label": "None"
+    },
+    {
+      "id": "subtle",
+      "label": "Subtle"
+    },
+    {
+      "id": "defined",
+      "label": "Defined"
+    },
+    {
+      "id": "full",
+      "label": "Full"
+    },
+    {
+      "id": "swept",
+      "label": "Swept"
+    },
+    {
+      "id": "doll",
+      "label": "Doll"
+    },
+    {
+      "id": "spiky",
+      "label": "Spiky"
+    },
+    {
+      "id": "dramatic",
+      "label": "Dramatic"
+    }
+  ],
+  "beardStyles": [
+    {
+      "id": "none",
+      "label": "None"
+    },
+    {
+      "id": "stubble",
+      "label": "Stubble"
+    },
+    {
+      "id": "short_boxed",
+      "label": "Short Boxed"
+    },
+    {
+      "id": "full",
+      "label": "Full"
+    },
+    {
+      "id": "goatee",
+      "label": "Goatee"
+    },
+    {
+      "id": "chin_strap",
+      "label": "Chin Strap"
+    },
+    {
+      "id": "braided",
+      "label": "Braided"
+    },
+    {
+      "id": "ducktail",
+      "label": "Ducktail"
+    },
+    {
+      "id": "rounded_full",
+      "label": "Rounded Full"
+    },
+    {
+      "id": "mutton_chops",
+      "label": "Mutton Chops"
+    },
+    {
+      "id": "soul_patch",
+      "label": "Soul Patch"
+    },
+    {
+      "id": "forked",
+      "label": "Forked"
+    }
+  ],
+  "mustacheStyles": [
+    {
+      "id": "none",
+      "label": "None"
+    },
+    {
+      "id": "natural",
+      "label": "Natural"
+    },
+    {
+      "id": "pencil",
+      "label": "Pencil"
+    },
+    {
+      "id": "chevron",
+      "label": "Chevron"
+    },
+    {
+      "id": "handlebar",
+      "label": "Handlebar"
+    },
+    {
+      "id": "horseshoe",
+      "label": "Horseshoe"
+    },
+    {
+      "id": "walrus",
+      "label": "Walrus"
+    },
+    {
+      "id": "english",
+      "label": "English"
+    },
+    {
+      "id": "dali",
+      "label": "Dali"
+    },
+    {
+      "id": "imperial",
+      "label": "Imperial"
+    },
+    {
+      "id": "petite_handlebar",
+      "label": "Petite Handlebar"
+    }
+  ]
+}

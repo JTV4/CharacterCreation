@@ -1,3 +1,4 @@
+import { createCapeSparkles } from '../utils/capeSparkles';
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { useFrame, ThreeEvent } from "@react-three/fiber";
 import * as THREE from "three";
@@ -8,13 +9,33 @@ import type {
   EquipmentState,
   EquipmentSlot,
   EquipTransform,
+  EquipBoneOffset,
+  EquipBoneOffsetMap,
+  EquipBoneOffsets,
   SlotBone,
   SlotTextures,
 } from "../types/equipment";
 import type { GizmoMode } from "../types/tools";
 import type { CharacterModel } from "../types";
 import type { AnimationPlayerState } from "../hooks/useAnimationPlayer";
-import { SLOT_COLORS, normalizeEquipTransform } from "../types/equipment";
+import {
+  SLOT_COLORS,
+  normalizeEquipTransform,
+  isRangerSlotId,
+  isReworkArmorSlotId,
+  rangerPieceFromId,
+} from "../types/equipment";
+import {
+  bakeOffsetsAtRest,
+  canonicalBoneKey,
+  createProxyRig,
+  disposeProxyRig,
+  findAnimBone,
+  readBoneOffsetFromLocal,
+  syncProxyRig,
+  type EquipProxyRig,
+} from "../utils/equipBoneFit";
+import { capeSpeedFromAnimId, createCapeMotion, type CapeMotion } from "../utils/capeMotion";
 
 interface EquipmentMeshRendererProps {
   slotIds: string[];
@@ -26,6 +47,10 @@ interface EquipmentMeshRendererProps {
   selectedSlot: string | null;
   onSelectSlot: (id: string | null) => void;
   equipTransforms: Record<string, EquipTransform>;
+  equipBoneOffsets: EquipBoneOffsets;
+  onEquipBoneOffsetsChange: (slotId: string, offsets: EquipBoneOffsetMap) => void;
+  selectedEquipBone: string | null;
+  onSelectEquipBone: (name: string | null) => void;
   equipGizmoMode: GizmoMode;
   onEquipTransformChange: (id: string, t: EquipTransform) => void;
   slotTextures?: SlotTextures;
@@ -60,7 +85,7 @@ const SLOT_RENDER_ORDER: Record<string, number> = {
   leather_magic_armor_lowerbody: 1, green_magic_armor_lowerbody: 1, blue_magic_armor_lowerbody: 1, red_magic_armor_lowerbody: 1, black_magic_armor_lowerbody: 1, purple_magic_armor_lowerbody: 1,
   default_armor_lowerbody: 1,
   crimson_wizard_robe_bottom: 1,
-  upper_body: 2, shell_upper_body: 2, shell_upper_body_test_v1: 2, custom_upper_body_f: 2, custom_upper_body_f_textured: 2, custom_upper_body_f_crimson_meshy: 2, meshy_crimson_upperbody_f: 2, green_dragon_top_f: 2, green_ranged_upperbody: 2, leather_ranged_upperbody: 2, red_ranged_upperbody: 2, purple_ranged_upperbody: 2, black_ranged_upperbody: 2, blue_ranged_upperbody: 2,
+  upper_body: 2, shell_upper_body: 2, shell_upper_body_test_v1: 2, custom_upper_body_f: 2, custom_upper_body_f_textured: 2, custom_upper_body_f_crimson_meshy: 2, meshy_crimson_upperbody_f: 2, green_dragon_top_f: 2, green_ranged_upperbody: 2, leather_ranged_upperbody: 2, red_ranged_upperbody: 2, purple_ranged_upperbody: 2, black_ranged_upperbody: 2, blue_ranged_upperbody: 2, rework_male_shirt: 2,
   iron_armor_upperbody: 2, steel_armor_upperbody: 2, gold_armor_upperbody: 2, titanium_armor_upperbody: 2, tungsten_armor_upperbody: 2, luminous_armor_upperbody: 2,
   leather_magic_armor_upperbody: 2, green_magic_armor_upperbody: 2, blue_magic_armor_upperbody: 2, red_magic_armor_upperbody: 2, black_magic_armor_upperbody: 2, purple_magic_armor_upperbody: 2,
   default_armor_upperbody: 2,
@@ -86,6 +111,36 @@ const SLOT_RENDER_ORDER: Record<string, number> = {
   round_ears: 4, pointed_ears: 4,
 };
 
+function getSlotRenderOrder(slotId: string): number {
+  if (isReworkArmorSlotId(slotId)) {
+    if (slotId.endsWith("lowerbody")) return 1;
+    if (slotId.endsWith("gloves")) return 3;
+    if (slotId.endsWith("helmet")) return 4;
+    return 2;
+  }
+  const mapped = SLOT_RENDER_ORDER[slotId];
+  if (mapped != null) return mapped;
+  const piece = rangerPieceFromId(slotId);
+  if (piece === "lowerbody") return 1;
+  if (piece === "gloves") return 3;
+  if (piece === "hat" || piece === "amulet" || piece === "cape") return 4;
+  return 2;
+}
+
+function slotWritesStencil(slotId: string): boolean {
+  // Rework armor pieces preserve the complete body. A screen-space stencil can erase
+  // exposed skin behind a neckline or hem when viewed from above.
+  if (isReworkArmorSlotId(slotId)) return false;
+  if (STENCIL_WRITE_SLOTS.has(slotId)) return true;
+  const piece = rangerPieceFromId(slotId);
+  // Hat/tunic have openings; FrontSide+stencil punched hem, cuffs, and soles.
+  return piece === "lowerbody" || piece === "gloves" || piece === "boots";
+}
+
+function shouldDetachExportArmature(slotId: string): boolean {
+  return slotId === "rework_male_shirt" || isRangerSlotId(slotId) || isReworkArmorSlotId(slotId);
+}
+
 // Polygon offset per render-order layer. More negative = pushed closer to camera = wins at overlap.
 const LAYER_POLYGON_OFFSET: Record<number, number> = {
   1: -1,   // lowerbody (base)
@@ -101,7 +156,7 @@ const STENCIL_WRITE_SLOTS = new Set([
   "leather_magic_armor_lowerbody", "green_magic_armor_lowerbody", "blue_magic_armor_lowerbody", "red_magic_armor_lowerbody", "black_magic_armor_lowerbody", "purple_magic_armor_lowerbody",
   "default_armor_lowerbody",
   "crimson_wizard_robe_bottom",
-  "upper_body", "shell_upper_body", "shell_upper_body_test_v1", "custom_upper_body_f", "custom_upper_body_f_textured", "custom_upper_body_f_crimson_meshy", "meshy_crimson_upperbody_f", "green_dragon_top_f", "green_ranged_upperbody", "leather_ranged_upperbody", "red_ranged_upperbody", "purple_ranged_upperbody", "black_ranged_upperbody", "blue_ranged_upperbody",
+  "upper_body", "shell_upper_body", "shell_upper_body_test_v1", "custom_upper_body_f", "custom_upper_body_f_textured", "custom_upper_body_f_crimson_meshy", "meshy_crimson_upperbody_f", "green_dragon_top_f", "green_ranged_upperbody", "leather_ranged_upperbody", "red_ranged_upperbody", "purple_ranged_upperbody", "black_ranged_upperbody", "blue_ranged_upperbody", "rework_male_shirt",
   "iron_armor_upperbody", "steel_armor_upperbody", "gold_armor_upperbody", "titanium_armor_upperbody", "tungsten_armor_upperbody", "luminous_armor_upperbody",
   "leather_magic_armor_upperbody", "green_magic_armor_upperbody", "blue_magic_armor_upperbody", "red_magic_armor_upperbody", "black_magic_armor_upperbody", "purple_magic_armor_upperbody",
   "default_armor_upperbody",
@@ -126,12 +181,27 @@ interface LoadedSlot {
   originalMaterials?: Map<THREE.Mesh, THREE.Material>;
   /** Geometry-space center of mass (post load correction). */
   centroid?: THREE.Vector3;
+  proxyRig?: EquipProxyRig;
+  animations?: THREE.AnimationClip[];
+  capeMotion?: CapeMotion;
+  capeSparkles?: ReturnType<typeof createCapeSparkles>;
+  /** Y-up export inverses, captured before the first rebind. */
+  originalInverses?: THREE.Matrix4[];
+}
+
+function disposeSlotMotion(slot: LoadedSlot | undefined): void {
+  if (!slot) return;
+  slot.capeMotion?.dispose();
+  slot.capeMotion = undefined;
+  slot.capeSparkles?.dispose();
+  slot.capeSparkles = undefined;
+  disposeProxyRig(slot.proxyRig);
+  slot.proxyRig = undefined;
 }
 
 const loader = new GLTFLoader();
 const slotCache = new Map<string, LoadedSlot>();
 const correctedSlots = new Set<string>();
-const _buildTimestamp = Date.now();
 const textureLoader = new THREE.TextureLoader();
 const textureCache = new Map<string, THREE.Texture>();
 
@@ -189,6 +259,9 @@ export function exportSlotAsGlb(
   fileName?: string,
   /** Optional equipTransform for the slot — position, rotation, and scale are all baked into geometry. */
   equipTransform?: EquipTransform,
+  boneOffsets?: EquipBoneOffsetMap,
+  restPose?: Map<string, import("../types").BoneRestTransform>,
+  animBones?: Map<string, THREE.Bone>,
 ): void {
   const loaded = slotCache.get(slotId);
   if (!loaded || loaded.skinnedMeshes.length === 0) {
@@ -246,6 +319,22 @@ export function exportSlotAsGlb(
     }
   }
   const geoClone = sm.geometry.clone();
+  if (
+    boneOffsets &&
+    Object.keys(boneOffsets).length > 0 &&
+    loaded.proxyRig &&
+    restPose &&
+    animBones
+  ) {
+    const baked = bakeOffsetsAtRest(
+      sm,
+      loaded.proxyRig,
+      animBones,
+      restPose,
+      boneOffsets,
+    );
+    geoClone.setAttribute("position", new THREE.BufferAttribute(baked, 3));
+  }
   geoClone.applyMatrix4(M_zup); // bake position + rotation + scale in Z-up
   geoClone.applyMatrix4(Cinv);  // convert Z-up → Y-up for GLB
   geoClone.computeVertexNormals();
@@ -426,6 +515,7 @@ _yupToZupCorrection.scale(
     _CHARACTER_HEIGHT_SCALE,
   ),
 );
+const _yupToZupInverse = _yupToZupCorrection.clone().invert();
 
 /**
  * Remap non-Mixamo bone names found in equipment GLBs to Mixamo names.
@@ -1058,6 +1148,22 @@ function applyRestPoseCorrection(
   position.needsUpdate = true;
 }
 
+/** Drop leftover Mixamo Armature Rx/scale. Viewer already baked yup→zup into verts. */
+function detachEquipFromExportArmature(
+  scene: THREE.Object3D,
+  skinnedMeshes: THREE.SkinnedMesh[],
+): void {
+  for (const sm of skinnedMeshes) {
+    if (!sm.parent || sm.parent === scene) continue;
+    sm.parent.remove(sm);
+    sm.position.set(0, 0, 0);
+    sm.quaternion.identity();
+    sm.scale.set(1, 1, 1);
+    sm.updateMatrix();
+    scene.add(sm);
+  }
+}
+
 function bindSlotSkeleton(
   slot: LoadedSlot,
   animBones: Map<string, THREE.Bone>,
@@ -1068,58 +1174,87 @@ function bindSlotSkeleton(
   const isFineSlot = slotId != null && FINE_BONE_SLOTS.has(slotId);
   const alreadyCorrected = slotId != null && correctedSlots.has(slotId);
 
+  disposeSlotMotion(slot);
+
+  const primary = slot.skinnedMeshes.find((sm) => sm.skeleton?.bones.length);
+  if (!primary?.skeleton) return;
+
   for (const sm of slot.skinnedMeshes) {
     const oldSk = sm.skeleton;
     if (!oldSk) continue;
-
-    const newBones: THREE.Bone[] = [];
-    const newInverses: THREE.Matrix4[] = [];
+    if (!(isFineSlot && !alreadyCorrected)) continue;
     const boneDeltas: THREE.Vector3[] = [];
-
     for (let i = 0; i < oldSk.bones.length; i++) {
       const rawName = oldSk.bones[i].name;
       const boneName = BONE_NAME_REMAP[rawName] ?? rawName;
-      const animBone = animBones.get(boneName);
-      const charInv = charBoneInverseMap.get(boneName);
-
-      if (animBone && charInv) {
-        newBones.push(animBone);
-        newInverses.push(charInv.clone());
-
-        if (isFineSlot && !alreadyCorrected) {
-          animBone.updateMatrixWorld(true);
-          _tmpMat.copy(oldSk.boneInverses[i]).invert();
-          const equipPosDisplay = new THREE.Vector3(
-            -_tmpMat.elements[12],
-            -_tmpMat.elements[13],
-            _tmpMat.elements[14],
-          );
-          const charPos = new THREE.Vector3(
-            animBone.matrixWorld.elements[12],
-            animBone.matrixWorld.elements[13],
-            animBone.matrixWorld.elements[14],
-          );
-          boneDeltas.push(charPos.clone().sub(equipPosDisplay));
-        }
+      const animBone = findAnimBone(animBones, boneName);
+      if (animBone) {
+        animBone.updateMatrixWorld(true);
+        _tmpMat.copy(oldSk.boneInverses[i]).invert();
+        const equipPosDisplay = new THREE.Vector3(
+          -_tmpMat.elements[12],
+          -_tmpMat.elements[13],
+          _tmpMat.elements[14],
+        );
+        const charPos = new THREE.Vector3(
+          animBone.matrixWorld.elements[12],
+          animBone.matrixWorld.elements[13],
+          animBone.matrixWorld.elements[14],
+        );
+        boneDeltas.push(charPos.clone().sub(equipPosDisplay));
       } else {
-        newBones.push(oldSk.bones[i] as THREE.Bone);
-        newInverses.push(oldSk.boneInverses[i].clone());
-
-        if (isFineSlot && !alreadyCorrected) {
-          boneDeltas.push(new THREE.Vector3(0, 0, 0));
-        }
+        boneDeltas.push(new THREE.Vector3(0, 0, 0));
       }
     }
+    applyRestPoseCorrection(sm, boneDeltas);
+  }
 
-    if (isFineSlot && !alreadyCorrected) {
-      applyRestPoseCorrection(sm, boneDeltas);
+  const oldSk = primary.skeleton;
+  const sourceNames = oldSk.bones.map((b) => BONE_NAME_REMAP[b.name] ?? b.name);
+  if (!slot.originalInverses) {
+    slot.originalInverses = oldSk.boneInverses.map((m) => m.clone());
+  }
+  const useEquipmentInverses = !!slotId && (isRangerSlotId(slotId) || isReworkArmorSlotId(slotId));
+  const rig = createProxyRig(
+    sourceNames,
+    animBones,
+    charBoneInverseMap,
+    slot.originalInverses,
+    {
+      sourceBones: oldSk.bones,
+      accessoryInverseCorrection: _yupToZupInverse,
+      useEquipmentInverses,
+    },
+  );
+  slot.proxyRig = rig;
+  syncProxyRig(rig, animBones, undefined);
+  if (slot.animations?.length) {
+    slot.capeMotion = createCapeMotion(rig.root, slot.animations, new THREE.Vector3(0, 0, -1)) ?? undefined;
+    slot.capeSparkles = createCapeSparkles(slot.scene);
+  }
+
+  for (const sm of slot.skinnedMeshes) {
+    if (!sm.skeleton) continue;
+    if (sm.skeleton.bones.length === rig.bones.length) {
+      sm.bind(new THREE.Skeleton(rig.bones, rig.inverses), _identityMatrix);
+    } else {
+      const mappedBones: THREE.Bone[] = [];
+      const mappedInvs: THREE.Matrix4[] = [];
+      for (let i = 0; i < sm.skeleton.bones.length; i++) {
+        const raw = BONE_NAME_REMAP[sm.skeleton.bones[i].name] ?? sm.skeleton.bones[i].name;
+        const proxy = rig.byKey.get(canonicalBoneKey(raw)) ?? rig.byKey.get(raw);
+        if (proxy) {
+          const idx = rig.bones.indexOf(proxy);
+          mappedBones.push(proxy);
+          mappedInvs.push(rig.inverses[idx].clone());
+        } else {
+          mappedBones.push(sm.skeleton.bones[i] as THREE.Bone);
+          mappedInvs.push(sm.skeleton.boneInverses[i].clone());
+        }
+      }
+      sm.bind(new THREE.Skeleton(mappedBones, mappedInvs), _identityMatrix);
     }
-
-    const newSkeleton = new THREE.Skeleton(newBones, newInverses);
-    sm.bind(newSkeleton, _identityMatrix);
-
     fixZeroWeightVertices(sm);
-
   }
 
   if (isFineSlot && !alreadyCorrected) {
@@ -1281,6 +1416,10 @@ function EquipmentSlotWrapper({
   transform,
   gizmoMode,
   onTransformChange,
+  selectedBone,
+  onBoneOffsetChange,
+  playerRef,
+  draggingBoneRef,
 }: {
   slotId: string;
   slot: LoadedSlot;
@@ -1289,9 +1428,15 @@ function EquipmentSlotWrapper({
   transform: EquipTransform;
   gizmoMode: GizmoMode;
   onTransformChange: (t: EquipTransform) => void;
+  selectedBone: string | null;
+  onBoneOffsetChange: (boneName: string, offset: EquipBoneOffset | null) => void;
+  playerRef: React.MutableRefObject<AnimationPlayerState | null>;
+  draggingBoneRef: React.MutableRefObject<string | null>;
 }) {
   const isDraggingRef = useRef(false);
+  const isBoneDraggingRef = useRef(false);
   const tcRef = useRef<any>(null);
+  const boneTcRef = useRef<any>(null);
   const gizmoProxy = useMemo(() => new THREE.Object3D(), []);
   const [gizmoReady, setGizmoReady] = useState(false);
   const worldComOffsetRef = useRef(new THREE.Vector3());
@@ -1467,12 +1612,45 @@ function EquipmentSlotWrapper({
     [gizmoProxy, transform.position, readTransformFromGizmo],
   );
 
+  const selectedProxyBone = useMemo(() => {
+    if (!selectedBone || !slot.proxyRig) return null;
+    return (
+      slot.proxyRig.byKey.get(canonicalBoneKey(selectedBone)) ??
+      slot.proxyRig.byKey.get(selectedBone) ??
+      null
+    );
+  }, [selectedBone, slot.proxyRig]);
+
+  const commitBoneOffset = useCallback(() => {
+    const animBones = playerRef.current?.boneObjMap;
+    if (!selectedProxyBone || !selectedBone || !animBones) return;
+    const src = findAnimBone(animBones, selectedBone);
+    if (!src) return;
+    onBoneOffsetChange(canonicalBoneKey(selectedBone), readBoneOffsetFromLocal(selectedProxyBone, src));
+  }, [selectedProxyBone, selectedBone, playerRef, onBoneOffsetChange]);
+
+  const handleBoneDraggingChanged = useCallback(
+    (e: THREE.Event & { value: boolean }) => {
+      isBoneDraggingRef.current = e.value;
+      draggingBoneRef.current = e.value && selectedBone ? canonicalBoneKey(selectedBone) : null;
+      if (!e.value) commitBoneOffset();
+    },
+    [commitBoneOffset, draggingBoneRef, selectedBone],
+  );
+
   useEffect(() => {
     const tc = tcRef.current;
     if (!tc) return;
     tc.addEventListener("dragging-changed", handleDraggingChanged);
     return () => tc.removeEventListener("dragging-changed", handleDraggingChanged);
-  }, [gizmoReady, isSelected, handleDraggingChanged]);
+  }, [gizmoReady, isSelected, selectedBone, handleDraggingChanged]);
+
+  useEffect(() => {
+    const tc = boneTcRef.current;
+    if (!tc) return;
+    tc.addEventListener("dragging-changed", handleBoneDraggingChanged);
+    return () => tc.removeEventListener("dragging-changed", handleBoneDraggingChanged);
+  }, [isSelected, selectedBone, selectedProxyBone, handleBoneDraggingChanged]);
 
   useFrame(() => {
     if (isDraggingRef.current) {
@@ -1552,7 +1730,7 @@ function EquipmentSlotWrapper({
         <primitive object={slot.scene} />
       </group>
       <primitive object={gizmoProxy} />
-      {isSelected && gizmoReady && (
+      {isSelected && gizmoReady && !selectedBone && (
         <TransformControls
           ref={tcRef}
           object={gizmoProxy}
@@ -1562,6 +1740,18 @@ function EquipmentSlotWrapper({
             if (isDraggingRef.current) {
               readTransformFromGizmo();
             }
+          }}
+        />
+      )}
+      {isSelected && selectedProxyBone && (
+        <TransformControls
+          ref={boneTcRef}
+          object={selectedProxyBone}
+          mode={gizmoMode}
+          space="local"
+          size={0.45}
+          onChange={() => {
+            if (isBoneDraggingRef.current) commitBoneOffset();
           }}
         />
       )}
@@ -1579,6 +1769,10 @@ export default function EquipmentMeshRenderer({
   selectedSlot,
   onSelectSlot,
   equipTransforms,
+  equipBoneOffsets,
+  onEquipBoneOffsetsChange,
+  selectedEquipBone,
+  onSelectEquipBone,
   equipGizmoMode,
   onEquipTransformChange,
   slotTextures,
@@ -1591,6 +1785,7 @@ export default function EquipmentMeshRenderer({
   );
   const loadingRef = useRef<Set<string>>(new Set());
   const boundRef = useRef<Set<string>>(new Set());
+  const draggingBoneRef = useRef<string | null>(null);
 
   const equipmentSlotIds = useMemo(
     () => slotIds.filter((id) => !BODY_SLOT_IDS.has(id)),
@@ -1601,9 +1796,17 @@ export default function EquipmentMeshRenderer({
     for (const id of equipmentSlotIds) {
       if (!effectiveState[id]) {
         boundRef.current.delete(id);
+        disposeSlotMotion(slotCache.get(id));
       }
     }
   }, [equipmentSlotIds, effectiveState]);
+
+  useEffect(() => {
+    boundRef.current.clear();
+    for (const loaded of slotCache.values()) {
+      disposeSlotMotion(loaded);
+    }
+  }, [characterModel]);
 
   const slotMap = useMemo(
     () => new Map(slots.map((s) => [s.id, s])),
@@ -1690,7 +1893,7 @@ export default function EquipmentMeshRenderer({
   }, [characterModel, skinSlots, effectiveState]);
 
   useEffect(() => {
-    const enabledSlots = equipmentSlotIds.filter((id) => equipState[id] && !skinTextureSlotIds.has(id));
+    const enabledSlots = equipmentSlotIds.filter((id) => effectiveState[id] && !skinTextureSlotIds.has(id));
     const toLoad = enabledSlots.filter(
       (id) => !slotCache.has(id) && !loadingRef.current.has(id),
     );
@@ -1705,9 +1908,8 @@ export default function EquipmentMeshRenderer({
       const slot = slotMap.get(slotId);
       const isExternal = !!slot?.url;
       const baseUrl = slot?.url ?? `/equipment/${slotId}.glb`;
-      const loadUrl = `${baseUrl}${baseUrl.includes("?") ? "&" : "?"}v=${Date.now()}`;
       loader.load(
-        loadUrl,
+        baseUrl,
         (gltf) => {
           loadingRef.current.delete(slotId);
 
@@ -1745,13 +1947,18 @@ export default function EquipmentMeshRenderer({
                 ? (mesh.material as THREE.Material[]).filter((m): m is THREE.MeshStandardMaterial => (m as any).isMeshStandardMaterial)
                 : ((mesh.material as any)?.isMeshStandardMaterial ? [mesh.material as THREE.MeshStandardMaterial] : []);
               const hasBakedTexture = materials.length > 0 && materials.some(m => m.map != null);
+              const hasVertexColors = mesh.geometry.getAttribute("color") != null;
+              const keepAuthoredMaterial = hasBakedTexture || hasVertexColors || isReworkArmorSlotId(slotId);
 
-              const slotLayer = SLOT_RENDER_ORDER[slotId] ?? 2;
+              const slotLayer = getSlotRenderOrder(slotId);
               const polyOffset = LAYER_POLYGON_OFFSET[slotLayer] ?? -1;
 
               for (const m of materials) {
-                if (hasBakedTexture) {
-                  m.side = THREE.DoubleSide;
+                if (hasVertexColors) {
+                  m.vertexColors = true;
+                }
+                if (keepAuthoredMaterial) {
+                  m.side = isReworkArmorSlotId(slotId) ? THREE.FrontSide : THREE.DoubleSide;
                   m.transparent = false;
                   m.opacity = 1.0;
                   m.alphaTest = 0;
@@ -1771,7 +1978,7 @@ export default function EquipmentMeshRenderer({
                   m.needsUpdate = true;
                 }
               }
-              if (hasBakedTexture) {
+              if (keepAuthoredMaterial) {
                 origMats.set(mesh, (isMultiMaterial ? (mesh.material as THREE.Material[])[0] : mesh.material) as THREE.Material);
               } else if (!isImported) {
                 mesh.material = new THREE.MeshStandardMaterial({
@@ -1790,7 +1997,8 @@ export default function EquipmentMeshRenderer({
                 ? (mesh.material as THREE.Material[])
                 : [mesh.material as THREE.Material];
               for (const sm of matForStencil) {
-                if (STENCIL_WRITE_SLOTS.has(slotId)) {
+                if (slotWritesStencil(slotId)) {
+                  sm.side = isReworkArmorSlotId(slotId) ? THREE.FrontSide : THREE.DoubleSide;
                   (sm as any).stencilWrite = true;
                   (sm as any).stencilRef = 1;
                   (sm as any).stencilFunc = THREE.AlwaysStencilFunc;
@@ -1799,16 +2007,19 @@ export default function EquipmentMeshRenderer({
                   (sm as any).stencilFail = THREE.KeepStencilOp;
                 }
               }
-              if (!hasBakedTexture && !isImported) {
+              if (!keepAuthoredMaterial && !isImported) {
                 origMats.set(mesh, mesh.material as THREE.Material);
               } else if (isImported) {
                 origMats.set(mesh, mesh.material as THREE.Material);
               }
               mesh.frustumCulled = false;
-              const slotRenderOrder = SLOT_RENDER_ORDER[slotId] ?? 0;
-              mesh.renderOrder = slotRenderOrder;
+              mesh.renderOrder = getSlotRenderOrder(slotId);
             }
           });
+
+          if (shouldDetachExportArmature(slotId)) {
+            detachEquipFromExportArmature(scene, skinnedMeshes);
+          }
 
           if (skinnedMeshes.length === 0) {
             const regularMeshes = findRegularMeshes(scene);
@@ -1855,7 +2066,13 @@ export default function EquipmentMeshRenderer({
             });
           }
 
-          const loaded: LoadedSlot = { scene, skinnedMeshes, needsAutoSkin, originalMaterials: origMats };
+          const loaded: LoadedSlot = {
+            scene,
+            skinnedMeshes,
+            needsAutoSkin,
+            originalMaterials: origMats,
+            animations: gltf.animations ?? [],
+          };
           slotCache.set(slotId, loaded);
           if (!cancelled) {
             setLoadedSlots((prev) => {
@@ -1868,7 +2085,7 @@ export default function EquipmentMeshRenderer({
         undefined,
         (err) => {
           loadingRef.current.delete(slotId);
-          console.warn(`Failed to load equipment mesh: ${loadUrl}`, err);
+          console.warn(`Failed to load equipment mesh: ${baseUrl}`, err);
         },
       );
     }
@@ -1876,7 +2093,7 @@ export default function EquipmentMeshRenderer({
     return () => {
       cancelled = true;
     };
-  }, [equipmentSlotIds, equipState, slotMap]);
+  }, [equipmentSlotIds, effectiveState, slotMap]);
 
   useEffect(() => {
     if (!skinTransferRequest) return;
@@ -2230,7 +2447,7 @@ export default function EquipmentMeshRenderer({
             mesh.material = origMat;
           } else {
             const color = SLOT_COLORS[slotId] ?? "#94a3b8";
-            const layer = SLOT_RENDER_ORDER[slotId] ?? 2;
+            const layer = getSlotRenderOrder(slotId);
             const po = LAYER_POLYGON_OFFSET[layer] ?? -1;
             mesh.material = new THREE.MeshStandardMaterial({
               color,
@@ -2248,11 +2465,12 @@ export default function EquipmentMeshRenderer({
     }
   }, [slotTextures]);
 
-  useFrame(() => {
+  useFrame((_, delta) => {
     const player = playerRef.current;
     if (!player) return;
     const animBones = player.boneObjMap;
     if (!animBones || animBones.size === 0) return;
+    const capeSpeed = capeSpeedFromAnimId(player.activeAnimId);
 
     for (const [slotId, slot] of slotCache) {
       if (BODY_SLOT_IDS.has(slotId)) continue;
@@ -2288,6 +2506,9 @@ export default function EquipmentMeshRenderer({
         }
 
         if (slot.skinnedMeshes.length > 0) {
+          if (shouldDetachExportArmature(slotId)) {
+            detachEquipFromExportArmature(slot.scene, slot.skinnedMeshes);
+          }
           bindSlotSkeleton(slot, animBones, charBoneInverseMap, slotId);
           if (slotId.startsWith("green_ranged") || slotId.endsWith("_armor_gloves")) {
             for (const sm of slot.skinnedMeshes) {
@@ -2330,6 +2551,18 @@ export default function EquipmentMeshRenderer({
         boundRef.current.add(slotId);
       }
 
+      if (slot.proxyRig) {
+        const skip =
+          selectedSlot === slotId && draggingBoneRef.current
+            ? draggingBoneRef.current
+            : null;
+        syncProxyRig(slot.proxyRig, animBones, equipBoneOffsets[slotId], skip);
+        if (slot.capeMotion) {
+          slot.capeMotion.update(delta, capeSpeed);
+          slot.proxyRig.root.updateMatrixWorld(true);
+          slot.capeSparkles?.update(delta);
+        }
+      }
     }
   });
 
@@ -2357,6 +2590,11 @@ export default function EquipmentMeshRenderer({
         const fallback = normalizeEquipTransform(
           slotDef?.default_transform ?? identityTransform,
         );
+        const persisted = equipTransforms[id];
+        const rangerAuthored = isRangerSlotId(id);
+        const transform = rangerAuthored
+          ? identityTransform
+          : normalizeEquipTransform(persisted ?? fallback);
         return (
           <EquipmentSlotWrapper
             key={id}
@@ -2364,9 +2602,18 @@ export default function EquipmentMeshRenderer({
             slot={slot}
             isSelected={selectedSlot === id}
             onSelect={() => onSelectSlot(id)}
-            transform={normalizeEquipTransform(equipTransforms[id] ?? fallback)}
+            transform={transform}
             gizmoMode={equipGizmoMode}
             onTransformChange={(t) => onEquipTransformChange(id, t)}
+            selectedBone={selectedSlot === id ? selectedEquipBone : null}
+            onBoneOffsetChange={(boneName, offset) => {
+              const next = { ...(equipBoneOffsets[id] ?? {}) };
+              if (!offset) delete next[boneName];
+              else next[boneName] = offset;
+              onEquipBoneOffsetsChange(id, next);
+            }}
+            playerRef={playerRef}
+            draggingBoneRef={draggingBoneRef}
           />
         );
       })}

@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Harvest Warden purple witch hat and small pumpkin charm, individually fitted to Rework bases. Rigid Head skinning; keeps face visible.",
+    "rig": "mixamo",
+    "coordinate_system": {
+      "up": "+Z",
+      "forward": "-Y",
+      "right": "+X",
+      "scale": "meters"
+    }
+  },
+  "slots": [
+    {
+      "id": "halloween_witch_rework_male_helmet",
+      "name": "Halloween Witch Hat (Male)",
+      "collection": "halloween_witch_rework",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#6e368f",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.6621921062469482,
+        "z_max": 2.0207619667053223,
+        "radius": 0.34122344851493835
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 2258,
+        "revision": 3
+      },
+      "url": "/equipment/Rework/HalloweenWitchHat/Male/WitchHat.glb?v=3"
+    },
+    {
+      "id": "halloween_witch_rework_female_helmet",
+      "name": "Halloween Witch Hat (Female)",
+      "collection": "halloween_witch_rework",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#6e368f",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.65122652053833,
+        "z_max": 1.9945379495620728,
+        "radius": 0.326703280210495
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 2254,
+        "revision": 3
+      },
+      "url": "/equipment/Rework/HalloweenWitchHat/Female/WitchHat.glb?v=3"
+    }
+  ]
+}

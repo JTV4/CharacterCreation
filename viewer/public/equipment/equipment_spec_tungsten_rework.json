@@ -1,0 +1,929 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Fitted tungsten armor with three-point helmets, angular shoulder guards and inset facets; repaired boot and skirt geometry.",
+    "coordinate_system": {
+      "up": "+Z",
+      "forward": "-Y",
+      "right": "+X",
+      "scale": "meters"
+    },
+    "rig": "mixamo",
+    "level": 1,
+    "source_bases": "appearance/v6/Models/Base{Male,Female}_Appearance.glb",
+    "default_lod": "LOD1",
+    "revision": 1,
+    "rest_pose_reference": "BaseFemaleV3",
+    "rest_pose_revision": "2026-09-26",
+    "material": "tungsten",
+    "source_geometry": "titanium_rework"
+  },
+  "slots": [
+    {
+      "id": "tungsten_rework_male_helmet",
+      "name": "Tungsten Helmet (Male)",
+      "category": "equipment",
+      "collection": "tungsten_rework",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#7935b4",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.530457029790866,
+        "z_max": 1.8699996794077982,
+        "radius": 0.15500024836159665
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 376,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Tungsten/Male/LOD2/Helmet.glb?v=tungsten-20260927-r1",
+          "LOD3": "/equipment/Rework/Tungsten/Male/LOD3/Helmet.glb?v=tungsten-20260927-r1"
+        }
+      },
+      "url": "/equipment/Rework/Tungsten/Male/Helmet.glb?v=tungsten-20260927-r1",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "tungsten_rework_male_upperbody",
+      "name": "Tungsten Upperbody (Male)",
+      "category": "equipment",
+      "collection": "tungsten_rework",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#7935b4",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.0567650897275647,
+        "z_max": 1.5617241244690538,
+        "radius": 0.6162345246424799
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 3224,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Tungsten/Male/LOD2/Upperbody.glb?v=tungsten-20260927-r1",
+          "LOD3": "/equipment/Rework/Tungsten/Male/LOD3/Upperbody.glb?v=tungsten-20260927-r1"
+        }
+      },
+      "url": "/equipment/Rework/Tungsten/Male/Upperbody.glb?v=tungsten-20260927-r1",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "tungsten_rework_male_gloves",
+      "name": "Tungsten Gloves (Male)",
+      "category": "equipment",
+      "collection": "tungsten_rework",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#7935b4",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.3455474106175802,
+        "z_max": 1.4360838727595455,
+        "radius": 0.7572408772122392
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 1515,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Tungsten/Male/LOD2/Gloves.glb?v=tungsten-20260927-r1",
+          "LOD3": "/equipment/Rework/Tungsten/Male/LOD3/Gloves.glb?v=tungsten-20260927-r1"
+        }
+      },
+      "url": "/equipment/Rework/Tungsten/Male/Gloves.glb?v=tungsten-20260927-r1",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "tungsten_rework_male_lowerbody",
+      "name": "Tungsten Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "tungsten_rework",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#7935b4",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.28944979028150514,
+        "z_max": 1.0914837241948474,
+        "radius": 0.18577639288541853
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 2191,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Tungsten/Male/LOD2/Lowerbody.glb?v=tungsten-20260927-r1",
+          "LOD3": "/equipment/Rework/Tungsten/Male/LOD3/Lowerbody.glb?v=tungsten-20260927-r1"
+        }
+      },
+      "url": "/equipment/Rework/Tungsten/Male/Lowerbody.glb?v=tungsten-20260927-r1",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "tungsten_rework_male_boots",
+      "name": "Tungsten Boots (Male)",
+      "category": "equipment",
+      "collection": "tungsten_rework",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#7935b4",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.012526966419749997,
+        "z_max": 0.3493802424675134,
+        "radius": 0.19453785549023306
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 1572,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Tungsten/Male/LOD2/Boots.glb?v=tungsten-20260927-r1",
+          "LOD3": "/equipment/Rework/Tungsten/Male/LOD3/Boots.glb?v=tungsten-20260927-r1"
+        }
+      },
+      "url": "/equipment/Rework/Tungsten/Male/Boots.glb?v=tungsten-20260927-r1",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "tungsten_rework_female_helmet",
+      "name": "Tungsten Helmet (Female)",
+      "category": "equipment",
+      "collection": "tungsten_rework",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#7935b4",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5249998801778883,
+        "z_max": 1.8599999754248666,
+        "radius": 0.15500032109886222
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 376,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Tungsten/Female/LOD2/Helmet.glb?v=tungsten-20260927-r1",
+          "LOD3": "/equipment/Rework/Tungsten/Female/LOD3/Helmet.glb?v=tungsten-20260927-r1"
+        }
+      },
+      "url": "/equipment/Rework/Tungsten/Female/Helmet.glb?v=tungsten-20260927-r1",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "tungsten_rework_female_upperbody",
+      "name": "Tungsten Upperbody (Female)",
+      "category": "equipment",
+      "collection": "tungsten_rework",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#7935b4",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.1335125238296186,
+        "z_max": 1.568013632689597,
+        "radius": 0.5414361005006162
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 2711,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Tungsten/Female/LOD2/Upperbody.glb?v=tungsten-20260927-r1",
+          "LOD3": "/equipment/Rework/Tungsten/Female/LOD3/Upperbody.glb?v=tungsten-20260927-r1"
+        }
+      },
+      "url": "/equipment/Rework/Tungsten/Female/Upperbody.glb?v=tungsten-20260927-r1",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "tungsten_rework_female_gloves",
+      "name": "Tungsten Gloves (Female)",
+      "category": "equipment",
+      "collection": "tungsten_rework",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#7935b4",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.3682947469008966,
+        "z_max": 1.4540544655306185,
+        "radius": 0.7028142713345898
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 1516,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Tungsten/Female/LOD2/Gloves.glb?v=tungsten-20260927-r1",
+          "LOD3": "/equipment/Rework/Tungsten/Female/LOD3/Gloves.glb?v=tungsten-20260927-r1"
+        }
+      },
+      "url": "/equipment/Rework/Tungsten/Female/Gloves.glb?v=tungsten-20260927-r1",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "tungsten_rework_female_lowerbody",
+      "name": "Tungsten Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "tungsten_rework",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#7935b4",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.7779998744646841,
+        "z_max": 1.1516267211057363,
+        "radius": 0.2500000269989484
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 1230,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Tungsten/Female/LOD2/Lowerbody.glb?v=tungsten-20260927-r1",
+          "LOD3": "/equipment/Rework/Tungsten/Female/LOD3/Lowerbody.glb?v=tungsten-20260927-r1"
+        }
+      },
+      "url": "/equipment/Rework/Tungsten/Female/Lowerbody.glb?v=tungsten-20260927-r1",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "tungsten_rework_female_boots",
+      "name": "Tungsten Boots (Female)",
+      "category": "equipment",
+      "collection": "tungsten_rework",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#7935b4",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.017521533914734235,
+        "z_max": 0.333496798490148,
+        "radius": 0.2057745474756954
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 1,
+        "default_lod": "LOD1",
+        "triangles": 1348,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Tungsten/Female/LOD2/Boots.glb?v=tungsten-20260927-r1",
+          "LOD3": "/equipment/Rework/Tungsten/Female/LOD3/Boots.glb?v=tungsten-20260927-r1"
+        }
+      },
+      "url": "/equipment/Rework/Tungsten/Female/Boots.glb?v=tungsten-20260927-r1",
+      "hides_base_clothing": []
+    }
+  ]
+}

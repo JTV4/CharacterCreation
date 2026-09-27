@@ -1,0 +1,4530 @@
+{
+  "samples": 751,
+  "regions": "Unmasked calf and ankle skin .12\u2013.43 m; pants shell .114\u2013.445 m; boot shaft/vamp .075\u2013.425 m. Open hems and rolled contact rims excluded.",
+  "rest": {
+    "clip": "REST",
+    "fraction": 0,
+    "unmasked_skin_pants_pairs": 0,
+    "pants_boot_shaft_pairs": 0
+  },
+  "worst_skin_pants": {
+    "clip": "REST",
+    "fraction": 0,
+    "unmasked_skin_pants_pairs": 0,
+    "pants_boot_shaft_pairs": 0
+  },
+  "worst_pants_boot": {
+    "clip": "REST",
+    "fraction": 0,
+    "unmasked_skin_pants_pairs": 0,
+    "pants_boot_shaft_pairs": 0
+  },
+  "records": [
+    {
+      "clip": "REST",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleIdle",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalk",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV2",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWalkV3",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRun",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV2",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRunV3",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWoodcutting",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFishing",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMining",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFarming",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWatering",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketPour",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleBucketRun",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleForging",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSmelting",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleCarving",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleApothecary",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleWellFill",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleFireStarting",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleAddLogs",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleSwordSwing",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleMagicCast",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleRangedAttack",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemalePunch",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleKick",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleDeath",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerKneel",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammering",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.041666666666666664,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.08333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.125,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.16666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.20833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.25,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.2916666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.3333333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.375,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.4166666666666667,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.4583333333333333,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.5,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.5416666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.5833333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.625,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.6666666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.7083333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.75,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.7916666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.8333333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.875,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.9166666666666666,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 0.9583333333333334,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    },
+    {
+      "clip": "FemaleHammerStand",
+      "fraction": 1,
+      "unmasked_skin_pants_pairs": 0,
+      "pants_boot_shaft_pairs": 0
+    }
+  ]
+}

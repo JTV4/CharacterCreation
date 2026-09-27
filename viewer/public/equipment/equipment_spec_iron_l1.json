@@ -1,0 +1,930 @@
+{
+  "meta": {
+    "version": "7.0",
+    "description": "Level 1 fitted iron armor for male and female rework bodies. Five opaque single-material skinned pieces; baked color and metallic-roughness textures. Distance LOD files included; runtime LOD switching is an integration step.",
+    "coordinate_system": {
+      "up": "+Z",
+      "forward": "-Y",
+      "right": "+X",
+      "scale": "meters"
+    },
+    "rig": "mixamo",
+    "level": 1,
+    "source_bases": "appearance/v6/Models/Base{Male,Female}_Appearance.glb",
+    "default_lod": "LOD1",
+    "revision": 7,
+    "rest_pose_reference": "BaseFemaleV3",
+    "rest_pose_revision": "2026-09-26",
+    "repair_revision": "20260927-r3"
+  },
+  "slots": [
+    {
+      "id": "iron_l1_male_helmet",
+      "name": "Iron Helmet (Male)",
+      "category": "equipment",
+      "collection": "iron_l1",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#69717a",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5887683969212472,
+        "z_max": 1.8047683813382824,
+        "radius": 0.10235072800188535
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 7,
+        "default_lod": "LOD1",
+        "triangles": 485,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/IronLevel1/Male/LOD2/Helmet.glb?v=v3-rest-20260926",
+          "LOD3": "/equipment/Rework/IronLevel1/Male/LOD3/Helmet.glb?v=v3-rest-20260926"
+        }
+      },
+      "url": "/equipment/Rework/IronLevel1/Male/Helmet.glb?v=v3-rest-20260926",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "iron_l1_male_upperbody",
+      "name": "Iron Upperbody (Male)",
+      "category": "equipment",
+      "collection": "iron_l1",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#69717a",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.056764673654784,
+        "z_max": 1.5500620796680236,
+        "radius": 0.6162329968488791
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 7,
+        "default_lod": "LOD1",
+        "triangles": 3409,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/IronLevel1/Male/LOD2/Upperbody.glb?v=v3-rest-20260926",
+          "LOD3": "/equipment/Rework/IronLevel1/Male/LOD3/Upperbody.glb?v=v3-rest-20260926"
+        }
+      },
+      "url": "/equipment/Rework/IronLevel1/Male/Upperbody.glb?v=v3-rest-20260926",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "iron_l1_male_gloves",
+      "name": "Iron Gloves (Male)",
+      "category": "equipment",
+      "collection": "iron_l1",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#69717a",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.3455489965263745,
+        "z_max": 1.4360831401977034,
+        "radius": 0.7574498115612759
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 7,
+        "default_lod": "LOD1",
+        "triangles": 1515,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/IronLevel1/Male/LOD2/Gloves.glb?v=v3-rest-20260926",
+          "LOD3": "/equipment/Rework/IronLevel1/Male/LOD3/Gloves.glb?v=v3-rest-20260926"
+        }
+      },
+      "url": "/equipment/Rework/IronLevel1/Male/Gloves.glb?v=v3-rest-20260926",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "iron_l1_male_lowerbody",
+      "name": "Iron Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "iron_l1",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#69717a",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.28944949721745405,
+        "z_max": 1.0914833431218802,
+        "radius": 0.18810585382207745
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 7,
+        "default_lod": "LOD1",
+        "triangles": 2083,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/IronLevel1/Male/LOD2/Lowerbody.glb?v=v3-rest-20260926",
+          "LOD3": "/equipment/Rework/IronLevel1/Male/LOD3/Lowerbody.glb?v=v3-rest-20260926"
+        }
+      },
+      "url": "/equipment/Rework/IronLevel1/Male/Lowerbody.glb?v=v3-rest-20260926",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "iron_l1_male_boots",
+      "name": "Iron Boots (Male)",
+      "category": "equipment",
+      "collection": "iron_l1",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#69717a",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.012527188503237046,
+        "z_max": 0.34937999283369875,
+        "radius": 0.18680557669343079
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 7,
+        "default_lod": "LOD1",
+        "triangles": 1564,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/IronLevel1/Male/LOD2/Boots.glb?v=armor-seams-20260927-r3",
+          "LOD3": "/equipment/Rework/IronLevel1/Male/LOD3/Boots.glb?v=armor-seams-20260927-r3"
+        },
+        "repair_revision": "20260927-r3"
+      },
+      "url": "/equipment/Rework/IronLevel1/Male/Boots.glb?v=armor-seams-20260927-r3",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "iron_l1_female_helmet",
+      "name": "Iron Helmet (Female)",
+      "category": "equipment",
+      "collection": "iron_l1",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#69717a",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.5727298854205445,
+        "z_max": 1.7887298470013002,
+        "radius": 0.10256445306479012
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 7,
+        "default_lod": "LOD1",
+        "triangles": 485,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/IronLevel1/Female/LOD2/Helmet.glb?v=v3-rest-20260926",
+          "LOD3": "/equipment/Rework/IronLevel1/Female/LOD3/Helmet.glb?v=v3-rest-20260926"
+        }
+      },
+      "url": "/equipment/Rework/IronLevel1/Female/Helmet.glb?v=v3-rest-20260926",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "iron_l1_female_upperbody",
+      "name": "Iron Upperbody (Female)",
+      "category": "equipment",
+      "collection": "iron_l1",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#69717a",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.1335132974394981,
+        "z_max": 1.5395928105656453,
+        "radius": 0.5418033856995034
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 7,
+        "default_lod": "LOD1",
+        "triangles": 2985,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/IronLevel1/Female/LOD2/Upperbody.glb?v=v3-rest-20260926",
+          "LOD3": "/equipment/Rework/IronLevel1/Female/LOD3/Upperbody.glb?v=v3-rest-20260926"
+        }
+      },
+      "url": "/equipment/Rework/IronLevel1/Female/Upperbody.glb?v=v3-rest-20260926",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "iron_l1_female_gloves",
+      "name": "Iron Gloves (Female)",
+      "category": "equipment",
+      "collection": "iron_l1",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#69717a",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.3682961988101383,
+        "z_max": 1.4540555819706766,
+        "radius": 0.7028568392366309
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 7,
+        "default_lod": "LOD1",
+        "triangles": 1516,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/IronLevel1/Female/LOD2/Gloves.glb?v=v3-rest-20260926",
+          "LOD3": "/equipment/Rework/IronLevel1/Female/LOD3/Gloves.glb?v=v3-rest-20260926"
+        }
+      },
+      "url": "/equipment/Rework/IronLevel1/Female/Gloves.glb?v=v3-rest-20260926",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "iron_l1_female_lowerbody",
+      "name": "Iron Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "iron_l1",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#69717a",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.7777727555246805,
+        "z_max": 1.1586271675995778,
+        "radius": 0.23364433950281444
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 7,
+        "default_lod": "LOD1",
+        "triangles": 2528,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/IronLevel1/Female/LOD2/Lowerbody.glb?v=v3-rest-20260926",
+          "LOD3": "/equipment/Rework/IronLevel1/Female/LOD3/Lowerbody.glb?v=v3-rest-20260926"
+        }
+      },
+      "url": "/equipment/Rework/IronLevel1/Female/Lowerbody.glb?v=v3-rest-20260926",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "iron_l1_female_boots",
+      "name": "Iron Boots (Female)",
+      "category": "equipment",
+      "collection": "iron_l1",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#69717a",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.017522316181534187,
+        "z_max": 0.3334967266668123,
+        "radius": 0.16691556691415577
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "level": 1,
+        "revision": 7,
+        "default_lod": "LOD1",
+        "triangles": 1338,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/IronLevel1/Female/LOD2/Boots.glb?v=armor-seams-20260927-r3",
+          "LOD3": "/equipment/Rework/IronLevel1/Female/LOD3/Boots.glb?v=armor-seams-20260927-r3"
+        },
+        "repair_revision": "20260927-r3"
+      },
+      "url": "/equipment/Rework/IronLevel1/Female/Boots.glb?v=armor-seams-20260927-r3",
+      "hides_base_clothing": []
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import SectionCollapse from "./SectionCollapse";
 import * as THREE from "three";
 import type { GlbBoneInfo, BoneCategory, BoneTransformOverride } from "../types";
 import { CATEGORY_COLORS } from "../types";
@@ -295,6 +296,11 @@ export default function BoneInfoPanel({
     onSetBoneOverride(bone.name, null);
   }, [bone, onSetBoneOverride]);
 
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (bone) setOpen(true);
+  }, [bone?.name]);
+
   const handleCopyTransform = useCallback(() => {
     if (!bone) return;
     const fmt = (v: [number, number, number]) => `[${v.map((n) => n.toFixed(3)).join(", ")}]`;
@@ -310,8 +316,8 @@ export default function BoneInfoPanel({
   if (!bone) {
     return (
       <div className="info-panel">
-        <h2>Bone Inspector</h2>
-        <p className="info-empty">Select a bone to view its properties</p>
+        <SectionCollapse title="Bone Inspector" open={open} onToggle={() => setOpen((v) => !v)} />
+        {open && <p className="info-empty">Select a bone to view its properties</p>}
       </div>
     );
   }
@@ -320,8 +326,8 @@ export default function BoneInfoPanel({
 
   return (
     <div className="info-panel">
-      <h2>Bone Inspector</h2>
-
+      <SectionCollapse title="Bone Inspector" open={open} onToggle={() => setOpen((v) => !v)} />
+      {open && <>
       <div className="info-section">
         <div className="info-section-title">Identity</div>
         <div className="info-row">
@@ -425,6 +431,7 @@ export default function BoneInfoPanel({
           </div>
         </div>
       )}
+      </>}
     </div>
   );
 }

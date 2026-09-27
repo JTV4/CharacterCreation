@@ -1,0 +1,163 @@
+{
+  "method": "Current appearance/v6 rigs; 30 current Female-named animation clips applied to each sex, 25 evenly spaced samples per clip plus rest; linear skinning with normalized four-influence weights. BVH overlap candidates include intentional neckline-facing and trim/body contact and are not a zero-clipping certificate. 12 representative posed front/back views per body visually reviewed, plus fishing and bucket-pour extreme contact views. Live CharacterCreation viewer checked for both sexes at idle and run.",
+  "body_coverage": "Per-piece authored bind-space masks installed in CharacterCreation; preserve visible neckline, knees and thighs below skirt. No hairstyle tested; use No hair with fitted hats.",
+  "remaining_contacts": [
+    "Fishing at about 8%: overhead hand crosses the hat crown/brim; requires an outfit-aware animation adjustment for full clearance.",
+    "Bucket-pour at about 58%: glove/hand contacts the side of the head.",
+    "Raw skirt/body overlap candidates occur at the inner hem during high knee poses; reviewed running/kicking/kneeling images are supplied. Cloth uses skeletal deformation, not simulation."
+  ],
+  "results": {
+    "Male": {
+      "animation_clips": 30,
+      "samples_including_rest": 751,
+      "finite_deformation_all_samples": true,
+      "raw_overlap_maxima": {
+        "Hat": {
+          "body_triangles": 5,
+          "clip": "FemaleFishing",
+          "fraction": 0.08333333333333333
+        },
+        "Upperbody": {
+          "body_triangles": 96,
+          "clip": "FemaleFishing",
+          "fraction": 0.08333333333333333
+        },
+        "Lowerbody": {
+          "body_triangles": 0,
+          "clip": "REST",
+          "fraction": 0
+        },
+        "Gloves": {
+          "body_triangles": 8,
+          "clip": "FemaleRangedAttack",
+          "fraction": 0.2916666666666667
+        },
+        "Boots": {
+          "body_triangles": 0,
+          "clip": "REST",
+          "fraction": 0
+        }
+      }
+    },
+    "Female": {
+      "animation_clips": 30,
+      "samples_including_rest": 751,
+      "finite_deformation_all_samples": true,
+      "raw_overlap_maxima": {
+        "Hat": {
+          "body_triangles": 3,
+          "clip": "FemaleFishing",
+          "fraction": 0.08333333333333333
+        },
+        "Upperbody": {
+          "body_triangles": 146,
+          "clip": "FemaleFishing",
+          "fraction": 0.08333333333333333
+        },
+        "Lowerbody": {
+          "body_triangles": 17,
+          "clip": "FemaleRun",
+          "fraction": 0.5
+        },
+        "Gloves": {
+          "body_triangles": 51,
+          "clip": "FemaleBucketPour",
+          "fraction": 0.5833333333333334
+        },
+        "Boots": {
+          "body_triangles": 0,
+          "clip": "REST",
+          "fraction": 0
+        }
+      }
+    }
+  },
+  "baseline_revision": 1,
+  "revision2": {
+    "changes": [
+      "Removed the female upperbody lower ivory roll so it cannot poke through the skirt.",
+      "Lowered both hats 0.04 metres and tailored their crown/brim to the skull silhouette."
+    ],
+    "checks": [
+      "Zero skull/hat triangle overlaps in the rest pose for each sex.",
+      "Zero ivory waist faces on the female upperbody.",
+      "Regenerated and reviewed twelve front/back motion poses for each sex; female waist side close-up also reviewed.",
+      "All ten GLB files revalidated after export."
+    ],
+    "scope": "The original 30-clip numeric audit is retained under QA/Revision1. Revision 2 uses the focused geometry checks and refreshed motion renders; original extreme-pose limitations still apply."
+  },
+  "revision3": {
+    "changes": [
+      "Male pants refitted outside unmasked calves and ankles.",
+      "Boot shafts and ankle seam refitted over complete trousers."
+    ],
+    "checks": {
+      "samples": 751,
+      "regions": "Unmasked calf and ankle skin .12\u2013.43 m; pants shell .114\u2013.445 m; boot shaft/vamp .075\u2013.425 m. Open hems and rolled contact rims excluded.",
+      "rest": {
+        "clip": "REST",
+        "fraction": 0,
+        "unmasked_skin_pants_pairs": 0,
+        "pants_boot_shaft_pairs": 0
+      },
+      "worst_skin_pants": {
+        "clip": "REST",
+        "fraction": 0,
+        "unmasked_skin_pants_pairs": 0,
+        "pants_boot_shaft_pairs": 0
+      },
+      "worst_pants_boot": {
+        "clip": "REST",
+        "fraction": 0,
+        "unmasked_skin_pants_pairs": 0,
+        "pants_boot_shaft_pairs": 0
+      }
+    },
+    "visual_review": "Barefoot and booted rest, walk, run and kneel front and back; refreshed full-outfit 12-pose sheets.",
+    "scope": "Focused lower-leg test; existing upperbody extreme-contact limitations remain."
+  },
+  "sole_revision": {
+    "changes": [
+      "Raised the hidden toe/vamp underside above the outsole.",
+      "Lowered the tread to -0.019m and added sole support vertices for animated toe flex.",
+      "Used a common plantar skin-weight field through the lower foot layers."
+    ],
+    "checks": {
+      "Male": {
+        "samples": 751,
+        "sole_bottom_triangles": 896,
+        "test": "Bottom tread faces below -0.018m versus internal boot foot/toe surfaces and unmasked anatomical feet below 0.14m; all 30 clips at 25 samples plus rest. Sidewalls and the intentional upper/sole joining seam are outside this bottom-tread test.",
+        "worst_boot": {
+          "clip": "REST",
+          "fraction": 0,
+          "boot_upper_through_bottom_pairs": 0,
+          "unmasked_foot_through_bottom_pairs": 0
+        },
+        "worst_skin": {
+          "clip": "REST",
+          "fraction": 0,
+          "boot_upper_through_bottom_pairs": 0,
+          "unmasked_foot_through_bottom_pairs": 0
+        }
+      },
+      "Female": {
+        "samples": 751,
+        "sole_bottom_triangles": 608,
+        "test": "Bottom tread faces below -0.018m versus internal boot foot/toe surfaces and unmasked anatomical feet below 0.14m; all 30 clips at 25 samples plus rest. Sidewalls and the intentional upper/sole joining seam are outside this bottom-tread test.",
+        "worst_boot": {
+          "clip": "REST",
+          "fraction": 0,
+          "boot_upper_through_bottom_pairs": 0,
+          "unmasked_foot_through_bottom_pairs": 0
+        },
+        "worst_skin": {
+          "clip": "REST",
+          "fraction": 0,
+          "boot_upper_through_bottom_pairs": 0,
+          "unmasked_foot_through_bottom_pairs": 0
+        }
+      }
+    },
+    "scope": "Bottom-tread regression test with unmasked feet, plus underside WalkV3 review. Original full-outfit limitations remain; all non-boot GLBs are unchanged."
+  }
+}

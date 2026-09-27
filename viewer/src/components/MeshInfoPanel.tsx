@@ -1,6 +1,19 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import type { EquipmentSlot, EquipTransform } from "../types/equipment";
-import { SLOT_COLORS } from "../types/equipment";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import SectionCollapse from "./SectionCollapse";
+import type {
+  EquipmentSlot,
+  EquipTransform,
+  EquipBoneOffset,
+  EquipBoneOffsetMap,
+} from "../types/equipment";
+import {
+  SLOT_COLORS,
+  IDENTITY_BONE_OFFSET,
+  isIdentityBoneOffset,
+  normalizeBoneOffset,
+  shortBoneLabel,
+} from "../types/equipment";
+import { canonicalBoneKey } from "../utils/equipBoneFit";
 import type { GizmoMode } from "../types/tools";
 
 interface MeshInfoPanelProps {
@@ -10,6 +23,12 @@ interface MeshInfoPanelProps {
   onGizmoModeChange: (mode: GizmoMode) => void;
   onTransformChange: (t: EquipTransform) => void;
   onReset: () => void;
+  selectedBone: string | null;
+  onSelectBone: (name: string | null) => void;
+  boneOffsets: EquipBoneOffsetMap;
+  onBoneOffsetChange: (boneName: string, offset: EquipBoneOffset | null) => void;
+  onResetAllBones: () => void;
+  allBoneNames?: string[];
 }
 
 const DRAG_THRESHOLD = 3;
@@ -201,6 +220,12 @@ export default function MeshInfoPanel({
   onGizmoModeChange,
   onTransformChange,
   onReset,
+  selectedBone,
+  onSelectBone,
+  boneOffsets,
+  onBoneOffsetChange,
+  onResetAllBones,
+  allBoneNames,
 }: MeshInfoPanelProps) {
   const isEyes = slot?.category === "eyes";
   const isFacePair = !!slot?.category && FACE_PAIR_CATEGORIES.has(slot.category);
@@ -216,6 +241,25 @@ export default function MeshInfoPanel({
     transform.scale.some((v) => v !== 1) ||
     (isFacePair && pairSeparation !== 0) ||
     (isEyes && eyeRotDirty);
+
+  const [showAllBones, setShowAllBones] = useState(false);
+
+  const fitBoneNames = useMemo(() => {
+    if (!slot) return [];
+    const declared = slot.bones.map((b) => canonicalBoneKey(b.name));
+    const extra = Object.keys(boneOffsets).map(canonicalBoneKey);
+    if (!showAllBones) {
+      return Array.from(new Set([...declared, ...extra]));
+    }
+    const all = (allBoneNames ?? []).map(canonicalBoneKey);
+    return Array.from(new Set([...declared, ...extra, ...all]));
+  }, [slot, boneOffsets, showAllBones, allBoneNames]);
+
+  const selectedOffset = selectedBone
+    ? normalizeBoneOffset(boneOffsets[canonicalBoneKey(selectedBone)])
+    : IDENTITY_BONE_OFFSET;
+  const boneDirty = selectedBone ? !isIdentityBoneOffset(selectedOffset) : false;
+  const anyBoneDirty = Object.values(boneOffsets).some((o) => !isIdentityBoneOffset(normalizeBoneOffset(o)));
 
   const handleCopyTransform = useCallback(() => {
     if (!slot) return;
@@ -235,14 +279,29 @@ export default function MeshInfoPanel({
       lines.push(`Eye Rotation L: ${fmt(transform.eyeRotationL ?? [0, 0, 0])}`);
       lines.push(`Eye Rotation R: ${fmt(transform.eyeRotationR ?? [0, 0, 0])}`);
     }
+    const dirtyBones = Object.entries(boneOffsets).filter(
+      ([, o]) => !isIdentityBoneOffset(normalizeBoneOffset(o)),
+    );
+    if (dirtyBones.length) {
+      lines.push("Bone offsets:");
+      for (const [name, o] of dirtyBones) {
+        const n = normalizeBoneOffset(o);
+        lines.push(`  ${name} p=${fmt(n.position)} r=${fmt(n.rotation)} s=${fmt(n.scale)}`);
+      }
+    }
     navigator.clipboard.writeText(lines.join("\n"));
-  }, [slot, transform]);
+  }, [slot, transform, boneOffsets]);
+
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (slot) setOpen(true);
+  }, [slot?.id]);
 
   if (!slot) {
     return (
       <div className="info-panel">
-        <h2>Mesh Inspector</h2>
-        <p className="info-empty">Select a mesh to view its properties</p>
+        <SectionCollapse title="Mesh Inspector" open={open} onToggle={() => setOpen((v) => !v)} />
+        {open && <p className="info-empty">Select a mesh to view its properties</p>}
       </div>
     );
   }
@@ -251,8 +310,8 @@ export default function MeshInfoPanel({
 
   return (
     <div className="info-panel">
-      <h2>Mesh Inspector</h2>
-
+      <SectionCollapse title="Mesh Inspector" open={open} onToggle={() => setOpen((v) => !v)} />
+      {open && <>
       <div className="info-section">
         <div className="info-section-title">Identity</div>
         <div className="info-row">
@@ -385,6 +444,108 @@ export default function MeshInfoPanel({
           </>
         )}
       </div>
+
+      <div className="info-section">
+        <div className="info-section-title" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <span>Fit bones</span>
+          <div style={{ display: "flex", gap: 6 }}>
+            <button
+              className="override-copy-btn"
+              onClick={() => setShowAllBones((v) => !v)}
+              title="List every Mixamo bone, not just this slot's influences"
+            >
+              {showAllBones ? "Slot bones" : "All bones"}
+            </button>
+            {anyBoneDirty && (
+              <button className="override-reset-btn" onClick={onResetAllBones}>
+                Reset all
+              </button>
+            )}
+          </div>
+        </div>
+        <p className="equip-bone-hint">
+          Move a wearable bone without moving the body. Offsets save automatically.
+        </p>
+        <button
+          className={`equip-bone-row${selectedBone == null ? " selected" : ""}`}
+          onClick={() => onSelectBone(null)}
+        >
+          Whole mesh
+        </button>
+        <div className="equip-bone-list">
+          {fitBoneNames.map((name) => {
+            const dirty = !isIdentityBoneOffset(normalizeBoneOffset(boneOffsets[name]));
+            const isSel = selectedBone != null && canonicalBoneKey(selectedBone) === name;
+            return (
+              <button
+                key={name}
+                className={`equip-bone-row${isSel ? " selected" : ""}${dirty ? " dirty" : ""}`}
+                onClick={() => onSelectBone(isSel ? null : name)}
+              >
+                <span>{shortBoneLabel(name)}</span>
+                {dirty && <span className="equip-bone-dot" />}
+              </button>
+            );
+          })}
+        </div>
+        {selectedBone && (
+          <>
+            <div className="transform-toolbar" style={{ marginTop: 8 }}>
+              {(["translate", "rotate", "scale"] as const).map((m) => {
+                const label = m === "translate" ? "T" : m === "rotate" ? "R" : "S";
+                const isActive = gizmoMode === m;
+                return (
+                  <button
+                    key={m}
+                    className={`transform-toolbar-btn${isActive ? " active" : ""}`}
+                    onClick={() => onGizmoModeChange(m)}
+                    disabled={isActive}
+                  >
+                    {label}
+                    <span className="transform-toolbar-label">
+                      {m === "translate" ? "Translate" : m === "rotate" ? "Rotate" : "Scale"}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+            <Vec3Input
+              label="Bone position"
+              value={selectedOffset.position}
+              step={0.001}
+              onChange={(v) =>
+                onBoneOffsetChange(canonicalBoneKey(selectedBone), { ...selectedOffset, position: v })
+              }
+            />
+            <Vec3Input
+              label="Bone rotation"
+              value={selectedOffset.rotation}
+              step={1}
+              onChange={(v) =>
+                onBoneOffsetChange(canonicalBoneKey(selectedBone), { ...selectedOffset, rotation: v })
+              }
+            />
+            <Vec3Input
+              label="Bone scale"
+              value={selectedOffset.scale}
+              step={0.01}
+              onChange={(v) =>
+                onBoneOffsetChange(canonicalBoneKey(selectedBone), { ...selectedOffset, scale: v })
+              }
+            />
+            {boneDirty && (
+              <button
+                className="override-reset-btn"
+                style={{ marginTop: 8 }}
+                onClick={() => onBoneOffsetChange(canonicalBoneKey(selectedBone), null)}
+              >
+                Reset bone
+              </button>
+            )}
+          </>
+        )}
+      </div>
+      </>}
     </div>
   );
 }

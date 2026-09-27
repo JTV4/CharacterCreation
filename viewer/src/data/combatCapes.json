@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ranged_1",
+    "name": "Pathfinder",
+    "family": "Ranged"
+  },
+  {
+    "id": "ranged_2",
+    "name": "Greenwarden",
+    "family": "Ranged"
+  },
+  {
+    "id": "ranged_3",
+    "name": "Outrider",
+    "family": "Ranged"
+  },
+  {
+    "id": "ranged_4",
+    "name": "Wild Sovereign",
+    "family": "Ranged"
+  },
+  {
+    "id": "mage_1",
+    "name": "Adept",
+    "family": "Mage"
+  },
+  {
+    "id": "mage_2",
+    "name": "Spellweaver",
+    "family": "Mage"
+  },
+  {
+    "id": "mage_3",
+    "name": "Moonkeeper",
+    "family": "Mage"
+  },
+  {
+    "id": "mage_4",
+    "name": "Archon",
+    "family": "Mage"
+  },
+  {
+    "id": "melee_1",
+    "name": "Vanguard",
+    "family": "Melee"
+  },
+  {
+    "id": "melee_2",
+    "name": "Sentinel",
+    "family": "Melee"
+  },
+  {
+    "id": "melee_3",
+    "name": "Campaigner",
+    "family": "Melee"
+  },
+  {
+    "id": "melee_4",
+    "name": "High Marshal",
+    "family": "Melee"
+  }
+]

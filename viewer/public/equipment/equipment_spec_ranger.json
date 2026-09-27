@@ -1,0 +1,929 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "GrindScape ranger wearables (LOD1 gameplay). Seven independent slots per sex: Hat, Amulet, Cape, Upperbody, Gloves, Lowerbody, Boots. Female top does not hide the upper torso.",
+    "coordinate_system": {
+      "up": "+Z",
+      "forward": "+Y",
+      "right": "+X",
+      "scale": "meters"
+    },
+    "rig": "mixamo",
+    "lod": "LOD1",
+    "source": "GrindScape_Ranger_Wearables_Handoff"
+  },
+  "slots": [
+    {
+      "id": "ranger_male_hat",
+      "name": "Ranger Hat (Male)",
+      "category": "equipment",
+      "collection": "ranger",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#5c7a4a",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.25
+        }
+      ],
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "hat",
+      "mesh_params": {},
+      "url": "/equipment/Rework/Ranger/Male/Hat.glb"
+    },
+    {
+      "id": "ranger_male_amulet",
+      "name": "Ranger Amulet (Male)",
+      "category": "equipment",
+      "collection": "ranger",
+      "gender": "male_rework",
+      "wear_slot": "amulet",
+      "bilateral": false,
+      "color": "#c4a35a",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.41,
+        "z_max": 1.59,
+        "radius": 0.08
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "pendant",
+      "mesh_params": {},
+      "url": "/equipment/Rework/Ranger/Male/Amulet.glb"
+    },
+    {
+      "id": "ranger_male_cape",
+      "name": "Ranger Cape (Male)",
+      "category": "equipment",
+      "collection": "ranger",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#3d5c3a",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 0.2
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_0_0",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_0_1",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_0_2",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_1_0",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_1_1",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_1_2",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_2_0",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_2_1",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_2_2",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 0.85,
+        "z_max": 1.7,
+        "radius": 0.45
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "cape",
+      "mesh_params": {},
+      "url": "/equipment/Rework/Ranger/Male/Cape.glb"
+    },
+    {
+      "id": "ranger_male_upperbody",
+      "name": "Ranger Upperbody (Male)",
+      "category": "equipment",
+      "collection": "ranger",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#6b8f4e",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso"
+      ],
+      "mesh_type": "torso",
+      "mesh_params": {},
+      "url": "/equipment/Rework/Ranger/Male/Upperbody.glb"
+    },
+    {
+      "id": "ranger_male_gloves",
+      "name": "Ranger Gloves (Male)",
+      "category": "equipment",
+      "collection": "ranger",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#8b6b3d",
+      "bones": [
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "glove",
+      "mesh_params": {},
+      "url": "/equipment/Rework/Ranger/Male/Gloves.glb"
+    },
+    {
+      "id": "ranger_male_lowerbody",
+      "name": "Ranger Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "ranger",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#4a5c38",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        }
+      ],
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.22
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "pants",
+      "mesh_params": {},
+      "url": "/equipment/Rework/Ranger/Male/Lowerbody.glb"
+    },
+    {
+      "id": "ranger_male_boots",
+      "name": "Ranger Boots (Male)",
+      "category": "equipment",
+      "collection": "ranger",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#5c4030",
+      "bones": [
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "boot",
+      "mesh_params": {},
+      "url": "/equipment/Rework/Ranger/Male/Boots.glb"
+    },
+    {
+      "id": "ranger_female_hat",
+      "name": "Ranger Hat (Female)",
+      "category": "equipment",
+      "collection": "ranger",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#5c7a4a",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.25
+        }
+      ],
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "hat",
+      "mesh_params": {},
+      "url": "/equipment/Rework/Ranger/Female/Hat.glb"
+    },
+    {
+      "id": "ranger_female_amulet",
+      "name": "Ranger Amulet (Female)",
+      "category": "equipment",
+      "collection": "ranger",
+      "gender": "female_rework",
+      "wear_slot": "amulet",
+      "bilateral": false,
+      "color": "#c4a35a",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 0.7
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.41,
+        "z_max": 1.59,
+        "radius": 0.08
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "pendant",
+      "mesh_params": {},
+      "url": "/equipment/Rework/Ranger/Female/Amulet.glb"
+    },
+    {
+      "id": "ranger_female_cape",
+      "name": "Ranger Cape (Female)",
+      "category": "equipment",
+      "collection": "ranger",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#3d5c3a",
+      "bones": [
+        {
+          "name": "mixamorigSpine",
+          "weight": 0.2
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 0.5
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_0_0",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_0_1",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_0_2",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_1_0",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_1_1",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_1_2",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_2_0",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_2_1",
+          "weight": 1.0
+        },
+        {
+          "name": "Cape_2_2",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 0.85,
+        "z_max": 1.7,
+        "radius": 0.45
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "cape",
+      "mesh_params": {},
+      "url": "/equipment/Rework/Ranger/Female/Cape.glb"
+    },
+    {
+      "id": "ranger_female_upperbody",
+      "name": "Ranger Upperbody (Female)",
+      "category": "equipment",
+      "collection": "ranger",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#6b8f4e",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 0.1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 0.1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso"
+      ],
+      "mesh_type": "torso",
+      "mesh_params": {},
+      "url": "/equipment/Rework/Ranger/Female/Upperbody.glb"
+    },
+    {
+      "id": "ranger_female_gloves",
+      "name": "Ranger Gloves (Female)",
+      "category": "equipment",
+      "collection": "ranger",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#8b6b3d",
+      "bones": [
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "glove",
+      "mesh_params": {},
+      "url": "/equipment/Rework/Ranger/Female/Gloves.glb"
+    },
+    {
+      "id": "ranger_female_lowerbody",
+      "name": "Ranger Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "ranger",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#4a5c38",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.8
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.8
+        }
+      ],
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.22
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "pants",
+      "mesh_params": {},
+      "url": "/equipment/Rework/Ranger/Female/Lowerbody.glb"
+    },
+    {
+      "id": "ranger_female_boots",
+      "name": "Ranger Boots (Female)",
+      "category": "equipment",
+      "collection": "ranger",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#5c4030",
+      "bones": [
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 0.6
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1.0
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "boot",
+      "mesh_params": {},
+      "url": "/equipment/Rework/Ranger/Female/Boots.glb"
+    }
+  ]
+}

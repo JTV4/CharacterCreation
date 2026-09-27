@@ -5,7 +5,10 @@ export const ROUTES = {
   avatar: "/Avatar",
   buildings: "/Buildings",
   workstations: "/Workstations",
+  resources: "/Resources",
   creatures: "/Creatures",
+  npcs: "/NPCs",
+  grindwilds: "/GrindWildsWIP",
 } as const;
 
 export type AppRoute = (typeof ROUTES)[keyof typeof ROUTES];

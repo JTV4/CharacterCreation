@@ -1,0 +1,5408 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Six progressing ranged armor outfits for both aligned rework rigs. Five independent equipment slots per outfit.",
+    "coordinate_system": {
+      "up": "+Z",
+      "forward": "-Y",
+      "right": "+X",
+      "scale": "meters"
+    },
+    "rig": "mixamo",
+    "rest_pose_reference": "BaseFemaleV3",
+    "default_lod": "LOD1",
+    "visual_tier_order": [
+      "Leather",
+      "Green",
+      "Blue",
+      "Red",
+      "Black",
+      "Purple"
+    ],
+    "revision": "ranged-v4-fit"
+  },
+  "slots": [
+    {
+      "id": "ranged_leather_male_helmet",
+      "name": "Leather Ranged Hat (Male)",
+      "category": "equipment",
+      "collection": "ranged_leather",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#895638",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "default_lod": "LOD1",
+        "triangles": 1840,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Leather/Male/LOD2/Helmet.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Leather/Male/LOD3/Helmet.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Leather/Male/Helmet.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_leather_male_upperbody",
+      "name": "Leather Ranged Upperbody (Male)",
+      "category": "equipment",
+      "collection": "ranged_leather",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#895638",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "default_lod": "LOD1",
+        "triangles": 3661,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Leather/Male/LOD2/Upperbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Leather/Male/LOD3/Upperbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Leather/Male/Upperbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_leather_male_gloves",
+      "name": "Leather Ranged Gloves (Male)",
+      "category": "equipment",
+      "collection": "ranged_leather",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#895638",
+      "bones": [
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "default_lod": "LOD1",
+        "triangles": 1358,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Leather/Male/LOD2/Gloves.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Leather/Male/LOD3/Gloves.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Leather/Male/Gloves.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_leather_male_lowerbody",
+      "name": "Leather Ranged Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "ranged_leather",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#895638",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.22
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "default_lod": "LOD1",
+        "triangles": 2557,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Leather/Male/LOD2/Lowerbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Leather/Male/LOD3/Lowerbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Leather/Male/Lowerbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "ranged_leather_male_boots",
+      "name": "Leather Ranged Boots (Male)",
+      "category": "equipment",
+      "collection": "ranged_leather",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#895638",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Leather/Male/LOD2/Boots.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Leather/Male/LOD3/Boots.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Leather/Male/Boots.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_leather_female_helmet",
+      "name": "Leather Ranged Hat (Female)",
+      "category": "equipment",
+      "collection": "ranged_leather",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#895638",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "default_lod": "LOD1",
+        "triangles": 2000,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Leather/Female/LOD2/Helmet.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Leather/Female/LOD3/Helmet.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Leather/Female/Helmet.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_leather_female_upperbody",
+      "name": "Leather Ranged Upperbody (Female)",
+      "category": "equipment",
+      "collection": "ranged_leather",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#895638",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso",
+        "fitted_shoulders"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "default_lod": "LOD1",
+        "triangles": 4819,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Leather/Female/LOD2/Upperbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Leather/Female/LOD3/Upperbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Leather/Female/Upperbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "ranged_leather_female_gloves",
+      "name": "Leather Ranged Gloves (Female)",
+      "category": "equipment",
+      "collection": "ranged_leather",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#895638",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "default_lod": "LOD1",
+        "triangles": 1291,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Leather/Female/LOD2/Gloves.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Leather/Female/LOD3/Gloves.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Leather/Female/Gloves.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_leather_female_lowerbody",
+      "name": "Leather Ranged Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "ranged_leather",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#895638",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.22
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "default_lod": "LOD1",
+        "triangles": 2473,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Leather/Female/LOD2/Lowerbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Leather/Female/LOD3/Lowerbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Leather/Female/Lowerbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "ranged_leather_female_boots",
+      "name": "Leather Ranged Boots (Female)",
+      "category": "equipment",
+      "collection": "ranged_leather",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#895638",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 1,
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Leather/Female/LOD2/Boots.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Leather/Female/LOD3/Boots.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Leather/Female/Boots.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_green_male_helmet",
+      "name": "Green Ranged Hat (Male)",
+      "category": "equipment",
+      "collection": "ranged_green",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#467a43",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "default_lod": "LOD1",
+        "triangles": 2320,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Green/Male/LOD2/Helmet.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Green/Male/LOD3/Helmet.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Green/Male/Helmet.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_green_male_upperbody",
+      "name": "Green Ranged Upperbody (Male)",
+      "category": "equipment",
+      "collection": "ranged_green",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#467a43",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "default_lod": "LOD1",
+        "triangles": 3661,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Green/Male/LOD2/Upperbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Green/Male/LOD3/Upperbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Green/Male/Upperbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_green_male_gloves",
+      "name": "Green Ranged Gloves (Male)",
+      "category": "equipment",
+      "collection": "ranged_green",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#467a43",
+      "bones": [
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "default_lod": "LOD1",
+        "triangles": 1358,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Green/Male/LOD2/Gloves.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Green/Male/LOD3/Gloves.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Green/Male/Gloves.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_green_male_lowerbody",
+      "name": "Green Ranged Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "ranged_green",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#467a43",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.22
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "default_lod": "LOD1",
+        "triangles": 2557,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Green/Male/LOD2/Lowerbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Green/Male/LOD3/Lowerbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Green/Male/Lowerbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "ranged_green_male_boots",
+      "name": "Green Ranged Boots (Male)",
+      "category": "equipment",
+      "collection": "ranged_green",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#467a43",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Green/Male/LOD2/Boots.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Green/Male/LOD3/Boots.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Green/Male/Boots.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_green_female_helmet",
+      "name": "Green Ranged Hat (Female)",
+      "category": "equipment",
+      "collection": "ranged_green",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#467a43",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "default_lod": "LOD1",
+        "triangles": 2480,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Green/Female/LOD2/Helmet.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Green/Female/LOD3/Helmet.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Green/Female/Helmet.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_green_female_upperbody",
+      "name": "Green Ranged Upperbody (Female)",
+      "category": "equipment",
+      "collection": "ranged_green",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#467a43",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso",
+        "fitted_shoulders"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "default_lod": "LOD1",
+        "triangles": 4819,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Green/Female/LOD2/Upperbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Green/Female/LOD3/Upperbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Green/Female/Upperbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "ranged_green_female_gloves",
+      "name": "Green Ranged Gloves (Female)",
+      "category": "equipment",
+      "collection": "ranged_green",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#467a43",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "default_lod": "LOD1",
+        "triangles": 1291,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Green/Female/LOD2/Gloves.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Green/Female/LOD3/Gloves.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Green/Female/Gloves.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_green_female_lowerbody",
+      "name": "Green Ranged Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "ranged_green",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#467a43",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.22
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "default_lod": "LOD1",
+        "triangles": 2473,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Green/Female/LOD2/Lowerbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Green/Female/LOD3/Lowerbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Green/Female/Lowerbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "ranged_green_female_boots",
+      "name": "Green Ranged Boots (Female)",
+      "category": "equipment",
+      "collection": "ranged_green",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#467a43",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 2,
+        "default_lod": "LOD1",
+        "triangles": 1292,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Green/Female/LOD2/Boots.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Green/Female/LOD3/Boots.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Green/Female/Boots.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_blue_male_helmet",
+      "name": "Blue Ranged Hat (Male)",
+      "category": "equipment",
+      "collection": "ranged_blue",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#365fa3",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "default_lod": "LOD1",
+        "triangles": 2320,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Blue/Male/LOD2/Helmet.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Blue/Male/LOD3/Helmet.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Blue/Male/Helmet.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_blue_male_upperbody",
+      "name": "Blue Ranged Upperbody (Male)",
+      "category": "equipment",
+      "collection": "ranged_blue",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#365fa3",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "default_lod": "LOD1",
+        "triangles": 4205,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Blue/Male/LOD2/Upperbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Blue/Male/LOD3/Upperbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Blue/Male/Upperbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_blue_male_gloves",
+      "name": "Blue Ranged Gloves (Male)",
+      "category": "equipment",
+      "collection": "ranged_blue",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#365fa3",
+      "bones": [
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "default_lod": "LOD1",
+        "triangles": 1358,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Blue/Male/LOD2/Gloves.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Blue/Male/LOD3/Gloves.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Blue/Male/Gloves.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_blue_male_lowerbody",
+      "name": "Blue Ranged Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "ranged_blue",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#365fa3",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.22
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "default_lod": "LOD1",
+        "triangles": 2557,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Blue/Male/LOD2/Lowerbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Blue/Male/LOD3/Lowerbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Blue/Male/Lowerbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "ranged_blue_male_boots",
+      "name": "Blue Ranged Boots (Male)",
+      "category": "equipment",
+      "collection": "ranged_blue",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#365fa3",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "default_lod": "LOD1",
+        "triangles": 1668,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Blue/Male/LOD2/Boots.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Blue/Male/LOD3/Boots.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Blue/Male/Boots.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_blue_female_helmet",
+      "name": "Blue Ranged Hat (Female)",
+      "category": "equipment",
+      "collection": "ranged_blue",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#365fa3",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "default_lod": "LOD1",
+        "triangles": 2480,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Blue/Female/LOD2/Helmet.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Blue/Female/LOD3/Helmet.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Blue/Female/Helmet.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_blue_female_upperbody",
+      "name": "Blue Ranged Upperbody (Female)",
+      "category": "equipment",
+      "collection": "ranged_blue",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#365fa3",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso",
+        "fitted_shoulders"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "default_lod": "LOD1",
+        "triangles": 5363,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Blue/Female/LOD2/Upperbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Blue/Female/LOD3/Upperbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Blue/Female/Upperbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "ranged_blue_female_gloves",
+      "name": "Blue Ranged Gloves (Female)",
+      "category": "equipment",
+      "collection": "ranged_blue",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#365fa3",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "default_lod": "LOD1",
+        "triangles": 1291,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Blue/Female/LOD2/Gloves.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Blue/Female/LOD3/Gloves.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Blue/Female/Gloves.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_blue_female_lowerbody",
+      "name": "Blue Ranged Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "ranged_blue",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#365fa3",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.22
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "default_lod": "LOD1",
+        "triangles": 2473,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Blue/Female/LOD2/Lowerbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Blue/Female/LOD3/Lowerbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Blue/Female/Lowerbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "ranged_blue_female_boots",
+      "name": "Blue Ranged Boots (Female)",
+      "category": "equipment",
+      "collection": "ranged_blue",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#365fa3",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 3,
+        "default_lod": "LOD1",
+        "triangles": 1668,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Blue/Female/LOD2/Boots.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Blue/Female/LOD3/Boots.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Blue/Female/Boots.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_red_male_helmet",
+      "name": "Red Ranged Hat (Male)",
+      "category": "equipment",
+      "collection": "ranged_red",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#a43b32",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "default_lod": "LOD1",
+        "triangles": 2520,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Red/Male/LOD2/Helmet.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Red/Male/LOD3/Helmet.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Red/Male/Helmet.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_red_male_upperbody",
+      "name": "Red Ranged Upperbody (Male)",
+      "category": "equipment",
+      "collection": "ranged_red",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#a43b32",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "default_lod": "LOD1",
+        "triangles": 4205,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Red/Male/LOD2/Upperbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Red/Male/LOD3/Upperbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Red/Male/Upperbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_red_male_gloves",
+      "name": "Red Ranged Gloves (Male)",
+      "category": "equipment",
+      "collection": "ranged_red",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#a43b32",
+      "bones": [
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "default_lod": "LOD1",
+        "triangles": 1358,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Red/Male/LOD2/Gloves.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Red/Male/LOD3/Gloves.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Red/Male/Gloves.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_red_male_lowerbody",
+      "name": "Red Ranged Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "ranged_red",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#a43b32",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.22
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "default_lod": "LOD1",
+        "triangles": 2693,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Red/Male/LOD2/Lowerbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Red/Male/LOD3/Lowerbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Red/Male/Lowerbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "ranged_red_male_boots",
+      "name": "Red Ranged Boots (Male)",
+      "category": "equipment",
+      "collection": "ranged_red",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#a43b32",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "default_lod": "LOD1",
+        "triangles": 1668,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Red/Male/LOD2/Boots.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Red/Male/LOD3/Boots.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Red/Male/Boots.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_red_female_helmet",
+      "name": "Red Ranged Hat (Female)",
+      "category": "equipment",
+      "collection": "ranged_red",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#a43b32",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "default_lod": "LOD1",
+        "triangles": 2680,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Red/Female/LOD2/Helmet.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Red/Female/LOD3/Helmet.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Red/Female/Helmet.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_red_female_upperbody",
+      "name": "Red Ranged Upperbody (Female)",
+      "category": "equipment",
+      "collection": "ranged_red",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#a43b32",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso",
+        "fitted_shoulders"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "default_lod": "LOD1",
+        "triangles": 5363,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Red/Female/LOD2/Upperbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Red/Female/LOD3/Upperbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Red/Female/Upperbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "ranged_red_female_gloves",
+      "name": "Red Ranged Gloves (Female)",
+      "category": "equipment",
+      "collection": "ranged_red",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#a43b32",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "default_lod": "LOD1",
+        "triangles": 1291,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Red/Female/LOD2/Gloves.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Red/Female/LOD3/Gloves.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Red/Female/Gloves.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_red_female_lowerbody",
+      "name": "Red Ranged Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "ranged_red",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#a43b32",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.22
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "default_lod": "LOD1",
+        "triangles": 2609,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Red/Female/LOD2/Lowerbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Red/Female/LOD3/Lowerbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Red/Female/Lowerbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "ranged_red_female_boots",
+      "name": "Red Ranged Boots (Female)",
+      "category": "equipment",
+      "collection": "ranged_red",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#a43b32",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 4,
+        "default_lod": "LOD1",
+        "triangles": 1668,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Red/Female/LOD2/Boots.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Red/Female/LOD3/Boots.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Red/Female/Boots.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_black_male_helmet",
+      "name": "Black Ranged Hat (Male)",
+      "category": "equipment",
+      "collection": "ranged_black",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#303139",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "default_lod": "LOD1",
+        "triangles": 2520,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Black/Male/LOD2/Helmet.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Black/Male/LOD3/Helmet.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Black/Male/Helmet.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_black_male_upperbody",
+      "name": "Black Ranged Upperbody (Male)",
+      "category": "equipment",
+      "collection": "ranged_black",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#303139",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "default_lod": "LOD1",
+        "triangles": 4205,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Black/Male/LOD2/Upperbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Black/Male/LOD3/Upperbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Black/Male/Upperbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_black_male_gloves",
+      "name": "Black Ranged Gloves (Male)",
+      "category": "equipment",
+      "collection": "ranged_black",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#303139",
+      "bones": [
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "default_lod": "LOD1",
+        "triangles": 1358,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Black/Male/LOD2/Gloves.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Black/Male/LOD3/Gloves.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Black/Male/Gloves.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_black_male_lowerbody",
+      "name": "Black Ranged Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "ranged_black",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#303139",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.22
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "default_lod": "LOD1",
+        "triangles": 2693,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Black/Male/LOD2/Lowerbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Black/Male/LOD3/Lowerbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Black/Male/Lowerbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "ranged_black_male_boots",
+      "name": "Black Ranged Boots (Male)",
+      "category": "equipment",
+      "collection": "ranged_black",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#303139",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "default_lod": "LOD1",
+        "triangles": 1668,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Black/Male/LOD2/Boots.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Black/Male/LOD3/Boots.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Black/Male/Boots.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_black_female_helmet",
+      "name": "Black Ranged Hat (Female)",
+      "category": "equipment",
+      "collection": "ranged_black",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#303139",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "default_lod": "LOD1",
+        "triangles": 2680,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Black/Female/LOD2/Helmet.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Black/Female/LOD3/Helmet.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Black/Female/Helmet.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_black_female_upperbody",
+      "name": "Black Ranged Upperbody (Female)",
+      "category": "equipment",
+      "collection": "ranged_black",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#303139",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso",
+        "fitted_shoulders"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "default_lod": "LOD1",
+        "triangles": 5363,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Black/Female/LOD2/Upperbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Black/Female/LOD3/Upperbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Black/Female/Upperbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "ranged_black_female_gloves",
+      "name": "Black Ranged Gloves (Female)",
+      "category": "equipment",
+      "collection": "ranged_black",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#303139",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "default_lod": "LOD1",
+        "triangles": 1291,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Black/Female/LOD2/Gloves.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Black/Female/LOD3/Gloves.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Black/Female/Gloves.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_black_female_lowerbody",
+      "name": "Black Ranged Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "ranged_black",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#303139",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.22
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "default_lod": "LOD1",
+        "triangles": 2609,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Black/Female/LOD2/Lowerbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Black/Female/LOD3/Lowerbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Black/Female/Lowerbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "ranged_black_female_boots",
+      "name": "Black Ranged Boots (Female)",
+      "category": "equipment",
+      "collection": "ranged_black",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#303139",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 5,
+        "default_lod": "LOD1",
+        "triangles": 1668,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Black/Female/LOD2/Boots.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Black/Female/LOD3/Boots.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Black/Female/Boots.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_purple_male_helmet",
+      "name": "Purple Ranged Hat (Male)",
+      "category": "equipment",
+      "collection": "ranged_purple",
+      "gender": "male_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#794c99",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "default_lod": "LOD1",
+        "triangles": 2520,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Purple/Male/LOD2/Helmet.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Purple/Male/LOD3/Helmet.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Purple/Male/Helmet.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_purple_male_upperbody",
+      "name": "Purple Ranged Upperbody (Male)",
+      "category": "equipment",
+      "collection": "ranged_purple",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#794c99",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "default_lod": "LOD1",
+        "triangles": 5085,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Purple/Male/LOD2/Upperbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Purple/Male/LOD3/Upperbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Purple/Male/Upperbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_purple_male_gloves",
+      "name": "Purple Ranged Gloves (Male)",
+      "category": "equipment",
+      "collection": "ranged_purple",
+      "gender": "male_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#794c99",
+      "bones": [
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "default_lod": "LOD1",
+        "triangles": 1358,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Purple/Male/LOD2/Gloves.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Purple/Male/LOD3/Gloves.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Purple/Male/Gloves.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_purple_male_lowerbody",
+      "name": "Purple Ranged Lowerbody (Male)",
+      "category": "equipment",
+      "collection": "ranged_purple",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#794c99",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.22
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "default_lod": "LOD1",
+        "triangles": 2693,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Purple/Male/LOD2/Lowerbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Purple/Male/LOD3/Lowerbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Purple/Male/Lowerbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "ranged_purple_male_boots",
+      "name": "Purple Ranged Boots (Male)",
+      "category": "equipment",
+      "collection": "ranged_purple",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#794c99",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "default_lod": "LOD1",
+        "triangles": 1668,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Purple/Male/LOD2/Boots.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Purple/Male/LOD3/Boots.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Purple/Male/Boots.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_purple_female_helmet",
+      "name": "Purple Ranged Hat (Female)",
+      "category": "equipment",
+      "collection": "ranged_purple",
+      "gender": "female_rework",
+      "wear_slot": "helmet",
+      "bilateral": false,
+      "color": "#794c99",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.61,
+        "z_max": 1.9,
+        "radius": 0.16
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "default_lod": "LOD1",
+        "triangles": 2680,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Purple/Female/LOD2/Helmet.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Purple/Female/LOD3/Helmet.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Purple/Female/Helmet.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_purple_female_upperbody",
+      "name": "Purple Ranged Upperbody (Female)",
+      "category": "equipment",
+      "collection": "ranged_purple",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#794c99",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.01,
+        "z_max": 1.62,
+        "radius": 0.75
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_arm_upper",
+        "base_body_arm_lower",
+        "base_body_lower_torso",
+        "fitted_shoulders"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "default_lod": "LOD1",
+        "triangles": 6195,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Purple/Female/LOD2/Upperbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Purple/Female/LOD3/Upperbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Purple/Female/Upperbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "bra"
+      ]
+    },
+    {
+      "id": "ranged_purple_female_gloves",
+      "name": "Purple Ranged Gloves (Female)",
+      "category": "equipment",
+      "collection": "ranged_purple",
+      "gender": "female_rework",
+      "wear_slot": "gloves",
+      "bilateral": true,
+      "color": "#794c99",
+      "bones": [
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandIndex3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandMiddle3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandRing3",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky2",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandPinky3",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.49,
+        "z_max": 1.54,
+        "radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_hands"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "default_lod": "LOD1",
+        "triangles": 1291,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Purple/Female/LOD2/Gloves.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Purple/Female/LOD3/Gloves.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Purple/Female/Gloves.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    },
+    {
+      "id": "ranged_purple_female_lowerbody",
+      "name": "Purple Ranged Lowerbody (Female)",
+      "category": "equipment",
+      "collection": "ranged_purple",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#794c99",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.29,
+        "z_max": 1.09,
+        "radius": 0.22
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_upper",
+        "base_body_leg_thigh",
+        "base_body_leg_knee",
+        "base_body_leg_shin"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "default_lod": "LOD1",
+        "triangles": 2609,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Purple/Female/LOD2/Lowerbody.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Purple/Female/LOD3/Lowerbody.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Purple/Female/Lowerbody.glb?v=ranged-v4-fit",
+      "hides_base_clothing": [
+        "underwear"
+      ]
+    },
+    {
+      "id": "ranged_purple_female_boots",
+      "name": "Purple Ranged Boots (Female)",
+      "category": "equipment",
+      "collection": "ranged_purple",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#794c99",
+      "bones": [
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.02,
+        "z_max": 0.52,
+        "radius": 0.12
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "base_body_leg_ankle",
+        "base_body_foot"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "tier_order": 6,
+        "default_lod": "LOD1",
+        "triangles": 1668,
+        "lod_urls": {
+          "LOD2": "/equipment/Rework/Ranged/Purple/Female/LOD2/Boots.glb?v=ranged-v4-fit",
+          "LOD3": "/equipment/Rework/Ranged/Purple/Female/LOD3/Boots.glb?v=ranged-v4-fit"
+        }
+      },
+      "url": "/equipment/Rework/Ranged/Purple/Female/Boots.glb?v=ranged-v4-fit",
+      "hides_base_clothing": []
+    }
+  ]
+}

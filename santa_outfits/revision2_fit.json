@@ -1,0 +1,12 @@
+{
+  "Male": {
+    "hat_lowered_metres": 0.04,
+    "head_hat_triangle_pairs_in_rest": 0,
+    "white_waist_faces": 375
+  },
+  "Female": {
+    "hat_lowered_metres": 0.04,
+    "head_hat_triangle_pairs_in_rest": 0,
+    "white_waist_faces": 0
+  }
+}

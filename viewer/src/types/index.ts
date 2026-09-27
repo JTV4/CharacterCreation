@@ -122,6 +122,9 @@ export type ModelGender =
   | "female_v3"
   | "male_v2"
   | "grind_male"
+  | "pioneer_male"
+  | "female_rework"
+  | "male_rework"
   | NpcGenderId;
 
 export interface NpcEntry {

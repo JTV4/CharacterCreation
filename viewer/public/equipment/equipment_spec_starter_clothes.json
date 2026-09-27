@@ -1,0 +1,2726 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Everyday starter clothing for male and female rework characters.",
+    "coordinate_system": {
+      "up": "+Z",
+      "forward": "-Y",
+      "right": "+X",
+      "scale": "meters"
+    }
+  },
+  "slots": [
+    {
+      "id": "starter_homestead_male_upperbody",
+      "name": "Homestead Top (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#bba280",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.0322880744934082,
+        "z_max": 1.5211730003356934,
+        "radius": 0.32937759160995483
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "bra"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 15556,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/homestead/Upperbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_homestead_male_lowerbody",
+      "name": "Homestead Bottoms (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#bba280",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.12597018480300903,
+        "z_max": 1.1047648191452026,
+        "radius": 0.18347473442554474
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "underwear"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5496,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/homestead/Lowerbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_homestead_male_boots",
+      "name": "Homestead Footwear (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#bba280",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.01252800039947033,
+        "z_max": 0.17468993365764618,
+        "radius": 0.18651312589645386
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "feet"
+      ],
+      "hides_base_clothing": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5712,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/homestead/Boots.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_dockhand_male_upperbody",
+      "name": "Dockhand Top (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#6e93a5",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.0322880744934082,
+        "z_max": 1.5211730003356934,
+        "radius": 0.4850209355354309
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "bra"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 20092,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/dockhand/Upperbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_dockhand_male_lowerbody",
+      "name": "Dockhand Bottoms (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#6e93a5",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.12597018480300903,
+        "z_max": 1.1047648191452026,
+        "radius": 0.18347473442554474
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "underwear"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5496,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/dockhand/Lowerbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_dockhand_male_boots",
+      "name": "Dockhand Footwear (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#6e93a5",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.01252800039947033,
+        "z_max": 0.21312172710895538,
+        "radius": 0.18651312589645386
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "feet"
+      ],
+      "hides_base_clothing": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 6432,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/dockhand/Boots.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_woodland_male_upperbody",
+      "name": "Woodland Top (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#78885a",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.8557647466659546,
+        "z_max": 1.5211730003356934,
+        "radius": 0.575437605381012
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "bra"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 25020,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/woodland/Upperbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_woodland_male_lowerbody",
+      "name": "Woodland Bottoms (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#78885a",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.12597018480300903,
+        "z_max": 1.1047648191452026,
+        "radius": 0.18347473442554474
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "underwear"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5496,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/woodland/Lowerbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_woodland_male_boots",
+      "name": "Woodland Footwear (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#78885a",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.01252800039947033,
+        "z_max": 0.34937986731529236,
+        "radius": 0.19428539276123047
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "feet"
+      ],
+      "hides_base_clothing": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 9944,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/woodland/Boots.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_townsfolk_male_upperbody",
+      "name": "Townsfolk Top (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#8f637d",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandPinky1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.0322880744934082,
+        "z_max": 1.5211730003356934,
+        "radius": 0.575437605381012
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "bra"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 37370,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/townsfolk/Upperbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_townsfolk_male_lowerbody",
+      "name": "Townsfolk Bottoms (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#8f637d",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.12597018480300903,
+        "z_max": 1.1047648191452026,
+        "radius": 0.18347473442554474
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "underwear"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5496,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/townsfolk/Lowerbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_townsfolk_male_boots",
+      "name": "Townsfolk Footwear (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#8f637d",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.01252800039947033,
+        "z_max": 0.27950388193130493,
+        "radius": 0.18651312589645386
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "feet"
+      ],
+      "hides_base_clothing": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 8660,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/townsfolk/Boots.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_artisan_male_upperbody",
+      "name": "Artisan Top (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#b8784f",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.8057647347450256,
+        "z_max": 1.5211730003356934,
+        "radius": 0.4850209355354309
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "bra"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 21664,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/artisan/Upperbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_artisan_male_lowerbody",
+      "name": "Artisan Bottoms (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#b8784f",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.12597018480300903,
+        "z_max": 1.1047648191452026,
+        "radius": 0.18347473442554474
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "underwear"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5496,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/artisan/Lowerbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_artisan_male_boots",
+      "name": "Artisan Footwear (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#b8784f",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.01252800039947033,
+        "z_max": 0.2445659041404724,
+        "radius": 0.18651312589645386
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "feet"
+      ],
+      "hides_base_clothing": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 8072,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/artisan/Boots.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_wayfarer_male_upperbody",
+      "name": "Wayfarer Top (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#548880",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.0322880744934082,
+        "z_max": 1.5211730003356934,
+        "radius": 0.32937759160995483
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "bra"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 33398,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/wayfarer/Upperbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_wayfarer_male_lowerbody",
+      "name": "Wayfarer Bottoms (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#548880",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.12597018480300903,
+        "z_max": 1.1047648191452026,
+        "radius": 0.18347473442554474
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "underwear"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5496,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/wayfarer/Lowerbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_wayfarer_male_boots",
+      "name": "Wayfarer Footwear (Male)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "male_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#548880",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.01252800039947033,
+        "z_max": 0.31444188952445984,
+        "radius": 0.18803727626800537
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "feet"
+      ],
+      "hides_base_clothing": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 9768,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Male/wayfarer/Boots.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_homestead_female_upperbody",
+      "name": "Homestead Top (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#bba280",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.1075624227523804,
+        "z_max": 1.5152755975723267,
+        "radius": 0.29448166489601135
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "bra"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 13076,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/homestead/Upperbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_homestead_female_lowerbody",
+      "name": "Homestead Bottoms (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#bba280",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.12354883551597595,
+        "z_max": 1.1613686084747314,
+        "radius": 0.19108586013317108
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "underwear"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5300,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/homestead/Lowerbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_homestead_female_boots",
+      "name": "Homestead Footwear (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#bba280",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.017521999776363373,
+        "z_max": 0.16674837470054626,
+        "radius": 0.18145312368869781
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "feet"
+      ],
+      "hides_base_clothing": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5476,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/homestead/Boots.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_dockhand_female_upperbody",
+      "name": "Dockhand Top (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#6e93a5",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.1075624227523804,
+        "z_max": 1.5152755975723267,
+        "radius": 0.4350895285606384
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "bra"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 16700,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/dockhand/Upperbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_dockhand_female_lowerbody",
+      "name": "Dockhand Bottoms (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#6e93a5",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.12354883551597595,
+        "z_max": 1.1613686084747314,
+        "radius": 0.19108586013317108
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "underwear"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5300,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/dockhand/Lowerbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_dockhand_female_boots",
+      "name": "Dockhand Footwear (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#6e93a5",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.017521999776363373,
+        "z_max": 0.20343302190303802,
+        "radius": 0.18145312368869781
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "feet"
+      ],
+      "hides_base_clothing": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 6168,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/dockhand/Boots.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_woodland_female_upperbody",
+      "name": "Woodland Top (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#78885a",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.9116270542144775,
+        "z_max": 1.5152755975723267,
+        "radius": 0.5024211406707764
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "bra"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 21288,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/woodland/Upperbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_woodland_female_lowerbody",
+      "name": "Woodland Bottoms (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#78885a",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.12354883551597595,
+        "z_max": 1.1613686084747314,
+        "radius": 0.19108586013317108
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "underwear"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5300,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/woodland/Lowerbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_woodland_female_boots",
+      "name": "Woodland Footwear (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#78885a",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.017521999776363373,
+        "z_max": 0.33349674940109253,
+        "radius": 0.18145312368869781
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "feet"
+      ],
+      "hides_base_clothing": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 9348,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/woodland/Boots.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_townsfolk_female_upperbody",
+      "name": "Townsfolk Top (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#8f637d",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHandThumb1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.1075624227523804,
+        "z_max": 1.5152755975723267,
+        "radius": 0.5024211406707764
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "bra"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 22584,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/townsfolk/Upperbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_townsfolk_female_lowerbody",
+      "name": "Townsfolk Bottoms (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#8f637d",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.12354883551597595,
+        "z_max": 1.1613686084747314,
+        "radius": 0.22891923785209656
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "underwear"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 15400,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/townsfolk/Lowerbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_townsfolk_female_boots",
+      "name": "Townsfolk Footwear (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#8f637d",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.017521999776363373,
+        "z_max": 0.26679739356040955,
+        "radius": 0.18145312368869781
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "feet"
+      ],
+      "hides_base_clothing": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 8264,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/townsfolk/Boots.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_artisan_female_upperbody",
+      "name": "Artisan Top (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#b8784f",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightHand",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.8616270422935486,
+        "z_max": 1.5152755975723267,
+        "radius": 0.4350895285606384
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "bra"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 18992,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/artisan/Upperbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_artisan_female_lowerbody",
+      "name": "Artisan Bottoms (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#b8784f",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.12354883551597595,
+        "z_max": 1.1613686084747314,
+        "radius": 0.19108586013317108
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "underwear"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5300,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/artisan/Lowerbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_artisan_female_boots",
+      "name": "Artisan Footwear (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#b8784f",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.017521999776363373,
+        "z_max": 0.23344773054122925,
+        "radius": 0.18145312368869781
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "feet"
+      ],
+      "hides_base_clothing": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 7776,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/artisan/Boots.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_wayfarer_female_upperbody",
+      "name": "Wayfarer Top (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "top",
+      "bilateral": false,
+      "color": "#548880",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigNeck",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightForeArm",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightShoulder",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 1.0016270875930786,
+        "z_max": 1.5152755975723267,
+        "radius": 0.29448166489601135
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "bra"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 24892,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/wayfarer/Upperbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_wayfarer_female_lowerbody",
+      "name": "Wayfarer Bottoms (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "bottom",
+      "bilateral": true,
+      "color": "#548880",
+      "bones": [
+        {
+          "name": "mixamorigHips",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine1",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.12354883551597595,
+        "z_max": 1.1613686084747314,
+        "radius": 0.19108586013317108
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_base_clothing": [
+        "underwear"
+      ],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 5300,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/wayfarer/Lowerbody.glb?v=20260927-fit10"
+    },
+    {
+      "id": "starter_wayfarer_female_boots",
+      "name": "Wayfarer Footwear (Female)",
+      "collection": "starter_clothes",
+      "category": "clothing",
+      "gender": "female_rework",
+      "wear_slot": "boots",
+      "bilateral": true,
+      "color": "#548880",
+      "bones": [
+        {
+          "name": "mixamorigLeftFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigLeftToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightFoot",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightLeg",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightToeBase",
+          "weight": 1
+        },
+        {
+          "name": "mixamorigRightUpLeg",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": -0.017521999776363373,
+        "z_max": 0.30014708638191223,
+        "radius": 0.18145312368869781
+      },
+      "rules": {},
+      "hides_body_regions": [
+        "feet"
+      ],
+      "hides_base_clothing": [],
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 9224,
+        "revision": 10
+      },
+      "url": "/equipment/StarterClothes/Female/wayfarer/Boots.glb?v=20260927-fit10"
+    }
+  ]
+}

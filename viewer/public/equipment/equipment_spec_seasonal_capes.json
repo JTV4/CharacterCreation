@@ -1,0 +1,194 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Original seasonal capes with independent gravity draping and embroidered twinkles.",
+    "coordinate_system": {
+      "up": "+Z",
+      "forward": "-Y",
+      "right": "+X",
+      "scale": "meters"
+    }
+  },
+  "slots": [
+    {
+      "id": "seasonal_halloween_male_cape",
+      "name": "Midnight Revel Cape (Male)",
+      "collection": "seasonal_halloween",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#542865",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.18000000000000002,
+        "z_max": 1.5,
+        "radius": 0.42
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 10800,
+        "revision": 3
+      },
+      "url": "/equipment/SeasonalCapes/Male/halloween/Cape.glb?v=20260927-3"
+    },
+    {
+      "id": "seasonal_thanksgiving_male_cape",
+      "name": "Harvest Sovereign Cape (Male)",
+      "collection": "seasonal_thanksgiving",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#985227",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.18000000000000002,
+        "z_max": 1.5,
+        "radius": 0.42
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 11092,
+        "revision": 3
+      },
+      "url": "/equipment/SeasonalCapes/Male/thanksgiving/Cape.glb?v=20260927-3"
+    },
+    {
+      "id": "seasonal_santa_male_cape",
+      "name": "Winter Jubilee Cape (Male)",
+      "collection": "seasonal_santa",
+      "category": "equipment",
+      "gender": "male_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#a82737",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.17,
+        "z_max": 1.5,
+        "radius": 0.42
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 11984,
+        "revision": 3
+      },
+      "url": "/equipment/SeasonalCapes/Male/santa/Cape.glb?v=20260927-3"
+    },
+    {
+      "id": "seasonal_halloween_female_cape",
+      "name": "Midnight Revel Cape (Female)",
+      "collection": "seasonal_halloween",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#542865",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.18000000000000002,
+        "z_max": 1.5,
+        "radius": 0.42
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 10800,
+        "revision": 3
+      },
+      "url": "/equipment/SeasonalCapes/Female/halloween/Cape.glb?v=20260927-3"
+    },
+    {
+      "id": "seasonal_thanksgiving_female_cape",
+      "name": "Harvest Sovereign Cape (Female)",
+      "collection": "seasonal_thanksgiving",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#985227",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.18000000000000002,
+        "z_max": 1.5,
+        "radius": 0.42
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 11092,
+        "revision": 3
+      },
+      "url": "/equipment/SeasonalCapes/Female/thanksgiving/Cape.glb?v=20260927-3"
+    },
+    {
+      "id": "seasonal_santa_female_cape",
+      "name": "Winter Jubilee Cape (Female)",
+      "collection": "seasonal_santa",
+      "category": "equipment",
+      "gender": "female_rework",
+      "wear_slot": "cape",
+      "bilateral": false,
+      "color": "#a82737",
+      "bones": [
+        {
+          "name": "mixamorigSpine2",
+          "weight": 1
+        }
+      ],
+      "bounds": {
+        "z_min": 0.17,
+        "z_max": 1.5,
+        "radius": 0.42
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "hides_hair": false,
+      "mesh_type": "external",
+      "mesh_params": {
+        "triangles": 11984,
+        "revision": 3
+      },
+      "url": "/equipment/SeasonalCapes/Female/santa/Cape.glb?v=20260927-3"
+    }
+  ]
+}

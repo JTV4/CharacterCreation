@@ -1,3 +1,7 @@
+import CombatCapesPanel from "./components/CombatCapesPanel";
+import StarterClothesPanel, { chooseStarterClothes, restoreStarterClothes, saveStarterClothes } from './components/StarterClothesPanel';
+import AppearancePanel, { useAppearanceOptions, type AppearanceSex } from "./components/AppearancePanel";
+import CharacterAppearance from "./components/CharacterAppearance";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
@@ -7,8 +11,19 @@ import type { AnimSpec, AnimManifest } from "./types/animation";
 import type { AnimationPlayerState } from "./hooks/useAnimationPlayer";
 import type { BoneRestTransform, CharacterModel } from "./types";
 import { animSpecToClip } from "./utils/animSpecToClip";
-import type { EquipmentSpec, EquipmentState, EquipTransform, EquipmentSlotType, SlotTextures } from "./types/equipment";
-import { normalizeEquipTransform } from "./types/equipment";
+import type {
+  EquipmentSpec,
+  EquipmentState,
+  EquipTransform,
+  EquipBoneOffset,
+  EquipBoneOffsetMap,
+  EquipBoneOffsets,
+  EquipmentSlotType,
+  SlotTextures,
+} from "./types/equipment";
+import { normalizeEquipTransform, isIdentityBoneOffset, normalizeBoneOffset, isRangerSlotId } from "./types/equipment";
+import { pruneOffsetMap } from "./utils/equipBoneFit";
+import { applyReworkBodyRegionHide } from "./utils/reworkBodyHide";
 import { SLOT_TYPE_CONFIGS } from "./types/equipment";
 import { NPC_GENDERS, NPCS, NPC_NAMES, NPC_VARIANTS } from "./types";
 import type { BoneTransformOverride, ModelGender, GlbBoneInfo } from "./types";
@@ -149,7 +164,7 @@ function ExportPanel({
       const res = await fetch(`/animations/${file}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const spec = await res.json() as AnimSpec;
-      const clip = animSpecToClip(spec, characterModel.boneRestPose);
+      const clip = animSpecToClip(spec, characterModel.boneRestPose, 0.01 / (Math.abs(characterModel.skeletonRoot.scale.x) || 1));
       const skeletonScene = cloneBoneHierarchy(characterModel.skeletonRoot);
 
       const { GLTFExporter } = await import("three/examples/jsm/exporters/GLTFExporter.js");
@@ -323,6 +338,7 @@ const REGION_TO_MESH: Record<string, string> = {
   head:         "base_body_head",
   neck:         "base_body_head",
   upper_torso:  "base_body_upper_torso",
+  fitted_shoulders: "base_body_fitted_shoulders",
   lower_torso:  "base_body_lower_torso",
   arm_upper:    "base_body_arm_upper",
   arm_lower:    "base_body_arm_lower",
@@ -368,9 +384,12 @@ function slotMatchesGender(
 }
 
 function CharacterViewer({ onHome }: { onHome: () => void }) {
-  const [activeGender, setActiveGender] = useState<ModelGender>("female");
+  const [activeGender, setActiveGender] = useState<ModelGender>("female_rework");
   const { model: characterModel, loading, error } = useCharacterModel(activeGender);
   const isNPC = NPC_GENDERS.has(activeGender);
+  const appearance = useAppearanceOptions();
+  const [appearanceError, setAppearanceError] = useState<string | null>(null);
+  const appearanceSex: AppearanceSex | null = activeGender === "female_rework" ? "Female" : activeGender === "male_rework" ? "Male" : null;
 
   const [selectedBone, setSelectedBone] = useState<string | null>(null);
   const [showMesh, setShowMesh] = useState(true);
@@ -432,6 +451,23 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
       "/equipment/equipment_spec.json",
       "/equipment/equipment_spec_female_v2.json",
       "/equipment/equipment_spec_male_v2.json",
+      "/equipment/equipment_spec_rework.json",
+      "/equipment/equipment_spec_ranger.json",
+      "/equipment/equipment_spec_ranged_progression.json",
+      "/equipment/equipment_spec_mage_progression.json",
+      "/equipment/equipment_spec_iron_l1.json",
+      "/equipment/equipment_spec_steel_rework.json",
+      "/equipment/equipment_spec_gold_rework.json",
+      "/equipment/equipment_spec_titanium_rework.json",
+      "/equipment/equipment_spec_tungsten_rework.json",
+      "/equipment/equipment_spec_luminous_rework.json",
+      "/equipment/equipment_spec_pumpkin_rework.json",
+      "/equipment/equipment_spec_halloween_witch_rework.json",
+      "/equipment/equipment_spec_santa_rework.json",
+      "/equipment/equipment_spec_thanksgiving_rework.json",
+      "/equipment/equipment_spec_starter_clothes.json",
+      "/equipment/equipment_spec_combat_capes.json",
+      "/equipment/equipment_spec_seasonal_capes.json",
     ];
     Promise.all(
       specFiles.map((url) =>
@@ -459,13 +495,23 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
           if (BODY_SLOT_IDS.has(slot.id)) continue;
           initial[slot.id] = false;
         }
-        setEquipState(initial);
+        setEquipState(restoreStarterClothes(initial));
       })
       .catch((err) => {
         console.error("Failed to load equipment specs:", err);
         setEquipSpec(null);
       });
   }, []);
+
+  useEffect(() => {
+    if (equipSpec) saveStarterClothes(equipState);
+  }, [equipSpec, equipState]);
+
+  const handleChooseStarter = (style: string, only?: import('./types/equipment').WearSlot) => {
+    if (!appearanceSex || !equipSpec) return;
+    setEquipState(previous => chooseStarterClothes(previous, equipSpec.slots, appearanceSex, style, only));
+    setSelectedEquipSlot(null);
+  };
 
   const handleToggleSlot = useCallback((slotId: string, enabled: boolean) => {
     if (BODY_SLOT_IDS.has(slotId)) return;
@@ -484,6 +530,19 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
             if (slot.category === cat && slot.id !== slotId) {
               next[slot.id] = false;
             }
+          }
+        }
+        const wearSlot = toggled?.wear_slot;
+        if (wearSlot) {
+          for (const slot of equipSpec.slots) {
+            if (slot.id === slotId || slot.wear_slot !== wearSlot) continue;
+            const oppositeSameSet =
+              !!slot.collection &&
+              slot.collection === toggled?.collection &&
+              !!slot.gender &&
+              !!toggled.gender &&
+              slot.gender !== toggled.gender;
+            if (!oppositeSameSet) next[slot.id] = false;
           }
         }
       }
@@ -529,6 +588,25 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
   );
 
   const [selectedEquipSlot, setSelectedEquipSlot] = useState<string | null>(null);
+  const [selectedEquipBone, setSelectedEquipBone] = useState<string | null>(null);
+  const [equipBoneOffsets, setEquipBoneOffsets] = useState<EquipBoneOffsets>(() => {
+    try {
+      const saved = localStorage.getItem("equipBoneOffsets");
+      if (!saved) return {};
+      const parsed = JSON.parse(saved) as EquipBoneOffsets;
+      const normalized: EquipBoneOffsets = {};
+      for (const [id, map] of Object.entries(parsed)) {
+        const bones: EquipBoneOffsetMap = {};
+        for (const [bone, offset] of Object.entries(map ?? {})) {
+          bones[bone] = normalizeBoneOffset(offset);
+        }
+        normalized[id] = bones;
+      }
+      return normalized;
+    } catch {
+      return {};
+    }
+  });
   const [equipTransforms, setEquipTransforms] = useState<Record<string, EquipTransform>>(() => {
     try {
       const saved = localStorage.getItem("equipTransforms");
@@ -536,6 +614,8 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
       const parsed = JSON.parse(saved) as Record<string, EquipTransform>;
       const normalized: Record<string, EquipTransform> = {};
       for (const [id, t] of Object.entries(parsed)) {
+        // Ranger pieces keep authored bind; drop leftover sole-lift edits.
+        if (isRangerSlotId(id)) continue;
         normalized[id] = normalizeEquipTransform(t);
       }
       return normalized;
@@ -570,8 +650,15 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
     const slotDef = equipSpec?.slots.find((s) => s.id === slotId);
     const raw = equipTransforms[slotId] ?? slotDef?.default_transform;
     const transform = raw ? normalizeEquipTransform(raw) : undefined;
-    exportSlotAsGlb(slotId, `${slotId}_weighted.glb`, transform);
-  }, [equipTransforms, equipSpec]);
+    exportSlotAsGlb(
+      slotId,
+      `${slotId}_weighted.glb`,
+      transform,
+      equipBoneOffsets[slotId],
+      characterModel?.boneRestPose,
+      characterModel?.boneObjMap,
+    );
+  }, [equipTransforms, equipSpec, equipBoneOffsets, characterModel]);
 
   const handleSetSlotTexture = useCallback((slotId: string, dataUrl: string | null) => {
     setSlotTextures((prev) => {
@@ -586,12 +673,53 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
   }, []);
 
   useEffect(() => {
+    setEquipTransforms((prev) => {
+      let changed = false;
+      const next = { ...prev };
+      for (const id of Object.keys(next)) {
+        if (isRangerSlotId(id)) {
+          delete next[id];
+          changed = true;
+        }
+      }
+      return changed ? next : prev;
+    });
+  }, []);
+
+  useEffect(() => {
     try {
       localStorage.setItem("equipTransforms", JSON.stringify(equipTransforms));
     } catch {
       // ignore storage errors
     }
   }, [equipTransforms]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("equipBoneOffsets", JSON.stringify(equipBoneOffsets));
+    } catch {
+      // ignore storage errors
+    }
+  }, [equipBoneOffsets]);
+
+  useEffect(() => {
+    if (!equipSpec) return;
+    setEquipBoneOffsets((prev) => {
+      let changed = false;
+      const next = { ...prev };
+      for (const slot of equipSpec.slots) {
+        if (slot.default_bone_offsets && next[slot.id] == null) {
+          next[slot.id] = pruneOffsetMap(slot.default_bone_offsets);
+          changed = true;
+        }
+      }
+      return changed ? next : prev;
+    });
+  }, [equipSpec]);
+
+  useEffect(() => {
+    setSelectedEquipBone(null);
+  }, [selectedEquipSlot, activeGender]);
 
   const handleEquipTransformChange = useCallback(
     (id: string, t: EquipTransform) => {
@@ -607,6 +735,35 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
       return next;
     });
   }, []);
+
+  const handleEquipBoneOffsetsChange = useCallback((slotId: string, offsets: EquipBoneOffsetMap) => {
+    setEquipBoneOffsets((prev) => ({ ...prev, [slotId]: pruneOffsetMap(offsets) }));
+  }, []);
+
+  const handleEquipBoneOffsetChange = useCallback((boneName: string, offset: EquipBoneOffset | null) => {
+    if (!selectedEquipSlot) return;
+    setEquipBoneOffsets((prev) => {
+      const current = { ...(prev[selectedEquipSlot] ?? {}) };
+      if (!offset || isIdentityBoneOffset(normalizeBoneOffset(offset))) {
+        delete current[boneName];
+      } else {
+        current[boneName] = normalizeBoneOffset(offset);
+      }
+      const next = { ...prev, [selectedEquipSlot]: current };
+      if (Object.keys(current).length === 0) delete next[selectedEquipSlot];
+      return next;
+    });
+  }, [selectedEquipSlot]);
+
+  const handleResetEquipBones = useCallback(() => {
+    if (!selectedEquipSlot) return;
+    setEquipBoneOffsets((prev) => {
+      const next = { ...prev };
+      delete next[selectedEquipSlot];
+      return next;
+    });
+    setSelectedEquipBone(null);
+  }, [selectedEquipSlot]);
 
   const [selectedToolId, setSelectedToolId] = useState<string | null>(null);
   const selectedTool = useMemo(
@@ -716,8 +873,24 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
   const effectiveEquipState = useMemo(() => {
     if (!equipSpec) return equipState;
     const effective = { ...equipState };
+    const enabledWear = new Map<string, string>();
+    for (const slot of equipSpec.slots) {
+      if (!equipState[slot.id] || !slot.wear_slot) continue;
+      enabledWear.set(`${slot.collection ?? ""}:${slot.wear_slot}`, slot.id);
+    }
     for (const slot of equipSpec.slots) {
       if (BODY_SLOT_IDS.has(slot.id)) continue;
+      if (!slotMatchesGender(slot.gender, activeGender)) {
+        effective[slot.id] = false;
+        continue;
+      }
+      // Starter pieces have explicit per-character selections; a collection contains multiple outfits.
+      if (slot.wear_slot && slot.collection !== "starter_clothes") {
+        const sourceId = enabledWear.get(`${slot.collection ?? ""}:${slot.wear_slot}`);
+        if (sourceId && sourceId !== slot.id && equipState[sourceId]) {
+          effective[slot.id] = true;
+        }
+      }
       const hiddenBy = slot.rules?.hidden_by ?? [];
       for (const blockerId of hiddenBy) {
         if (effective[blockerId]) {
@@ -726,7 +899,7 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
       }
     }
     return effective;
-  }, [equipSpec, equipState]);
+  }, [equipSpec, equipState, activeGender]);
 
   const [basePose] = useState<Map<string, BoneTransformOverride>>(new Map());
   const [showSlotBounds, setShowSlotBounds] = useState(false);
@@ -746,30 +919,39 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
     });
   }, []);
 
-  // Auto-hide body parts covered by equipped items (segmented V2/V3 bases)
+  // Auto-hide body parts covered by equipped items.
+  // V2/V3 toggle named region meshes; rework applies the same list by bone.
   const autoHiddenBodyParts = useMemo<Set<string>>(() => {
-    if (!SEGMENTED_GENDERS.has(activeGender)) return new Set();
     if (!equipSpec) return new Set();
     const hidden = new Set<string>();
     for (const slot of equipSpec.slots) {
       if (!effectiveEquipState[slot.id]) continue;
       for (const region of (slot.hides_body_regions ?? [])) {
-        const meshName = REGION_TO_MESH[region];
+        const meshName = BODY_PART_NAMES.has(region) ? region : REGION_TO_MESH[region];
         if (meshName) hidden.add(meshName);
       }
     }
     return hidden;
-  }, [activeGender, equipSpec, effectiveEquipState]);
+  }, [equipSpec, effectiveEquipState]);
+
+  const hiddenBaseClothing = useMemo(() => new Set<string>(
+    equipSpec?.slots.filter((slot) => effectiveEquipState[slot.id])
+      .flatMap((slot) => slot.hides_base_clothing ?? []) ?? [],
+  ), [equipSpec, effectiveEquipState]);
 
   // Apply visibility to scene: hide if auto-hidden OR manually hidden
   useEffect(() => {
     if (!characterModel) return;
-    characterModel.scene.traverse((child) => {
-      if (BODY_PART_NAMES.has(child.name)) {
-        child.visible = !autoHiddenBodyParts.has(child.name) && !hiddenBodyParts.has(child.name);
-      }
-    });
-  }, [characterModel, autoHiddenBodyParts, hiddenBodyParts]);
+    if (SEGMENTED_GENDERS.has(activeGender)) {
+      characterModel.scene.traverse((child) => {
+        if (BODY_PART_NAMES.has(child.name)) {
+          child.visible = !autoHiddenBodyParts.has(child.name) && !hiddenBodyParts.has(child.name);
+        }
+      });
+    }
+    const union = new Set<string>([...autoHiddenBodyParts, ...hiddenBodyParts]);
+    applyReworkBodyRegionHide(characterModel.scene, union, hiddenBaseClothing);
+  }, [characterModel, activeGender, autoHiddenBodyParts, hiddenBodyParts, hiddenBaseClothing]);
 
   useEffect(() => {
     fetch("/animations/manifest.json")
@@ -949,6 +1131,20 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
             </div>
             <div className="model-selector">
               <button
+                className={`model-toggle-btn ${activeGender === "female_rework" ? "active" : ""}`}
+                onClick={() => setActiveGender("female_rework")}
+                title="BaseFemaleRework — Mixamo T-pose from CharacterModelRework"
+              >
+                Female Rework
+              </button>
+              <button
+                className={`model-toggle-btn ${activeGender === "male_rework" ? "active" : ""}`}
+                onClick={() => setActiveGender("male_rework")}
+                title="BaseMaleRework — Mixamo T-pose from CharacterModelRework"
+              >
+                Male Rework
+              </button>
+              <button
                 className={`model-toggle-btn ${activeGender === "female" ? "active" : ""}`}
                 onClick={() => setActiveGender("female")}
               >
@@ -987,6 +1183,13 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
                 title="GrindMale — original male mesh designed from scratch for GrindScape"
               >
                 GrindMale
+              </button>
+              <button
+                className={`model-toggle-btn ${activeGender === "pioneer_male" ? "active" : ""}`}
+                onClick={() => setActiveGender("pioneer_male")}
+                title="PioneerMale — clothed pioneering settler with authored textures"
+              >
+                Pioneer
               </button>
             </div>
             <div className="model-selector">
@@ -1028,7 +1231,7 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
                 <div className="body-parts-menu-inner">
                   <div className="body-parts-menu-title">
                     Visibility
-                    {SEGMENTED_GENDERS.has(activeGender) && autoHiddenBodyParts.size > 0 && (
+                    {autoHiddenBodyParts.size > 0 && (
                       <span className="body-parts-auto-label"> (auto)</span>
                     )}
                   </div>
@@ -1159,6 +1362,7 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
               basePose={basePose}
               showMesh={showMesh}
             />
+            {appearanceSex && characterModel.scene.userData.appearanceSex === appearanceSex && <CharacterAppearance key={characterModel.scene.uuid} model={characterModel} sex={appearanceSex} value={appearance.options[appearanceSex]} visible={showMesh} hideHair={equipSpec?.slots.some(slot => effectiveEquipState[slot.id] && slot.hides_hair) ?? false} onError={setAppearanceError} />}
             {equipSpec && !isNPC && (
               <EquipmentMeshRenderer
                 slotIds={equipSlotIds}
@@ -1170,6 +1374,10 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
                 selectedSlot={selectedEquipSlot}
                 onSelectSlot={setSelectedEquipSlot}
                 equipTransforms={equipTransforms}
+                equipBoneOffsets={equipBoneOffsets}
+                onEquipBoneOffsetsChange={handleEquipBoneOffsetsChange}
+                selectedEquipBone={selectedEquipBone}
+                onSelectEquipBone={setSelectedEquipBone}
                 equipGizmoMode={equipGizmoMode}
                 onEquipTransformChange={handleEquipTransformChange}
                 slotTextures={slotTextures}
@@ -1233,6 +1441,17 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
         />
       </div>
       <div className="right-panel">
+        {appearanceSex && <AppearancePanel sex={appearanceSex} value={appearance.options[appearanceSex]} onChange={patch=>appearance.update(appearanceSex,patch)} error={appearanceError} />}
+        {appearanceSex && equipSpec && <StarterClothesPanel sex={appearanceSex} state={equipState} onChoose={handleChooseStarter} />}
+        {appearanceSex && equipSpec && <CombatCapesPanel sex={appearanceSex} state={effectiveEquipState} onChoose={(wear, id) => {
+          setEquipState(previous => {
+            const next = { ...previous };
+            for (const slot of equipSpec.slots) if (slot.wear_slot === wear) next[slot.id] = false;
+            if (id) next[id] = true;
+            return next;
+          });
+          setSelectedEquipSlot(null);
+        }} />}
         <BoneInfoPanel
           bone={selectedBoneInfo}
           boneList={boneList}
@@ -1253,6 +1472,12 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
           onReset={() => {
             if (selectedEquipSlot) handleResetEquipTransform(selectedEquipSlot);
           }}
+          selectedBone={selectedEquipBone}
+          onSelectBone={setSelectedEquipBone}
+          boneOffsets={selectedEquipSlot ? (equipBoneOffsets[selectedEquipSlot] ?? {}) : {}}
+          onBoneOffsetChange={handleEquipBoneOffsetChange}
+          onResetAllBones={handleResetEquipBones}
+          allBoneNames={characterModel?.boneList.map((b) => b.name)}
         />
         <PoseEditor
           enabled={poseMode}
@@ -1278,6 +1503,7 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
             onSelectSlot={setSelectedEquipSlot}
             onImportEquipment={handleImportEquipment}
             equipTransforms={equipTransforms}
+            equipBoneOffsets={equipBoneOffsets}
             slotTextures={slotTextures}
             onSetSlotTexture={handleSetSlotTexture}
             onForceAutoSkin={handleOpenSkinModal}
@@ -1322,7 +1548,13 @@ const CATALOG_PAGES: Record<
 > = {
   [ROUTES.buildings]: { title: "Buildings", category: "buildings" },
   [ROUTES.workstations]: { title: "Workstations", category: "workstations" },
+  [ROUTES.resources]: { title: "Resources", category: "resources" },
   [ROUTES.creatures]: { title: "Creatures", category: "creatures" },
+  [ROUTES.npcs]: { title: "NPCs", category: "npcs" },
+  [ROUTES.grindwilds]: {
+    title: "GrindWilds WIP Models",
+    category: "grindwilds",
+  },
 };
 
 export default function App() {
@@ -1350,4 +1582,3 @@ export default function App() {
 
   return <CategoryHome navigate={navigate} />;
 }
-

@@ -21,6 +21,16 @@
       "defaultAnimation": "MaleIdle"
     },
     {
+      "id": "BaseFemaleRework",
+      "model": "BaseFemaleRework.glb",
+      "defaultAnimation": "FemaleIdle"
+    },
+    {
+      "id": "BaseMaleRework",
+      "model": "BaseMaleRework.glb",
+      "defaultAnimation": "FemaleIdle"
+    },
+    {
       "id": "ApothecaryBlackFemale",
       "model": "../NPCs/BlackFemale/ApothecaryBlackFemale.glb",
       "defaultAnimation": "NPCIdle"

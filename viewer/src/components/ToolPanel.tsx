@@ -7,6 +7,7 @@ import type {
   GizmoMode,
 } from "../types/tools";
 import { TOOL_CATEGORIES } from "../types/tools";
+import SectionCollapse from "./SectionCollapse";
 
 interface ToolPanelProps {
   tools: ToolDefinition[];
@@ -264,7 +265,10 @@ export default function ToolPanel({
     return ordered;
   }, [tools]);
 
-  const [collapsed, setCollapsed] = useState<Set<ToolCategory>>(() => new Set());
+  const [sectionOpen, setSectionOpen] = useState(true);
+  const [collapsed, setCollapsed] = useState<Set<ToolCategory>>(
+    () => new Set(TOOL_CATEGORIES.map((c) => c.key)),
+  );
 
   const toggleCollapse = useCallback((key: ToolCategory) => {
     setCollapsed((prev) => {
@@ -311,7 +315,7 @@ export default function ToolPanel({
   return (
     <div className="info-panel tool-panel">
       <div className="tool-header">
-        <h2>Tools</h2>
+        <SectionCollapse title="Tools" open={sectionOpen} onToggle={() => setSectionOpen((v) => !v)} />
         {selectedToolId && (
           <button
             className="tool-unequip-btn"
@@ -321,6 +325,7 @@ export default function ToolPanel({
           </button>
         )}
       </div>
+      {sectionOpen && <>
       <div className="tool-list">
         {categoryGroups.map(({ info, items }) => {
           const isOpen = !collapsed.has(info.key);
@@ -462,6 +467,7 @@ export default function ToolPanel({
           </button>
         </div>
       )}
+      </>}
     </div>
   );
 }
