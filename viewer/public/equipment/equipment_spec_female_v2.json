@@ -6384,7 +6384,7 @@
       "id": "boghop",
       "name": "Boghop",
       "category": "alpha_pass",
-      "collection": "alpha_pass",
+      "collection": "alpha_boghop",
       "gender": "female_v2",
       "bilateral": false,
       "color": "#eab308",
@@ -6404,13 +6404,16 @@
       "hides_body_regions": [],
       "mesh_type": "external",
       "mesh_params": {},
-      "url": "/equipment/AlphaPass/Boghop.glb"
+      "url": "/equipment/AlphaPass/Legacy/Boghop.glb?v=hair-fit-3",
+      "wear_slot": "helmet",
+      "hides_hair": false,
+      "hair_fit": "boghop"
     },
     {
       "id": "inventioners",
       "name": "Inventioners",
       "category": "alpha_pass",
-      "collection": "alpha_pass",
+      "collection": "alpha_inventioners",
       "gender": "female_v2",
       "bilateral": false,
       "color": "#eab308",
@@ -6430,13 +6433,16 @@
       "hides_body_regions": [],
       "mesh_type": "external",
       "mesh_params": {},
-      "url": "/equipment/AlphaPass/Inventioners.glb"
+      "url": "/equipment/AlphaPass/Legacy/Inventioners.glb?v=hair-fit-3",
+      "wear_slot": "helmet",
+      "hides_hair": false,
+      "hair_fit": "inventioners"
     },
     {
       "id": "shardspire",
       "name": "Shardspire",
       "category": "alpha_pass",
-      "collection": "alpha_pass",
+      "collection": "alpha_shardspire",
       "gender": "female_v2",
       "bilateral": false,
       "color": "#eab308",
@@ -6456,13 +6462,16 @@
       "hides_body_regions": [],
       "mesh_type": "external",
       "mesh_params": {},
-      "url": "/equipment/AlphaPass/Shardspire.glb"
+      "url": "/equipment/AlphaPass/Legacy/Shardspire.glb?v=hair-fit-3",
+      "wear_slot": "helmet",
+      "hides_hair": false,
+      "hair_fit": "shardspire"
     },
     {
       "id": "wildplume",
       "name": "Wildplume",
       "category": "alpha_pass",
-      "collection": "alpha_pass",
+      "collection": "alpha_wildplume",
       "gender": "female_v2",
       "bilateral": false,
       "color": "#eab308",
@@ -6482,13 +6491,16 @@
       "hides_body_regions": [],
       "mesh_type": "external",
       "mesh_params": {},
-      "url": "/equipment/AlphaPass/Wildplume.glb"
+      "url": "/equipment/AlphaPass/Legacy/Wildplume.glb?v=hair-fit-3",
+      "wear_slot": "helmet",
+      "hides_hair": false,
+      "hair_fit": "wildplume"
     },
     {
       "id": "wayfinder",
       "name": "Wayfinder",
       "category": "alpha_pass",
-      "collection": "alpha_pass",
+      "collection": "alpha_wayfinder",
       "gender": "female_v2",
       "bilateral": false,
       "color": "#eab308",
@@ -6508,7 +6520,10 @@
       "hides_body_regions": [],
       "mesh_type": "external",
       "mesh_params": {},
-      "url": "/equipment/AlphaPass/Wayfinder.glb"
+      "url": "/equipment/AlphaPass/Legacy/Wayfinder.glb?v=hair-fit-3",
+      "wear_slot": "helmet",
+      "hides_hair": false,
+      "hair_fit": "wayfinder"
     },
     {
       "id": "hair_medium_v1",
@@ -6578,7 +6593,7 @@
       ],
       "bounds": {
         "z_min": 1.44,
-        "z_max": 1.80,
+        "z_max": 1.8,
         "radius": 0.18,
         "weight_radius": 0.18
       },

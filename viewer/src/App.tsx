@@ -414,6 +414,15 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
   });
 
   const playerRef = useRef<AnimationPlayerState | null>(null);
+  const previewAutoplayRef = useRef(false);
+  useEffect(() => {
+    if (!animSpec || !previewAutoplayRef.current) return;
+    const frame = requestAnimationFrame(() => {
+      previewAutoplayRef.current = false;
+      playerRef.current?.play();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [animSpec]);
 
   const [boneOverrides, setBoneOverrides] = useState<Map<string, BoneTransformOverride>>(new Map());
 
@@ -468,6 +477,7 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
       "/equipment/equipment_spec_starter_clothes.json",
       "/equipment/equipment_spec_combat_capes.json",
       "/equipment/equipment_spec_seasonal_capes.json",
+      "/equipment/equipment_spec_alpha_pass.json",
     ];
     Promise.all(
       specFiles.map((url) =>
@@ -1035,7 +1045,7 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
       const entry = manifest.find((a) => a.id === id);
       if (!entry) return;
 
-      fetch(`/animations/${entry.file}`)
+      fetch(`/animations/${activeGender === "male_rework" && entry.male_file ? entry.male_file : entry.file}`)
         .then((res) => {
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           return res.json() as Promise<AnimSpec>;
@@ -1043,7 +1053,7 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
         .then((spec) => setAnimSpec(spec))
         .catch((err) => console.error("Failed to load animation:", err));
     },
-    [manifest],
+    [manifest, activeGender],
   );
 
   const handlePlayerState = useCallback((state: AnimationPlayerState) => {
@@ -1362,7 +1372,7 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
               basePose={basePose}
               showMesh={showMesh}
             />
-            {appearanceSex && characterModel.scene.userData.appearanceSex === appearanceSex && <CharacterAppearance key={characterModel.scene.uuid} model={characterModel} sex={appearanceSex} value={appearance.options[appearanceSex]} visible={showMesh} hideHair={equipSpec?.slots.some(slot => effectiveEquipState[slot.id] && slot.hides_hair) ?? false} onError={setAppearanceError} />}
+            {appearanceSex && characterModel.scene.userData.appearanceSex === appearanceSex && <CharacterAppearance key={characterModel.scene.uuid} model={characterModel} sex={appearanceSex} value={appearance.options[appearanceSex]} visible={showMesh} hideHair={equipSpec?.slots.some(slot => effectiveEquipState[slot.id] && slot.hides_hair) ?? false} hairFit={equipSpec?.slots.find(slot => effectiveEquipState[slot.id] && slot.hair_fit)?.hair_fit} onError={setAppearanceError} />}
             {equipSpec && !isNPC && (
               <EquipmentMeshRenderer
                 slotIds={equipSlotIds}
@@ -1514,6 +1524,7 @@ function CharacterViewer({ onHome }: { onHome: () => void }) {
         {!poseMode && (
           <ToolPanel
             tools={TOOLS}
+            onPreviewAnimation={(id) => { previewAutoplayRef.current = true; handleSelectAnimation(id); }}
             selectedToolId={selectedToolId}
             onSelectTool={setSelectedToolId}
             transform={selectedToolTransform}

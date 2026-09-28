@@ -1,3 +1,4 @@
+import { appearancePosePairs, syncAppearancePose } from '../utils/appearancePose';
 import { useEffect, useMemo, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -59,28 +60,10 @@ export default function FacialFeatures({ model, sex, eyebrowStyle, eyelashStyle,
     });
   }, [scene, eyebrowStyle, eyelashStyle, color]);
 
-  const bonePairs = useMemo(() => {
-    const pairs: Array<[THREE.Bone, THREE.Bone]> = [];
-    scene?.traverse(object => {
-      if (object instanceof THREE.Bone) {
-        const source = model.boneObjMap.get(object.name);
-        if (source) pairs.push([object, source]);
-      }
-    });
-    return pairs;
-  }, [scene, model]);
+  const bonePairs = useMemo(() => scene ? appearancePosePairs(scene, model.boneObjMap) : [], [scene, model]);
 
   useFrame(() => {
-    if (!scene) return;
-    scene.position.copy(model.scene.position);
-    scene.quaternion.copy(model.scene.quaternion);
-    scene.scale.copy(model.scene.scale);
-    for (const [target, source] of bonePairs) {
-      target.position.copy(source.position);
-      target.quaternion.copy(source.quaternion);
-      target.scale.copy(source.scale);
-    }
-    scene.updateMatrixWorld(true);
+    if (scene) syncAppearancePose(scene, model.scene, bonePairs);
   });
 
   return scene ? <primitive object={scene} visible={visible} dispose={null} /> : null;

@@ -1,0 +1,5 @@
+import fs from 'node:fs';
+import * as T from '../../viewer/node_modules/three/build/three.module.js';
+export {T};
+export const P=new URL('../../viewer/public',import.meta.url).pathname;
+export function rig(sex){const buf=fs.readFileSync(`${P}/appearance/v6/Models/Base${sex}_Appearance.glb`);const g=JSON.parse(buf.subarray(20,20+buf.readUInt32LE(12)));const nodes=g.nodes.map(n=>{const o=new T.Object3D();o.name=(n.name||'').replaceAll(':','');if(n.matrix)new T.Matrix4().fromArray(n.matrix).decompose(o.position,o.quaternion,o.scale);else{if(n.translation)o.position.fromArray(n.translation);if(n.rotation)o.quaternion.fromArray(n.rotation);if(n.scale)o.scale.fromArray(n.scale)}return o});g.nodes.forEach((n,i)=>(n.children||[]).forEach(j=>nodes[i].add(nodes[j])));const root=new T.Group();g.scenes[g.scene||0].nodes.forEach(i=>root.add(nodes[i]));root.updateMatrixWorld(true);const bones=nodes.filter(n=>n.name.startsWith('mixamorig'));const by=new Map(bones.map(b=>[b.name.replace('mixamorig',''),b]));const rest=new Map(bones.map(b=>[b.name,{p:b.position.clone(),q:b.quaternion.clone(),world:b.getWorldQuaternion(new T.Quaternion())}]));return {root,bones,by,rest};}

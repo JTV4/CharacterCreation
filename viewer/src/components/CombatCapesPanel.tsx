@@ -26,7 +26,7 @@ export default function CombatCapesPanel({ sex, state, onChoose }: {
     <div className="cape-sets">{family === 'Seasonal' ? seasonal.map(s => <button key={s.id} type="button"
       aria-pressed={selected('cape') === s.id} title={`Wear ${s.name} cape`}
       onClick={() => onChoose('cape', seasonalId(s.id))}>
-      <img src={`/equipment/SeasonalCapes/previews/${sex}_${s.id}.webp?v=3`} alt="" loading="lazy" />
+      <img src={`/equipment/SeasonalCapes/previews/${sex}_${s.id}.webp?v=${s.id === 'santa' ? '20260927-santa-red' : '20260927-outfit-colors'}`} alt="" loading="lazy" />
       <span>{s.holiday} · {s.name}</span>
     </button>) : styles.filter(s => s.family === family).map(s => <button key={s.id} type="button"
       aria-pressed={selected('cape') === s.id && selected('helmet') === s.id}

@@ -1,10 +1,13 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { TransformControls } from "@react-three/drei";
 import type { AnimationPlayerState } from "../hooks/useAnimationPlayer";
 import type { ToolDefinition, ToolTransform, GizmoMode } from "../types/tools";
+import { fishingMount, createFishingCarryMount } from "../utils/fishingMount";
+import { createFishingGrip } from "../utils/fishingGrip";
+import ToolEffects from "./ToolEffects";
 import VesselLiquid, { VESSEL_LIQUID_BY_TOOL } from "./VesselLiquid";
 
 interface ToolAttachmentProps {
@@ -35,6 +38,7 @@ export default function ToolAttachment({
   detached = false,
 }: ToolAttachmentProps) {
   const boneGroupRef = useRef<THREE.Group>(null);
+  const mountRef = useRef<THREE.Group>(null);
   const offsetRef = useRef<THREE.Group | null>(null);
   const [model, setModel] = useState<THREE.Group | null>(null);
   const [offsetObj, setOffsetObj] = useState<THREE.Object3D | null>(null);
@@ -46,7 +50,7 @@ export default function ToolAttachment({
   }, []);
 
   useEffect(() => {
-    const cached = modelCache.get(tool.id);
+    const cached = modelCache.get(tool.url);
     if (cached) {
       setModel(cached.clone());
       return;
@@ -57,7 +61,7 @@ export default function ToolAttachment({
       tool.url,
       (gltf) => {
         if (cancelled) return;
-        modelCache.set(tool.id, gltf.scene);
+        modelCache.set(tool.url, gltf.scene);
         setModel(gltf.scene.clone());
       },
       undefined,
@@ -82,7 +86,11 @@ export default function ToolAttachment({
     obj.scale.setScalar(transform.scale);
   }, [transform, offsetObj]);
 
-  useFrame(() => {
+  const mount = useMemo(() => model && tool.category === "fishing_rods" && !detached ? fishingMount(model) : { position: new THREE.Vector3(), quaternion: new THREE.Quaternion() }, [model, tool.category, detached]);
+  const carryMount = useMemo(() => model && tool.category === "fishing_rods" ? createFishingCarryMount(model) : null, [model, tool.category]);
+  const carryRight = useMemo(() => new THREE.Vector3(), []);
+  const carryLeft = useMemo(() => new THREE.Vector3(), []);
+  const syncAttachment = useCallback(() => {
     const group = boneGroupRef.current;
     if (!group) return;
 
@@ -105,7 +113,34 @@ export default function ToolAttachment({
     group.position.copy(_pos);
     group.quaternion.copy(_quat);
     group.scale.setScalar(1);
-  });
+    const mounted = mountRef.current;
+    if (mounted && carryMount) {
+      let current = mount;
+      if (!/Fishing$/.test(player.activeAnimId ?? '')) {
+        const right = player.boneObjMap.get('mixamorigRightArm');
+        const left = player.boneObjMap.get('mixamorigLeftArm');
+        if (right && left) {
+          right.getWorldPosition(carryRight);left.getWorldPosition(carryLeft);
+          carryRight.sub(carryLeft);carryRight.z=0;carryRight.normalize();
+        } else carryRight.set(-1,0,0);
+        current = carryMount(_quat, carryRight);
+      }
+      mounted.position.copy(current.position);mounted.quaternion.copy(current.quaternion);
+    }
+    group.updateMatrixWorld(true);
+  }, [boneName, detached, playerRef, carryMount, carryRight, carryLeft, mount]);
+  const fingerGrip = useMemo(() => createFishingGrip(), []);
+  useEffect(() => () => fingerGrip.restore(), [fingerGrip, tool.id, detached]);
+  useFrame(() => fingerGrip.restore(), -3);
+  useFrame(() => {
+    syncAttachment();
+    const player = playerRef.current;
+    if (carryMount && model && player && !detached && !/Fishing$/.test(player.activeAnimId ?? '')) {
+      fingerGrip.apply(player.boneObjMap, model);
+    }
+  }, -1);
+
+
 
   const readTransform = useCallback(() => {
     const obj = offsetRef.current;
@@ -148,12 +183,15 @@ export default function ToolAttachment({
     <>
       <group ref={boneGroupRef}>
         <group ref={offsetCallback}>
-          <primitive object={model} />
+          <group ref={mountRef} position={mount.position} quaternion={mount.quaternion}>
+            <primitive object={model} />
+          </group>
           {VESSEL_LIQUID_BY_TOOL[tool.id] && (
             <VesselLiquid config={VESSEL_LIQUID_BY_TOOL[tool.id]} playerRef={playerRef} />
           )}
         </group>
       </group>
+      <ToolEffects tool={tool} model={model} playerRef={playerRef} detached={detached} syncAttachment={syncAttachment} />
       {offsetObj && (
         <TransformControls
           ref={tcRef}

@@ -1,0 +1,304 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Female V2 equipment: Shell V1, skin colors, and robes",
+    "coordinate_system": {
+      "up": "Y",
+      "forward": "-Z",
+      "right": "X",
+      "scale": "meters"
+    }
+  },
+  "slots": [
+    {
+      "id": "alpha_boghop_male_helmet",
+      "name": "Boghop",
+      "category": "alpha_pass",
+      "collection": "alpha_boghop",
+      "gender": "male_rework",
+      "bilateral": false,
+      "color": "#eab308",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/AlphaPass/Male/Boghop.glb?v=hair-fit-3",
+      "wear_slot": "helmet",
+      "hides_hair": false,
+      "hair_fit": "boghop"
+    },
+    {
+      "id": "alpha_boghop_female_helmet",
+      "name": "Boghop",
+      "category": "alpha_pass",
+      "collection": "alpha_boghop",
+      "gender": "female_rework",
+      "bilateral": false,
+      "color": "#eab308",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/AlphaPass/Female/Boghop.glb?v=hair-fit-3",
+      "wear_slot": "helmet",
+      "hides_hair": false,
+      "hair_fit": "boghop"
+    },
+    {
+      "id": "alpha_inventioners_male_helmet",
+      "name": "Inventioners",
+      "category": "alpha_pass",
+      "collection": "alpha_inventioners",
+      "gender": "male_rework",
+      "bilateral": false,
+      "color": "#eab308",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/AlphaPass/Male/Inventioners.glb?v=hair-fit-3",
+      "wear_slot": "helmet",
+      "hides_hair": false,
+      "hair_fit": "inventioners"
+    },
+    {
+      "id": "alpha_inventioners_female_helmet",
+      "name": "Inventioners",
+      "category": "alpha_pass",
+      "collection": "alpha_inventioners",
+      "gender": "female_rework",
+      "bilateral": false,
+      "color": "#eab308",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/AlphaPass/Female/Inventioners.glb?v=hair-fit-3",
+      "wear_slot": "helmet",
+      "hides_hair": false,
+      "hair_fit": "inventioners"
+    },
+    {
+      "id": "alpha_shardspire_male_helmet",
+      "name": "Shardspire",
+      "category": "alpha_pass",
+      "collection": "alpha_shardspire",
+      "gender": "male_rework",
+      "bilateral": false,
+      "color": "#eab308",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/AlphaPass/Male/Shardspire.glb?v=hair-fit-3",
+      "wear_slot": "helmet",
+      "hides_hair": false,
+      "hair_fit": "shardspire"
+    },
+    {
+      "id": "alpha_shardspire_female_helmet",
+      "name": "Shardspire",
+      "category": "alpha_pass",
+      "collection": "alpha_shardspire",
+      "gender": "female_rework",
+      "bilateral": false,
+      "color": "#eab308",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/AlphaPass/Female/Shardspire.glb?v=hair-fit-3",
+      "wear_slot": "helmet",
+      "hides_hair": false,
+      "hair_fit": "shardspire"
+    },
+    {
+      "id": "alpha_wildplume_male_helmet",
+      "name": "Wildplume",
+      "category": "alpha_pass",
+      "collection": "alpha_wildplume",
+      "gender": "male_rework",
+      "bilateral": false,
+      "color": "#eab308",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/AlphaPass/Male/Wildplume.glb?v=hair-fit-3",
+      "wear_slot": "helmet",
+      "hides_hair": false,
+      "hair_fit": "wildplume"
+    },
+    {
+      "id": "alpha_wildplume_female_helmet",
+      "name": "Wildplume",
+      "category": "alpha_pass",
+      "collection": "alpha_wildplume",
+      "gender": "female_rework",
+      "bilateral": false,
+      "color": "#eab308",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/AlphaPass/Female/Wildplume.glb?v=hair-fit-3",
+      "wear_slot": "helmet",
+      "hides_hair": false,
+      "hair_fit": "wildplume"
+    },
+    {
+      "id": "alpha_wayfinder_male_helmet",
+      "name": "Wayfinder",
+      "category": "alpha_pass",
+      "collection": "alpha_wayfinder",
+      "gender": "male_rework",
+      "bilateral": false,
+      "color": "#eab308",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/AlphaPass/Male/Wayfinder.glb?v=hair-fit-3",
+      "wear_slot": "helmet",
+      "hides_hair": false,
+      "hair_fit": "wayfinder"
+    },
+    {
+      "id": "alpha_wayfinder_female_helmet",
+      "name": "Wayfinder",
+      "category": "alpha_pass",
+      "collection": "alpha_wayfinder",
+      "gender": "female_rework",
+      "bilateral": false,
+      "color": "#eab308",
+      "bones": [
+        {
+          "name": "mixamorigHead",
+          "weight": 1.0
+        }
+      ],
+      "bounds": {
+        "z_min": 1.735,
+        "z_max": 1.854,
+        "radius": 0.2,
+        "weight_radius": 0.2
+      },
+      "rules": {},
+      "hides_body_regions": [],
+      "mesh_type": "external",
+      "mesh_params": {},
+      "url": "/equipment/AlphaPass/Female/Wayfinder.glb?v=hair-fit-3",
+      "wear_slot": "helmet",
+      "hides_hair": false,
+      "hair_fit": "wayfinder"
+    }
+  ]
+}

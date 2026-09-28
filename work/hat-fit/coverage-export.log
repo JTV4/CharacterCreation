@@ -1,0 +1,146 @@
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.13s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+18:33:55 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+18:33:55 | INFO: Starting glTF 2.0 export
+18:33:55 | INFO: Extracting primitive: mesh.003
+18:33:55 | INFO: Primitives created: 1
+18:33:55 | INFO: Finished glTF 2.0 export in 0.027786970138549805 s
+
+FITTED Female Inventioners: crown=1.7767, width=0.1940, scale=0.2900
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+18:33:55 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+18:33:55 | INFO: Starting glTF 2.0 export
+18:33:55 | INFO: Extracting primitive: mesh
+18:33:55 | INFO: Primitives created: 1
+18:33:55 | INFO: Finished glTF 2.0 export in 0.029981136322021484 s
+
+FITTED Female Boghop: crown=1.7767, width=0.1940, scale=0.4601
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+18:33:55 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+18:33:55 | INFO: Starting glTF 2.0 export
+18:33:55 | INFO: Extracting primitive: mesh.002
+18:33:55 | INFO: Primitives created: 1
+18:33:55 | INFO: Finished glTF 2.0 export in 0.02262091636657715 s
+
+FITTED Female Shardspire: crown=1.7767, width=0.1940, scale=0.3000
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+18:33:55 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+18:33:55 | INFO: Starting glTF 2.0 export
+18:33:55 | INFO: Extracting primitive: mesh.001
+18:33:55 | INFO: Primitives created: 1
+18:33:55 | INFO: Finished glTF 2.0 export in 0.020366191864013672 s
+
+FITTED Female Wayfinder: crown=1.7767, width=0.1940, scale=0.4801
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+18:33:55 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+18:33:55 | INFO: Starting glTF 2.0 export
+18:33:55 | INFO: Extracting primitive: mesh.004
+18:33:55 | INFO: Primitives created: 1
+18:33:55 | INFO: Finished glTF 2.0 export in 0.02390003204345703 s
+
+FITTED Female Wildplume: crown=1.7767, width=0.1940, scale=0.3300
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.16s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+18:33:55 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+18:33:55 | INFO: Starting glTF 2.0 export
+18:33:55 | INFO: Extracting primitive: mesh.005
+18:33:55 | INFO: Primitives created: 1
+18:33:55 | INFO: Finished glTF 2.0 export in 0.02655935287475586 s
+
+FITTED Male Inventioners: crown=1.7928, width=0.1984, scale=0.2966
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+18:33:55 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+18:33:55 | INFO: Starting glTF 2.0 export
+18:33:55 | INFO: Extracting primitive: mesh.006
+18:33:55 | INFO: Primitives created: 1
+18:33:55 | INFO: Finished glTF 2.0 export in 0.016691923141479492 s
+
+FITTED Male Boghop: crown=1.7928, width=0.1984, scale=0.4704
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+18:33:55 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+18:33:55 | INFO: Starting glTF 2.0 export
+18:33:55 | INFO: Extracting primitive: mesh.007
+18:33:55 | INFO: Primitives created: 1
+18:33:55 | INFO: Finished glTF 2.0 export in 0.01746201515197754 s
+
+FITTED Male Shardspire: crown=1.7928, width=0.1984, scale=0.3068
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+18:33:56 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+18:33:56 | INFO: Starting glTF 2.0 export
+18:33:56 | INFO: Extracting primitive: mesh.008
+18:33:56 | INFO: Primitives created: 1
+18:33:56 | INFO: Finished glTF 2.0 export in 0.0254671573638916 s
+
+FITTED Male Wayfinder: crown=1.7928, width=0.1984, scale=0.4909
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.02s
+18:33:56 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+18:33:56 | INFO: Starting glTF 2.0 export
+18:33:56 | INFO: Extracting primitive: mesh.009
+18:33:56 | INFO: Primitives created: 1
+18:33:56 | INFO: Finished glTF 2.0 export in 0.022745847702026367 s
+
+FITTED Male Wildplume: crown=1.7928, width=0.1984, scale=0.3375
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.07s
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.01s
+18:33:56 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+18:33:56 | INFO: Starting glTF 2.0 export
+18:33:56 | INFO: Extracting primitive: mesh.010
+18:33:56 | INFO: Primitives created: 1
+18:33:56 | INFO: Finished glTF 2.0 export in 0.030560016632080078 s
+
+FITTED Legacy Inventioners: crown=1.7500, width=0.1905, scale=0.2848
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+18:33:56 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+18:33:56 | INFO: Starting glTF 2.0 export
+18:33:56 | INFO: Extracting primitive: mesh.011
+18:33:56 | INFO: Primitives created: 1
+18:33:56 | INFO: Finished glTF 2.0 export in 0.01719212532043457 s
+
+FITTED Legacy Boghop: crown=1.7500, width=0.1905, scale=0.4517
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+18:33:56 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+18:33:56 | INFO: Starting glTF 2.0 export
+18:33:56 | INFO: Extracting primitive: mesh.012
+18:33:56 | INFO: Primitives created: 1
+18:33:56 | INFO: Finished glTF 2.0 export in 0.01900196075439453 s
+
+FITTED Legacy Shardspire: crown=1.7500, width=0.1905, scale=0.2946
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+18:33:56 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+18:33:56 | INFO: Starting glTF 2.0 export
+18:33:56 | INFO: Extracting primitive: mesh.013
+18:33:56 | INFO: Primitives created: 1
+18:33:56 | INFO: Finished glTF 2.0 export in 0.016239643096923828 s
+
+FITTED Legacy Wayfinder: crown=1.7500, width=0.1905, scale=0.4714
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.00s
+18:33:56 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.1/python/lib/python3.11/site-packages/libextern_draco.dylib
+18:33:56 | INFO: Starting glTF 2.0 export
+18:33:56 | INFO: Extracting primitive: mesh.014
+18:33:56 | INFO: Primitives created: 1
+18:33:56 | INFO: Finished glTF 2.0 export in 0.017857074737548828 s
+
+FITTED Legacy Wildplume: crown=1.7500, width=0.1905, scale=0.3241
+Blender 4.1.1 (hash e1743a0317bc built 2024-04-16 00:06:22)
+Warning: Falling back to the standard locale ("C")
+Read prefs: "/Users/stephenvillavaso/Library/Application Support/Blender/4.1/config/userpref.blend"
+
+Blender quit

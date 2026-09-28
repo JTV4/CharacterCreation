@@ -1,0 +1,18 @@
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.09s
+Female HEAD [1.372295055368511e-10, 0.023523449897766113, 1.5694360733032227] TAIL [1.3722992187048533e-10, 0.02352338284254074, 1.790569543838501]
+BaseFemaleRework HEAD BOUNDS [[-0.097, -0.1034, 1.5462], [0.097, 0.1198, 1.7767]]
+GS_Eyes_Female HEAD BOUNDS [[-0.0584, -0.0685, 1.6508], [0.0596, -0.0574, 1.6621]]
+Icosphere HEAD BOUNDS [[-0.8506, -0.8506, 0.4472], [0.8944, 0.8506, 1.0]]
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.08s
+Male HEAD [4.021424859779188e-11, 0.02781890146434307, 1.5638346672058105] TAIL [4.0214845342667616e-11, 0.027818826958537102, 1.8121479749679565]
+BaseMaleRework HEAD BOUNDS [[-0.0993, -0.1187, 1.5397], [0.0991, 0.118, 1.7928]]
+GS_Eyes_Male HEAD BOUNDS [[-0.0576, -0.0811, 1.6565], [0.0584, -0.0648, 1.6678]]
+Icosphere HEAD BOUNDS [[-0.8506, -0.8506, 0.4472], [0.8944, 0.8506, 1.0]]
+Icosphere.001 HEAD BOUNDS [[-0.8506, -0.8506, 0.4472], [0.8944, 0.8506, 1.0]]
+Blender 4.1.1 (hash e1743a0317bc built 2024-04-16 00:06:22)
+Warning: Falling back to the standard locale ("C")
+Read prefs: "/Users/stephenvillavaso/Library/Application Support/Blender/4.1/config/userpref.blend"
+
+Blender quit

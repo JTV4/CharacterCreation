@@ -33,14 +33,20 @@ def face(x,z,lift=.002):
  if hit is None:raise ValueError(('face miss',x,z))
  return hit+Vector((0,-lift,0))
 class Mesh:
- def __init__(self):self.v=[];self.f=[];self.c=[]
+ def __init__(self):self.v=[];self.f=[];self.c=[];self.embedded=set()
  def vertex(self,p,c=.8):self.v.append(Vector(p));self.c.append(c);return len(self.v)-1
- def tube(self,pts,widths,depths=None,shade=.86,sides=6):
+ def tube(self,pts,widths,depths=None,shade=.86,sides=6,attach_count=0):
   pts=list(map(Vector,pts));depths=depths or widths;start=len(self.v)
   for i,p in enumerate(pts):
    tangent=(pts[min(i+1,len(pts)-1)]-pts[max(0,i-1)]).normalized();a=tangent.cross(Vector((0,-1,0))).normalized();b=a.cross(tangent).normalized()
    for j in range(sides):
-    t=j*math.tau/sides;self.vertex(p+a*math.cos(t)*widths[i]+b*math.sin(t)*depths[i],shade*(.86+.14*max(0,math.sin(t))))
+    t=j*math.tau/sides;q=p+a*math.cos(t)*widths[i]+b*math.sin(t)*depths[i]
+    if i<attach_count:
+     # Shape each root ring against the faceted lip, with its back embedded.
+     # A fixed forward offset leaves the entire pencil mustache floating.
+     depth=depths[i]+p.y-q.y-.00035
+     q.y=face(q.x,q.z,0).y-depth
+    self.vertex(q,shade*(.86+.14*max(0,math.sin(t))))
   for i in range(len(pts)-1):
    for j in range(sides):a=start+i*sides+j;b=start+i*sides+(j+1)%sides;self.f.append((a,a+sides,b+sides,b))
   self.f.append(tuple(start+j for j in reversed(range(sides))));self.f.append(tuple(start+(len(pts)-1)*sides+j for j in range(sides)))
@@ -72,7 +78,7 @@ class Mesh:
    z=top+(base-top)*st
    aa=a
    if small:aa*=1-(.85 if style=='soul_patch' else .30)*st**2
-   q=surface(aa,max(z,base+.008),.0008+volume*math.sin(st*math.pi*.82)+extra)
+   q=surface(aa,max(z,base+.008),.00025+volume*math.sin(st*math.pi*.82)+extra)
    q.z=z
    front=max(0,math.cos(a))
    drop=length*front**2
@@ -108,7 +114,7 @@ class Mesh:
    edge=[start+j*r for j in range(n)]+[start+(n-1)*r+k for k in range(1,r)]+[start+j*r+r-1 for j in reversed(range(n-1))]+[start+k for k in reversed(range(1,r-1))]
    inset=[]
    for idx in edge:
-    q=self.v[idx];normal=Vector((q.x,q.y-.025,0)).normalized();inset.append(self.vertex(q-normal*.0018,.55))
+    q=self.v[idx];normal=Vector((q.x,q.y-.025,0)).normalized();inset.append(self.vertex(q-normal*.0025,.55));self.embedded.add(inset[-1])
    for i in range(len(edge)):j=(i+1)%len(edge);self.f.append((edge[i],inset[i],inset[j],edge[j]))
    # A lock is a broad, low convex surface tapering to an irregular tip.
    # Surface sampling keeps roots attached even on the angular cheek mesh.
@@ -176,7 +182,9 @@ class Mesh:
     'walrus':[(.034,1.588,.0035),(.034,1.582,.0005)],
    }
    for x,z,w in tips[style]:pts.append(face(sign*x,z,.005));ws.append(w)
-   ds=[w*(.6 if style=='walrus' else .8) for w in ws];self.tube(pts,ws,ds,.84,sides=8)
+   ds=[w*(.6 if style=='walrus' else .8) for w in ws]
+   for i in range(11):pts[i]=face(pts[i].x,pts[i].z,ds[i]-.00035)
+   self.tube(pts,ws,ds,.84,sides=8,attach_count=11)
    for j in [-1,0,1]:
     ridge=[v+Vector((0,-ds[i]*.85,ws[i]*j*.45)) for i,v in enumerate(pts)]
     self.tube(ridge,[max(.00015,w*.12) for w in ws],shade=.92 if j==1 else .78,sides=4)
@@ -197,7 +205,8 @@ class Mesh:
     for x,z,w in [(.035,1.595,.0028),(.041,1.599,.0026),(.045,1.606,.002),(.043,1.611,.0012),(.039,1.612,.0003)]:pts.append(face(sign*x,z,.006));ws.append(w);ds.append(w*.75)
    elif style=='horseshoe':
     for x,z,w in [(.031,1.590,.0038),(.030,1.581,.0035),(.029,1.572,.003),(.028,1.566,.0006)]:pts.append(face(sign*x,z,.003));ws.append(w);ds.append(w*.7)
-   self.tube(pts,ws,ds,.86,sides=8)
+   for i in range(13):pts[i]=face(pts[i].x,pts[i].z,ds[i]-.00035)
+   self.tube(pts,ws,ds,.86,sides=8,attach_count=13)
    for j in [-1,1]:
     ridge=[v+Vector((0,-ds[i]*.83,ws[i]*j*.35)) for i,v in enumerate(pts)]
     self.tube(ridge,[max(.00015,w*.15) for w in ws],shade=.94 if j==1 else .72,sides=4)
@@ -209,11 +218,12 @@ class Mesh:
     if radius<.01:return 0
     normal.normalize();origin=Vector((0,.025,p.z));hit,_,_,_=bvh.ray_cast(origin+normal*.3,-normal)
     if hit is None:return 0
-    return max(0,(hit-origin).length+.00065-radius)
+    return max(0,(hit-origin).length+.00025-radius)
    remaining=[.0025]*len(self.v)
    for _ in range(4):
-    moves=[deficit(p) for p in self.v]
+    moves=[0 if i in self.embedded else deficit(p) for i,p in enumerate(self.v)]
     for face_ids in self.f:
+     if any(i in self.embedded for i in face_ids):continue
      d=deficit(sum((self.v[i] for i in face_ids),Vector())/len(face_ids))
      if d:
       for i in face_ids:moves[i]=max(moves[i],d*1.1)

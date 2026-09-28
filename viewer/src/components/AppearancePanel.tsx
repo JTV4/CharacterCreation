@@ -38,6 +38,6 @@ export default function AppearancePanel({sex,value,onChange,error}:{sex:Appearan
  <label>Look down / up<input aria-label="Look down / up" type="range" min="-1" max="1" step=".01" value={value.gazeY} onChange={e=>onChange({gazeY:+e.target.value,demo:false})}/></label>
  <label><input type="checkbox" checked={value.demo} onChange={e=>onChange({demo:e.target.checked})}/> Demonstrate eye movement</label>
  <button onClick={()=>onChange({gazeX:0,gazeY:0,demo:false})}>Center eyes</button>
- <p>Appearance choices are saved for this character. Eyebrows match the hair color. Choose No hair when using a fitted hat.</p>{error&&<p role="alert">{error}</p>}
+ <p>Appearance choices are saved for this character. Eyebrows match the hair color. Fitted Alpha Pass hats tuck crown hair away while keeping exposed hair and ponytails.</p>{error&&<p role="alert">{error}</p>}
  </details>;
 }

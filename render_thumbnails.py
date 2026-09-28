@@ -25,7 +25,7 @@ import os
 import sys
 
 import bpy
-from mathutils import Vector
+from mathutils import Euler, Vector
 
 
 THUMB_SIZE = 64
@@ -207,7 +207,81 @@ def _fit_camera(objs, frame_region=None):
     return cam
 
 
-def _render_one(glb_path: str, out_path: str, frame_region=None):
+ARM_DOWN_DEG = 75.0
+LEFT_ARM_CANDIDATES = ["mixamorig:LeftArm", "mixamorigLeftArm"]
+RIGHT_ARM_CANDIDATES = ["mixamorig:RightArm", "mixamorigRightArm"]
+
+
+def _pose_arms_down(armature):
+    """Drop both upper arms from T-pose so sleeve thumbnails read as worn."""
+    bpy.ops.object.mode_set(mode="OBJECT")
+    bpy.context.view_layer.objects.active = armature
+    armature.select_set(True)
+    bpy.ops.object.mode_set(mode="POSE")
+    rad = math.radians(ARM_DOWN_DEG)
+    for names in (LEFT_ARM_CANDIDATES, RIGHT_ARM_CANDIDATES):
+        bone = next((armature.pose.bones.get(name) for name in names if armature.pose.bones.get(name)), None)
+        if bone is None:
+            continue
+        bone.rotation_mode = "XYZ"
+        bone.rotation_euler = Euler((rad, 0.0, 0.0), "XYZ")
+    bpy.ops.object.mode_set(mode="OBJECT")
+
+
+def _apply_armatures(mesh_objs):
+    """Bake skinning so the camera frames the posed mesh, not the bind pose."""
+    for obj in mesh_objs:
+        if obj.type != "MESH":
+            continue
+        bpy.ops.object.select_all(action="DESELECT")
+        obj.select_set(True)
+        bpy.context.view_layer.objects.active = obj
+        for modifier in list(obj.modifiers):
+            if modifier.type != "ARMATURE":
+                continue
+            try:
+                bpy.ops.object.modifier_apply(modifier=modifier.name)
+            except Exception as error:
+                print(f"  WARN: could not apply {modifier.name}: {error}")
+
+
+def _drop_arms(mesh_objs):
+    armature = next((obj for obj in bpy.context.scene.objects if obj.type == "ARMATURE"), None)
+    if armature is None:
+        print("  WARN: no armature, leaving arms in bind pose")
+        return
+    _pose_arms_down(armature)
+    _apply_armatures(mesh_objs)
+    armature.hide_render = True
+
+
+def _pair_gloves(mesh_objs):
+    """Slide the left and right hands together so both fit a square icon."""
+    _apply_armatures(mesh_objs)
+    for obj in mesh_objs:
+        if obj.type != "MESH" or obj.data is None or len(obj.data.vertices) == 0:
+            continue
+        world = obj.matrix_world
+        inverse = world.inverted()
+        coords = [world @ vertex.co for vertex in obj.data.vertices]
+        mid = (min(coord.x for coord in coords) + max(coord.x for coord in coords)) * 0.5
+        left = [coord for coord in coords if coord.x < mid]
+        right = [coord for coord in coords if coord.x >= mid]
+        if not left or not right:
+            continue
+        gap = 0.04
+        left_edge = max(coord.x for coord in left)
+        right_edge = min(coord.x for coord in right)
+        shift_left = (-gap * 0.5) - left_edge
+        shift_right = (gap * 0.5) - right_edge
+        for vertex, coord in zip(obj.data.vertices, coords):
+            moved = coord.copy()
+            moved.x += shift_left if coord.x < mid else shift_right
+            vertex.co = inverse @ moved
+        obj.data.update()
+
+
+def _render_one(glb_path: str, out_path: str, frame_region=None, pose=None):
     print(f"\n=== {os.path.basename(glb_path)} → {out_path} ===")
     _reset_scene()
     _setup_world_and_render()
@@ -232,6 +306,11 @@ def _render_one(glb_path: str, out_path: str, frame_region=None):
         print(f"  WARN: no mesh objects in {glb_path} — skipping")
         return False
 
+    if pose == "drop_arms":
+        _drop_arms(mesh_objs)
+    elif pose == "pair_gloves":
+        _pair_gloves(mesh_objs)
+
     _fit_camera(mesh_objs, frame_region=frame_region)
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
@@ -255,7 +334,7 @@ def main():
     ok = 0
     for p in pieces:
         try:
-            if _render_one(p["glb"], p["out"], frame_region=p.get("frame_region")):
+            if _render_one(p["glb"], p["out"], frame_region=p.get("frame_region"), pose=p.get("pose")):
                 ok += 1
         except Exception as e:
             print(f"  ERROR {p['glb']}: {e}")

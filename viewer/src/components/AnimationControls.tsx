@@ -99,6 +99,17 @@ export default function AnimationControls({
 
         <div
           className="anim-scrubber"
+          role="slider"
+          aria-label="Animation time"
+          aria-valuemin={0}
+          aria-valuemax={duration}
+          aria-valuenow={currentTime}
+          tabIndex={0}
+          onKeyDown={(e) => {
+            const step = e.shiftKey ? 0.5 : 1 / 30;
+            const next = e.key === "Home" ? 0 : e.key === "End" ? duration : e.key === "ArrowRight" ? currentTime + step : e.key === "ArrowLeft" ? currentTime - step : null;
+            if (next !== null) { e.preventDefault(); onSeek(Math.max(0, Math.min(duration, next))); }
+          }}
           ref={scrubberRef}
           onClick={handleScrub}
           onMouseMove={handleScrubDrag}

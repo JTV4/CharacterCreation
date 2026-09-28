@@ -878,6 +878,7 @@ body,
 
 .anim-controls-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
 }
@@ -939,6 +940,7 @@ body,
 
 .anim-scrubber {
   flex: 1;
+  min-width: 120px;
   height: 28px;
   display: flex;
   align-items: center;
@@ -1867,6 +1869,12 @@ body,
 }
 
 .tool-category-header {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -2785,3 +2793,7 @@ body,
 .appearance-panel input[type=range] { display: block; width: 100%; }
 .appearance-panel p { font-size: 11px; color: #9da5b6; line-height: 1.4; }
 .appearance-panel [role=alert] { color: #fda4af; }
+
+.tool-action-preview { padding: 10px; margin-bottom: 10px; border: 1px solid #414760; border-radius: 7px; background: #222737; }
+.tool-action-preview button { width: 100%; padding: 8px; color: #fff; background: #366dcc; border: 0; border-radius: 5px; cursor: pointer; }
+.tool-action-preview p { margin: 8px 0 0; font-size: 11px; color: #aeb8cc; line-height: 1.5; }

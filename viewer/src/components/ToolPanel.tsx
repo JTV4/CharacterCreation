@@ -7,6 +7,7 @@ import type {
   GizmoMode,
 } from "../types/tools";
 import { TOOL_CATEGORIES } from "../types/tools";
+import { SPELL_STYLES } from "../utils/toolEffects";
 import SectionCollapse from "./SectionCollapse";
 
 interface ToolPanelProps {
@@ -20,6 +21,7 @@ interface ToolPanelProps {
   onResetTransform: () => void;
   detached: boolean;
   onDetachedChange: (v: boolean) => void;
+  onPreviewAnimation: (id: string) => void;
 }
 
 const DRAG_THRESHOLD = 3;
@@ -213,6 +215,7 @@ export default function ToolPanel({
   onResetTransform,
   detached,
   onDetachedChange,
+  onPreviewAnimation,
 }: ToolPanelProps) {
   const updatePosition = useCallback(
     (v: [number, number, number]) =>
@@ -326,12 +329,22 @@ export default function ToolPanel({
         )}
       </div>
       {sectionOpen && <>
+      {activeTool && (activeTool.category === 'fishing_rods' || SPELL_STYLES[activeTool.id]) && (
+        <div className="tool-action-preview">
+          <button onClick={() => onPreviewAnimation(activeTool.category === 'fishing_rods' ? 'FemaleFishing' : 'FemaleMagicCast')}>
+            {activeTool.category === 'fishing_rods' ? 'Preview fishing drop-in' : `Preview ${SPELL_STYLES[activeTool.id].name}`}
+          </button>
+          <p>{activeTool.category === 'fishing_rods' ? 'Short drop · settle · retrieve. Use the timeline to inspect the line.' : 'Charge · release · impact. Effects follow the animation timeline.'}</p>
+        </div>
+      )}
       <div className="tool-list">
         {categoryGroups.map(({ info, items }) => {
           const isOpen = !collapsed.has(info.key);
           return (
             <div className="tool-category-group" key={info.key}>
-              <div
+              <button
+                type="button"
+                aria-expanded={isOpen}
                 className="tool-category-header"
                 onClick={() => toggleCollapse(info.key)}
               >
@@ -346,7 +359,7 @@ export default function ToolPanel({
                 >
                   &#9654;
                 </span>
-              </div>
+              </button>
               {isOpen &&
                 items.map((tool) => {
                   const active = selectedToolId === tool.id;

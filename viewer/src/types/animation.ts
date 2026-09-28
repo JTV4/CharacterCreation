@@ -34,6 +34,7 @@ export interface CharacterManifestEntry {
 export interface AnimManifestEntry {
   id: string;
   file: string;
+  male_file?: string;
   loop?: boolean;
   /**
    * Optional category tag.  Used by the viewer to filter the animation

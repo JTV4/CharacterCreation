@@ -386,8 +386,9 @@
     },
     {
       "id": "FemaleFishing",
-      "file": "FemaleFishing.anim.json",
-      "loop": true
+      "file": "FemaleFishing.anim.json?v=stance-carry-9",
+      "loop": true,
+      "male_file": "MaleFishing.anim.json?v=stance-carry-9"
     },
     {
       "id": "FemaleMining",
@@ -456,8 +457,9 @@
     },
     {
       "id": "FemaleMagicCast",
-      "file": "FemaleMagicCast.anim.json",
-      "loop": true
+      "file": "FemaleMagicCast.anim.json?v=skill-3",
+      "loop": true,
+      "male_file": "MaleMagicCast.anim.json?v=skill-3"
     },
     {
       "id": "FemaleRangedAttack",

@@ -11,6 +11,7 @@ export interface AnimationPlayerState {
   boneRestWorldInverses: Map<string, THREE.Matrix4>;
   skeletonRoot: THREE.Object3D;
   currentTime: number;
+  getTime: () => number;
   isPlaying: boolean;
   duration: number;
   speed: number;
@@ -139,6 +140,7 @@ export function useAnimationPlayer(
       }
 
       const mixer = new THREE.AnimationMixer(skeletonRoot);
+      mixer.timeScale = speed;
       const clip = animSpecToClip(spec, boneRestPose, 0.01 / (Math.abs(skeletonRoot.scale.x) || 1));
 
       clip.tracks.forEach((track) => {
@@ -173,7 +175,7 @@ export function useAnimationPlayer(
       setCurrentTime(0);
       setIsPlaying(false);
     },
-    [characterModel, skeletonRoot, boneObjMap, boneRestPose, captureFrozenPose, applyBasePose],
+    [characterModel, skeletonRoot, boneObjMap, boneRestPose, captureFrozenPose, applyBasePose, speed],
   );
 
   const play = useCallback(() => {
@@ -210,7 +212,8 @@ export function useAnimationPlayer(
       actionRef.current.reset();
       actionRef.current.play();
       actionRef.current.paused = true;
-      mixerRef.current.setTime(time);
+      actionRef.current.time = THREE.MathUtils.clamp(time, 0, durationRef.current);
+      mixerRef.current.update(0);
 
       skeletonRoot.updateMatrixWorld(true);
       captureFrozenPose();
@@ -297,7 +300,7 @@ export function useAnimationPlayer(
       const time = actionRef.current?.time ?? 0;
       setCurrentTime(time);
     }
-  });
+  }, -2);
 
   useEffect(() => {
     if (!basePose || basePose.size === 0) return;
@@ -349,6 +352,7 @@ export function useAnimationPlayer(
     boneRestWorldInverses,
     skeletonRoot,
     currentTime,
+    getTime: () => actionRef.current?.time ?? 0,
     isPlaying,
     duration: durationRef.current,
     speed,

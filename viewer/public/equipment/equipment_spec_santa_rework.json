@@ -30,10 +30,10 @@
       "hides_body_regions": [],
       "mesh_type": "external",
       "mesh_params": {
-        "triangles": 1756,
-        "revision": 4
+        "triangles": 1744,
+        "revision": 5
       },
-      "url": "/equipment/Rework/Santa/Male/Hat.glb?v=20260927-santa-sole4"
+      "url": "/equipment/Rework/Santa/Male/Hat.glb?v=20260927-santa-brim5"
     },
     {
       "id": "santa_rework_male_upperbody",
@@ -469,10 +469,10 @@
       "hides_body_regions": [],
       "mesh_type": "external",
       "mesh_params": {
-        "triangles": 1756,
-        "revision": 4
+        "triangles": 1744,
+        "revision": 5
       },
-      "url": "/equipment/Rework/Santa/Female/Hat.glb?v=20260927-santa-sole4"
+      "url": "/equipment/Rework/Santa/Female/Hat.glb?v=20260927-santa-brim5"
     },
     {
       "id": "santa_rework_female_upperbody",

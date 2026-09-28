@@ -109,6 +109,7 @@ const COLLECTION_ORDER: CollectionInfo[] = [
 ];
 
 function deriveCollection(slot: EquipmentSlot): string {
+  if (slot.category === "alpha_pass") return "alpha_pass";
   if (slot.collection) return slot.collection;
   if (slot.source === "imported") return "imported";
   if (slot.category === "meshes") return "base";
@@ -228,6 +229,8 @@ function buildSpecEntry(
   if (slot.gender) entry.gender = slot.gender;
   if (slot.collection) entry.collection = slot.collection;
   if (slot.wear_slot) entry.wear_slot = slot.wear_slot;
+  if (slot.hair_fit) entry.hair_fit = slot.hair_fit;
+  if (slot.hides_hair !== undefined) entry.hides_hair = slot.hides_hair;
   if (transform) entry.transform = transform;
   if (boneOffsets && Object.keys(boneOffsets).length > 0) {
     entry.default_bone_offsets = pruneOffsetMap(boneOffsets);

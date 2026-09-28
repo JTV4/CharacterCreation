@@ -502,45 +502,52 @@ export const TOOLS: ToolDefinition[] = [
   // Fishing Rods
   {
     id: "fungul_fishing_rod",
-    name: "Fungul Fishing Rod",
-    url: "/tools/fishing_rods/fungul_fishing_rod.glb",
+    name: "Fungal Fishing Rod",
+    url: "/tools/fishing_rods/fungul_fishing_rod.glb?v=grip-5",
     color: "#60a5fa",
     category: "fishing_rods",
   },
   {
     id: "skull_fishing_rod",
     name: "Skull Fishing Rod",
-    url: "/tools/fishing_rods/skull_fishing_rod.glb",
+    url: "/tools/fishing_rods/skull_fishing_rod.glb?v=grip-5",
     color: "#3b82f6",
     category: "fishing_rods",
   },
   {
     id: "fishing_rod",
     name: "Fishing Rod",
-    url: "/tools/fishing_rods/fishing_rod.glb",
+    url: "/tools/fishing_rods/fishing_rod.glb?v=grip-5",
     color: "#2563eb",
     category: "fishing_rods",
   },
   {
     id: "crystal_fishing_rod",
     name: "Crystal Fishing Rod",
-    url: "/tools/fishing_rods/crystal_fishing_rod.glb",
+    url: "/tools/fishing_rods/crystal_fishing_rod.glb?v=grip-5",
     color: "#93c5fd",
     category: "fishing_rods",
   },
   {
     id: "ethereal_fishing_rod",
     name: "Ethereal Fishing Rod",
-    url: "/tools/fishing_rods/ethereal_fishing_rod.glb",
+    url: "/tools/fishing_rods/ethereal_fishing_rod.glb?v=grip-5",
     color: "#bfdbfe",
     category: "fishing_rods",
   },
   {
     id: "verdant_fishing_rod",
     name: "Verdant Fishing Rod",
-    url: "/tools/fishing_rods/verdant_fishing_rod.glb",
+    url: "/tools/fishing_rods/verdant_fishing_rod.glb?v=grip-5",
     color: "#4ade80",
     category: "fishing_rods",
+  },
+
+  {
+    id: "tidecaster", name: "Tidecaster", url: "/tools/fishing_rods/tidecaster.glb?v=grip-5", color: "#22b7cd", category: "fishing_rods",
+  },
+  {
+    id: "enchanted_fishing_rod", name: "Enchanted Fishing Rod", url: "/tools/fishing_rods/enchanted_fishing_rod.glb?v=grip-5", color: "#c4b5fd", category: "fishing_rods",
   },
 
   // Farming

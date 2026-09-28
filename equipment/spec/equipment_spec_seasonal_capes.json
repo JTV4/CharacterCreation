@@ -18,7 +18,7 @@
       "gender": "male_rework",
       "wear_slot": "cape",
       "bilateral": false,
-      "color": "#542865",
+      "color": "#2d2b38",
       "bones": [
         {
           "name": "mixamorigSpine2",
@@ -36,9 +36,9 @@
       "mesh_type": "external",
       "mesh_params": {
         "triangles": 10800,
-        "revision": 3
+        "revision": 5
       },
-      "url": "/equipment/SeasonalCapes/Male/halloween/Cape.glb?v=20260927-3"
+      "url": "/equipment/SeasonalCapes/Male/halloween/Cape.glb?v=20260927-outfit-colors"
     },
     {
       "id": "seasonal_thanksgiving_male_cape",
@@ -48,7 +48,7 @@
       "gender": "male_rework",
       "wear_slot": "cape",
       "bilateral": false,
-      "color": "#985227",
+      "color": "#5b3d26",
       "bones": [
         {
           "name": "mixamorigSpine2",
@@ -66,9 +66,9 @@
       "mesh_type": "external",
       "mesh_params": {
         "triangles": 11092,
-        "revision": 3
+        "revision": 5
       },
-      "url": "/equipment/SeasonalCapes/Male/thanksgiving/Cape.glb?v=20260927-3"
+      "url": "/equipment/SeasonalCapes/Male/thanksgiving/Cape.glb?v=20260927-outfit-colors"
     },
     {
       "id": "seasonal_santa_male_cape",
@@ -78,7 +78,7 @@
       "gender": "male_rework",
       "wear_slot": "cape",
       "bilateral": false,
-      "color": "#a82737",
+      "color": "#ad0a19",
       "bones": [
         {
           "name": "mixamorigSpine2",
@@ -96,9 +96,9 @@
       "mesh_type": "external",
       "mesh_params": {
         "triangles": 11984,
-        "revision": 3
+        "revision": 4
       },
-      "url": "/equipment/SeasonalCapes/Male/santa/Cape.glb?v=20260927-3"
+      "url": "/equipment/SeasonalCapes/Male/santa/Cape.glb?v=20260927-santa-red"
     },
     {
       "id": "seasonal_halloween_female_cape",
@@ -108,7 +108,7 @@
       "gender": "female_rework",
       "wear_slot": "cape",
       "bilateral": false,
-      "color": "#542865",
+      "color": "#57306c",
       "bones": [
         {
           "name": "mixamorigSpine2",
@@ -126,9 +126,9 @@
       "mesh_type": "external",
       "mesh_params": {
         "triangles": 10800,
-        "revision": 3
+        "revision": 5
       },
-      "url": "/equipment/SeasonalCapes/Female/halloween/Cape.glb?v=20260927-3"
+      "url": "/equipment/SeasonalCapes/Female/halloween/Cape.glb?v=20260927-outfit-colors"
     },
     {
       "id": "seasonal_thanksgiving_female_cape",
@@ -138,7 +138,7 @@
       "gender": "female_rework",
       "wear_slot": "cape",
       "bilateral": false,
-      "color": "#985227",
+      "color": "#5b3d26",
       "bones": [
         {
           "name": "mixamorigSpine2",
@@ -156,9 +156,9 @@
       "mesh_type": "external",
       "mesh_params": {
         "triangles": 11092,
-        "revision": 3
+        "revision": 5
       },
-      "url": "/equipment/SeasonalCapes/Female/thanksgiving/Cape.glb?v=20260927-3"
+      "url": "/equipment/SeasonalCapes/Female/thanksgiving/Cape.glb?v=20260927-outfit-colors"
     },
     {
       "id": "seasonal_santa_female_cape",
@@ -168,7 +168,7 @@
       "gender": "female_rework",
       "wear_slot": "cape",
       "bilateral": false,
-      "color": "#a82737",
+      "color": "#ad0a19",
       "bones": [
         {
           "name": "mixamorigSpine2",
@@ -186,9 +186,9 @@
       "mesh_type": "external",
       "mesh_params": {
         "triangles": 11984,
-        "revision": 3
+        "revision": 4
       },
-      "url": "/equipment/SeasonalCapes/Female/santa/Cape.glb?v=20260927-3"
+      "url": "/equipment/SeasonalCapes/Female/santa/Cape.glb?v=20260927-santa-red"
     }
   ]
 }

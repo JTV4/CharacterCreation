@@ -44,6 +44,8 @@ export function isRangerSlotId(id: string): boolean {
 
 /** Authored clothing and armor fitted to the current appearance/rework bind pose. */
 export function isReworkArmorSlotId(id: string): boolean {
+  // Alpha hats are baked to a head bind pose; never run generic bounds auto-fit.
+  if (/^(?:alpha_)?(?:boghop|inventioners|shardspire|wildplume|wayfinder)(?:_(?:male|female)_helmet)?$/.test(id)) return true;
   if (/^seasonal_(halloween|thanksgiving|santa)_(male|female)_cape$/.test(id)) return true;
   if (/^combat_(?:ranged|mage|melee)_[1-4]_(?:male|female)_(?:helmet|cape)$/.test(id)) return true;
   return /^(?:starter_(?:homestead|dockhand|woodland|townsfolk|artisan|wayfarer)|ranged_(?:leather|green|blue|red|black|purple)|mage_(?:leather|green|blue|red|black|luminous)|iron_l1|steel_rework|gold_rework|titanium_rework|tungsten_rework|luminous_rework|pumpkin_rework|halloween_witch_rework|santa_rework|thanksgiving_rework)_(male|female)_(helmet|upperbody|gloves|lowerbody|boots)$/.test(id);
@@ -74,6 +76,8 @@ export interface EquipmentSlot {
   hides_body_regions?: Array<BodyRegion | string>;
   /** Temporarily hide the chosen hairstyle beneath a fitted hood. */
   hides_hair?: boolean;
+  /** Conceal crown hair while leaving exposed locks and ponytails visible. */
+  hair_fit?: string;
   /** Hide only the black base garment faces beneath this wearable. */
   hides_base_clothing?: Array<"bra" | "underwear">;
   /**
